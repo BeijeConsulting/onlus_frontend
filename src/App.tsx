@@ -12,7 +12,7 @@ import Home from "./screens/Home"
 import Login from "./screens/Login"
 import NotFound from "./screens/NotFound"
 import PersonalArea from "./screens/PersonalArea"
-import Signup from "./screens/Signup"
+import SignUp from "./screens/SignUp"
 import Support from "./screens/Support"
 
 import SCREENS from "./route/router"
@@ -32,7 +32,7 @@ const App: FC = () => {
         <Route path={SCREENS.faq} element={<Faq />} />
         <Route path={SCREENS.login} element={<Login />} />
         <Route path={SCREENS.personalArea} element={<PersonalArea />} />
-        <Route path={SCREENS.signup} element={<Signup />} />
+        <Route path={SCREENS.signup} element={<SignUp />} />
         <Route path={SCREENS.support} element={<Support />} />
         <Route path={SCREENS.notFound} element={<NotFound />} />
       </Routes>
