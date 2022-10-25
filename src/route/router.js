@@ -8,7 +8,7 @@ const SCREENS = {
   faq: "/faq",
   login: "/login",
   personalArea: "/personal-area",
-  signUp: "/signup",
+  signup: "/signup",
   support: "/support",
   notFound: "*"
 };
