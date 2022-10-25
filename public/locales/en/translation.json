@@ -1,0 +1,76 @@
+{
+    "search": "Search",
+    "selectCategory": "Select category",
+
+    "titles": {
+        "eventsTitle": "Cooming soon",
+        "blogTitle": "News",
+        "faqTitle": "Faq",
+        "loginTitle": "Login",
+        "signupTitle": "Sign up"
+    },
+
+    "buttons": {
+        "loginButton": "Login",
+        "signupButton": "Sign up",
+        "confirmButton": "Confirm donation",
+        "continueReadingButton": "Continue reading",
+        "supportNavButton": "Support onlus",
+        "bookButton": "Book"
+    },
+
+    "footer": {
+        "contacts": "Contacts",
+        "terms": "Terms and conditions",
+        "privacyPolicy": "Privacy policy",
+        "cookiePolicy": "Cookie policy"
+    },
+
+    "home": {
+        "latestNews": "Latest news",
+        "relatedArticles": "Related articles",
+        "stayUpToDate": "Stay up to date",
+        "followUs": "Follow us on ",
+        "history": "History"
+    },
+
+    "events": {
+        "description": "Description",
+        "requirements": "Requirements"
+    },
+
+    "login": {
+        "name": "Name",
+        "surname": "Surname",
+        "email": "Email",
+        "password": "Password",
+        "confirmPassword": "Confirm password",
+        "phone": "Telephone",
+        "language": "Language",
+        "italian": "Italian",
+        "english": "English",
+        "acceptTerms": "I accept the terms and conditions",
+        "cf": "Tax code",
+        "birthday": "Date of birth",
+        "privacyTerms": "I have read and accept the terms of the Privacy Policy",
+    
+        "forgottenPassword": "Forgot password?",
+        "notRegistered": "Not yet registered?",
+        "alreadyRegistered": "Already registered?"
+    },
+
+    "personalArea": {
+        "myInfo": "Personal data",
+        "events": "Events",
+        "donations": "Donations",
+        "save": "Save",
+        "welcome": "Welcome",
+        "programmedEvents": "Programmed events",
+        "pastEvents": "Past events",
+        "totalDonated": "Donations amount ",
+        "donationsHistory": "Donations history",
+        "personalData": "Personal data",
+        "paymentOption": "Payment options"
+    }
+
+}

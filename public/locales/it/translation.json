@@ -1,0 +1,77 @@
+{
+    
+    "search": "Cerca",
+    "selectCategory": "Seleziona categoria",
+
+    "titles": {
+        "eventsTitle": "Prossimamente",
+        "blogTitle": "Blog e notizie",
+        "faqTitle": "Faq",
+        "loginTitle": "Login",
+        "signupTitle": "Registrati"
+    },
+
+    "buttons": {
+        "loginButton": "Accedi",
+        "signupButton": "Registrati",
+        "confirmButton": "Conferma donazione",
+        "continueReadingButton": "Continua a leggere",
+        "supportNavButton": "Sostieni onlus",
+        "bookButton": "Prenota"
+    },
+
+    "footer": {
+        "contacts": "Contatti",
+        "terms": "Termini e condizioni",
+        "privacyPolicy": "Privacy policy",
+        "cookiePolicy": "Cookie policy"
+    },
+
+    "home": {
+        "latestNews": "Ultime notizie",
+        "relatedArticles": "Articoli correlati",
+        "stayUpToDate": "Rimani aggiornato",
+        "followUs": "Seguici su ",
+        "history": "Storia"
+    },
+
+    "events": {
+        "description": "Descrizione",
+        "requirements": "Requisiti"
+    },
+
+    "login": {
+        "name": "Nome",
+        "surname": "Cognome",
+        "email": "Email",
+        "password": "Password",
+        "confirmPassword": "Conferma password",
+        "phone": "Telefono",
+        "language": "Lingua",
+        "italian": "Italiano",
+        "english": "Inglese",
+        "acceptTerms": "Accetto i termini e le condizioni",
+        "cf": "Codice fiscale",
+        "birthday": "Data di nascita",
+        "privacyTerms": "Ho letto e accetto le condizioni dell’informativa sulla Privacy",
+    
+        "forgottenPassword": "Password dimenticata?",
+        "notRegistered": "Non hai un account?",
+        "alreadyRegistered": "Hai già un account?"
+    },
+
+    "personalArea": {
+        "myInfo": "I miei dati",
+        "events": "Eventi",
+        "donations": "Donazioni",
+        "save": "Salva modifiche",
+        "welcome": "Benvenuto",
+        "programmedEvents": "Eventi in programma",
+        "pastEvents": "Eventi passati",
+        "totalDonated": "In totale hai donato ",
+        "donationsHistory": "Storico donazioni",
+        "personalData": "Dati anagrafici",
+        "paymentOption": "Modalità di pagamento"
+    }
+
+} 
