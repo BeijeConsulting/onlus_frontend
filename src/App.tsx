@@ -19,7 +19,7 @@ import SCREENS from "./route/router"
 
 import { StyledEngineProvider } from "@mui/material"
 
-import "./App.css"
+import "./App.scss"
 
 const App: FC = () => {
   return (
