@@ -5,12 +5,15 @@ import { useMediaQuery } from 'react-responsive'
 import { useTranslation } from "react-i18next"
 // navigazione
 import { useNavigate } from 'react-router-dom';
+// components
+import CustomButton from '../ui/buttons/CustomButton/CustomButton';
 // style
 import './footer.scss'
 
 
 // style
 const primary: string = '#262E36'
+const secondary: string = '#B12009'
 
 // type
 type social = {
@@ -63,46 +66,49 @@ const social: Array<social> = [
 ]
 
 //React responsive const
-const Desktop = ({ children }: any) => {
-    const isDesktop = useMediaQuery({ minWidth: 992 })
-    return isDesktop ? children : null
+const Default = ({ children }: any) => {
+    const isNotMobile = useMediaQuery({ minWidth: 992 })
+    return isNotMobile ? children : null
 }
 const Mobile = ({ children }: any) => {
-    const isMobile = useMediaQuery({ maxWidth: 767 })
+    const isMobile = useMediaQuery({ maxWidth: 991 })
     return isMobile ? children : null
-  }
+}
 
+const Footer: FC = () => {
 
-  
-  const Footer: FC = () => {
-      
     // inizializzo navigazione
-    let navigate = useNavigate() 
+    let navigate = useNavigate()
 
     // navigazione
-    const goToAbout = ():void => {
+    const goToAbout = (): void => {
         navigate('/about')
         console.log('vai ad about')
     }
 
-    const goToEvents = ():void => {
+    const goToEvents = (): void => {
         navigate('/events')
         console.log('vai ad Events')
     }
 
-    const goToBlog= ():void => {
+    const goToBlog = (): void => {
         navigate('/blog')
         console.log('vai a blog')
     }
 
-    const goToSupport= ():void => {
+    const goToSupport = (): void => {
         navigate('/support')
         console.log('vai a supportaci')
     }
 
-    const goToInfo = ():void => {
+    const goToInfo = (): void => {
         navigate('/faq')
         console.log('vai ad about')
+    }
+
+    const goToLogin = (): void => {
+        navigate('/login')
+        console.log('vai al login')
     }
 
     // tranlation hook
@@ -116,11 +122,11 @@ const Mobile = ({ children }: any) => {
                         className='socialIcon'
                         src={el.icon}
                     />
-                    <Desktop>
+                    <Default>
                         <div>
-                           <p>{el.name}</p>
+                            <p>{el.name}</p>
                         </div>
-                    </Desktop>
+                    </Default>
                 </div>
             )
         } else {
@@ -146,8 +152,18 @@ const Mobile = ({ children }: any) => {
             <section className='social'>
                 {social.map(mapping)}
             </section>
-            <Mobile></Mobile>
-            <Desktop>
+            <Mobile>
+                <div className='buttonContainer'>
+                    <CustomButton
+                        bgColor={secondary}
+                        callback={goToLogin}
+                        label={'LOGIN'}
+                        txtColor={'white'}
+                        size={'small'}
+                    />
+                </div>
+            </Mobile>
+            <Default>
                 <section className='nav'>
                     <div onClick={goToAbout}>{t("nav.about")}</div>
                     <div onClick={goToEvents}>{t("nav.events")}</div>
@@ -155,12 +171,24 @@ const Mobile = ({ children }: any) => {
                     <div onClick={goToSupport}>{t("nav.supportUs")}</div>
                     <div onClick={goToInfo}>{t("nav.info")}</div>
                 </section>
-            </Desktop>
+            </Default>
             <section className='privacy'>
                 <a href='#'>{t("footer.privacyPolicy")} </a>
                 <a href='#'>{t("footer.cookiePolicy")} </a>
                 <a href='#'>{t("footer.terms")} </a>
+                <Default>
+                    <div className='buttonContainer'>
+                        <CustomButton
+                            bgColor={secondary}
+                            callback={goToLogin}
+                            label={'LOGIN'}
+                            txtColor={'white'}
+                            size={'small'}
+                        />
+                    </div>
+                </Default>
             </section>
+
             <span className='rightReserved'>{t("footer.rightReserved")}</span>
         </footer>
     )
