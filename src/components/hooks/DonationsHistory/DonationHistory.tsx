@@ -1,5 +1,6 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useState, useEffect } from "react";
 import Button from "@mui/material/Button";
+import "./donationHistory.scss";
 
 interface donations {
   id: number;
@@ -14,21 +15,38 @@ const DONATIONS: Array<donations> = [
 ];
 
 function DonationHistory(): ReactElement {
+  const [state, setState] = useState<number>(0);
 
-  let sum: number = 0;
-  
+  useEffect(()=>{
+   sumDonations() 
+  }, [])
+
   function sumDonations(): void {
+    let sum: number = 0;
     DONATIONS.forEach((elem: donations) => {
       sum = sum + elem.amount;
     });
-    console.log("in totale hai donato", sum);
+    setState(sum);
+  }
+
+  function mapping(element: donations): ReactElement {
+    return (
+      <div key={element.id} className="singleDonation">
+        <span>{`${element.date.toLocaleDateString()}`}</span>
+        <span>{`${element.amount}€`}</span>
+      </div>
+    );
   }
 
   return (
     <article>
       <section>
-        {`In totale hai donato ${sum}`}{" "}
-        <Button onClick={sumDonations} title="click" />
+        <div className="donationTotal">
+          {`In totale hai donato `}
+          <span className="bigNumber">{`${state}€`}</span>
+        </div>
+        <div className="titleHistory">Storico donazioni</div>
+        <section className="donations">{DONATIONS.map(mapping)}</section>
       </section>
     </article>
   );
