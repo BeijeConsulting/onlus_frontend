@@ -1,7 +1,8 @@
-import { useEffect } from "react"
+import { useEffect, FC } from "react"
 import { useTranslation, Trans } from "react-i18next"
 
-function Home() {
+
+const Home: FC = () => {
   const { t, i18n }: any = useTranslation()
 
   return (
@@ -10,6 +11,7 @@ function Home() {
 
       <button onClick={() => i18n.changeLanguage("en")}>EN</button>
       <button onClick={() => i18n.changeLanguage("it")}>IT</button>
+
     </div>
   )
 }
