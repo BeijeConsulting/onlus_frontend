@@ -1,0 +1,16 @@
+footer {
+    color: white;
+    height: 545px;
+
+    .social {
+        img {
+            height: 20px;
+        }
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    footer {
+        height: 459px;
+    }
+}
