@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{FC} from 'react'
 // style
 import './prefooter.scss'
 // translation
@@ -16,7 +16,7 @@ const contacts = {
 const logo =  'https://st2.depositphotos.com/1035649/10943/v/600/depositphotos_109435792-stock-illustration-panda-bear-template.jpg'
 
 
-function PreFooter() {
+const PreFooter:FC = () => {
 
     // tranlation hook
     const { t }: any = useTranslation()
