@@ -2,7 +2,7 @@ import { Navigation } from "@mui/icons-material";
 import React, {FC, ReactElement} from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import CustomButton from "../../functional/Button/CustomButton";
+import CustomButton from "../../ui/buttons/CustomButton/CustomButton";
 import './hero.scss'
 
 const Hero:FC = ():ReactElement => {
