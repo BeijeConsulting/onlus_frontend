@@ -1,19 +1,26 @@
 @import '../../../styles/common.scss';
 
-.smallBtn {
-    width: 100px;
-    height: 40px;
-}
-
 .btn {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-bottom: 2px;
+    padding: 0 10px 2px 10px;
+    height: 40px;
+}
+
+.smallBtn {
+    max-width: fit-content;
 }
 
 .bigBtn {
-
     width: 100%;
-    height: 40px;
+}
+
+@media only screen and (min-width: 768px) {
+    .smallBtn {
+        height: 60px;
+    }
+    .bigBtn{
+        width: 400px;
+    }   
 }

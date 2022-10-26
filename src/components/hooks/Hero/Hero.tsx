@@ -22,7 +22,7 @@ const Hero:FC = ():ReactElement => {
                 <h2 className="hero-title">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</h2>
                 <div className="hero-linebr" />
                 <h4 className="hero-subtitle">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae excepturi esse suscipit deserunt voluptatem obcaecati repellendus quaerat soluta ut maiores!</h4>
-                <CustomButton size="small" label='Button' color='#B12009' callback={handleNavigate} />
+                <CustomButton size="small" label='DIVENTA VOLONTARIO' bgColor='#B12009' txtColor='white' callback={handleNavigate} />
             </div>
         </section>
     )
