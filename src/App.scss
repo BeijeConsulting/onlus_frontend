@@ -24,3 +24,20 @@ img {
 body{
   font-family: 'Noto Sans JP', sans-serif;
 }
+
+main{
+  padding: 20px;
+}
+
+h1{
+  font-size: 24px;
+}
+
+@media(min-width: 992px){
+  main{
+    padding: 100px;
+  }
+  h1{
+    font-size: 48px;
+  }
+}
