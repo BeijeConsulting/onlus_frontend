@@ -3,7 +3,7 @@ import React, { FC, useState } from "react"
 import { theme } from "../../../utils/muiTheme"
 // mui components
 import OutlinedInput from "@mui/material/OutlinedInput"
-import TextField, { TextFieldProps } from "@mui/material/TextField"
+import TextField from "@mui/material/TextField"
 import InputAdornment from "@mui/material/InputAdornment"
 import IconButton from "@mui/material/IconButton"
 import Visibility from "@mui/icons-material/Visibility"
