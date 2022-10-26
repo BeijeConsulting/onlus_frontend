@@ -73,46 +73,50 @@ const InputBox: FC<InputBoxProps> = (props) => {
   return (
     <ThemeProvider theme={theme}>
       {props.type === "password" ? (
-        <FormControl variant="outlined" sx={{ width: "100%" }}>
-          <InputLabel htmlFor="outlined-adornment-password" size="small">
-            {props.label}
-          </InputLabel>
-          <OutlinedInput
-            id="outlined-adornment-password"
-            type={state.showPassword ? "text" : "password"}
-            value={state.password}
-            size={"small"}
+        <div style={{ margin: 5 }}>
+          <FormControl variant="outlined" sx={{ width: "100%" }}>
+            <InputLabel htmlFor="outlined-adornment-password" size="small">
+              {props.label}
+            </InputLabel>
+            <OutlinedInput
+              id="outlined-adornment-password"
+              type={state.showPassword ? "text" : "password"}
+              value={state.password}
+              size={"small"}
+              onChange={change}
+              defaultValue={props.defaultValue}
+              required={props.isRequired}
+              error={props.notValid}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                    edge="end"
+                  >
+                    {state.showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              }
+              label="Password"
+            />
+          </FormControl>
+        </div>
+      ) : (
+        <div style={{ margin: 5 }}>
+          <TextField
+            sx={{ width: "100%" }}
+            label={props.label}
+            type={props.type}
+            size="small"
+            id="custom-css-outlined-input"
             onChange={change}
             defaultValue={props.defaultValue}
             required={props.isRequired}
             error={props.notValid}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge="end"
-                >
-                  {state.showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            }
-            label="Password"
           />
-        </FormControl>
-      ) : (
-        <TextField
-          sx={{ width: "100%" }}
-          label={props.label}
-          type={props.type}
-          size="small"
-          id="custom-css-outlined-input"
-          onChange={change}
-          defaultValue={props.defaultValue}
-          required={props.isRequired}
-          error={props.notValid}
-        />
+        </div>
       )}
     </ThemeProvider>
   );
