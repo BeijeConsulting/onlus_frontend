@@ -24,9 +24,9 @@ function Events() {
   return(
    
     <div id="events">
-      <section className="container">
+      <main className="container">
         <CardEvents/>
-      </section>
+      </main>
       <PreFooter/>
       <Footer/>
     </div>
