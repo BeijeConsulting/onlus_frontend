@@ -2,6 +2,14 @@
     "search": "Search",
     "selectCategory": "Select category",
 
+    "nav": {
+        "about": "About",
+        "events": "Events",
+        "blog": "Blog",
+        "supportUs": "Support us",
+        "info": "Info"
+    },
+
     "titles": {
         "eventsTitle": "Cooming soon",
         "blogTitle": "News",
@@ -61,7 +69,6 @@
 
     "personalArea": {
         "myInfo": "Personal data",
-        "events": "Events",
         "donations": "Donations",
         "save": "Save",
         "welcome": "Welcome",

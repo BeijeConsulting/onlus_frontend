@@ -3,6 +3,14 @@
     "search": "Cerca",
     "selectCategory": "Seleziona categoria",
 
+    "nav": {
+        "about": "Chi siamo",
+        "events": "Eventi",
+        "blog": "Blog",
+        "supportUs": "Supportaci",
+        "info": "Informazioni"
+    },
+
     "titles": {
         "eventsTitle": "Prossimamente",
         "blogTitle": "Blog e notizie",
@@ -62,7 +70,6 @@
 
     "personalArea": {
         "myInfo": "I miei dati",
-        "events": "Eventi",
         "donations": "Donazioni",
         "save": "Salva modifiche",
         "welcome": "Benvenuto",
