@@ -104,7 +104,7 @@ const InputBox: FC<InputBoxProps> = (props) => {
           </FormControl>
         </div>
       ) : (
-        <div style={{ margin: 10 }}>
+        <div style={{ margin: 5 }}>
           <TextField
             sx={{ width: "100%" }}
             label={props.label}
