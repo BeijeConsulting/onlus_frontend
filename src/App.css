@@ -1,0 +1,26 @@
+@import './styles/common.scss';
+
+/* reset */
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  font-size: 100%;
+}
+
+ul,
+ul li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+
+img {
+  height: auto;
+}
+
+body{
+  font-family: $font
+}
