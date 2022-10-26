@@ -1,24 +1,7 @@
-//Components
-import Footer from "../components/footer/Footer";
-import Header from "../components/hooks/Header/Header";
-import InputBox from "../components/ui/inputBox/InputBox";
-
-//Styles
-import '../styles/login.scss'
+import React from "react"
 
 function Login() {
-  return (
-    <>
-      <Header />
-
-      <main className="loginContainer">
-        <h1>Login</h1>
-        <InputBox label={"Email"} type={"mail"}/>
-        <InputBox label={"Password"} type={"password"}/>
-        
-      </main>
-    </>
-  );
+  return <div>Login</div>
 }
 
-export default Login;
+export default Login
