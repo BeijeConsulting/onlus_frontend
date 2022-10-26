@@ -19,6 +19,8 @@
     },
 
     "buttons": {
+        "donateButton": "Donate now",
+        "volunteerButton": "Become a volunteer",
         "loginButton": "Login",
         "signupButton": "Sign up",
         "confirmButton": "Confirm donation",
