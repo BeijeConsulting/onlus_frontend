@@ -3,11 +3,11 @@
     "selectCategory": "Select category",
 
     "nav": {
-        "about": "Chi siamo",
-        "events": "Eventi",
+        "about": "About",
+        "events": "Events",
         "blog": "Blog",
-        "supportUs": "Supportaci",
-        "info": "Informazioni"
+        "supportUs": "Support us",
+        "info": "Info"
     },
 
     "titles": {
