@@ -1,6 +1,6 @@
 import { useEffect, FC } from "react"
 import { useTranslation, Trans } from "react-i18next"
-import Footer from "../components/footer/Footer"
+
 
 const Home: FC = () => {
   const { t, i18n }: any = useTranslation()
@@ -11,7 +11,7 @@ const Home: FC = () => {
 
       <button onClick={() => i18n.changeLanguage("en")}>EN</button>
       <button onClick={() => i18n.changeLanguage("it")}>IT</button>
-      <Footer/>
+
     </div>
   )
 }
