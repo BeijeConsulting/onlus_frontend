@@ -35,12 +35,16 @@
         .hero-linebr{
             width: 80%;
             height: 3px;
+            margin: 25px 0;
             background-color: white;
+        }
+        .hero-subtitle{
+            margin-bottom: 25px;
         }
     }
 }
 
-@media only screen and (min-width: 768px){
+@media only screen and (min-width: 991px){
     .hero-card {
         width: 75%;
         padding: 0 105px !important;  
