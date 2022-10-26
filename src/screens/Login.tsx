@@ -4,6 +4,10 @@ import Header from "../components/hooks/Header/Header";
 import CustomButton from "../components/ui/buttons/CustomButton/CustomButton";
 import InputBox from "../components/ui/inputBox/InputBox";
 
+//Router
+import SCREENS from "../route/router";
+import { Link } from "react-router-dom";
+
 //i18n 
 import { useTranslation } from "react-i18next"
 
@@ -21,21 +25,22 @@ function Login() {
       <Header />
 
       <main>
-
-        <section className="login-container">
+        <form className="login-container" onSubmit={login}>
           <h1>{t("titles.loginTitle")}</h1>
 
           <InputBox label={t("login.email")} type={"mail"} />
           <InputBox label={t("login.password")} type={"password"} />
 
-          <a href="#">{t("login.forgottenPassword")}</a>
+          <a href="#" className="forgot-password">{t("login.forgottenPassword")}</a>
 
-          <CustomButton size={"big"} txtColor={"white"}  callback={login} bgColor={"red"} label={t("buttons.loginButton")}/>
+          <CustomButton size={"big"} txtColor={"white"}  callback={login} bgColor={"#B12009"} label={t("buttons.loginButton")}/>
 
+        </form>
+
+        <div className="aside-section">
           <p>{t("login.notRegistered")}</p>
-          <a href="#">{t("buttons.signupButton")}</a>
-        </section>
-
+          <Link to={SCREENS.login}>{t("buttons.signupButton")}</Link>
+        </div>
       </main>
 
       <Footer />
