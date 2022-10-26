@@ -73,7 +73,7 @@ const InputBox: FC<InputBoxProps> = (props) => {
   return (
     <ThemeProvider theme={theme}>
       {props.type === "password" ? (
-        <div style={{ margin: 5 }}>
+        <div style={{ margin: 5, width: "100%" }}>
           <FormControl variant="outlined" sx={{ width: "100%" }}>
             <InputLabel htmlFor="outlined-adornment-password" size="small">
               {props.label}
@@ -104,7 +104,7 @@ const InputBox: FC<InputBoxProps> = (props) => {
           </FormControl>
         </div>
       ) : (
-        <div style={{ margin: 5 }}>
+        <div style={{ margin: 5, width: "100%" }}>
           <TextField
             sx={{ width: "100%" }}
             label={props.label}

@@ -1,16 +1,47 @@
-.donateContainer {
-    .titleDonate{
-        font-size: 24px;
-        font-weight: 600;
-    }
+@import "../styles/common.scss";
 
-    .personalData{
-        margin-top:15px;
-        .titlePersonalData{
-            font-size: 20px;
-        }
-        .form{
-            margin-top: 20px;           
-        }
+.donateContainer {
+  .titleDonate {
+    font-size: 24px;
+    font-weight: 600;
+  }
+  .titlePersonalData {
+    font-size: 22px;
+    margin-top: 20px;
+  }
+  .personalData {
+    margin: -5px;
+    margin-top: 20px;
+  }
+  .cvcContainer {
+    display: flex;
+    flex-direction: row;
+  }
+  .buttonContainer {
+    margin-top: 20px;
+  }
+}
+
+@media (min-width: 768px) {
+  main.donateContainer {
+    .titleDonate {
+      font-size: 70px;
+      font-weight: 600;
     }
+    .titlePersonalData {
+      font-size: 22px;
+      margin-top: 20px;
+    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .input-box {
+    display: flex;
+    justify-content: stretch;
+  }
+  .form {
+    width: 50vw;
+  }
 }
