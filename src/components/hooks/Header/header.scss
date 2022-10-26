@@ -1,0 +1,66 @@
+@import '../../../styles/common.scss';
+
+header{
+    padding: 20px;
+    background-color: $primary;
+    .top-header{ 
+        padding-bottom: 20px;
+        padding-left: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .nav-desktop{
+            display: flex;
+            p{
+                padding: 0 10px;
+                color: $white;
+            }
+        }
+    }
+    .bottom-header{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .bottom-header-button{
+            font-size: 16px;
+            font-weight: 400;
+            color: $white;
+            padding: 0 10px;
+        }
+    }
+}
+.lng-buttons{
+    display: flex;
+    align-items: center;
+    color: $white;
+}
+.langButton{
+    color: $white;
+}
+
+.logo{
+    width: 50px;
+    height: 50px;
+    color: $white;
+}
+
+.profile-icon{
+    color:$white;
+    height: 24px;
+    width: auto;
+    margin: 20px;
+}
+
+.header-right{
+    display: flex;
+    align-items: center;
+}
+
+@media(min-width: 992px){
+    header{
+        padding: 20px 50px;
+    }
+    .logo{
+        margin-right: 74.66px;
+    }
+}

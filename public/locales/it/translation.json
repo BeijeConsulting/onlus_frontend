@@ -20,6 +20,8 @@
     },
 
     "buttons": {
+        "donateButton": "Dona ora",
+        "volunteerButton": "Diventa volontario",
         "loginButton": "Accedi",
         "signupButton": "Registrati",
         "confirmButton": "Conferma donazione",
