@@ -94,9 +94,9 @@ const Footer: FC = () => {
     return (
         <footer style={{ backgroundColor: primary }} id='footer'>
             <section className="contacts">
-                <h4 className='titleContacts'>
+                <span className='titleContacts'>
                     {t("footer.contacts")}
-                </h4>
+                </span>
                 <ul className='contactsList'>
                     <li>{contacts.telephone}</li>
                     <li>{contacts.email}</li>
@@ -110,7 +110,11 @@ const Footer: FC = () => {
             </section>
             <Desktop>
                 <section className='nav'>
-
+                    <div>{t("nav.about")}</div>
+                    <div>{t("nav.events")}</div>
+                    <div>{t("nav.blog")}</div>
+                    <div>{t("nav.supportUs")}</div>
+                    <div>{t("nav.info")}</div>
                 </section>
             </Desktop>
             <section className='privacy'>
@@ -118,7 +122,7 @@ const Footer: FC = () => {
                 <a href='#'>{t("footer.cookiePolicy")} </a>
                 <a href='#'>{t("footer.terms")} </a>
             </section>
-
+            <span className='rightReserved'>{t("footer.rightReserved")}</span>
         </footer>
     )
 }
