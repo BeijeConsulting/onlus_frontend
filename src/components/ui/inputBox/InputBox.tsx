@@ -85,7 +85,7 @@ const InputBox: FC<InputBoxProps> = (props) => {
             onChange={change}
             defaultValue={props.defaultValue}
             required={props.isRequired}
-            error={props.error}
+            error={props.notValid}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
