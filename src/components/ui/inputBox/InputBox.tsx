@@ -23,12 +23,10 @@ interface InputBoxProps {
 }
 
 interface State {
-  password: string
   showPassword: boolean
 }
 
 const initialState = {
-  password: "",
   showPassword: false,
 }
 
@@ -65,7 +63,6 @@ const InputBox: FC<InputBoxProps> = (props) => {
             <OutlinedInput
               id="outlined-adornment-password"
               type={state.showPassword ? "text" : "password"}
-              value={state.password}
               size={"small"}
               onChange={change}
               defaultValue={props.defaultValue}
