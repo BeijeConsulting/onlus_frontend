@@ -6,27 +6,57 @@ footer {
     display: flex;
     flex-direction: column;
     padding: 1rem;
-    .contacts{
-      .contactsList{
-        list-style: none;
-      }
+
+    .contacts {
+        margin-bottom: 40px;
+
+        .titleContacts {
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .contactsList {
+            font-weight: 200;
+        }
     }
+
     .social {
         display: flex;
         flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 34px;
+
         img {
-            height: 20px;
+            height: 30px;
+        }
+        p{
+            cursor: pointer;
         }
     }
-    .privacy{
-        display:flex;
+
+
+    .nav{
+        div{
+            cursor: pointer;
+        }
+    }
+
+    .privacy {
+        display: flex;
         flex-direction: column;
-        a{
+        margin-top: 40px;
+        gap: 5px;
+
+        a {
             color: white;
             text-decoration: none;
         }
     }
-    .rightReserved{
+
+    .rightReserved {
+        font-weight: 100;
         font-size: 14px;
         position: absolute;
         bottom: 20px;
@@ -41,5 +71,70 @@ footer {
 @media only screen and (min-width: 992px) {
     footer {
         height: 459px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        font-size: 18px;
+        font-weight: 300;
+        padding-left: 90px;
+        padding-right: 90px;
+
+        section {
+            width: 25%;
+            flex-wrap: wrap;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border: 0px 2px 0px 2px solid white;
+            height: 80%;
+        }
+
+        .contacts {
+            padding-right: 0px;
+
+            .contactsList {
+                font-size: 16px;
+                line-height: 33px;
+            }
+        }
+
+        .social {
+            gap: 30px;
+            flex-direction: column;
+            border-right: 1px solid rgba(255, 255, 255, 0.254);
+            border-left: 1px solid rgba(255, 255, 255, 0.254);
+
+            .iconContainer {
+                display: flex;
+                flex-direction: row;
+                align-items: flex-start;
+                width: 60%;
+                gap: 20px;
+            }
+        }
+
+        .nav {
+            gap: 18px;
+
+            div {
+                text-align: center;
+            }
+        }
+
+        .privacy {
+            border-left: 1px solid rgba(255, 255, 255, 0.254);
+            gap: 35px;
+            text-align: end;
+            margin-top: 0;
+
+            a {
+                text-decoration: underline;
+            }
+        }
+
+        .rightReserved {
+            font-size: 14px;
+            bottom: 10px;
+        }
     }
 }

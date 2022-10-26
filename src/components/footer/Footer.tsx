@@ -3,8 +3,9 @@ import { FC } from 'react'
 import { useMediaQuery } from 'react-responsive'
 // translation
 import { useTranslation } from "react-i18next"
+// navigazione
+import { useNavigate } from 'react-router-dom';
 // style
-// import styles from './footer.module.scss'
 import './footer.scss'
 
 
@@ -23,11 +24,11 @@ type social = {
 // dati mokup 
 // contatti
 const contacts = {
-    telephone: "telephone",
-    email: "email",
-    address: "address",
-    PIva: "PIva",
-    CF: "CF",
+    telephone: "+39 331 211 345",
+    email: "panda@gmail.com",
+    address: "via dei panda 2, Milano, Italy",
+    PIva: "IT 0221212121210212",
+    CF: "8008976565786",
 }
 // social
 const social: Array<social> = [
@@ -66,8 +67,43 @@ const Desktop = ({ children }: any) => {
     const isDesktop = useMediaQuery({ minWidth: 992 })
     return isDesktop ? children : null
 }
+const Mobile = ({ children }: any) => {
+    const isMobile = useMediaQuery({ maxWidth: 767 })
+    return isMobile ? children : null
+  }
 
-const Footer: FC = () => {
+
+  
+  const Footer: FC = () => {
+      
+    // inizializzo navigazione
+    let navigate = useNavigate() 
+
+    // navigazione
+    const goToAbout = ():void => {
+        navigate('/about')
+        console.log('vai ad about')
+    }
+
+    const goToEvents = ():void => {
+        navigate('/events')
+        console.log('vai ad Events')
+    }
+
+    const goToBlog= ():void => {
+        navigate('/blog')
+        console.log('vai a blog')
+    }
+
+    const goToSupport= ():void => {
+        navigate('/support')
+        console.log('vai a supportaci')
+    }
+
+    const goToInfo = ():void => {
+        navigate('/faq')
+        console.log('vai ad about')
+    }
 
     // tranlation hook
     const { t }: any = useTranslation()
@@ -75,13 +111,15 @@ const Footer: FC = () => {
     const mapping = (el: social, key: number): JSX.Element | boolean => {
         if (el.footerOn) {
             return (
-                <div key={key}>
+                <div className='iconContainer' key={key}>
                     <img
                         className='socialIcon'
                         src={el.icon}
                     />
                     <Desktop>
-                        <p>{el.name}</p>
+                        <div>
+                           <p>{el.name}</p>
+                        </div>
                     </Desktop>
                 </div>
             )
@@ -94,27 +132,28 @@ const Footer: FC = () => {
     return (
         <footer style={{ backgroundColor: primary }} id='footer'>
             <section className="contacts">
-                <span className='titleContacts'>
+                <div className='titleContacts'>
                     {t("footer.contacts")}
-                </span>
+                </div>
                 <ul className='contactsList'>
                     <li>{contacts.telephone}</li>
                     <li>{contacts.email}</li>
                     <li>{contacts.address}</li>
-                    <li>{contacts.PIva}</li>
-                    <li>{contacts.CF}</li>
+                    <li>P.Iva: {contacts.PIva}</li>
+                    <li>C.F: {contacts.CF}</li>
                 </ul>
             </section>
             <section className='social'>
                 {social.map(mapping)}
             </section>
+            <Mobile></Mobile>
             <Desktop>
                 <section className='nav'>
-                    <div>{t("nav.about")}</div>
-                    <div>{t("nav.events")}</div>
-                    <div>{t("nav.blog")}</div>
-                    <div>{t("nav.supportUs")}</div>
-                    <div>{t("nav.info")}</div>
+                    <div onClick={goToAbout}>{t("nav.about")}</div>
+                    <div onClick={goToEvents}>{t("nav.events")}</div>
+                    <div onClick={goToBlog}>{t("nav.blog")}</div>
+                    <div onClick={goToSupport}>{t("nav.supportUs")}</div>
+                    <div onClick={goToInfo}>{t("nav.info")}</div>
                 </section>
             </Desktop>
             <section className='privacy'>
