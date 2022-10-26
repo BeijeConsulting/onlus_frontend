@@ -61,6 +61,7 @@ export default function BasicTabs(props: LocalProps) {
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"
+          centered
         >
           <Tab label={props.pages[0]} {...a11yProps(0)} />
           <Tab label={props.pages[1]} {...a11yProps(1)} />
