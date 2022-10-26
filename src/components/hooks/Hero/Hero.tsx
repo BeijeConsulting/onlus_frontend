@@ -44,7 +44,7 @@ const Hero: FC = (): ReactElement => {
     <>
       {state.isLoaded && (
         <section className="hero-container">
-          {state.image && <img className="hero-bg" src={require( `../../../assets/images/${state.image}`)} alt="hero-img" />}
+          <img className="hero-bg" src={require( `../../../assets/images/${state.image}`)} alt="hero-img" />
           <div className="hero-overlay" />
           <div className="hero-card">
             <h2 className="hero-title">{state.title}</h2>
