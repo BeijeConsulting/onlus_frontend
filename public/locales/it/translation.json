@@ -38,6 +38,10 @@
         "rightReserved":"© Onlus - 2022 - All rights reserved"
     },
 
+    "preFooter" : {
+        "caption":"Vuoi lavorare con noi? Contattaci a questa Email:"
+    },
+
     "home": {
         "latestNews": "Ultime notizie",
         "relatedArticles": "Articoli correlati",
@@ -80,6 +84,7 @@
         "pastEvents": "Eventi passati",
         "totalDonated": "In totale hai donato ",
         "donationsHistory": "Storico donazioni",
+        "donate": "Dona",
         "personalData": "Dati anagrafici",
         "paymentOption": "Modalità di pagamento"
     }
