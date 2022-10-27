@@ -31,7 +31,7 @@ function DonationHistory(props: Props): ReactElement {
   function mapping(element: donations): ReactElement {
     return (
       <div key={element.id} className="singleDonation">
-        <span>{`${element.date.toLocaleDateString()}`}</span>
+        <span>{`${element.date}`}</span>
         <span>{`${element.amount}€`}</span>
       </div>
     );
