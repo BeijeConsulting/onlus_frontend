@@ -1,86 +1,98 @@
 {
-    "search": "Search",
-    "selectCategory": "Select category",
+  "search": "Search",
+  "selectCategory": "Select category",
 
-    "nav": {
-        "about": "About",
-        "events": "Events",
-        "blog": "Blog",
-        "supportUs": "Support us",
-        "info": "Info"
-    },
+  "nav": {
+    "about": "About",
+    "events": "Events",
+    "blog": "Blog",
+    "supportUs": "Support us",
+    "info": "Info"
+  },
 
-    "titles": {
-        "eventsTitle": "Cooming soon",
-        "blogTitle": "News",
-        "faqTitle": "Faq",
-        "loginTitle": "Login",
-        "signupTitle": "Sign up"
-    },
+  "titles": {
+    "eventsTitle": "Cooming soon",
+    "blogTitle": "News",
+    "faqTitle": "Faq",
+    "loginTitle": "Login",
+    "signupTitle": "Sign up"
+  },
 
-    "buttons": {
-        "donateButton": "Donate now",
-        "volunteerButton": "Become a volunteer",
-        "loginButton": "Login",
-        "signupButton": "Sign up",
-        "confirmButton": "Confirm donation",
-        "continueReadingButton": "Continue reading",
-        "supportNavButton": "Support onlus",
-        "bookButton": "Book"
-    },
+  "buttons": {
+    "donateButton": "Donate now",
+    "volunteerButton": "Become a volunteer",
+    "loginButton": "Login",
+    "signupButton": "Sign up",
+    "confirmButton": "Confirm donation",
+    "continueReadingButton": "Continue reading",
+    "supportNavButton": "Support onlus",
+    "bookButton": "Book"
+  },
 
-    "footer": {
-        "contacts": "Contacts",
-        "terms": "Terms and conditions",
-        "privacyPolicy": "Privacy policy",
-        "cookiePolicy": "Cookie policy",
-        "rightReserved":"© Onlus - 2022 - All rights reserved"
-    },
+  "footer": {
+    "contacts": "Contacts",
+    "terms": "Terms and conditions",
+    "privacyPolicy": "Privacy policy",
+    "cookiePolicy": "Cookie policy",
+    "rightReserved": "© Onlus - 2022 - All rights reserved"
+  },
 
-    "home": {
-        "latestNews": "Latest news",
-        "relatedArticles": "Related articles",
-        "stayUpToDate": "Stay up to date",
-        "followUs": "Follow us on ",
-        "history": "History"
-    },
+  "preFooter": {
+    "caption": "Do you want to work with us? Contact us at this email:"
+  },
 
-    "events": {
-        "description": "Description",
-        "requirements": "Requirements"
-    },
+  "home": {
+    "latestNews": "Latest news",
+    "relatedArticles": "Related articles",
+    "stayUpToDate": "Stay up to date",
+    "followUs": "Follow us on ",
+    "history": "History"
+  },
 
-    "login": {
-        "name": "Name",
-        "surname": "Surname",
-        "email": "Email",
-        "password": "Password",
-        "confirmPassword": "Confirm password",
-        "phone": "Telephone",
-        "language": "Language",
-        "italian": "Italian",
-        "english": "English",
-        "acceptTerms": "I accept the terms and conditions",
-        "cf": "Tax code",
-        "birthday": "Date of birth",
-        "privacyTerms": "I have read and accept the terms of the Privacy Policy",
-    
-        "forgottenPassword": "Forgot password?",
-        "notRegistered": "Not yet registered?",
-        "alreadyRegistered": "Already registered?"
-    },
+  "events": {
+    "description": "Description",
+    "requirements": "Requirements"
+  },
 
-    "personalArea": {
-        "myInfo": "Personal data",
-        "donations": "Donations",
-        "save": "Save",
-        "welcome": "Welcome",
-        "programmedEvents": "Programmed events",
-        "pastEvents": "Past events",
-        "totalDonated": "Donations amount ",
-        "donationsHistory": "Donations history",
-        "personalData": "Personal data",
-        "paymentOption": "Payment options"
-    }
+  "login": {
+    "name": "Name",
+    "surname": "Surname",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "phone": "Telephone",
+    "language": "Language",
+    "italian": "Italian",
+    "english": "English",
+    "acceptTerms": "I accept the terms and conditions",
+    "cf": "Tax code",
+    "dateOfBirth": "Date of birth",
+    "privacyTerms": "I have read and accept the terms of the Privacy Policy",
 
+    "forgottenPassword": "Forgot password?",
+    "notRegistered": "Not yet registered?",
+    "alreadyRegistered": "Already registered?"
+  },
+
+  "personalArea": {
+    "myInfo": "Personal data",
+    "donations": "Donations",
+    "save": "Save",
+    "welcome": "Welcome",
+    "programmedEvents": "Programmed events",
+    "pastEvents": "Past events",
+    "totalDonated": "Donations amount ",
+    "donationsHistory": "Donations history",
+    "personalData": "Personal data",
+    "paymentOption": "Payment options",
+    "donate": "Donate"
+  },
+
+  "donate": {
+    "holderName": "Name of holder",
+    "cardNumber": "Card number",
+    "expirationDate": "MM/YY",
+    "cvc": "CVC",
+    "amount": "Amount €"
+  }
 }
