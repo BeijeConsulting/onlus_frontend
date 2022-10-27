@@ -3,8 +3,34 @@
 header{
     padding: 20px;
     background-color: $primary;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    transition: all .5s ease;
+    .bottom-header{
+        display: none;
+    }
+    &.home{
+        background-color: transparent;
+        .bottom-header{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 20px;
+            .bottom-header-button{
+                font-size: 16px;
+                font-weight: 400;
+                color: $white;
+                padding: 0 10px;
+            }
+        }
+    }
+    &.home.active{
+        background-color: $primary;
+    }
     .top-header{ 
-        padding-bottom: 20px;
         padding-left: 8px;
         display: flex;
         align-items: center;
@@ -15,17 +41,6 @@ header{
                 padding: 0 10px;
                 color: $white;
             }
-        }
-    }
-    .bottom-header{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        .bottom-header-button{
-            font-size: 16px;
-            font-weight: 400;
-            color: $white;
-            padding: 0 10px;
         }
     }
 }

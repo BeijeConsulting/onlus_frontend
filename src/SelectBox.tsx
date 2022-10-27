@@ -1,6 +1,6 @@
 import React, { FC, useState } from "react"
 // utils
-import { theme } from "../../../utils/muiTheme"
+import { theme } from "./utils/muiTheme"
 // mui components
 import Box from "@mui/material/Box"
 import InputLabel from "@mui/material/InputLabel"

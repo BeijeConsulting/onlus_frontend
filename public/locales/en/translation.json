@@ -3,7 +3,7 @@
   "selectCategory": "Select category",
 
   "nav": {
-    "about": "About",
+    "about": "About us",
     "events": "Events",
     "blog": "Blog",
     "supportUs": "Support us",
@@ -38,6 +38,7 @@
   },
 
   "preFooter": {
+    "title": "Join us!",
     "caption": "Do you want to work with us? Contact us at this email:"
   },
 

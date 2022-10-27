@@ -96,7 +96,14 @@ footer{
 
     .titleContacts {
             width: 100%;
+            text-align: center;
         }
+    }
+    .contactsList{
+        text-align: center;
+    }
+    .privacy{
+        text-align: center;
     }
 }
 }
@@ -128,6 +135,7 @@ footer{
             .contactsList {
                 font-size: 16px;
                 line-height: 33px;
+                text-align: left;
             }
         }
 
