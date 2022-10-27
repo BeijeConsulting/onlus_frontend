@@ -1,4 +1,6 @@
 import React, { FC, useState } from "react";
+// utils
+import { theme } from "../../../utils/muiTheme";
 // mui components
 import OutlinedInput from "@mui/material/OutlinedInput";
 import TextField, { TextFieldProps } from "@mui/material/TextField";
@@ -29,24 +31,6 @@ const initialState = {
   password: "",
   showPassword: false,
 };
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#000",
-      contrastText: "#fff",
-    },
-  },
-});
-
-declare module "@mui/material/styles" {
-  interface Palette {
-    neutral: Palette["primary"];
-  }
-  interface PaletteOptions {
-    neutral?: PaletteOptions["primary"];
-  }
-}
 
 const InputBox: FC<InputBoxProps> = (props) => {
   const [state, setState] = useState<State>(initialState);
@@ -87,6 +71,7 @@ const InputBox: FC<InputBoxProps> = (props) => {
               defaultValue={props.defaultValue}
               required={props.isRequired}
               error={props.notValid}
+              color="info"
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
@@ -115,6 +100,7 @@ const InputBox: FC<InputBoxProps> = (props) => {
             defaultValue={props.defaultValue}
             required={props.isRequired}
             error={props.notValid}
+            color="info"
           />
         </div>
       )}
