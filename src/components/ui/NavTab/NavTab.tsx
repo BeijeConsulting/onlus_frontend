@@ -32,7 +32,7 @@ const TabPanel: FC<TabPanelProps> = (props): ReactElement => {
     >
       {value === index && (
         <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+          <Typography sx={{ width: '100%' }}>{children}</Typography>
         </Box>
       )}
     </div>
