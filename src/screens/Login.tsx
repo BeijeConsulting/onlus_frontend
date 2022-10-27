@@ -46,7 +46,7 @@ function Login() {
 
         <div className="aside-section">
           <p>{t("login.notRegistered")}</p>
-          <Link to={SCREENS.login}>{t("buttons.signupButton")}</Link>
+          <Link to={SCREENS.signup}>{t("buttons.signupButton")}</Link>
         </div>
       </main>
 
