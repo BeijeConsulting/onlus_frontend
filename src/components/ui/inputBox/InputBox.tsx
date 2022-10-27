@@ -17,7 +17,6 @@ interface InputBoxProps {
   type: string
   defaultValue?: string
   isRequired?: boolean
-  error?: boolean
   callbackChange?: Function
   notValid?: boolean
   upperCase?: boolean
