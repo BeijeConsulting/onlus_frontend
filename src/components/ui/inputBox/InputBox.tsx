@@ -20,6 +20,7 @@ interface InputBoxProps {
   error?: boolean
   callbackChange?: Function
   notValid?: boolean
+  upperCase?: boolean
 }
 
 interface State {
@@ -33,9 +34,9 @@ const initialState = {
 const InputBox: FC<InputBoxProps> = (props) => {
   const [state, setState] = useState<State>(initialState)
 
-  const change = (): void => {
+  const change = (e: any): void => {
     if (!!props.callbackChange) {
-      props.callbackChange()
+      props.callbackChange(e)
     }
   }
 
@@ -50,6 +51,14 @@ const InputBox: FC<InputBoxProps> = (props) => {
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
     event.preventDefault()
+  }
+
+  const toInputUppercase = (e: any) => {
+    e.target.value = ("" + e.target.value).toUpperCase()
+  }
+
+  const toInputUppercase = (e: any) => {
+    e.target.value = ("" + e.target.value).toUpperCase()
   }
 
   return (
@@ -102,6 +111,7 @@ const InputBox: FC<InputBoxProps> = (props) => {
             required={props.isRequired}
             error={props.notValid}
             color="info"
+            onInput={props.upperCase ? toInputUppercase : undefined}
           />
         </div>
       )}
