@@ -42,7 +42,6 @@ function PersonalArea() {
     <>
       <Header />
       <main>
-        <button onClick={() => console.log(state)}>state</button>
         <section className="welcomeCard">
           <div className="icon-container"></div>
           <h3>{t("personalArea.welcome")}</h3>
