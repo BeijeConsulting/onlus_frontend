@@ -10,6 +10,7 @@ import Visibility from "@mui/icons-material/Visibility"
 import VisibilityOff from "@mui/icons-material/VisibilityOff"
 import InputLabel from "@mui/material/InputLabel"
 import FormControl from "@mui/material/FormControl"
+import FormHelperText from "@mui/material/FormHelperText"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
 
 interface InputBoxProps {
@@ -20,6 +21,7 @@ interface InputBoxProps {
   callbackChange?: Function
   notValid?: boolean
   upperCase?: boolean
+  errorLabel?: string
 }
 
 interface State {
@@ -64,6 +66,7 @@ const InputBox: FC<InputBoxProps> = (props) => {
             <InputLabel
               htmlFor="outlined-adornment-password"
               size="small"
+              error={props.notValid}
               color="info"
             >
               {props.label}
@@ -91,6 +94,9 @@ const InputBox: FC<InputBoxProps> = (props) => {
               }
               label="Password"
             />
+            <FormHelperText error={props.notValid}>
+              {props.notValid ? props.errorLabel : undefined}
+            </FormHelperText>
           </FormControl>
         </div>
       ) : (
@@ -107,6 +113,7 @@ const InputBox: FC<InputBoxProps> = (props) => {
             error={props.notValid}
             color="info"
             onInput={props.upperCase ? toInputUppercase : undefined}
+            helperText={props.notValid ? props.errorLabel : undefined}
           />
         </div>
       )}
