@@ -1,0 +1,36 @@
+.singleDonation {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #00000050
+}
+
+.donationTotal{
+    text-align: center;
+    margin-bottom:20px
+}
+
+.bigNumber {
+    font-size:20px;
+    font-weight: bold;
+}
+
+.titleHistory{
+    font-size: 20px;
+    margin-top:30px;
+    margin-bottom: 20px;
+}
+
+@media only screen and (min-width: 768px) {
+    .windowBox{
+        width:350px;
+        display:flex;
+        flex-direction:column;
+        justify-content: center;
+    }
+    .titleHistory{
+        display: none;
+    }
+    .donationTotal{
+        margin-bottom: 40px
+    }
+}

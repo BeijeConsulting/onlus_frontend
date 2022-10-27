@@ -13,6 +13,7 @@ import { useTranslation } from "react-i18next"
 
 //Styles
 import "../styles/login.scss"
+import PreFooter from "../components/preFooter/PreFooter"
 
 function Login() {
   const { t }: any = useTranslation()
@@ -45,10 +46,11 @@ function Login() {
 
         <div className="aside-section">
           <p>{t("login.notRegistered")}</p>
-          <Link to={SCREENS.login}>{t("buttons.signupButton")}</Link>
+          <Link to={SCREENS.signup}>{t("buttons.signupButton")}</Link>
         </div>
       </main>
 
+      <PreFooter />
       <Footer />
     </>
   )

@@ -27,8 +27,8 @@ function TabPanel(props: TabPanelProps) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+        <Box sx={{ p: 3, width: '100%', justifyContent: 'center', alignItems: 'flex-start' }}>
+          <Typography sx={{width: '100%'}}>{children}</Typography>
         </Box>
       )}
     </div>
@@ -51,7 +51,7 @@ export default function VerticalTabs(props:LocalProps) {
 
   return (
     <Box
-      sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', height: 650, overflow: 'hidden' }}
+      sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', justifyContent:'space-evenly', height: 650, minWidth: '100%', maxWidth: '100%' }}
     >
       <Tabs
         orientation="vertical"
@@ -59,7 +59,7 @@ export default function VerticalTabs(props:LocalProps) {
         value={value}
         onChange={handleChange}
         aria-label="Vertical tabs example"
-        sx={{ borderRight: 1, borderColor: 'divider' }}
+        sx={{ borderRight: 1, borderColor: 'divider', paddingTop: '24px', position: 'relative', right:'150px' }}
       >
         <Tab label={props.pages[0]} {...a11yProps(0)} />
         <Tab label={props.pages[1]} {...a11yProps(1)} />

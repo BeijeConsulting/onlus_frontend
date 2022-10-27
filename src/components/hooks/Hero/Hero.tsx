@@ -5,66 +5,85 @@ import CustomButton from "../../ui/buttons/CustomButton/CustomButton";
 import axios from "axios";
 import "./hero.scss";
 
-interface State {
-  title?: string | undefined;
-  subtitle?: string | undefined;
-  image?: string;
-  isLoaded: boolean;
+
+interface Props {
+  type: "home" | "article" | "about";
+  category?: string,
+  title: string | undefined,
+  subtitle?: string | undefined,
+  image: string | undefined;
 }
 
-const Hero: FC = (): ReactElement => {
+const Hero: FC<Props> = (props): ReactElement => {
   const { t }: any = useTranslation();
   const navigate: any = useNavigate();
-
-  const [state, setState] = useState<State>({
-    isLoaded: false,
-  });
-
-  useLayoutEffect(() => {
-    fetchDatas();
-  }, []);
 
   function handleNavigate() {
     navigate("/donate");
   }
 
-  async function fetchDatas() {
-    let result: any = await axios.get("mockAPI/hero.json");
-    console.log(result);
-    setState({
-      ...state,
-      image: result.data.image,
-      title: result.data.title,
-      subtitle: result.data.subtitle,
-      isLoaded: true,
-    });
-  }
 
-  return (
-    <>
-      {state.isLoaded && (
-        <section className="hero-container">
-          <img
-            className="hero-bg"
-            src={require(`../../../assets/images/${state.image}`)}
-            alt="hero-img"
-          />
-          <div className="hero-overlay" />
-          <div className="hero-card">
-            <h2 className="hero-title">{state.title}</h2>
-            <div className="hero-linebr" />
-            <h4 className="hero-subtitle">{state.subtitle}</h4>
-            <CustomButton
-              size="small"
-              label="DIVENTA VOLONTARIO"
-              colorType="primary"
-              callback={handleNavigate}
-            />
-          </div>
-        </section>
-      )}
-    </>
-  );
+  switch (props.type) {
+    case "home":
+      return (
+        <>
+            <section className="hero-container">
+              <img
+                className="hero-bg"
+                src={require(`../../../assets/images/${props.image}`)}
+                alt="hero-img"
+              />
+              <div className="hero-overlay" />
+              <div className="hero-card">
+                <h2 className="hero-title">{props.title}</h2>
+                <div className="hero-linebr" />
+                <h4 className="hero-subtitle">{props.subtitle}</h4>
+                <CustomButton
+                  size="small"
+                  label="DIVENTA VOLONTARIO"
+                  colorType="primary"
+                  callback={handleNavigate}
+                />
+              </div>
+            </section>
+        </>
+      );
+
+    case "article":
+      return (
+        <>
+            <section className="hero-container">
+              <img
+                className="hero-bg"
+                src={require(`../../../assets/images/${props.image}`)}
+                alt="hero-img"
+              />
+              <div className="hero-overlay" />
+              <div className="hero-article-card">
+                <h2 className="hero-category">{props.category}</h2>
+                <h4 className="hero-title">{props.title}</h4>
+              </div>
+            </section>
+        </>
+      );
+
+    case "about":
+      return (
+        <>
+            <section className="hero-container">
+              <img
+                className="hero-bg"
+                src={require(`../../../assets/images/${props.image}`)}
+                alt="hero-img"
+              />
+              <div className="hero-overlay" />
+              <div className="hero-about-card">
+                <h2 className="hero-mission">{props.title}</h2>
+              </div>
+            </section>
+        </>
+      );
+  }
 };
 
 export default Hero;
