@@ -20,7 +20,9 @@ function JoinUs(): ReactElement {
       <section className="upperSection">
         <div className="header1">Unisciti a noi!</div>
         <hr className="separator" />
-        Se vuoi contribuire alla nostra causa, supporta le nostre attività
+        <div className="header2">
+          Se vuoi contribuire alla nostra causa, supporta le nostre attività
+        </div>
       </section>
       <div className="buttons">
         <CustomButton
