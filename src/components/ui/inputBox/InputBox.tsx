@@ -10,6 +10,7 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
+import FormHelperText from "@mui/material/FormHelperText";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 interface InputBoxProps {
@@ -17,19 +18,17 @@ interface InputBoxProps {
   type: string;
   defaultValue?: string;
   isRequired?: boolean;
-  error?: boolean;
   callbackChange?: Function;
   notValid?: boolean;
   upperCase?: boolean;
+  errorLabel?: string;
 }
 
 interface State {
-  password: string;
   showPassword: boolean;
 }
 
 const initialState = {
-  password: "",
   showPassword: false,
 };
 
@@ -64,13 +63,17 @@ const InputBox: FC<InputBoxProps> = (props) => {
       {props.type === "password" ? (
         <div style={{ margin: 5, width: "100%" }}>
           <FormControl variant="outlined" sx={{ width: "100%" }}>
-            <InputLabel htmlFor="outlined-adornment-password" size="small">
+            <InputLabel
+              htmlFor="outlined-adornment-password"
+              size="small"
+              error={props.notValid}
+              color="info"
+            >
               {props.label}
             </InputLabel>
             <OutlinedInput
               id="outlined-adornment-password"
               type={state.showPassword ? "text" : "password"}
-              value={state.password}
               size={"small"}
               onChange={change}
               defaultValue={props.defaultValue}
@@ -91,6 +94,9 @@ const InputBox: FC<InputBoxProps> = (props) => {
               }
               label="Password"
             />
+            <FormHelperText error={props.notValid}>
+              {props.notValid ? props.errorLabel : undefined}
+            </FormHelperText>
           </FormControl>
         </div>
       ) : (
@@ -107,6 +113,7 @@ const InputBox: FC<InputBoxProps> = (props) => {
             error={props.notValid}
             color="info"
             onInput={props.upperCase ? toInputUppercase : undefined}
+            helperText={props.notValid ? props.errorLabel : undefined}
           />
         </div>
       )}
