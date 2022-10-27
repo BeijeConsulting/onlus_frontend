@@ -2,6 +2,7 @@ import React, {FC, ReactElement} from 'react'
 import { useTranslation } from 'react-i18next'
 import InputBox from '../ui/inputBox/InputBox'
 import SelectBox from '../ui/inputBox/SelectBox'
+import './myInfoSection.scss'
 
 interface InfoProps {
   datas:datas
