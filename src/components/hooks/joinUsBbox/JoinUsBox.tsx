@@ -24,18 +24,16 @@ function JoinUs(): ReactElement {
       </section>
       <div className="buttons">
         <CustomButton
-          bgColor="#B12009"
+          colorType="primary"
           label="DONA ORA"
           size="big"
           callback={goToDonations}
-          txtColor="white"
         />
         <CustomButton
-          bgColor="white"
+          colorType="secondary"
           label="DIVENTA VOLONTARIO"
           size="big"
           callback={goToJoin}
-          txtColor="black"
         />
       </div>
       <section className="lowerSection">
