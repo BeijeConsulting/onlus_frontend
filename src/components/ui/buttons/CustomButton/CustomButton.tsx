@@ -1,25 +1,35 @@
-import React, {FC, ReactElement} from 'react'
-import './customButton.scss'
+import { Button, ThemeProvider } from "@mui/material";
+import React, { FC, ReactElement } from "react";
+
+import { theme } from "../../../../utils/muiTheme";
 
 interface Props {
-    bgColor: string,
-    txtColor:string,
-    label: string,
-    size: 'big' | 'small';
-    callback: Function
+  colorType: "primary" | "secondary";
+  label: string;
+  size: "big" | "small";
+  callback: Function;
+  isDisable?: boolean;
 }
 
-const CustomButton:FC<Props> = (props):ReactElement => {
-
-
-
-    function handleClick():void {
-        if(!!props.callback) props.callback()
-    }
+const CustomButton: FC<Props> = (props): ReactElement => {
+  function handleClick(): void {
+    if (!!props.callback) props.callback();
+  }
 
   return (
-    <div onClick={handleClick} className={`btn ${props.size === 'big' ? 'bigBtn' : 'smallBtn'}`} style={{backgroundColor : props.bgColor, color: props.txtColor}}>{props.label}</div>
-  )
-}
+    <ThemeProvider theme={theme}>
+      <Button
+        sx={props.size === "big" ? { width: "100%" } : { width: "fit-content" }}
+        variant="contained"
+        disabled={props.isDisable}
+        disableElevation
+        color={props.colorType}
+        onClick={handleClick}
+      >
+        {props.label}
+      </Button>
+    </ThemeProvider>
+  );
+};
 
-export default CustomButton
+export default CustomButton;
