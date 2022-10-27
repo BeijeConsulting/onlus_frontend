@@ -23,6 +23,7 @@ interface InputBoxProps {
 }
 
 interface State {
+  password: string
   showPassword: boolean
 }
 
@@ -57,7 +58,11 @@ const InputBox: FC<InputBoxProps> = (props) => {
       {props.type === "password" ? (
         <div style={{ margin: 5, width: "100%" }}>
           <FormControl variant="outlined" sx={{ width: "100%" }}>
-            <InputLabel htmlFor="outlined-adornment-password" size="small">
+            <InputLabel
+              htmlFor="outlined-adornment-password"
+              size="small"
+              color="info"
+            >
               {props.label}
             </InputLabel>
             <OutlinedInput
@@ -68,6 +73,7 @@ const InputBox: FC<InputBoxProps> = (props) => {
               defaultValue={props.defaultValue}
               required={props.isRequired}
               error={props.notValid}
+              color="info"
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
@@ -96,6 +102,7 @@ const InputBox: FC<InputBoxProps> = (props) => {
             defaultValue={props.defaultValue}
             required={props.isRequired}
             error={props.notValid}
+            color="info"
           />
         </div>
       )}

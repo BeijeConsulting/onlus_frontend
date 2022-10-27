@@ -1,87 +1,98 @@
 {
-    
-    "search": "Cerca",
-    "selectCategory": "Seleziona categoria",
+  "search": "Cerca",
+  "selectCategory": "Seleziona categoria",
 
-    "nav": {
-        "about": "Chi siamo",
-        "events": "Eventi",
-        "blog": "Blog",
-        "supportUs": "Supportaci",
-        "info": "Informazioni"
-    },
+  "nav": {
+    "about": "Chi siamo",
+    "events": "Eventi",
+    "blog": "Blog",
+    "supportUs": "Supportaci",
+    "info": "Informazioni"
+  },
 
-    "titles": {
-        "eventsTitle": "Prossimamente",
-        "blogTitle": "Blog e notizie",
-        "faqTitle": "Faq",
-        "loginTitle": "Login",
-        "signupTitle": "Registrati"
-    },
+  "titles": {
+    "eventsTitle": "Prossimamente",
+    "blogTitle": "Blog e notizie",
+    "faqTitle": "Faq",
+    "loginTitle": "Login",
+    "signupTitle": "Registrati"
+  },
 
-    "buttons": {
-        "donateButton": "Dona ora",
-        "volunteerButton": "Diventa volontario",
-        "loginButton": "Accedi",
-        "signupButton": "Registrati",
-        "confirmButton": "Conferma donazione",
-        "continueReadingButton": "Continua a leggere",
-        "supportNavButton": "Sostieni onlus",
-        "bookButton": "Prenota"
-    },
+  "buttons": {
+    "donateButton": "Dona ora",
+    "volunteerButton": "Diventa volontario",
+    "loginButton": "Accedi",
+    "signupButton": "Registrati",
+    "confirmButton": "Conferma donazione",
+    "continueReadingButton": "Continua a leggere",
+    "supportNavButton": "Sostieni onlus",
+    "bookButton": "Prenota"
+  },
 
-    "footer": {
-        "contacts": "Contatti",
-        "terms": "Termini e condizioni",
-        "privacyPolicy": "Privacy policy",
-        "cookiePolicy": "Cookie policy",
-        "rightReserved":"© Onlus - 2022 - All rights reserved"
-    },
+  "footer": {
+    "contacts": "Contatti",
+    "terms": "Termini e condizioni",
+    "privacyPolicy": "Privacy policy",
+    "cookiePolicy": "Cookie policy",
+    "rightReserved": "© Onlus - 2022 - All rights reserved"
+  },
 
-    "home": {
-        "latestNews": "Ultime notizie",
-        "relatedArticles": "Articoli correlati",
-        "stayUpToDate": "Rimani aggiornato",
-        "followUs": "Seguici su ",
-        "history": "Storia"
-    },
+  "preFooter": {
+    "caption": "Vuoi lavorare con noi? Contattaci a questa Email:"
+  },
 
-    "events": {
-        "description": "Descrizione",
-        "requirements": "Requisiti"
-    },
+  "home": {
+    "latestNews": "Ultime notizie",
+    "relatedArticles": "Articoli correlati",
+    "stayUpToDate": "Rimani aggiornato",
+    "followUs": "Seguici su ",
+    "history": "Storia"
+  },
 
-    "login": {
-        "name": "Nome",
-        "surname": "Cognome",
-        "email": "Email",
-        "password": "Password",
-        "confirmPassword": "Conferma password",
-        "phone": "Telefono",
-        "language": "Lingua",
-        "italian": "Italiano",
-        "english": "Inglese",
-        "acceptTerms": "Accetto i termini e le condizioni",
-        "cf": "Codice fiscale",
-        "birthday": "Data di nascita",
-        "privacyTerms": "Ho letto e accetto le condizioni dell’informativa sulla Privacy",
-    
-        "forgottenPassword": "Password dimenticata?",
-        "notRegistered": "Non hai un account?",
-        "alreadyRegistered": "Hai già un account?"
-    },
+  "events": {
+    "description": "Descrizione",
+    "requirements": "Requisiti"
+  },
 
-    "personalArea": {
-        "myInfo": "I miei dati",
-        "donations": "Donazioni",
-        "save": "Salva modifiche",
-        "welcome": "Benvenuto",
-        "programmedEvents": "Eventi in programma",
-        "pastEvents": "Eventi passati",
-        "totalDonated": "In totale hai donato ",
-        "donationsHistory": "Storico donazioni",
-        "personalData": "Dati anagrafici",
-        "paymentOption": "Modalità di pagamento"
-    }
+  "login": {
+    "name": "Nome",
+    "surname": "Cognome",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Conferma password",
+    "phone": "Telefono",
+    "language": "Lingua",
+    "italian": "Italiano",
+    "english": "Inglese",
+    "acceptTerms": "Accetto i termini e le condizioni",
+    "cf": "Codice fiscale",
+    "dateOfBirth": "Data di nascita",
+    "privacyTerms": "Ho letto e accetto le condizioni dell’informativa sulla Privacy",
 
-} 
+    "forgottenPassword": "Password dimenticata?",
+    "notRegistered": "Non hai un account?",
+    "alreadyRegistered": "Hai già un account?"
+  },
+
+  "personalArea": {
+    "myInfo": "I miei dati",
+    "donations": "Donazioni",
+    "save": "Salva modifiche",
+    "welcome": "Benvenuto",
+    "programmedEvents": "Eventi in programma",
+    "pastEvents": "Eventi passati",
+    "totalDonated": "In totale hai donato ",
+    "donationsHistory": "Storico donazioni",
+    "donate": "Dona",
+    "personalData": "Dati anagrafici",
+    "paymentOption": "Modalità di pagamento"
+  },
+
+  "donate": {
+    "holderName": "Nome intestatario",
+    "cardNumber": "Numero carta",
+    "expirationDate": "MM/AA",
+    "cvc": "CVC",
+    "amount": "Importo €"
+  }
+}
