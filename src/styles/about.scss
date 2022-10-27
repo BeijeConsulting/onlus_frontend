@@ -34,10 +34,14 @@
     } 
     
     .content-about-container-inverted{
+        padding:20px;
         display: flex;
         flex-direction: row-reverse;
     }
+
     .img-container-inverted{
+        display: flex;
+        flex-direction: column;
         margin-top: 0;
         margin-right: 50px;
         width: 100%;

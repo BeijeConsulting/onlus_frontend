@@ -76,7 +76,7 @@ const About: FC =() =>{
     <>
       <Header />
 
-      <Hero />
+      <Hero type={"about"} title={"Frase motivazionale super d'effetto per convincerti a donare"} image={"pandaImg.jpg"}/>
       <main>
         <h1>{t("nav.about")}</h1>
         {state.content.map(mappingContent)}
