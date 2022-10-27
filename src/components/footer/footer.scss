@@ -6,22 +6,15 @@ footer {
     display: flex;
     flex-direction: column;
     padding: 1rem;
-    // align-items: center;
 
     .contacts {
         margin-bottom: 40px;
-        // display: flex;
-        // flex-direction: column;
-        // justify-content: center;
-        // align-items: center;
-        // width: fit-content;
-
+        
         .titleContacts {
             margin-bottom: 20px;
             text-transform: uppercase;
             font-weight: 500;
             text-align: start;
-            // width: 100%;
         }
 
         .contactsList {
