@@ -42,7 +42,7 @@ const SelectBox: FC<SelectBoxProps> = (props) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <div style={{ margin: 5 }}>
+      <div style={{ margin: 5, width: "100%" }}>
         <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label" size="small" color="info">
             {props.label}
