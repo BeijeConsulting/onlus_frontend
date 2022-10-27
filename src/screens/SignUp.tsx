@@ -6,7 +6,7 @@ import Footer from "../components/footer/Footer"
 import PreFooter from "../components/preFooter/PreFooter"
 import Header from "../components/hooks/Header/Header"
 import InputBox from "../components/ui/inputBox/InputBox"
-import SelectBox from "../components/ui/inputBox/SelectBox"
+import SelectBox from "../SelectBox"
 import InputCheckbox from "../components/ui/inputBox/InputCheckbox"
 import CustomButton from "../components/ui/buttons/CustomButton/CustomButton"
 
