@@ -1,5 +1,6 @@
 import React, { ReactElement, useState, useEffect } from "react";
 import "./donationHistory.scss";
+import { useTranslation } from "react-i18next";
 
 interface donations {
   id: number;
@@ -8,11 +9,11 @@ interface donations {
 }
 
 interface Props {
-  datas: donations[]
-};
-
+  datas: donations[];
+}
 
 function DonationHistory(props: Props): ReactElement {
+  const { t }: any = useTranslation();
   const [state, setState] = useState<number>(0);
 
   useEffect(() => {
@@ -40,10 +41,10 @@ function DonationHistory(props: Props): ReactElement {
     <article>
       <section className="windowBox">
         <div className="donationTotal">
-          {`In totale hai donato `}
+          {t("personalArea.totalDonated")}
           <span className="bigNumber">{`${state}€`}</span>
         </div>
-        <div className="titleHistory">Storico donazioni</div>
+        <div className="titleHistory">{t("personalArea.donationsHistory")}</div>
         <section className="donations">{props.datas.map(mapping)}</section>
       </section>
     </article>

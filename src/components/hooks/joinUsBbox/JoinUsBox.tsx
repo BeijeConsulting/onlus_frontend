@@ -4,8 +4,10 @@ import Link from "@mui/material/Link";
 import "./joinUsBox.scss";
 import { useNavigate, NavigateFunction } from "react-router-dom";
 import CustomButton from "../../ui/buttons/CustomButton/CustomButton";
+import { useTranslation } from "react-i18next";
 
 function JoinUs(): ReactElement {
+  const { t }: any = useTranslation();
   const navigate: NavigateFunction = useNavigate();
 
   function goToDonations(): void {
@@ -18,17 +20,17 @@ function JoinUs(): ReactElement {
   return (
     <article className="joinUsBox">
       <section className="upperSection">
-        <div className="header1">Unisciti a noi!</div>
+        <div className="header1">{t("preFooter.title")}</div>
         <hr className="separator" />
         <div className="header2">
-          Se vuoi contribuire alla nostra causa, supporta le nostre attività
+        {t("preFooter.caption")}
         </div>
       </section>
       <div className="buttons">
         <div className="btn1">
           <CustomButton
             colorType="primary"
-            label="DONA ORA"
+            label={t("buttons.donateButton")}
             size="big"
             callback={goToDonations}
           />
@@ -36,7 +38,7 @@ function JoinUs(): ReactElement {
         <div className="btn2">
           <CustomButton
             colorType="secondary"
-            label="DIVENTA VOLONTARIO"
+            label={t("buttons.volunteerButton")}
             size="big"
             callback={goToJoin}
           />

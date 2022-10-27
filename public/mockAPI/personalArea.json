@@ -12,7 +12,7 @@
       "image": "https://www.plasticfreeonlus.it/seo/plastic-free-raccolta-fb.jpeg",
       "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi vero culpa velit magni aliquam. Voluptas non ullam quo temporibus aut, cum, sequi eaque recusandae iusto praesentium cumque omnis laudantium, saepe labore! Odio dicta tenetur, enim laboriosam quidem libero vel ipsam animi vitae ducimus aperiam magni fuga, ex cumque repudiandae eaque?",
       "requirement": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi vero culpa velit magni aliquam. Voluptas non ullam quo temporibus aut, cum, sequi eaque recusandae iusto praesentium cumque omnis laudantium, saepe labore! Odio dicta tenetur, enim laboriosam quidem libero vel ipsam animi vitae ducimus aperiam magni fuga, ex cumque repudiandae eaque?",
-      "date": "4 ottobre 2022",
+      "date": "2022-4-4",
       "time": "h 12.00",
       "place": "Milano"
     },
@@ -21,10 +21,19 @@
       "image": "https://www.congiulia.com/wp-content/uploads/2022/03/IMG-20220329-WA0008.jpg",
       "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi vero culpa velit magni aliquam. Voluptas non ullam quo temporibus aut, cum, sequi eaque recusandae iusto praesentium cumque omnis laudantium, saepe labore! Odio dicta tenetur, enim laboriosam quidem libero vel ipsam animi vitae ducimus aperiam magni fuga, ex cumque repudiandae eaque?",
       "requirement": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. ",
-      "date": "12 ottobre 2022",
+      "date": "2022-9-4",
       "time": "h 12.00",
       "place": "Milano"
-    }
+    },
+    {
+        "title": "Un gancio in mezzo al cielo",
+        "image": "https://www.congiulia.com/wp-content/uploads/2022/03/IMG-20220329-WA0008.jpg",
+        "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi vero culpa velit magni aliquam. Voluptas non ullam quo temporibus aut, cum, sequi eaque recusandae iusto praesentium cumque omnis laudantium, saepe labore! Odio dicta tenetur, enim laboriosam quidem libero vel ipsam animi vitae ducimus aperiam magni fuga, ex cumque repudiandae eaque?",
+        "requirement": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. ",
+        "date": "2022-10-28",
+        "time": "h 12.00",
+        "place": "Milano"
+      }
   ],
   "donations": [
     { "id": "1", "date": "2022, 10, 25", "amount": 2000 },
