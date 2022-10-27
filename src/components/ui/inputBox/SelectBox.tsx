@@ -44,7 +44,7 @@ const SelectBox: FC<SelectBoxProps> = (props) => {
     <ThemeProvider theme={theme}>
       <div style={{ margin: 5 }}>
         <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label" size="small">
+          <InputLabel id="demo-simple-select-label" size="small" color="info">
             {props.label}
           </InputLabel>
           <Select
@@ -53,6 +53,7 @@ const SelectBox: FC<SelectBoxProps> = (props) => {
             value={state.value}
             label="Age"
             size="small"
+            color="info"
             onChange={handleChange}
           >
             {props.items && props.items.length > 0 && props.items.map(mapItems)}
