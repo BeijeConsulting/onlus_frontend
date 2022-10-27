@@ -47,7 +47,7 @@ function PersonalArea() {
               t("nav.events"),
               t("personalArea.donations"),
             ]}
-            children={[<Header />, <Header />, <Header />]}
+            children={[<Header />, <Header />, <DonationHistory datas={state.donations} />]}
           />
         ) : (
           <NavTab
