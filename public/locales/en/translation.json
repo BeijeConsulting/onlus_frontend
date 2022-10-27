@@ -36,7 +36,9 @@
         "cookiePolicy": "Cookie policy",
         "rightReserved":"© Onlus - 2022 - All rights reserved"
     },
-
+    "preFooter" : {
+        "caption":"Do you want to work with us? Contact us at this email:"
+    },
     "home": {
         "latestNews": "Latest news",
         "relatedArticles": "Related articles",
