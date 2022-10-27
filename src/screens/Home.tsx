@@ -1,8 +1,5 @@
 import { FC } from "react"
 import { useTranslation, Trans } from "react-i18next"
-import PersonalArea from "./PersonalArea"
-
-import Header from "../components/hooks/Header/Header"
 
 
 const Home: FC = () => {
@@ -10,12 +7,11 @@ const Home: FC = () => {
 
   return (
     <div>
-{/*       {t("search")}
+      {t("search")}
 
       <button onClick={() => i18n.changeLanguage("en")}>EN</button>
       <button onClick={() => i18n.changeLanguage("it")}>IT</button>
- */}
-    <PersonalArea />
+
     </div>
   )
 }
