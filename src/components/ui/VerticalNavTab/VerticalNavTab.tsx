@@ -1,20 +1,20 @@
-import * as React from 'react';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
+import * as React from "react";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 
 interface TabPanelProps {
-    children?: React.ReactNode;
-    index?: number;
-    value?: number;
-  }
-  
-  interface LocalProps {
-    children:React.ReactNode[];
-    pages: string[];
-  }
-  
+  children?: React.ReactNode;
+  index?: number;
+  value?: number;
+}
+
+interface LocalProps {
+  children: React.ReactNode[];
+  pages: string[];
+}
+
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
 
@@ -27,8 +27,15 @@ function TabPanel(props: TabPanelProps) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3, width: '100%', justifyContent: 'center', alignItems: 'flex-start' }}>
-          <Typography sx={{width: '100%'}}>{children}</Typography>
+        <Box
+          sx={{
+            p: 3,
+            width: "100%",
+            justifyContent: "center",
+            alignItems: "flex-start",
+          }}
+        >
+          <Typography sx={{ width: "100%" }}>{children}</Typography>
         </Box>
       )}
     </div>
@@ -38,11 +45,11 @@ function TabPanel(props: TabPanelProps) {
 function a11yProps(index: number) {
   return {
     id: `vertical-tab-${index}`,
-    'aria-controls': `vertical-tabpanel-${index}`,
+    "aria-controls": `vertical-tabpanel-${index}`,
   };
 }
 
-export default function VerticalTabs(props:LocalProps) {
+export default function VerticalTabs(props: LocalProps) {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -51,7 +58,16 @@ export default function VerticalTabs(props:LocalProps) {
 
   return (
     <Box
-      sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', justifyContent:'space-evenly', height: 650, minWidth: '100%', maxWidth: '100%' }}
+      sx={{
+        flexGrow: 1,
+        bgcolor: "background.paper",
+        display:"grid",
+        gridTemplateColumns: "1fr 5fr",
+        height: "fit-content",
+        minWidth: "100%",
+        maxWidth: "100%",
+
+      }}
     >
       <Tabs
         orientation="vertical"
@@ -59,7 +75,11 @@ export default function VerticalTabs(props:LocalProps) {
         value={value}
         onChange={handleChange}
         aria-label="Vertical tabs example"
-        sx={{ borderRight: 1, borderColor: 'divider', paddingTop: '24px', position: 'relative', right:'150px' }}
+        sx={{
+          borderRight: 1,
+          borderColor: "divider",
+          paddingTop: "24px",
+        }}
       >
         <Tab label={props.pages[0]} {...a11yProps(0)} />
         <Tab label={props.pages[1]} {...a11yProps(1)} />

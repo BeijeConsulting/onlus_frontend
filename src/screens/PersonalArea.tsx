@@ -24,13 +24,13 @@ function PersonalArea() {
 
   async function fetchDatas(): Promise<void> {
     let result = await axios.get("mockAPI/personalArea.json");
-    let temp =  result.data;
+    let temp = result.data;
     temp.isLoaded = true;
     console.log(temp);
     setState({
       ...state,
       isLoaded: true,
-      data: temp
+      data: temp,
     });
   }
 
@@ -43,42 +43,41 @@ function PersonalArea() {
       <Header />
       <main>
         <button onClick={() => console.log(state)}>state</button>
-            <section className="welcomeCard">
-              <div className="icon-container"></div>
-              <h3>{t("personalArea.welcome")}</h3>
-            </section>
-        {state.isLoaded && (           
-            isDesktop ? ( 
-              <VerticalNavTab
-                pages={[
-                  t("personalArea.myInfo"),
-                  t("nav.events"),
-                  t("personalArea.donations"),
-                ]}
-                children={[
-                  <MyInfoSection datas={state.data.myInfo} />,
-                  <PersonalEvents events={state.data.events} />,
-                  <DonationHistory datas={state.data.donations} />,
-                ]}
-              />
-            ) : (
-              <NavTab
-                pages={[
-                  t("personalArea.myInfo"),
-                  t("nav.events"),
-                  t("personalArea.donations"),
-                ]}
-                children={[
-                  <MyInfoSection datas={state.data.myInfo} />,
-                  <PersonalEvents events={state.data.events} />,
-                  <DonationHistory datas={state.data.donations} />,
-                ]}
-              />
-            )          
-        )}
-        <PreFooter />
-        <Footer />
+        <section className="welcomeCard">
+          <div className="icon-container"></div>
+          <h3>{t("personalArea.welcome")}</h3>
+        </section>
+        {state.isLoaded &&
+          (isDesktop ? (
+            <VerticalNavTab
+              pages={[
+                t("personalArea.myInfo"),
+                t("nav.events"),
+                t("personalArea.donations"),
+              ]}
+              children={[
+                <MyInfoSection datas={state.data.myInfo} />,
+                <PersonalEvents events={state.data.events} />,
+                <DonationHistory datas={state.data.donations} />,
+              ]}
+            />
+          ) : (
+            <NavTab
+              pages={[
+                t("personalArea.myInfo"),
+                t("nav.events"),
+                t("personalArea.donations"),
+              ]}
+              children={[
+                <MyInfoSection datas={state.data.myInfo} />,
+                <PersonalEvents events={state.data.events} />,
+                <DonationHistory datas={state.data.donations} />,
+              ]}
+            />
+          ))}
       </main>
+      <PreFooter />
+      <Footer />
     </>
   );
 }

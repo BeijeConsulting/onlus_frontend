@@ -9,6 +9,11 @@
     margin-bottom:20px
 }
 
+.donationsSection{
+    display:flex;
+    justify-content: center;
+}
+
 .bigNumber {
     font-size:20px;
     font-weight: bold;
@@ -25,7 +30,6 @@
         width:350px;
         display:flex;
         flex-direction:column;
-        justify-content: center;
     }
     .titleHistory{
         display: none;
@@ -34,3 +38,8 @@
         margin-bottom: 40px
     }
 }
+@media only screen and (min-width: 992px) {
+    .donationsSection {
+      padding: 76px;
+    }
+  }

@@ -1,14 +1,26 @@
-.txt{
-    font-size: 1.5rem;
-    margin-bottom:25px;
-    margin-top:40px;
+.txt {
+  font-size: 1.5rem;
+  margin-bottom: 25px;
+}
+
+.singleCardContainer {
+  margin-bottom: 20px;
 }
 
 @media only screen and (min-width: 768px) {
-    .cards{
-        display: flex;
-        flex-flow: row wrap;
-        max-width: 800px;
-        max-height:300px;
-    }
+  .cardsContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: stretch;
+    gap: 50px;
+  }
+  .singleCardContainer {
+    margin-bottom: 0px;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .eventsSection {
+    padding: 76px 0 76px 76px;
+  }
 }
