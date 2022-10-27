@@ -1,6 +1,6 @@
-import React, { FC, useState } from "react"
+import React, { FC, useState } from "react";
 // utils
-import { theme } from "../../../utils/muiTheme"
+import { theme } from "../../../utils/muiTheme";
 // mui components
 import OutlinedInput from "@mui/material/OutlinedInput";
 import TextField, { TextFieldProps } from "@mui/material/TextField";
@@ -71,6 +71,7 @@ const InputBox: FC<InputBoxProps> = (props) => {
               defaultValue={props.defaultValue}
               required={props.isRequired}
               error={props.notValid}
+              color="info"
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
@@ -99,6 +100,7 @@ const InputBox: FC<InputBoxProps> = (props) => {
             defaultValue={props.defaultValue}
             required={props.isRequired}
             error={props.notValid}
+            color="info"
           />
         </div>
       )}

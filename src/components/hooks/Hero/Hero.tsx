@@ -29,7 +29,7 @@ const Hero: FC = (): ReactElement => {
   }
 
   async function fetchDatas() {
-    let result:any = await axios.get("mockAPI/hero.json");
+    let result: any = await axios.get("mockAPI/hero.json");
     console.log(result);
     setState({
       ...state,
@@ -44,7 +44,11 @@ const Hero: FC = (): ReactElement => {
     <>
       {state.isLoaded && (
         <section className="hero-container">
-          <img className="hero-bg" src={require( `../../../assets/images/${state.image}`)} alt="hero-img" />
+          <img
+            className="hero-bg"
+            src={require(`../../../assets/images/${state.image}`)}
+            alt="hero-img"
+          />
           <div className="hero-overlay" />
           <div className="hero-card">
             <h2 className="hero-title">{state.title}</h2>
@@ -53,8 +57,7 @@ const Hero: FC = (): ReactElement => {
             <CustomButton
               size="small"
               label="DIVENTA VOLONTARIO"
-              bgColor="#B12009"
-              txtColor="white"
+              colorType="primary"
               callback={handleNavigate}
             />
           </div>
