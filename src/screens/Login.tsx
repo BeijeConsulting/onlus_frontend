@@ -13,6 +13,7 @@ import { useTranslation } from "react-i18next"
 
 //Styles
 import "../styles/login.scss"
+import PreFooter from "../components/preFooter/PreFooter"
 
 function Login() {
   const { t }: any = useTranslation()
@@ -49,6 +50,7 @@ function Login() {
         </div>
       </main>
 
+      <PreFooter />
       <Footer />
     </>
   )
