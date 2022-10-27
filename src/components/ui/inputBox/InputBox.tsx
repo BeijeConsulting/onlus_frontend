@@ -23,7 +23,6 @@ interface InputBoxProps {
 }
 
 interface State {
-  password: string
   showPassword: boolean
 }
 
