@@ -23,7 +23,7 @@ const CustomButton: FC<Props> = (props): ReactElement => {
         variant="contained"
         disabled={props.isDisable}
         disableElevation
-        color={props.colorType}
+        color={props.colorType} 
         onClick={handleClick}
       >
         {props.label}
