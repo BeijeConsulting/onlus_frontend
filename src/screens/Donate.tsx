@@ -17,10 +17,22 @@ import "../styles/donate.scss";
 
 interface State {
   isChecked: boolean;
+  errorName: boolean;
+  errorSurname: boolean;
+  errorEmail: boolean;
+  errorPhone: boolean;
+  errorCf: boolean;
+  errorDate: boolean;
 }
 
 const initialState = {
   isChecked: false,
+  errorName: false,
+  errorSurname: false,
+  errorEmail: false,
+  errorPhone: false,
+  errorCf: false,
+  errorDate: false,
 };
 
 type dataObject = {
@@ -30,30 +42,30 @@ type dataObject = {
   phone: string;
   cf: string;
   dateOfBirth: string;
-  holderName: string;
-  cardNumber: string;
-  expirationDate: string;
-  cvc: string;
-  amount: string;
+  // holderName: string;
+  // cardNumber: string;
+  // expirationDate: string;
+  // cvc: string;
+  // amount: string;
+};
+
+let data: dataObject = {
+  name: "",
+  surname: "",
+  email: "",
+  phone: "",
+  cf: "",
+  dateOfBirth: "",
+  // holderName: "",
+  // cardNumber: "",
+  // expirationDate: "",
+  // cvc: "",
+  // amount: "",
 };
 
 const Donate: FC = () => {
   const [state, setState] = useState<State>(initialState);
   const { t }: any = useTranslation();
-
-  let data: dataObject = {
-    name: "",
-    surname: "",
-    email: "",
-    phone: "",
-    cf: "",
-    dateOfBirth: "",
-    holderName: "",
-    cardNumber: "",
-    expirationDate: "",
-    cvc: "",
-    amount: "",
-  };
 
   // const checkForm = (): void => {
   //   console.log("check");
@@ -67,19 +79,60 @@ const Donate: FC = () => {
   };
 
   const checkForm = (): void => {
-    checkText(data.name);
-    checkText(data.surname);
-    checkEmail(data.email);
+    setState({
+      ...state,
+      errorName: !checkText(data.name),
+      errorSurname: !checkText(data.surname),
+      errorEmail: !checkEmail(data.email),
+      errorPhone: !checkPhone(data.phone),
+      errorCf: !checkCF(data.cf),
+      errorDate: data.dateOfBirth === "",
+    });
+    console.log(data);
   };
 
+  //setData
+  const setName = (name: any): void => {
+    data.name = name.target.value;
+    setState({
+      ...state,
+      errorName: false,
+    });
+  };
+  const setSurname = (surname: any): void => {
+    setState({
+      ...state,
+      errorSurname: false,
+    });
+    data.surname = surname.target.value;
+  };
   const setEmail = (email: any): void => {
-    console.log(checkEmail(email.target.value));
+    setState({
+      ...state,
+      errorEmail: false,
+    });
+    data.email = email.target.value;
   };
   const setPhone = (phone: any): void => {
-    console.log(checkPhone(phone.target.value));
+    setState({
+      ...state,
+      errorPhone: false,
+    });
+    data.phone = phone.target.value;
   };
   const setCf = (cf: any): void => {
-    console.log(checkCF(cf.target.value));
+    setState({
+      ...state,
+      errorCf: false,
+    });
+    data.cf = cf.target.value;
+  };
+  const setDate = (date: any): void => {
+    setState({
+      ...state,
+      errorDate: false,
+    });
+    data.dateOfBirth = date.target.value;
   };
 
   return (
@@ -93,11 +146,21 @@ const Donate: FC = () => {
           </div>
           <section className="personalData">
             <div className="input-box">
-              <InputBox label={t("login.name")} type="text" isRequired={true} />
+              <InputBox
+                callbackChange={setName}
+                label={t("login.name")}
+                type="text"
+                isRequired={true}
+                notValid={state.errorName}
+                errorLabel={t("form.errorName")}
+              />
               <InputBox
                 label={t("login.surname")}
                 type="text"
                 isRequired={true}
+                callbackChange={setSurname}
+                notValid={state.errorSurname}
+                errorLabel={t("form.errorSurname")}
               />
             </div>
             <div className="input-box">
@@ -106,11 +169,15 @@ const Donate: FC = () => {
                 type="email"
                 isRequired={true}
                 callbackChange={setEmail}
+                notValid={state.errorEmail}
+                errorLabel={t("form.errorEmail")}
               />
               <InputBox
                 callbackChange={setPhone}
                 label={t("login.phone")}
                 type="number"
+                notValid={state.errorPhone}
+                errorLabel={t("form.errorPhone")}
               />
             </div>
             <div className="input-box">
@@ -120,8 +187,16 @@ const Donate: FC = () => {
                 type="text"
                 isRequired={true}
                 upperCase={true}
+                notValid={state.errorCf}
+                errorLabel={t("form.errorCf")}
               />
-              <InputBox label={""} type="date" />
+              <InputBox
+                notValid={state.errorDate}
+                label={""}
+                type="date"
+                callbackChange={setDate}
+                errorLabel={t("form.errorDateOfBirth")}
+              />
             </div>
           </section>
           <div className="titlePersonalData">
