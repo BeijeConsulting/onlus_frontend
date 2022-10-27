@@ -94,5 +94,16 @@
     "expirationDate": "MM/YY",
     "cvc": "CVC",
     "amount": "Amount €"
+  },
+
+  "form": {
+    "errorName": "Enter a valid name",
+    "errorSurname": "Enter a valid surname",
+    "errorEmail": "Enter a valid email",
+    "errorPhone": "Enter a valid phone number",
+    "errorCf": "Enter a valid tax code",
+    "errorDateOfBirth": "Enter a valid date",
+    "errorPassword": "Enter a password at least 8 characters long, containing at least one capital letter, lowercase, number and special character",
+    "errorConfirmPassword": "The two passwords do not coincide"
   }
 }
