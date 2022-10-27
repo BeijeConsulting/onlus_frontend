@@ -94,5 +94,16 @@
     "expirationDate": "MM/AA",
     "cvc": "CVC",
     "amount": "Importo €"
+  },
+
+  "form": {
+    "errorName": "Inserire un nome valido",
+    "errorSurname": "Inserire un cognome valido",
+    "errorEmail": "Inserire un'email valida",
+    "errorPhone": "Inserire un numero di telefono valido",
+    "errorCf": "Inserire un codice fiscale valido",
+    "errorDateOfBirth": "Inserire una data valida",
+    "errorPassword": "Inserire una password lunga almeno 8 caratteri, contenente almeno una lettera maiuscola, minuscola, numero e carattere speciale",
+    "errorConfirmPassword": "Le due password non coincidono"
   }
 }

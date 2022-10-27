@@ -9,10 +9,11 @@ import CustomButton from "../components/ui/buttons/CustomButton/CustomButton";
 import InputBox from "../components/ui/inputBox/InputBox";
 import InputCheckbox from "../components/ui/inputBox/InputCheckbox";
 
+//check functions
+import { checkText, checkEmail, checkPhone, checkCF } from "../utils/checkForm";
+
 //style
 import "../styles/donate.scss";
-
-const secondary: string = "#B12009";
 
 interface State {
   isChecked: boolean;
@@ -22,19 +23,63 @@ const initialState = {
   isChecked: false,
 };
 
+type dataObject = {
+  name: string;
+  surname: string;
+  email: string;
+  phone: string;
+  cf: string;
+  dateOfBirth: string;
+  holderName: string;
+  cardNumber: string;
+  expirationDate: string;
+  cvc: string;
+  amount: string;
+};
+
 const Donate: FC = () => {
   const [state, setState] = useState<State>(initialState);
   const { t }: any = useTranslation();
 
-  const checkForm = (): void => {
-    console.log("check");
+  let data: dataObject = {
+    name: "",
+    surname: "",
+    email: "",
+    phone: "",
+    cf: "",
+    dateOfBirth: "",
+    holderName: "",
+    cardNumber: "",
+    expirationDate: "",
+    cvc: "",
+    amount: "",
   };
+
+  // const checkForm = (): void => {
+  //   console.log("check");
+  // };
 
   const setTerms = (e: any): void => {
     setState({
       ...state,
       isChecked: e,
     });
+  };
+
+  const checkForm = (): void => {
+    checkText(data.name);
+    checkText(data.surname);
+    checkEmail(data.email);
+  };
+
+  const setEmail = (email: any): void => {
+    console.log(checkEmail(email.target.value));
+  };
+  const setPhone = (phone: any): void => {
+    console.log(checkPhone(phone.target.value));
+  };
+  const setCf = (cf: any): void => {
+    console.log(checkCF(cf.target.value));
   };
 
   return (
@@ -58,22 +103,25 @@ const Donate: FC = () => {
             <div className="input-box">
               <InputBox
                 label={t("login.email")}
-                type="text"
+                type="email"
                 isRequired={true}
+                callbackChange={setEmail}
               />
               <InputBox
+                callbackChange={setPhone}
                 label={t("login.phone")}
-                type="text"
-                isRequired={true}
+                type="number"
               />
             </div>
             <div className="input-box">
-              <InputBox label={t("login.cf")} type="text" isRequired={true} />
               <InputBox
-                label={t("login.dateOfBirth")}
+                callbackChange={setCf}
+                label={t("login.cf")}
                 type="text"
                 isRequired={true}
+                upperCase={true}
               />
+              <InputBox label={""} type="date" />
             </div>
           </section>
           <div className="titlePersonalData">
@@ -87,20 +135,20 @@ const Donate: FC = () => {
             />
             <InputBox
               label={t("donate.cardNumber")}
-              type="text"
+              type="number"
               isRequired={true}
             />
             <div className="cvcContainer">
+              <InputBox label={""} type="month" isRequired={true} />
               <InputBox
-                label={t("donate.expirationDate")}
-                type="text"
+                label={t("donate.cvc")}
+                type="number"
                 isRequired={true}
               />
-              <InputBox label={t("donate.cvc")} type="text" isRequired={true} />
             </div>
             <InputBox
               label={t("donate.amount")}
-              type="text"
+              type="number"
               isRequired={true}
             />
           </section>
