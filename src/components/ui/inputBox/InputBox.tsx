@@ -57,10 +57,6 @@ const InputBox: FC<InputBoxProps> = (props) => {
     e.target.value = ("" + e.target.value).toUpperCase()
   }
 
-  const toInputUppercase = (e: any) => {
-    e.target.value = ("" + e.target.value).toUpperCase()
-  }
-
   return (
     <ThemeProvider theme={theme}>
       {props.type === "password" ? (
