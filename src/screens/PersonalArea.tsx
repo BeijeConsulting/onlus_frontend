@@ -16,7 +16,7 @@ function PersonalArea() {
   const { t }: any = useTranslation();
   const isDesktop = useMediaQuery({ minWidth: "991px" });
 
-  const [state, setState] = useState({
+  const [state, setState] = useState<any>({
 
   })
 
@@ -56,7 +56,7 @@ function PersonalArea() {
               t("nav.events"),
               t("personalArea.donations"),
             ]}
-            children={[<Header />, <Header />, <DonationHistory props={state.donations} />]}
+            children={[<Header />, <Header />, <DonationHistory datas={state.donations} />]}
           />
         )}
         <PreFooter />
