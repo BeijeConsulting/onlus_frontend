@@ -19,7 +19,9 @@ function PersonalArea() {
       <Header />
       <main>
         <section className="welcomeCard">
-          <div className="icon" />
+          <div className="icon-container">
+
+          </div>
           <h3>{t("personalArea.welcome")}</h3>
         </section>
         {isDesktop ? (
