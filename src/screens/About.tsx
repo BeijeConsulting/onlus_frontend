@@ -39,7 +39,6 @@ const About: FC =() =>{
 
   async function fetchDatas() {
     let result: any = await axios.get("mockAPI/about.json");
-    console.log("result axios: ", result.data.content);
     setState({content:result.data.content})
   }
   const mappingContent=(item:any,key:any)=>{
