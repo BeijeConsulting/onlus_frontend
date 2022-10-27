@@ -8,9 +8,15 @@ import Footer from "../components/footer/Footer"
 import PreFooter from "../components/preFooter/PreFooter"
 // style
 import '../styles/home.scss'
+import Header from "../components/hooks/Header/Header"
 
 // mokup home (il json reale sarà diverso)
 const MokupHome = {
+  hero:{
+    title:"Salva i panda dai bambù",
+    subtitle:"Loremfzdsoifgzdsoihgfzdsoigfdzsoifghzdsoigfhziofgz",
+    image: "pandaImg.jpg"
+  },
   results: {
     resultTitle: 'lorem ipsum dei risultati',
     resultsImage: 'https://cdn-icons-png.flaticon.com/512/16/16121.png?w=360',
@@ -40,9 +46,11 @@ const Home: FC = () => {
 
   return (
     <div id="home">
-      {/* header */}
       {/* hero */}
       {/* risultati */}
+      <Header isHome={true}/>
+      
+      <Hero type={"home"} title={MokupHome.hero.title} subtitle={MokupHome.hero.subtitle} image={MokupHome.hero.image}/>
       <main>
         <section className="results">
           <h4 className="title">
