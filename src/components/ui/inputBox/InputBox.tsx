@@ -1,62 +1,62 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState } from "react"
 // utils
-import { theme } from "../../../utils/muiTheme";
+import { theme } from "../../../utils/muiTheme"
 // mui components
-import OutlinedInput from "@mui/material/OutlinedInput";
-import TextField, { TextFieldProps } from "@mui/material/TextField";
-import InputAdornment from "@mui/material/InputAdornment";
-import IconButton from "@mui/material/IconButton";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import InputLabel from "@mui/material/InputLabel";
-import FormControl from "@mui/material/FormControl";
-import FormHelperText from "@mui/material/FormHelperText";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import OutlinedInput from "@mui/material/OutlinedInput"
+import TextField, { TextFieldProps } from "@mui/material/TextField"
+import InputAdornment from "@mui/material/InputAdornment"
+import IconButton from "@mui/material/IconButton"
+import Visibility from "@mui/icons-material/Visibility"
+import VisibilityOff from "@mui/icons-material/VisibilityOff"
+import InputLabel from "@mui/material/InputLabel"
+import FormControl from "@mui/material/FormControl"
+import FormHelperText from "@mui/material/FormHelperText"
+import { createTheme, ThemeProvider } from "@mui/material/styles"
 
 interface InputBoxProps {
-  label: string;
-  type: string;
-  defaultValue?: string;
-  isRequired?: boolean;
-  callbackChange?: Function;
-  notValid?: boolean;
-  upperCase?: boolean;
-  errorLabel?: string;
+  label: string
+  type: string
+  defaultValue?: string
+  isRequired?: boolean
+  callbackChange?: Function
+  notValid?: boolean
+  upperCase?: boolean
+  errorLabel?: string
 }
 
 interface State {
-  showPassword: boolean;
+  showPassword: boolean
 }
 
 const initialState = {
   showPassword: false,
-};
+}
 
 const InputBox: FC<InputBoxProps> = (props) => {
-  const [state, setState] = useState<State>(initialState);
+  const [state, setState] = useState<State>(initialState)
 
   const change = (e: any): void => {
     if (!!props.callbackChange) {
-      props.callbackChange(e);
+      props.callbackChange(e)
     }
-  };
+  }
 
   const handleClickShowPassword = () => {
     setState({
       ...state,
       showPassword: !state.showPassword,
-    });
-  };
+    })
+  }
 
   const handleMouseDownPassword = (
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
-    event.preventDefault();
-  };
+    event.preventDefault()
+  }
 
   const toInputUppercase = (e: any) => {
-    e.target.value = ("" + e.target.value).toUpperCase();
-  };
+    e.target.value = ("" + e.target.value).toUpperCase()
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -118,7 +118,7 @@ const InputBox: FC<InputBoxProps> = (props) => {
         </div>
       )}
     </ThemeProvider>
-  );
-};
+  )
+}
 
-export default InputBox;
+export default InputBox
