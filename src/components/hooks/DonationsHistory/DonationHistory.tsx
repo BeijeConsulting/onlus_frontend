@@ -12,6 +12,7 @@ const DONATIONS: Array<donations> = [
   { id: 1, date: new Date(2022, 10, 25), amount: 2000 },
   { id: 2, date: new Date(1993, 2, 10), amount: 1000 },
   { id: 3, date: new Date(2021, 0, 10), amount: 2000 },
+  { id: 4, date: new Date(2021, 0, 10), amount: 70 },
 ];
 
 function DonationHistory(): ReactElement {
@@ -40,7 +41,7 @@ function DonationHistory(): ReactElement {
 
   return (
     <article>
-      <section>
+      <section className="windowBox">
         <div className="donationTotal">
           {`In totale hai donato `}
           <span className="bigNumber">{`${state}€`}</span>
