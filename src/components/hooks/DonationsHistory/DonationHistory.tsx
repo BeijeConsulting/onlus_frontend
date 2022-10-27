@@ -1,5 +1,4 @@
 import React, { ReactElement, useState, useEffect } from "react";
-import Button from "@mui/material/Button";
 import "./donationHistory.scss";
 
 interface donations {

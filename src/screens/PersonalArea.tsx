@@ -8,6 +8,7 @@ import Header from "../components/hooks/Header/Header";
 import NavTab from "../components/ui/NavTab/NavTab";
 import VerticalNavTab from "../components/ui/VerticalNavTab/VerticalNavTab";
 import PreFooter from "../components/preFooter/PreFooter";
+import DonationHistory from "../components/hooks/DonationsHistory/DonationHistory";
 
 import "../styles/personalArea.scss";
 
@@ -55,7 +56,7 @@ function PersonalArea() {
               t("nav.events"),
               t("personalArea.donations"),
             ]}
-            children={[<Header />, <Header />, <Header />]}
+            children={[<Header />, <Header />, <DonationHistory props={state.donations} />]}
           />
         )}
         <PreFooter />
