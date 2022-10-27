@@ -1,4 +1,4 @@
-import {FC} from "react";
+import { FC } from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import Button from "@mui/material/Button";
@@ -6,107 +6,125 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardHeader } from "@mui/material";
+// translation
+import { useTranslation } from "react-i18next"
+// navigazione
+import { useNavigate } from 'react-router-dom';
 
-const CardEvents:FC = () => {
-  return (
-    <Card
-      sx={{
-        display: "flex",
-        height: "300px",
-        padding: "0 20px 20px 20px",
-        justifyContent: "space-between"
-      }}
-    >
-      <div
-        style={{ width: "85%", display: "flex", justifyContent: "flex-start" }}
-      >
-        <div style={{ height: "300px" }}>
-          <CardHeader
-            sx={{ height: "15%", padding: "0" }}
-            title="Titolo Evento"
-          />
-          <div style={{ height: "85%" }}>
-            <CardMedia
-              component="img"
-              sx={{ width: 400, height: "100%", backgroundColor: "blue" }}
-              image="/static/images/cards/live-from-space.jpg"
-              alt="Live from space album cover"
-            />
-          </div>
-        </div>
+// props
+interface CardProps {
+    title: string,
+    image: string,
+    description: string,
+    requirement: string,
+    date: string,
+    time: string,
+    place: string
+}
 
-        <Box sx={{ display: "flex", flexDirection: "column" }}>
-          <CardContent sx={{ flex: "1 0 auto" }}>
-            <Typography component="div" variant="h5">
-              Descrizione
-            </Typography>
-            <Typography
-              variant="subtitle1"
-              color="text.secondary"
-              component="div"
-            >
-              Mac MillerMac MillerMac MillerMac MillerMac MillerMac MillerMac
-              MillerMac MillerMac MillerMac MillerMac MillerMac MillerMac
-              MillerMac MillerMac MillerMac MillerMac MillerMac MillerMac
-              MillerMac MillerMac Miller
-            </Typography>
-            <Typography component="div" variant="h5" sx={{ marginTop: "15px" }}>
-              Requisiti
-            </Typography>
-            <Typography
-              variant="subtitle1"
-              color="text.secondary"
-              component="div"
-            >
-              Mac Miller
-            </Typography>
-          </CardContent>
-        </Box>
-      </div>
-      <div
-        style={{ width: "15%", display: "flex", justifyContent: "flex-end" }}
-      >
-        <Box sx={{ display: "flex", flexDirection: "column" }}>
-          <CardContent sx={{ flex: "1 0 auto", textAlign: "end" }}>
-            <Typography
-              component="div"
-              variant="subtitle2"
-              sx={{ fontSize: "18px" }}
-            >
-              15/10/2022
-            </Typography>
-            <Typography
-              variant="subtitle1"
-              color="text.secondary"
-              component="div"
-            >
-              h 12.00
-            </Typography>
-            <Typography
-              variant="subtitle1"
-              color="text.secondary"
-              component="div"
-            >
-              Milano, MI
-            </Typography>
-          </CardContent>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "flex-end",
-              pl: 1,
-              pb: 1
-            }}
-          >
-            <Button sx={{ width: "90px" }} variant="contained">
-              Prenotati
-            </Button>
-          </Box>
-        </Box>
-      </div>
-    </Card>
-  );
+const CardEvents: FC<CardProps> = (props) => {
+
+    // inizializzo navigazione
+    let navigate = useNavigate()
+    // tranlation hook
+    const { t }: any = useTranslation()
+
+    return (
+        <Card sx={{
+            display: "flex",
+            maxHeight: "400px",
+            padding: "40px",
+            justifyContent: "space-between",
+        }}
+        >
+            {/* cambiare la scrollbar e finire data section */}
+            <div className="cardContainer" style={{ display: 'flex' }}>
+                {/* 25 */}
+                <figure style={{ width: '30%' }}>
+                    <figcaption style={{ height: "15%" }}>
+                        <CardHeader
+                            sx={{padding: "0"}}
+                            title={props.title}
+                        />
+                    </figcaption>
+                    <div style={{ height: "94%" }}>
+                        <CardMedia
+                            component="img"
+                            sx={{ width: '100%', height: "90%",marginTop:'auto' }}
+                            image={props.image}
+                            alt="Live from space album cover"
+                        />
+                    </div>
+                </figure>
+                {/* 65 */}
+                <section className="details" style={{ width: '58%',overflowY:"auto" }}>
+                    <Box sx={{ display: "flex", flexDirection: "column" }}>
+                        <CardContent sx={{ flex: "1 0 auto",paddingX: "20px",paddingY:"0" }}>
+                            <Typography style={{marginBottom:'10px'}} component="div" variant="h5">
+                                Descrizione
+                            </Typography>
+                            <Typography
+                                variant="subtitle1"
+                                color="text.secondary"
+                                component="div"
+                            >
+                                {props.description}
+                            </Typography>
+                            <Typography component="div" variant="h5" sx={{ marginTop: "15px",marginBottom:'10px' }}>
+                                Requisiti
+                            </Typography>
+                            <Typography
+                                variant="subtitle1"
+                                color="text.secondary"
+                                component="div"
+                            >
+                                {props.requirement}
+                            </Typography>
+                        </CardContent>
+                    </Box>
+                </section>
+                {/* 10 */}
+                <section style={{ width: '17%',display: "flex", flexDirection: "column",justifyContent:"space-between"  }}>
+                        <CardContent sx={{ flex: "1 0 auto", textAlign: "end" }}>
+                            <Typography
+                                component="div"
+                                variant="subtitle2"
+                                sx={{ fontSize: "18px" }}
+                            >
+                                {props.date}
+                            </Typography>
+                            <Typography
+                                variant="subtitle1"
+                                color="text.secondary"
+                                component="div"
+                            >
+                                {props.time}
+                            </Typography>
+                            <Typography
+                                variant="subtitle1"
+                                color="text.secondary"
+                                component="div"
+                            >
+                                {props.place}
+                            </Typography>
+                        </CardContent>
+                        <Box
+                            sx={{
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "flex-end",
+                                pl: 1,
+                                pb: 1
+                            }}
+                        >
+                            <Button sx={{ width: "90px" }} variant="contained">
+                                {t("buttons.bookButton")}
+                            </Button>
+                        </Box>
+                </section>
+            </div>
+        </Card>
+    );
 }
 
 export default CardEvents;
