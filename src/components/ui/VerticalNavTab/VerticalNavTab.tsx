@@ -51,7 +51,7 @@ export default function VerticalTabs(props:LocalProps) {
 
   return (
     <Box
-      sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', justifyContent:'space-around', height: 650, minWidth: '100%', maxWidth: '100%' }}
+      sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', justifyContent:'space-evenly', height: 650, minWidth: '100%', maxWidth: '100%' }}
     >
       <Tabs
         orientation="vertical"
@@ -59,7 +59,7 @@ export default function VerticalTabs(props:LocalProps) {
         value={value}
         onChange={handleChange}
         aria-label="Vertical tabs example"
-        sx={{ borderRight: 1, borderColor: 'divider', paddingTop: '24px' }}
+        sx={{ borderRight: 1, borderColor: 'divider', paddingTop: '24px', position: 'relative', right:'150px' }}
       >
         <Tab label={props.pages[0]} {...a11yProps(0)} />
         <Tab label={props.pages[1]} {...a11yProps(1)} />
