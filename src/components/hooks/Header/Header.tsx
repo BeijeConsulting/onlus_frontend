@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { useMediaQuery } from "react-responsive"
 //Components
@@ -16,17 +16,21 @@ import "./header.scss"
 //i18n
 import { useTranslation, Trans } from "react-i18next"
 
-const Header: FC = () => {
-  //Naviagtion
+interface HeaderProps {
+  isHome?: boolean
+}
+interface State {
+  scroll: boolean
+}
+const initialState = {
+  scroll: false,
+}
+
+const Header: FC<HeaderProps> = (props) => {
+  const [state, setState] = useState<State>(initialState)
+
   const navigate: any = useNavigate()
-  //i18n
   const { t, i18n }: any = useTranslation()
-  //Style object
-  let passObj: object = {
-    bColor: "#101010",
-    bgColorHover: "green",
-    bgColorActive: "yellow",
-  }
 
   const Default = ({ children }: any) => {
     const isNotMobile = useMediaQuery({ minWidth: 992 })
@@ -46,13 +50,38 @@ const Header: FC = () => {
     navigate(SCREENS.personalArea)
   }
 
-  //Changelanguage
+  // Changelanguage
   const changeLanguageClick = (lang: string) => (): void => {
     i18n.changeLanguage(lang)
   }
 
+  // Scroll
+  function handleScroll() {
+    let windowScroll = window.scrollY
+    let scrolly = false
+
+    if (windowScroll > 150) {
+      scrolly = true
+    } else scrolly = false
+
+    setState({
+      ...state,
+      scroll: scrolly,
+    })
+  }
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll)
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, [state.scroll])
+
   return (
-    <header>
+    <header
+      className={(state.scroll ? "active " : "") + (props.isHome && "home")}
+    >
       <div className={"top-header"}>
         <SiFoodpanda className="logo" onClick={goToHome} />
 

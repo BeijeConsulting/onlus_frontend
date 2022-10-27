@@ -1,0 +1,55 @@
+@import "./common.scss";
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.forgot-password {
+  padding-bottom: 20px;
+  color: $text-muted;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  a {
+    color: $text-muted;
+  }
+}
+
+.aside-section {
+  padding-top: 20px;
+  color: $text-muted;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  a {
+    color: $text-muted;
+  }
+}
+
+@media (min-width: 992px) {
+  .login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .aside-section {
+    padding-top: 50px;
+  }
+  .input-box {
+    display: flex;
+    justify-content: stretch;
+  }
+  .form {
+    width: 50vw;
+  }
+}
