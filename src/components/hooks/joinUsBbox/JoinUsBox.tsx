@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import React, { ReactElement } from "react";
 import Button from "@mui/material/Button";
 import Link from "@mui/material/Link";
 import "./joinUsBox.scss";
@@ -48,6 +48,5 @@ function JoinUs(): ReactElement {
     </article>
   );
 }
-//color="#B12009"
 
 export default JoinUs;
