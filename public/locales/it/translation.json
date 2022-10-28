@@ -10,6 +10,19 @@
     "info": "Informazioni"
   },
 
+  "metaTitles": {
+    "about": "Chi siamo",
+    "blog": "Blog",
+    "donate": "Dona",
+    "events": "Eventi",
+    "faq": "Informazioni",
+    "login": "Accedi",
+    "notFound": "Pagina non trovata",
+    "personalArea": "Area personale",
+    "signup": "Registrati",
+    "support": "Supportaci"
+  },
+
   "titles": {
     "eventsTitle": "Prossimamente",
     "blogTitle": "Blog e notizie",

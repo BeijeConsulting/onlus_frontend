@@ -9,6 +9,19 @@
     "supportUs": "Support us",
     "info": "Info"
   },
+  
+  "metaTitles": {
+    "about": "About us",
+    "blog": "Blog",
+    "donate": "Donate",
+    "events": "Events",
+    "faq": "Frequently Asked Questions",
+    "login": "Login",
+    "notFound": "Page not found",
+    "personalArea": "Personal area",
+    "signup": "Sign up",
+    "support": "Support us"
+  },
 
   "titles": {
     "eventsTitle": "Cooming soon",
