@@ -1,7 +1,11 @@
 export type article = {
   id: number;
+  name: string;
+  surname: string;
+  email: string;
   date: string; //dovrá essere date
   title: string;
+  status: string;
   cover: string;
   categories: Array<string>;
   content: Array<content>;
@@ -16,5 +20,6 @@ export type content = {
 };
 
 export type category = {
-  
-}
+  label: string;
+  value: string;
+};
