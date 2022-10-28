@@ -1,0 +1,19 @@
+@import '../../../styles/common.scss';
+
+.accordion{
+    box-shadow: none;
+    &:before{
+        background-color: transparent;
+    }
+    > div:first-child{
+        padding: 0;
+    }
+    .accordionIcon{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        background-color: $grey;
+        border-radius: 30px;
+    }
+}
