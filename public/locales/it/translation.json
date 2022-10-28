@@ -26,7 +26,8 @@
     "confirmButton": "Conferma donazione",
     "continueReadingButton": "Continua a leggere",
     "supportNavButton": "Sostieni onlus",
-    "bookButton": "Prenota"
+    "bookButton": "Prenota",
+    "modifyButton": "Salva modifiche"
   },
 
   "footer": {
