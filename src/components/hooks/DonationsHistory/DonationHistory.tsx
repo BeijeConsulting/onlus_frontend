@@ -38,7 +38,7 @@ function DonationHistory(props: Props): ReactElement {
   }
 
   return (
-    <article>
+    <article className="donationsSection">
       <section className="windowBox">
         <div className="donationTotal">
           {t("personalArea.totalDonated")}

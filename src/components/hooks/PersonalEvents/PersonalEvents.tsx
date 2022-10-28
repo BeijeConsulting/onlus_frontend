@@ -34,55 +34,59 @@ function PersonalEvents(props: Props) {
   //     setToday(new Date());
   //   }, []);
 
-  function mapCurrentEvents(element: event): any {
+  function mapCurrentEvents(element: event, key: number): any {
     let eventDate = Date.parse(element.date);
     let todaySec = today.getTime();
     if (eventDate > todaySec) {
       return (
-        <CardEventsMobile
-          title={element.title}
-          image={element.image}
-          requirement={element.requirement}
-          description={element.description}
-          date={element.date}
-          time={element.time}
-          place={element.place}
-        />
+        <div key={key} className="singleCardContainer">
+          <CardEventsMobile
+            title={element.title}
+            image={element.image}
+            requirement={element.requirement}
+            description={element.description}
+            date={element.date}
+            time={element.time}
+            place={element.place}
+          />
+        </div>
       );
     } else {
       return <></>;
     }
   }
 
-  function mapPastEvents(element: event): ReactElement {
+  function mapPastEvents(element: event, key: number): ReactElement {
     let eventDate = Date.parse(element.date);
     let todaySec: number = today!.getTime();
     console.log("i valori da paragonare", eventDate, todaySec);
     if (eventDate < todaySec) {
       return (
-        <CardEventsMobile
-          title={element.title}
-          image={element.image}
-          requirement={element.requirement}
-          description={element.description}
-          date={element.date}
-          time={element.time}
-          place={element.place}
-        />
+        <div key={key} className="singleCardContainer">
+          <CardEventsMobile
+            title={element.title}
+            image={element.image}
+            requirement={element.requirement}
+            description={element.description}
+            date={element.date}
+            time={element.time}
+            place={element.place}
+          />
+        </div>
       );
     } else {
       return <></>;
     }
   }
   return (
-    <article>
+    <article className="eventsSection">
       <section>
         <div className="txt">{t("personalArea.programmedEvents")}</div>
-        <section className="cards">
+        <section className="cardsContainer">
           {props.events.map(mapCurrentEvents)}
         </section>
         <div className="txt">{t("personalArea.pastEvents")}</div>
-        <section className="cards">
+        <section className="cardsContainer">
           {props.events.map(mapPastEvents)}
         </section>
       </section>
