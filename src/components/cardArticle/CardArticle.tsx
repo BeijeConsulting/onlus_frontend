@@ -12,19 +12,19 @@ interface CardProps {
     description:string
 }
 
-const CardArticolo:FC<CardProps> = (props) => {
+const CardArticle:FC<CardProps> = (props) => {
 
   return (
 
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ minWidth: 345, margin: '20px'}}>
       <CardActionArea>
         <CardHeader subheader={props.date} sx={{ paddingBottom: "0px" }} />
         <CardContent>
           <CardMedia
             component="img"
-            height="140"
             image={props.image}
             alt="green iguana"
+            sx={{ height:250, objectFit:'cover'}}
           />
           <Typography gutterBottom variant="h5" component="div">
             {props.title}
@@ -32,7 +32,7 @@ const CardArticolo:FC<CardProps> = (props) => {
           <Typography
             variant="body2"
             color="text.secondary"
-            sx={{ paddingBottom: "20px" }}
+            sx={{ paddingBottom: "20px", height:120, overflowY:"hidden" }}
           >
             {props.description}
           </Typography>
@@ -46,4 +46,4 @@ const CardArticolo:FC<CardProps> = (props) => {
 
 }
 
-export default CardArticolo;
+export default CardArticle;

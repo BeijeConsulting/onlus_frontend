@@ -1,14 +1,17 @@
 // react import
-import { useEffect, FC } from "react"
+import { useState,useEffect, FC } from "react"
 // traduzioni
 import { useTranslation } from "react-i18next"
 // componenti
 import Hero from "../components/hooks/Hero/Hero"
 import Footer from "../components/footer/Footer"
 import PreFooter from "../components/preFooter/PreFooter"
+import CardArticle from "../components/cardArticle/CardArticle"
+
 // style
 import '../styles/home.scss'
 import Header from "../components/hooks/Header/Header"
+
 
 // mokup home (il json reale sarà diverso)
 const MokupHome = {
@@ -37,17 +40,118 @@ const MokupHome = {
     image:'https://leganerd.com/wp-content/uploads/2016/10/pandas-live_64dff22c2fe56e9-999x562.jpg'
   }
 }
-
+const articles = [
+  {
+    id: 1,
+    name: "riccardo",
+    surname: "bottoli",
+    email: "aletia@milan.it",
+    date: Date.now(),
+    title: "amare il prossimo",
+    status: "published",
+    cover: 'https://cdn.pixabay.com/photo/2016/11/29/12/13/fence-1869401_960_720.jpg',
+    categories: ["buongiorismo", "religione", "scemenze"],
+    content: [
+      {
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras in sem vitae leo consequat convallis. Duis fermentum euismod dui, sollicitudin rutrum purus. Proin posuere commodo mollis. Nam finibus pretium risus. Quisque vel maximus risus. Donec ultrices leo id aliquam hendrerit. Proin gravida dui id nulla venenatis suscipit. Morbi scelerisque tincidunt velit, bibendum dignissim velit sagittis ut. Suspendisse semper tincidunt odio, eget laoreet justo aliquet nec. Duis ut nunc posuere, tincidunt nulla sit amet, ultrices sapien. Quisque a pretium est. Nam malesuada convallis ipsum, sed volutpat ante accumsan nec. Donec ultrices scelerisque posuere.",
+        media: null,
+      },
+    ],
+  },
+  {
+    id: 2,
+    name: "riccardo",
+    surname: "bottoli",
+    email: "aletia@milan.it",
+    date: Date.now(),
+    title: "i panda",
+    status: "published",
+    cover:'https://cdn.pixabay.com/photo/2013/05/15/09/12/tourist-attraction-111329_960_720.jpg',
+    categories: ["animali", "protezione", "scemenze"],
+    content: [
+      {
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras in sem vitae leo consequat convallis. Duis fermentum euismod dui, sollicitudin rutrum purus. Proin posuere commodo mollis. Nam finibus pretium risus. Quisque vel maximus risus. Donec ultrices leo id aliquam hendrerit. Proin gravida dui id nulla venenatis suscipit. Morbi scelerisque tincidunt velit, bibendum dignissim velit sagittis ut. Suspendisse semper tincidunt odio, eget laoreet justo aliquet nec. Duis ut nunc posuere, tincidunt nulla sit amet, ultrices sapien. Quisque a pretium est. Nam malesuada convallis ipsum, sed volutpat ante accumsan nec. Donec ultrices scelerisque posuere.",
+        media: null,
+      },
+    ],
+  },
+  {
+    id: 3,
+    name: "riccardo",
+    surname: "bottoli",
+    email: "aletia@milan.it",
+    date: Date.now(),
+    title: "riccardo",
+    status: "published",
+    cover: 'https://cdn.pixabay.com/photo/2019/04/04/15/17/smartphone-4103051_960_720.jpg',
+    categories: ["barba", "occhiali", "scemenze"],
+    content: [
+      {
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras in sem vitae leo consequat convallis. Duis fermentum euismod dui, sollicitudin rutrum purus. Proin posuere commodo mollis. Nam finibus pretium risus. Quisque vel maximus risus. Donec ultrices leo id aliquam hendrerit. Proin gravida dui id nulla venenatis suscipit. Morbi scelerisque tincidunt velit, bibendum dignissim velit sagittis ut. Suspendisse semper tincidunt odio, eget laoreet justo aliquet nec. Duis ut nunc posuere, tincidunt nulla sit amet, ultrices sapien. Quisque a pretium est. Nam malesuada convallis ipsum, sed volutpat ante accumsan nec. Donec ultrices scelerisque posuere.",
+        media: null,
+      },
+    ],
+  },
+  {
+    id: 4,
+    name: "riccardo",
+    surname: "bottoli",
+    email: "aletia@milan.it",
+    date: Date.now(),
+    title: "luca",
+    status: "published",
+    cover: 'https://cdn.pixabay.com/photo/2014/04/05/09/30/tablet-314153_960_720.png',
+    categories: ["champagne", "pelato", "rasato"],
+    content: [
+      {
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras in sem vitae leo consequat convallis. Duis fermentum euismod dui, sollicitudin rutrum purus. Proin posuere commodo mollis. Nam finibus pretium risus. Quisque vel maximus risus. Donec ultrices leo id aliquam hendrerit. Proin gravida dui id nulla venenatis suscipit. Morbi scelerisque tincidunt velit, bibendum dignissim velit sagittis ut. Suspendisse semper tincidunt odio, eget laoreet justo aliquet nec. Duis ut nunc posuere, tincidunt nulla sit amet, ultrices sapien. Quisque a pretium est. Nam malesuada convallis ipsum, sed volutpat ante accumsan nec. Donec ultrices scelerisque posuere.",
+        media: null,
+      },
+    ],
+  },
+  {
+    id: 5,
+    name: "riccardo",
+    surname: "bottoli",
+    email: "aletia@milan.it",
+    date: Date.now(),
+    title: "mattia",
+    status: "published",
+    cover:  'https://cdn.pixabay.com/photo/2016/02/07/16/35/world-1185076_960_720.png',
+    categories: ["calcio", "ciuffo", "sbagliato"],
+    content: [
+      {
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras in sem vitae leo consequat convallis. Duis fermentum euismod dui, sollicitudin rutrum purus. Proin posuere commodo mollis. Nam finibus pretium risus. Quisque vel maximus risus. Donec ultrices leo id aliquam hendrerit. Proin gravida dui id nulla venenatis suscipit. Morbi scelerisque tincidunt velit, bibendum dignissim velit sagittis ut. Suspendisse semper tincidunt odio, eget laoreet justo aliquet nec. Duis ut nunc posuere, tincidunt nulla sit amet, ultrices sapien. Quisque a pretium est. Nam malesuada convallis ipsum, sed volutpat ante accumsan nec. Donec ultrices scelerisque posuere.",
+        media: null,
+      },
+    ],
+  }
+]
 
 const Home: FC = () => {
 
   // inizializzo traduzioni
   const { t }: any = useTranslation()
+  const [state,setState]=useState({articlesArray:articles})
+
+  useEffect(()=>{
+    getArticles()
+  },[])
+
+  const getArticles=():void=>{
+    setState({articlesArray:articles})
+  }
+
+  const mapArticles=(item:any, key:number)=>{
+    return(
+      <article key={key}>
+        <CardArticle title={item.title} description={item.content[0].text} date={item.date} image={item.cover}/>
+      </article>
+    )
+  }
 
   return (
     <div id="home">
-      {/* hero */}
-      {/* risultati */}
       <Header isHome={true}/>
       
       <Hero type={"home"} title={MokupHome.hero.title} subtitle={MokupHome.hero.subtitle} image={MokupHome.hero.image}/>
@@ -91,7 +195,12 @@ const Home: FC = () => {
         </section>
         {/* sezione articoli blog */}
         <section className="articles">
-
+          <h4 className="title">
+            {t("home.latestNews")}
+          </h4>
+          <div className="articlesContainer">
+            {state.articlesArray.map(mapArticles)}
+          </div>
         </section>
         {/* sezione rimani aggiornato sui social */}
         <section className="stayUpToDate">

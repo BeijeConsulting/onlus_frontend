@@ -25,7 +25,7 @@ function Login() {
     <>
       <Header />
 
-      <main>
+      <main className="login">
         <form className="login-container" onSubmit={login}>
           <h1>{t("titles.loginTitle")}</h1>
 
