@@ -26,13 +26,17 @@ body {
 }
 
 main {
-  padding: calc(104px + 20px) 20px 20px 20px;
+  padding-top: 104px;
   &.home {
-    padding: calc(147.2px + 20px) 20px 20px 20px;
+    padding: 147.2px;
   }
   &.article {
-    padding: 20px;
+    padding: 0;
   }
+}
+
+.container{
+  padding: 20px;
 }
 
 h1 {
@@ -45,28 +49,16 @@ h1 {
     font-size: 36px;
     padding-bottom: 20px;
   }
-  main {
-    padding: calc(104px + 50px) 50px 50px 50px;
-    &.home {
-      padding: calc(147.2px + 50px) 50px 50px 50px;
-    }
-    &.article {
-      padding: 50px;
-    }
+  .container{
+    padding: 50px;
   }
 }
 
 @media (min-width: 992px) {
-  main {
-    padding: calc(104px + 100px) 100px 100px 100px;
-    &.home {
-      padding: calc(147.2px + 100px) 100px 100px 100px;
-    }
-    &.article {
-      padding: 100px;
-    }
-  }
   h1 {
     font-size: 48px;
+  }
+  .container{
+    padding: 100px;
   }
 }
