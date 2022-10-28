@@ -11,7 +11,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles"
 
 interface SelectBoxProps {
   label: string
-  items: Array<any>
+  items: Array<any>,
+  callbackChange?:Function
 }
 
 interface State {
@@ -30,6 +31,7 @@ const SelectBox: FC<SelectBoxProps> = (props) => {
       ...state,
       value: event.target.value as string,
     })
+    if(!!props.callbackChange) props.callbackChange(event.target.value);
   }
 
   const mapItems = (item: any, key: number): JSX.Element => {
