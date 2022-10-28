@@ -14,3 +14,7 @@ export type content = {
     type: string;
   } | null;
 };
+
+export type category = {
+  
+}
