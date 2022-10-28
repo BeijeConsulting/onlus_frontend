@@ -12,6 +12,8 @@ import { article, category } from "../utils/type";
 
 //style
 import "../styles/blog.scss";
+import CardArticle from "../components/cardArticle/CardArticle";
+import { useMediaQuery } from "react-responsive";
 
 interface State {
   categories: Array<category>;
@@ -21,6 +23,16 @@ interface State {
 const initialState = {
   categories: [],
   articles: articles,
+};
+
+//React responsive const
+const Default = ({ children }: any) => {
+  const isNotMobile = useMediaQuery({ minWidth: 992 });
+  return isNotMobile ? children : null;
+};
+const Mobile = ({ children }: any) => {
+  const isMobile = useMediaQuery({ maxWidth: 991 });
+  return isMobile ? children : null;
 };
 
 const Blog: FC = () => {
@@ -47,7 +59,30 @@ const Blog: FC = () => {
     });
   };
 
-  const mapping = (): void => {};
+  const mapping = (el: article, key: number): JSX.Element => {
+    return (
+      <div key={key}>
+        <Mobile>
+        <CardArticle
+            date={el.date}
+            image={el.cover}
+            title={el.title}
+            description={el.content[0].paragraph}
+            minWidth="250px"
+          />
+        </Mobile>
+        <Default>
+          <CardArticle
+            date={el.date}
+            image={el.cover}
+            title={el.title}
+            description={el.content[0].paragraph}
+            minWidth="350px"
+          />
+        </Default>
+      </div>
+    );
+  };
 
   const search = (): void => {};
 
@@ -67,7 +102,7 @@ const Blog: FC = () => {
           callbackChange={handleCategory}
         />
         <section className="cardsContainer">
-          {/* {state.articles.map(mapping)} */}
+          {state.articles.map(mapping)}
         </section>
       </main>
       <PreFooter />

@@ -1,45 +1,47 @@
 // react import
-import { useState,useEffect, FC } from "react"
+import { useState, useEffect, FC } from "react";
 // traduzioni
-import { useTranslation } from "react-i18next"
+import { useTranslation } from "react-i18next";
 // componenti
-import Hero from "../components/hooks/Hero/Hero"
-import Footer from "../components/footer/Footer"
-import PreFooter from "../components/preFooter/PreFooter"
-import CardArticle from "../components/cardArticle/CardArticle"
+import Hero from "../components/hooks/Hero/Hero";
+import Footer from "../components/footer/Footer";
+import PreFooter from "../components/preFooter/PreFooter";
+import CardArticle from "../components/cardArticle/CardArticle";
 
 // style
-import '../styles/home.scss'
-import Header from "../components/hooks/Header/Header"
-
+import "../styles/home.scss";
+import Header from "../components/hooks/Header/Header";
 
 // mokup home (il json reale sarà diverso)
 const MokupHome = {
-  hero:{
-    title:"Salva i panda dai bambù",
-    subtitle:"Loremfzdsoifgzdsoihgfzdsoigfdzsoifghzdsoigfhziofgz",
-    image: "pandaImg.jpg"
+  hero: {
+    title: "Salva i panda dai bambù",
+    subtitle: "Loremfzdsoifgzdsoihgfzdsoigfdzsoifghzdsoigfhziofgz",
+    image: "pandaImg.jpg",
   },
   results: {
-    resultTitle: 'lorem ipsum dei risultati',
-    resultsImage: 'https://cdn-icons-png.flaticon.com/512/16/16121.png?w=360',
-    resultsCaption: ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos architecto consequuntur ab quasi nostrum rem error numquam! Error laborum sit iusto fugit, doloribus doloremque quos repellendus minima. Architecto, sequi adipisci.',
+    resultTitle: "lorem ipsum dei risultati",
+    resultsImage: "https://cdn-icons-png.flaticon.com/512/16/16121.png?w=360",
+    resultsCaption:
+      " Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos architecto consequuntur ab quasi nostrum rem error numquam! Error laborum sit iusto fugit, doloribus doloremque quos repellendus minima. Architecto, sequi adipisci.",
     staticsResults: {
       staticsOne: 20,
       staticsTwo: 40,
-      staticTrhee: 39
-    }
+      staticTrhee: 39,
+    },
   },
   stayUpToDate: {
-    subTitle: 'Seguici su facebook',
-    link:'https://www.wwf.it/'
+    subTitle: "Seguici su facebook",
+    link: "https://www.wwf.it/",
   },
   story: {
-    title:'Storia...',
-    description:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos architecto consequuntur ab quasi nostrum rem error numquam! Error laborum sit iusto fugit, doloribus doloremque quos repellendus minima. Architecto, sequi adipisci.',
-    image:'https://leganerd.com/wp-content/uploads/2016/10/pandas-live_64dff22c2fe56e9-999x562.jpg'
-  }
-}
+    title: "Storia...",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos architecto consequuntur ab quasi nostrum rem error numquam! Error laborum sit iusto fugit, doloribus doloremque quos repellendus minima. Architecto, sequi adipisci.",
+    image:
+      "https://leganerd.com/wp-content/uploads/2016/10/pandas-live_64dff22c2fe56e9-999x562.jpg",
+  },
+};
 const articles = [
   {
     id: 1,
@@ -49,7 +51,8 @@ const articles = [
     date: Date.now(),
     title: "amare il prossimo",
     status: "published",
-    cover: 'https://cdn.pixabay.com/photo/2016/11/29/12/13/fence-1869401_960_720.jpg',
+    cover:
+      "https://cdn.pixabay.com/photo/2016/11/29/12/13/fence-1869401_960_720.jpg",
     categories: ["buongiorismo", "religione", "scemenze"],
     content: [
       {
@@ -66,7 +69,8 @@ const articles = [
     date: Date.now(),
     title: "i panda",
     status: "published",
-    cover:'https://cdn.pixabay.com/photo/2013/05/15/09/12/tourist-attraction-111329_960_720.jpg',
+    cover:
+      "https://cdn.pixabay.com/photo/2013/05/15/09/12/tourist-attraction-111329_960_720.jpg",
     categories: ["animali", "protezione", "scemenze"],
     content: [
       {
@@ -83,7 +87,8 @@ const articles = [
     date: Date.now(),
     title: "riccardo",
     status: "published",
-    cover: 'https://cdn.pixabay.com/photo/2019/04/04/15/17/smartphone-4103051_960_720.jpg',
+    cover:
+      "https://cdn.pixabay.com/photo/2019/04/04/15/17/smartphone-4103051_960_720.jpg",
     categories: ["barba", "occhiali", "scemenze"],
     content: [
       {
@@ -100,7 +105,8 @@ const articles = [
     date: Date.now(),
     title: "luca",
     status: "published",
-    cover: 'https://cdn.pixabay.com/photo/2014/04/05/09/30/tablet-314153_960_720.png',
+    cover:
+      "https://cdn.pixabay.com/photo/2014/04/05/09/30/tablet-314153_960_720.png",
     categories: ["champagne", "pelato", "rasato"],
     content: [
       {
@@ -117,7 +123,8 @@ const articles = [
     date: Date.now(),
     title: "mattia",
     status: "published",
-    cover:  'https://cdn.pixabay.com/photo/2016/02/07/16/35/world-1185076_960_720.png',
+    cover:
+      "https://cdn.pixabay.com/photo/2016/02/07/16/35/world-1185076_960_720.png",
     categories: ["calcio", "ciuffo", "sbagliato"],
     content: [
       {
@@ -125,103 +132,94 @@ const articles = [
         media: null,
       },
     ],
-  }
-]
+  },
+];
 
 const Home: FC = () => {
-
   // inizializzo traduzioni
-  const { t }: any = useTranslation()
-  const [state,setState]=useState({articlesArray:articles})
+  const { t }: any = useTranslation();
+  const [state, setState] = useState({ articlesArray: articles });
 
-  useEffect(()=>{
-    getArticles()
-  },[])
+  useEffect(() => {
+    getArticles();
+  }, []);
 
-  const getArticles=():void=>{
-    setState({articlesArray:articles})
-  }
+  const getArticles = (): void => {
+    setState({ articlesArray: articles });
+  };
 
-  const mapArticles=(item:any, key:number)=>{
-    return(
+  const mapArticles = (item: any, key: number) => {
+    return (
       <article key={key}>
-        <CardArticle title={item.title} description={item.content[0].text} date={item.date} image={item.cover}/>
+        <CardArticle
+          minWidth="350px"
+          title={item.title}
+          description={item.content[0].text}
+          date={item.date}
+          image={item.cover}
+        />
       </article>
-    )
-  }
+    );
+  };
 
   return (
     <div id="home">
-      <Header isHome={true}/>
-      
-      <Hero type={"home"} title={MokupHome.hero.title} subtitle={MokupHome.hero.subtitle} image={MokupHome.hero.image}/>
+      <Header isHome={true} />
+
+      <Hero
+        type={"home"}
+        title={MokupHome.hero.title}
+        subtitle={MokupHome.hero.subtitle}
+        image={MokupHome.hero.image}
+      />
       <main>
         <section className="results">
-          <h4 className="title">
-            {MokupHome.results.resultTitle}
-          </h4>
+          <h4 className="title">{MokupHome.results.resultTitle}</h4>
           <figure>
-            <img src={MokupHome.results.resultsImage} alt="illustrative image" />
+            <img
+              src={MokupHome.results.resultsImage}
+              alt="illustrative image"
+            />
           </figure>
           <div className="statics">
             <div>
-              <h6>
-                {MokupHome.results.staticsResults.staticsOne} %
-              </h6>
+              <h6>{MokupHome.results.staticsResults.staticsOne} %</h6>
             </div>
             <div>
-              <h6>
-                {MokupHome.results.staticsResults.staticsOne} %
-              </h6>
+              <h6>{MokupHome.results.staticsResults.staticsOne} %</h6>
             </div>
             <div>
-              <h6>
-                {MokupHome.results.staticsResults.staticsOne} %
-              </h6>
+              <h6>{MokupHome.results.staticsResults.staticsOne} %</h6>
             </div>
           </div>
           <div className="caption">
-            <p>
-              {MokupHome.results.resultsCaption}
-            </p>
+            <p>{MokupHome.results.resultsCaption}</p>
           </div>
         </section>
       </main>
       {/* componente unisciti a noi da inserire*/}
       <main>
         {/* sezione eventi */}
-        <section className="events">
-
-        </section>
+        <section className="events"></section>
         {/* sezione articoli blog */}
         <section className="articles">
-          <h4 className="title">
-            {t("home.latestNews")}
-          </h4>
+          <h4 className="title">{t("home.latestNews")}</h4>
           <div className="articlesContainer">
             {state.articlesArray.map(mapArticles)}
           </div>
         </section>
         {/* sezione rimani aggiornato sui social */}
         <section className="stayUpToDate">
-          <h4 className="title">
-            {t("home.stayUpToDate")}
-          </h4>
-          <p className="subTitle">
-            {MokupHome.stayUpToDate.subTitle}
-          </p>
+          <h4 className="title">{t("home.stayUpToDate")}</h4>
+          <p className="subTitle">{MokupHome.stayUpToDate.subTitle}</p>
           <div className="iframeContainer">
             <iframe src={MokupHome.stayUpToDate.link}></iframe>
           </div>
         </section>
         {/* sezione storia  */}
         <section className="history">
-          <h4 className="title">
-            {MokupHome.story.title}
-          </h4>
-          <p className="description">
-            {MokupHome.story.description}
-          </p>
+          <h4 className="title">{MokupHome.story.title}</h4>
+          <p className="description">{MokupHome.story.description}</p>
           <div className="imageContainer">
             <img src={MokupHome.story.image} alt="story image" />
           </div>
@@ -231,7 +229,7 @@ const Home: FC = () => {
       <PreFooter />
       <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

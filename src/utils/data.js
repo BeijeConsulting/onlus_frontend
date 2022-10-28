@@ -399,7 +399,7 @@ export const articles = [
     date: Date.now(),
     title: "amare il prossimo",
     status: "published",
-    cover: 'giraffeImg.jpg',
+    cover: 'https://media.istockphoto.com/photos/giraffe-in-front-of-kilimanjaro-mountain-picture-id488580536?k=20&m=488580536&s=612x612&w=0&h=xXmFHuCU9Phc0rcxAm9jjeoToeQw-H_2y5HMgkMgs6k=',
     categories: ["buongiorismo", "religione", "scemenze"],
     content: [
       {
@@ -416,7 +416,7 @@ export const articles = [
     date: Date.now(),
     title: "i panda",
     status: "published",
-    cover: null,
+    cover: 'https://media.istockphoto.com/photos/giraffe-in-front-of-kilimanjaro-mountain-picture-id488580536?k=20&m=488580536&s=612x612&w=0&h=xXmFHuCU9Phc0rcxAm9jjeoToeQw-H_2y5HMgkMgs6k=',
     categories: ["animali", "protezione", "scemenze"],
     content: [
       {
@@ -433,7 +433,7 @@ export const articles = [
     date: Date.now(),
     title: "riccardo",
     status: "published",
-    cover: null,
+    cover: 'https://media.istockphoto.com/photos/giraffe-in-front-of-kilimanjaro-mountain-picture-id488580536?k=20&m=488580536&s=612x612&w=0&h=xXmFHuCU9Phc0rcxAm9jjeoToeQw-H_2y5HMgkMgs6k=',
     categories: ["barba", "occhiali", "scemenze"],
     content: [
       {
@@ -450,7 +450,7 @@ export const articles = [
     date: Date.now(),
     title: "luca",
     status: "published",
-    cover: null,
+    cover: 'https://media.istockphoto.com/photos/giraffe-in-front-of-kilimanjaro-mountain-picture-id488580536?k=20&m=488580536&s=612x612&w=0&h=xXmFHuCU9Phc0rcxAm9jjeoToeQw-H_2y5HMgkMgs6k=',
     categories: ["champagne", "pelato", "rasato"],
     content: [
       {
@@ -467,7 +467,7 @@ export const articles = [
     date: Date.now(),
     title: "mattia",
     status: "published",
-    cover: null,
+    cover: 'https://media.istockphoto.com/photos/giraffe-in-front-of-kilimanjaro-mountain-picture-id488580536?k=20&m=488580536&s=612x612&w=0&h=xXmFHuCU9Phc0rcxAm9jjeoToeQw-H_2y5HMgkMgs6k=',
     categories: ["calcio", "ciuffo", "sbagliato"],
     content: [
       {
