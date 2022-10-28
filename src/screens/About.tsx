@@ -80,7 +80,7 @@ const About: FC =() =>{
         <h1>{t("nav.about")}</h1>
         {state.content.map(mappingContent)}
       </main>
-      <JoinUs />
+      <JoinUs type="support" />
 
       <PreFooter />
       <Footer />
