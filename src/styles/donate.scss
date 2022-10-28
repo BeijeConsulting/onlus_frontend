@@ -1,6 +1,6 @@
 @import "../styles/common.scss";
 
-.donateContainer {
+#donate {
   form {
     margin-bottom: 20px;
   }
@@ -26,7 +26,7 @@
 }
 
 @media (min-width: 768px) {
-  main.donateContainer {
+  main#donate {
     .titleDonate {
       font-size: 70px;
       font-weight: 600;

@@ -26,10 +26,10 @@ body {
 }
 
 main{
-  &#home{
-    padding-top: 147.2px;
+  &#blog, &#donate, &#events, &#faq, &#login, &#personalArea, &#signup{
+    padding-top: calc(104px + 20px);
   }
-  &.about{
+  &#about, &#support, &#article{
     padding-top: 104px;
   }
 }
@@ -58,15 +58,11 @@ h1 {
     font-size: 36px;
     padding-bottom: 20px;
   }
-  // main {
-  //   padding-top: calc(104px + 50px);
-  //   &.home {
-  //     padding-top: 147.2px;
-  //   }
-  //   &.article, &.about, &.support {
-  //     padding-top: 104px;
-  //   }
-  // }
+  main{
+    &#blog, &#donate, &#events, &#faq, &#login, &#personalArea, &#signup{
+      padding-top: calc(104px + 50px);
+    }
+  }
   .sectionContainer{
     padding: 50px;
   }
@@ -76,15 +72,11 @@ h1 {
   h1 {
     font-size: 48px;
   }
-  // main {
-  //   padding-top: calc(104px + 100px);
-  //   &.home {
-  //     padding-top: 147.2px;
-  //   }
-  //   &.article, &.about, &.support {
-  //     padding-top: 104px;
-  //   }
-  // }
+  main{
+    &#blog, &#donate, &#events, &#faq, &#login, &#personalArea, &#signup{
+      padding-top: calc(104px + 100px);
+    }
+  }
   .sectionContainer{
     padding: 100px;
   }

@@ -51,10 +51,10 @@ function PersonalArea() {
 
       <Header />
 
-      <main className="sectionContainer">
+      <main id="personalArea" className="sectionContainer">
         <section className="welcomeCard">
           <div className="icon-container"></div>
-          <h3>{t("personalArea.welcome")}</h3>
+          <h1>{t("personalArea.welcome")}</h1>
         </section>
         {state.isLoaded &&
           (isDesktop ? (

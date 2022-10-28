@@ -1,34 +1,35 @@
-@import '../styles/common.scss';
-
-.form{
+@import "../styles/common.scss";
+#signup {
+  .form {
     margin: -5px;
-}
-.aside-section{
+  }
+  .aside-section {
     padding-top: 20px;
     color: $text-muted;
     display: flex;
     align-items: center;
     flex-direction: column;
-    a{
-        color: $text-muted;
+    a {
+      color: $text-muted;
     }
+  }
 }
 
-@media(min-width: 992px){
-    main.signup{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-    }
-    .input-box{
-        display: flex;
-        justify-content: stretch;
-    }
-    .form{
-        width: 50vw
-    }
-    .aside-section{
-        padding-top: 50px;
-    }
+@media (min-width: 992px) {
+  main#signup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .input-box {
+    display: flex;
+    justify-content: stretch;
+  }
+  .form {
+    width: 50vw;
+  }
+  .aside-section {
+    padding-top: 50px;
+  }
 }

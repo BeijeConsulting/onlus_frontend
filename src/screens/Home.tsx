@@ -163,7 +163,7 @@ const Home: FC = () => {
   }
 
   return (
-    <div id="home">
+    <>
       <Header isHome={true} />
 
       <Hero
@@ -172,7 +172,7 @@ const Home: FC = () => {
         subtitle={MokupHome.hero.subtitle}
         image={MokupHome.hero.image}
       />
-      <main>
+      <main id="home">
         <section className="results">
           <h4 className="title">{MokupHome.results.resultTitle}</h4>
           <figure>
@@ -228,7 +228,7 @@ const Home: FC = () => {
       {/* footer e prefooter */}
       <PreFooter />
       <Footer />
-    </div>
+    </>
   )
 }
 

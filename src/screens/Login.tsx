@@ -31,10 +31,9 @@ function Login() {
 
       <Header />
 
-      <main className="login sectionContainer">
+      <main id="login" className="sectionContainer">
+        <h1>{t("titles.loginTitle")}</h1>
         <form className="login-container" onSubmit={login}>
-          <h1>{t("titles.loginTitle")}</h1>
-
           <InputBox label={t("login.email")} type={"mail"} />
           <InputBox label={t("login.password")} type={"password"} />
 

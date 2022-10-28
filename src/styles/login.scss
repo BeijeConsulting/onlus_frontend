@@ -1,36 +1,36 @@
 @import "./common.scss";
 
-.login {
+#login {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
 
-.login-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.forgot-password {
-  padding-bottom: 20px;
-  color: $text-muted;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  a {
-    color: $text-muted;
+  .login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
-}
 
-.aside-section {
-  padding-top: 20px;
-  color: $text-muted;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  a {
+  .forgot-password {
+    padding-bottom: 20px;
     color: $text-muted;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    a {
+      color: $text-muted;
+    }
+  }
+
+  .aside-section {
+    padding-top: 20px;
+    color: $text-muted;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    a {
+      color: $text-muted;
+    }
   }
 }
 

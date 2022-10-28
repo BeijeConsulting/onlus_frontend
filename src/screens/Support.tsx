@@ -65,7 +65,7 @@ function Support() {
         <meta name="description" content="Support page" />
       </Helmet>
       <Header />
-      <main className="support">
+      <main id="support">
         <JoinUs type="donate" />
         <div className="sectionContainer">
           <h1>{state?.title}</h1>

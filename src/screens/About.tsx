@@ -66,7 +66,7 @@ const About: FC = () => {
 
       <Header />
 
-      <main className="about">
+      <main id="about">
         <Hero
           type={"about"}
           title={"Frase motivazionale super d'effetto per convincerti a donare"}

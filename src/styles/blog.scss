@@ -1,7 +1,9 @@
 @media screen and (min-width: 1200px) {
-  .cardsContainer {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    justify-items: start;
+  #blog {
+    .cardsContainer {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      justify-items: start;
+    }
   }
 }
