@@ -2,7 +2,6 @@ import { FC } from "react"
 import { useTranslation, Trans } from "react-i18next"
 import PersonalArea from "./PersonalArea"
 
-
 const Home: FC = () => {
   const { t, i18n }: any = useTranslation()
 
@@ -12,7 +11,6 @@ const Home: FC = () => {
 
       <button onClick={() => i18n.changeLanguage("en")}>EN</button>
       <button onClick={() => i18n.changeLanguage("it")}>IT</button>
-      <PersonalArea />
     </div>
   )
 }
