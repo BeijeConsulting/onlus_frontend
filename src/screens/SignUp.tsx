@@ -132,7 +132,7 @@ const SignUp: FC = () => {
 
       <Header />
 
-      <main className="signup container">
+      <main className="signup sectionContainer">
         <h1>{t("titles.signupTitle")}</h1>
         <form action="" className={"form"} onSubmit={submit}>
           <div className={"input-box"}>

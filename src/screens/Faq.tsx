@@ -52,7 +52,7 @@ const Faq: FC = () => {
 
       <Header />
       {state.data && (
-        <main id={"faq"} className="container">
+        <main id={"faq"} className="sectionContainer">
           <section>
             <h1>{state.data.info.title}</h1>
             <p>{state.data.info.text}</p>

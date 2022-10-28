@@ -43,33 +43,33 @@ const About: FC = () => {
     setState({ content: result.data.content })
   }
   const mappingContent = (item: any, key: any) => {
-    if (key % 2 === 0) {
-      return (
-        <section className="content-about-container" key={key}>
-          <div className="text-about">{item.text}</div>
-          <div className="img-container">
-            <img
-              className="img-about"
-              src={require(`../assets/images/${item.image}`)}
-              alt="hero-img"
-            />
-          </div>
-        </section>
-      )
-    } else {
-      return (
-        <section className="content-about-container-inverted" key={key}>
-          <div className="text-about">{item.text}</div>
-          <div className="img-container-inverted">
-            <img
-              className="img-about"
-              src={require(`../assets/images/${item.image}`)}
-              alt="hero-img"
-            />
-          </div>
-        </section>
-      )
-    }
+    // if (key % 2 === 0) {
+    return (
+      <section className="content-about-container" key={key}>
+        <div className="text-about">{item.text}</div>
+        <div className="img-container">
+          <img
+            className="img-about"
+            src={require(`../assets/images/${item.image}`)}
+            alt="hero-img"
+          />
+        </div>
+      </section>
+    )
+    // } else {
+    //   return (
+    //     <section className="content-about-container-inverted" key={key}>
+    //       <div className="text-about">{item.text}</div>
+    //       <div className="img-container-inverted">
+    //         <img
+    //           className="img-about"
+    //           src={require(`../assets/images/${item.image}`)}
+    //           alt="hero-img"
+    //         />
+    //       </div>
+    //     </section>
+    //   )
+    // }
   }
 
   return (
@@ -86,7 +86,7 @@ const About: FC = () => {
         title={"Frase motivazionale super d'effetto per convincerti a donare"}
         image={"pandaImg.jpg"}
       />
-      <main className="container">
+      <main className="about sectionContainer">
         <h1>{t("nav.about")}</h1>
         {state.content.map(mappingContent)}
       </main>

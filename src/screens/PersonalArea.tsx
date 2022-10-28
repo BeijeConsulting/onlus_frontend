@@ -51,7 +51,7 @@ function PersonalArea() {
 
       <Header />
 
-      <main className="container">
+      <main className="sectionContainer">
         <section className="welcomeCard">
           <div className="icon-container"></div>
           <h3>{t("personalArea.welcome")}</h3>
