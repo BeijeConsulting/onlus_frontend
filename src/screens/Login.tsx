@@ -31,7 +31,7 @@ function Login() {
 
       <Header />
 
-      <main className="login container">
+      <main className="login sectionContainer">
         <form className="login-container" onSubmit={login}>
           <h1>{t("titles.loginTitle")}</h1>
 

@@ -1,4 +1,4 @@
-.cardContainer {
+.articleCardContainer {
   display: flex;
   .image {
     height: 80px;
@@ -23,7 +23,7 @@
 }
 
 @media screen and (min-width: 768px) {
-  .cardContainer {
+  .articleCardContainer {
     flex-direction: column;
     .image {
       height: 120px;
@@ -44,7 +44,7 @@
 }
 
 @media screen and (min-width: 1500px) {
-  .cardContainer {
+  .articleCardContainer {
     flex-direction: row;
     .image {
       height: 150px;

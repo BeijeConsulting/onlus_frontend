@@ -1,7 +1,7 @@
 {
   "hero": {
-    "img": null,
-    "text": "Celerisque tincidunt velit, bibendum dignissim velit sagittis ut. Suspendisse semper tincidunt odio, eget laoreet justo aliquet nec. Duis ut nunc posuere, tincidunt nulla sit amet, ultrices sapien. Quisque a pretium est. Nam malesuada convallis ipsum, sed volutpat ante accumsan nec. Donec ultrices scelerisque posuere."
+    "img": "pandaImg.jpg",
+    "text": "evento per bruciare il bambu"
   },
   "title": "Questo è il supportaci",
   "content": [

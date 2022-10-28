@@ -145,7 +145,7 @@ const Donate: FC = () => {
 
       <Header />
 
-      <main className="donateContainer container">
+      <main className="donateContainer sectionContainer">
         <h1>{t("personalArea.donate")}</h1>
         <form action="">
           <div className="titlePersonalData">

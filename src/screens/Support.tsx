@@ -1,6 +1,7 @@
 import React, { useEffect, useState, ReactElement } from "react";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
+import { Helmet } from "react-helmet";
 
 //components
 import JoinUs from "../components/hooks/joinUsBbox/JoinUsBox";
@@ -10,6 +11,7 @@ import Footer from "../components/footer/Footer";
 
 //styles
 import "../styles/support.scss";
+import Hero from "../components/hooks/Hero/Hero";
 
 interface State {
   hero: Hero;
@@ -73,11 +75,18 @@ function Support() {
 
   return (
     <>
+      <Helmet>
+        <title>Onlus - Support</title>
+        <meta name="description" content="Support page" />
+      </Helmet>
       <Header />
-      <main>
+      <main className="support">
         <JoinUs type="donate" />
-        <div className="title">{state?.title}</div>
-        {state?.content.map(mapping)}
+        <div className="sectionContainer">
+          <div className="title">{state?.title}</div>
+          {state?.content.map(mapping)}
+        </div>
+        <Hero type="home" title={state?.hero.text} image={"pandaImg.jpg"} />
       </main>
       <PreFooter />
       <Footer />

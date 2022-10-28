@@ -1,23 +1,25 @@
-import { FC } from "react";
+import { FC } from "react"
 
 //style
-import "./correlatedArticleCard.scss";
+import "./correlatedArticleCard.scss"
 
 interface CorrelatedArticleCardProps {
-  cover: string;
-  title: string;
+  cover: string
+  title: string
 }
 
 const CorrelatedArticleCard: FC<CorrelatedArticleCardProps> = (props) => {
   return (
-    <div className="cardContainer">
+    <div className="articleCardContainer">
       <img src={props.cover} className="image" />
       <div className="titleContainer">
         <div className="cardTitle">{props.title}</div>
-        <a href="#" className="continue">Continua a leggere...</a>
+        <a href="#" className="continue">
+          Continua a leggere...
+        </a>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CorrelatedArticleCard;
+export default CorrelatedArticleCard

@@ -111,7 +111,7 @@ const Events: FC = () => {
 
       <Header />
 
-      <main id="events" className="container">
+      <main id={"events"} className="sectionContainer">
         <h1 className="title">{t("titles.eventsTitle")}</h1>
         {EVENTI.map(mapEvents)}
       </main>
