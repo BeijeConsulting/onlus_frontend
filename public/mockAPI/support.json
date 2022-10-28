@@ -7,24 +7,15 @@
   "content": [
     {
       "paragraph": "Celerisque tincidunt velit, bibendum dignissim velit sagittis ut. Suspendisse semper tincidunt odio, eget laoreet justo aliquet nec",
-      "media": {
-        "content": "../../src/assets/giraffeImg.jpg", 
-        "type": "immagine"
-      }
+      "media": "giraffeImg.jpg"
     },
     {
       "paragraph": "Cc posuere, tincidunt nulla sit amet, ultrices sapien. Quisque a pretium est. Nam malesuada convallis ipsum, sed volutpat ante accumsan nec. Donec ultrices",
-      "media": {
-        "content": "URL del media",
-        "type": "video"
-      }
+      "media": "giraffeImg.jpg"
     },
     {
-        "paragraph": "AHAHAHSUHQUWERHQRWIUHCc posuere, tincidunt nulla sit amet, ultrices sapien. Quisque a pretium est. Nam malesuada convallis ipsum, sed volutpat ante accumsan nec. Donec ultrices",
-        "media": {
-          "content": "../../src/assets/giraffeImg.jpg",
-          "type": "video"
-        }
-      }
+      "paragraph": "AHAHAHSUHQUWERHQRWIUHCc posuere, tincidunt nulla sit amet, ultrices sapien. Quisque a pretium est. Nam malesuada convallis ipsum, sed volutpat ante accumsan nec. Donec ultrices",
+      "media": "giraffeImg.jpg"
+    }
   ]
 }

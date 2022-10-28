@@ -1,12 +1,13 @@
 import { FC, useState } from "react"
 import { Link } from "react-router-dom"
 import { useTranslation } from "react-i18next"
+import { Helmet } from "react-helmet"
 
 import Footer from "../components/footer/Footer"
 import PreFooter from "../components/preFooter/PreFooter"
 import Header from "../components/hooks/Header/Header"
 import InputBox from "../components/ui/inputBox/InputBox"
-import SelectBox from "../SelectBox"
+import SelectBox from "../components/ui/inputBox/SelectBox"
 import InputCheckbox from "../components/ui/inputBox/InputCheckbox"
 import CustomButton from "../components/ui/buttons/CustomButton/CustomButton"
 
@@ -124,8 +125,14 @@ const SignUp: FC = () => {
   }
   return (
     <>
+      <Helmet>
+        <title>Onlus - {t("metaTitles.signup")}</title>
+        <meta name="description" content={`${t("metaTitles.signup")} page`} />
+      </Helmet>
+
       <Header />
-      <main className="signup">
+
+      <main className="signup container">
         <h1>{t("titles.signupTitle")}</h1>
         <form action="" className={"form"} onSubmit={submit}>
           <div className={"input-box"}>
@@ -191,6 +198,7 @@ const SignUp: FC = () => {
           <Link to={SCREENS.login}>{t("buttons.loginButton")}</Link>
         </div>
       </main>
+
       <PreFooter />
       <Footer />
     </>

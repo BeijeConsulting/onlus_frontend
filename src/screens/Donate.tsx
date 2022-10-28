@@ -1,28 +1,29 @@
-import { FC, useState } from "react";
-import { useTranslation } from "react-i18next";
+import { FC, useState } from "react"
+import { useTranslation } from "react-i18next"
+import { Helmet } from "react-helmet"
 
 //components
-import Footer from "../components/footer/Footer";
-import Header from "../components/hooks/Header/Header";
-import PreFooter from "../components/preFooter/PreFooter";
-import CustomButton from "../components/ui/buttons/CustomButton/CustomButton";
-import InputBox from "../components/ui/inputBox/InputBox";
-import InputCheckbox from "../components/ui/inputBox/InputCheckbox";
+import Footer from "../components/footer/Footer"
+import Header from "../components/hooks/Header/Header"
+import PreFooter from "../components/preFooter/PreFooter"
+import CustomButton from "../components/ui/buttons/CustomButton/CustomButton"
+import InputBox from "../components/ui/inputBox/InputBox"
+import InputCheckbox from "../components/ui/inputBox/InputCheckbox"
 
 //check functions
-import { checkText, checkEmail, checkPhone, checkCF } from "../utils/checkForm";
+import { checkText, checkEmail, checkPhone, checkCF } from "../utils/checkForm"
 
 //style
-import "../styles/donate.scss";
+import "../styles/donate.scss"
 
 interface State {
-  isChecked: boolean;
-  errorName: boolean;
-  errorSurname: boolean;
-  errorEmail: boolean;
-  errorPhone: boolean;
-  errorCf: boolean;
-  errorDate: boolean;
+  isChecked: boolean
+  errorName: boolean
+  errorSurname: boolean
+  errorEmail: boolean
+  errorPhone: boolean
+  errorCf: boolean
+  errorDate: boolean
 }
 
 const initialState = {
@@ -33,21 +34,21 @@ const initialState = {
   errorPhone: false,
   errorCf: false,
   errorDate: false,
-};
+}
 
 type dataObject = {
-  name: string;
-  surname: string;
-  email: string;
-  phone: string;
-  cf: string;
-  dateOfBirth: string;
+  name: string
+  surname: string
+  email: string
+  phone: string
+  cf: string
+  dateOfBirth: string
   // holderName: string;
   // cardNumber: string;
   // expirationDate: string;
   // cvc: string;
   // amount: string;
-};
+}
 
 let data: dataObject = {
   name: "",
@@ -61,11 +62,11 @@ let data: dataObject = {
   // expirationDate: "",
   // cvc: "",
   // amount: "",
-};
+}
 
 const Donate: FC = () => {
-  const [state, setState] = useState<State>(initialState);
-  const { t }: any = useTranslation();
+  const [state, setState] = useState<State>(initialState)
+  const { t }: any = useTranslation()
 
   // const checkForm = (): void => {
   //   console.log("check");
@@ -75,8 +76,8 @@ const Donate: FC = () => {
     setState({
       ...state,
       isChecked: e,
-    });
-  };
+    })
+  }
 
   const checkForm = (): void => {
     setState({
@@ -87,58 +88,64 @@ const Donate: FC = () => {
       errorPhone: !checkPhone(data.phone),
       errorCf: !checkCF(data.cf),
       errorDate: data.dateOfBirth === "",
-    });
-    console.log(data);
-  };
+    })
+    console.log(data)
+  }
 
   //setData
   const setName = (name: any): void => {
-    data.name = name.target.value;
+    data.name = name.target.value
     setState({
       ...state,
       errorName: false,
-    });
-  };
+    })
+  }
   const setSurname = (surname: any): void => {
     setState({
       ...state,
       errorSurname: false,
-    });
-    data.surname = surname.target.value;
-  };
+    })
+    data.surname = surname.target.value
+  }
   const setEmail = (email: any): void => {
     setState({
       ...state,
       errorEmail: false,
-    });
-    data.email = email.target.value;
-  };
+    })
+    data.email = email.target.value
+  }
   const setPhone = (phone: any): void => {
     setState({
       ...state,
       errorPhone: false,
-    });
-    data.phone = phone.target.value;
-  };
+    })
+    data.phone = phone.target.value
+  }
   const setCf = (cf: any): void => {
     setState({
       ...state,
       errorCf: false,
-    });
-    data.cf = cf.target.value;
-  };
+    })
+    data.cf = cf.target.value
+  }
   const setDate = (date: any): void => {
     setState({
       ...state,
       errorDate: false,
-    });
-    data.dateOfBirth = date.target.value;
-  };
+    })
+    data.dateOfBirth = date.target.value
+  }
 
   return (
     <>
+      <Helmet>
+        <title>Onlus - {t("metaTitles.donate")}</title>
+        <meta name="description" content={`${t("metaTitles.donate")} page`} />
+      </Helmet>
+
       <Header />
-      <main className="donateContainer">
+
+      <main className="donateContainer container">
         <h1>{t("personalArea.donate")}</h1>
         <form action="">
           <div className="titlePersonalData">
@@ -240,10 +247,11 @@ const Donate: FC = () => {
           />
         </form>
       </main>
+
       <PreFooter />
       <Footer />
     </>
-  );
-};
+  )
+}
 
-export default Donate;
+export default Donate
