@@ -1,33 +1,33 @@
-import React, { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useMediaQuery } from "react-responsive";
-import axios from "axios";
+import React, { useEffect, useState } from "react"
+import { useTranslation } from "react-i18next"
+import { useMediaQuery } from "react-responsive"
+import axios from "axios"
 
-import Footer from "../components/footer/Footer";
-import Header from "../components/hooks/Header/Header";
-import NavTab from "../components/ui/NavTab/NavTab";
-import VerticalNavTab from "../components/ui/VerticalNavTab/VerticalNavTab";
-import PreFooter from "../components/preFooter/PreFooter";
-import DonationHistory from "../components/hooks/DonationsHistory/DonationHistory";
-import PersonalEvents from "../components/hooks/PersonalEvents/PersonalEvents";
+import Footer from "../components/footer/Footer"
+import Header from "../components/hooks/Header/Header"
+import NavTab from "../components/ui/NavTab/NavTab"
+import VerticalNavTab from "../components/ui/VerticalNavTab/VerticalNavTab"
+import PreFooter from "../components/preFooter/PreFooter"
+import DonationHistory from "../components/hooks/DonationsHistory/DonationHistory"
+import PersonalEvents from "../components/hooks/PersonalEvents/PersonalEvents"
 
-import "../styles/personalArea.scss";
+import "../styles/personalArea.scss"
 
 function PersonalArea() {
-  const { t }: any = useTranslation();
-  const isDesktop = useMediaQuery({ minWidth: "991px" });
+  const { t }: any = useTranslation()
+  const isDesktop = useMediaQuery({ minWidth: "991px" })
 
-  const [state, setState] = useState<any>({});
+  const [state, setState] = useState<any>({})
 
   async function fetchDatas(): Promise<void> {
-    let result = await axios.get("mockAPI/personalArea.json");
-    setState(result.data);
-    console.log(result.data);
+    let result = await axios.get("mockAPI/personalArea.json")
+    setState(result.data)
+    console.log(result.data)
   }
 
   useEffect(() => {
-    fetchDatas();
-  }, []);
+    fetchDatas()
+  }, [])
 
   return (
     <>
@@ -46,7 +46,7 @@ function PersonalArea() {
             ]}
             children={[
               <Header />,
-              <PersonalEvents events={state.events}/>,
+              <PersonalEvents events={state.events} />,
               <DonationHistory datas={state.donations} />,
             ]}
           />
@@ -59,7 +59,7 @@ function PersonalArea() {
             ]}
             children={[
               <Header />,
-              <PersonalEvents events={state.events}/>,
+              <PersonalEvents events={state.events} />,
               <DonationHistory datas={state.donations} />,
             ]}
           />
@@ -68,7 +68,7 @@ function PersonalArea() {
         <Footer />
       </main>
     </>
-  );
+  )
 }
 
-export default PersonalArea;
+export default PersonalArea
