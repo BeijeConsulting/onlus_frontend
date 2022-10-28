@@ -1,3 +1,4 @@
+//mobile
 main.article {
   .date {
     font-size: 12px;
@@ -36,6 +37,7 @@ main.article {
   }
 }
 
+//tablet
 @media screen and (min-width: 768px) {
   main.article {
     width: 100%;
@@ -46,12 +48,13 @@ main.article {
     article {
       width: 65vw;
       margin: 0 auto;
+      padding-top: 50px;
       .paragraph {
         font-size: 20px;
         display: flex;
         align-items: center;
         .media {
-          margin: 50px 0;
+          padding: 50px 0;
         }
       }
       .title {
@@ -69,6 +72,7 @@ main.article {
   }
 }
 
+//desktop
 @media screen and (min-width: 1200px) {
   main.article {
     .correlatedArticles {

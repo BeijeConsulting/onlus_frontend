@@ -10,6 +10,7 @@ import { article, content } from "../utils/type";
 //style
 import "../styles/article.scss";
 import CorrelatedArticleCard from "../components/ui/correlatedArticleCard/CorrelatedArticleCard";
+import Hero from "../components/hooks/Hero/Hero";
 
 const singleArticle = {
   id: 1,
@@ -17,9 +18,10 @@ const singleArticle = {
   surname: "bottoli",
   email: "aletia@milan.it",
   date: "22 ottobre 2029",
-  title: "amare il prossimo",
+  title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
   status: "published",
-  cover: "null",
+  cover:
+    "https://media.istockphoto.com/photos/giraffe-in-front-of-kilimanjaro-mountain-picture-id488580536?k=20&m=488580536&s=612x612&w=0&h=xXmFHuCU9Phc0rcxAm9jjeoToeQw-H_2y5HMgkMgs6k=",
   categories: ["buongiorismo", "religione", "scemenze"],
   content: [
     {
@@ -105,6 +107,7 @@ const Article: FC = () => {
   return (
     <>
       <Header />
+      <Hero image="giraffeImg.jpg" title={singleArticle.title} type="article" />
       <main className="article">
         <div className="date">{singleArticle.date}</div>
         <article>

@@ -1,5 +1,5 @@
-@import './styles/common.scss';
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap');
+@import "./styles/common.scss";
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap");
 /* reset */
 * {
   margin: 0;
@@ -21,43 +21,51 @@ img {
   height: auto;
 }
 
-body{
-  font-family: 'Noto Sans JP', sans-serif;
+body {
+  font-family: "Noto Sans JP", sans-serif;
 }
 
-main{
+main {
   padding: calc(104px + 20px) 20px 20px 20px;
-  &.home{
+  &.home {
     padding: calc(147.2px + 20px) 20px 20px 20px;
-
+  }
+  &.article {
+    padding: 20px;
   }
 }
 
-h1{
+h1 {
   font-size: 24px;
   padding-bottom: 20px;
 }
 
-@media(min-width: 768px){
-  h1{
+@media (min-width: 768px) {
+  h1 {
     font-size: 36px;
   }
-  main{
+  main {
     padding: calc(104px + 50px) 50px 50px 50px;
-    &.home{
+    &.home {
       padding: calc(147.2px + 50px) 50px 50px 50px;
+    }
+    &.article {
+      padding: 50px;
     }
   }
 }
 
-@media(min-width: 992px){
-  main{
+@media (min-width: 992px) {
+  main {
     padding: calc(104px + 100px) 100px 100px 100px;
-    &.home{
+    &.home {
       padding: calc(147.2px + 100px) 100px 100px 100px;
     }
+    &.article {
+      padding: 100px;
+    }
   }
-  h1{
+  h1 {
     font-size: 48px;
   }
 }
