@@ -111,7 +111,11 @@ const TemporaryDrawer: FC = () => {
           t("nav.supportUs"),
           t("nav.info"),
         ].map((text, index) => (
-          <ListItem key={text} disablePadding>
+          <ListItem
+            key={text}
+            className={styles.navItemContainer}
+            disablePadding
+          >
             <ListItemButton>
               <ListItemText
                 className={styles.navItem}
