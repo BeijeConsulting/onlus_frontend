@@ -26,7 +26,8 @@
     "confirmButton": "Confirm donation",
     "continueReadingButton": "Continue reading",
     "supportNavButton": "Support onlus",
-    "bookButton": "Book"
+    "bookButton": "Book",
+    "modifyButton": "Apply Changes"
   },
 
   "footer": {
@@ -38,6 +39,7 @@
   },
 
   "preFooter": {
+    "title": "Join us!",
     "caption": "Do you want to work with us? Contact us at this email:"
   },
 
