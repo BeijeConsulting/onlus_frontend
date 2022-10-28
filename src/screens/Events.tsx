@@ -1,4 +1,6 @@
 import React, { FC } from "react"
+import { useTranslation } from "react-i18next"
+import { Helmet } from "react-helmet"
 // componenti
 import Footer from "../components/footer/Footer"
 import PreFooter from "../components/preFooter/PreFooter"
@@ -58,9 +60,6 @@ const EVENTI: Array<Event> = [
   },
 ]
 
-// titolo pagina eventi
-const TITLEEVENTS: string = "Prossimamente"
-
 //React responsive const
 const Default = ({ children }: any) => {
   const isNotMobile = useMediaQuery({ minWidth: 992 })
@@ -72,6 +71,8 @@ const Mobile = ({ children }: any) => {
 }
 
 const Events: FC = () => {
+  const { t }: any = useTranslation()
+
   const mapEvents = (event: Event, key: number): JSX.Element => {
     return (
       <article key={key}>
@@ -102,18 +103,22 @@ const Events: FC = () => {
   }
 
   return (
-    <div id="events">
-      {/* header */}
+    <>
+      <Helmet>
+        <title>Onlus - {t("metaTitles.events")}</title>
+        <meta name="description" content={`${t("metaTitles.events")} page`} />
+      </Helmet>
+
       <Header />
-      {/* main */}
-      <main className="container">
-        <h1 className="title">{TITLEEVENTS}</h1>
+
+      <main id="events" className="container">
+        <h1 className="title">{t("titles.eventsTitle")}</h1>
         {EVENTI.map(mapEvents)}
       </main>
-      {/* footer */}
+
       <PreFooter />
       <Footer />
-    </div>
+    </>
   )
 }
 

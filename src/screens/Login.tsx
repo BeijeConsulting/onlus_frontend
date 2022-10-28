@@ -1,30 +1,37 @@
+import { Helmet } from "react-helmet"
 //Components
-import Footer from "../components/footer/Footer";
-import Header from "../components/hooks/Header/Header";
-import CustomButton from "../components/ui/buttons/CustomButton/CustomButton";
-import InputBox from "../components/ui/inputBox/InputBox";
+import Footer from "../components/footer/Footer"
+import Header from "../components/hooks/Header/Header"
+import CustomButton from "../components/ui/buttons/CustomButton/CustomButton"
+import InputBox from "../components/ui/inputBox/InputBox"
 
 //Router
-import SCREENS from "../route/router";
-import { Link } from "react-router-dom";
+import SCREENS from "../route/router"
+import { Link } from "react-router-dom"
 
 //i18n
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next"
 
 //Styles
-import "../styles/login.scss";
-import PreFooter from "../components/preFooter/PreFooter";
+import "../styles/login.scss"
+import PreFooter from "../components/preFooter/PreFooter"
 
 function Login() {
-  const { t }: any = useTranslation();
+  const { t }: any = useTranslation()
   const login = () => {
-    console.log("login");
-  };
+    console.log("login")
+  }
 
   return (
     <>
+      <Helmet>
+        <title>Onlus - {t("metaTitles.login")}</title>
+        <meta name="description" content={`${t("metaTitles.login")} page`} />
+      </Helmet>
+
       <Header />
-      <main className="login">
+
+      <main className="login container">
         <form className="login-container" onSubmit={login}>
           <h1>{t("titles.loginTitle")}</h1>
 
@@ -52,7 +59,7 @@ function Login() {
       <PreFooter />
       <Footer />
     </>
-  );
+  )
 }
 
-export default Login;
+export default Login

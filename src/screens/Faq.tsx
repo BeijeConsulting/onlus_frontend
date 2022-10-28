@@ -1,6 +1,7 @@
 import { FC, useState, useEffect } from "react"
 import { useTranslation } from "react-i18next"
 import axios from "axios"
+import { Helmet } from "react-helmet"
 
 import Skeleton from "@mui/material/Skeleton"
 import Stack from "@mui/material/Stack"
@@ -44,9 +45,14 @@ const Faq: FC = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Onlus - {t("metaTitles.faq")}</title>
+        <meta name="description" content={`${t("metaTitles.faq")} page`} />
+      </Helmet>
+
       <Header />
       {state.data && (
-        <main id={"faq"}>
+        <main id={"faq"} className="container">
           <section>
             <h1>{state.data.info.title}</h1>
             <p>{state.data.info.text}</p>
