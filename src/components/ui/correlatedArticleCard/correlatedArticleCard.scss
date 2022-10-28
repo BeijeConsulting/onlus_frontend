@@ -1,0 +1,60 @@
+.cardContainer {
+  display: flex;
+  .image {
+    height: 80px;
+    width: 80px;
+    object-fit: cover;
+  }
+  .titleContainer {
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .cardTitle {
+      font-size: 16px;
+      font-weight: 500;
+    }
+    .continue {
+      text-decoration: underline;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.7);
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .cardContainer {
+    flex-direction: column;
+    .image {
+      height: 120px;
+      width: 120px;
+    }
+    .titleContainer {
+      padding-left: 0px;
+
+      .cardTitle {
+        font-size: 18px;
+        padding: 20px 0;
+      }
+      .continue {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  .cardContainer {
+    flex-direction: row;
+    .image {
+      height: 150px;
+      width: 150px;
+    }
+    .titleContainer {
+      padding-left: 20px;
+      .cardTitle {
+        padding: 0;
+      }
+    }
+  }
+}
