@@ -43,7 +43,6 @@ const About: FC = () => {
     setState({ content: result.data.content })
   }
   const mappingContent = (item: any, key: any) => {
-    // if (key % 2 === 0) {
     return (
       <section className="content-about-container" key={key}>
         <div className="text-about">{item.text}</div>
@@ -56,20 +55,6 @@ const About: FC = () => {
         </div>
       </section>
     )
-    // } else {
-    //   return (
-    //     <section className="content-about-container-inverted" key={key}>
-    //       <div className="text-about">{item.text}</div>
-    //       <div className="img-container-inverted">
-    //         <img
-    //           className="img-about"
-    //           src={require(`../assets/images/${item.image}`)}
-    //           alt="hero-img"
-    //         />
-    //       </div>
-    //     </section>
-    //   )
-    // }
   }
 
   return (
@@ -81,14 +66,16 @@ const About: FC = () => {
 
       <Header />
 
-      <Hero
-        type={"about"}
-        title={"Frase motivazionale super d'effetto per convincerti a donare"}
-        image={"pandaImg.jpg"}
-      />
-      <main className="about sectionContainer">
-        <h1>{t("nav.about")}</h1>
-        {state.content.map(mappingContent)}
+      <main className="about">
+        <Hero
+          type={"about"}
+          title={"Frase motivazionale super d'effetto per convincerti a donare"}
+          image={"pandaImg.jpg"}
+        />
+        <section className="sectionContainer">
+          <h1>{t("nav.about")}</h1>
+          {state.content.map(mappingContent)}
+        </section>
       </main>
       <JoinUs type="support" />
 

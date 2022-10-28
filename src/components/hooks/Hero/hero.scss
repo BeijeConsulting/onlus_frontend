@@ -1,15 +1,50 @@
-.hero-container {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+@import url("../../../styles/common.scss");
 
-  .hero-bg {
-    min-width: 100%;
-    min-height: 100%;
-    object-fit: cover;
+.hero-container {
+  width: 100vw;
+  height: 100vh;
+  padding: 20px;
+  position: relative;
+  // filter: brightness(.5);
+  color: white;
+  display: flex;
+  &:after{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    content: "";
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.4);
+  }
+  .hero-content{
+    position: relative;
+    z-index: 9;
+  }
+
+  .hero-title{
+    font-size: 30px;
+  }
+
+  .hero-subtitle{
+    font-weight: 300;
+    padding-bottom: 30px;
+  }
+
+  .hero-category {
+    font-size: 15px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+  }
+
+  .hero-linebr {
+    width: 80%;
+    height: 3px;
+    margin: 25px 0;
+    background-color: white;
   }
 
   .hero-overlay {
@@ -20,47 +55,58 @@
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.5);
   }
+}
 
-  .hero-card {
-    position: absolute;
-    z-index: 1;
-    width: 60%;
-    padding: 0 25px;
-    color: white;
+.hero-container-home{
+  flex-direction: column;
+  justify-content: center;
+}
+.hero-container-article{
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.hero-container-about{
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 
-    .hero-title {
-      font-size: 30px;
-      font-weight: 500;
-    }
-    .hero-linebr {
-      width: 80%;
-      height: 3px;
-      margin: 25px 0;
-      background-color: white;
-    }
-    .hero-subtitle {
-      margin-bottom: 25px;
+@media(min-width: 768px){
+  .hero-container{
+    padding: 50px;
+    .hero-content{
+      width: 50vw;
+      .hero-title{
+        font-size: 60px;
+      }
+      .hero-subtitle{
+        font-size: 24px;
+        font-weight: 300;
+        padding-bottom: 50px;
+      }
+      .hero-category {
+        font-size: 15px;
+        margin-bottom: 18px;
+        text-transform: uppercase;
+      }
     }
   }
 }
 
-.hero-article-card {
-  position: absolute;
-  bottom: 25px;
-  left: 25px;
-  z-index: 1;
-  width: 80%;
-  padding: 0 25px;
-  color: white;
-
-  .hero-title {
-    font-size: 22px;
-  }
-  .hero-category {
-    font-size: 15px;
-    margin-bottom: 15px;
+@media(min-width: 992px){
+  .hero-container{
+    padding: 50px;
+    .hero-content{
+      width: 50vw;
+      .hero-subtitle{
+        font-size: 24px;
+        font-weight: 300;
+        padding-bottom: 50px;
+      }
+    }
   }
 }
+
 
 .hero-about-card {
   position: absolute;
@@ -75,45 +121,5 @@
   .hero-mission {
     font-size: 30px;
     text-align: center;
-  }
-}
-
-@media only screen and (min-width: 991px) {
-  .hero-card {
-    width: 75%;
-    padding: 0 105px !important;
-
-    .hero-title {
-      font-size: 55px !important;
-      font-weight: 700;
-    }
-
-    .hero-linebr {
-      height: 5px;
-    }
-
-    .hero-subtitle {
-      font-size: 35px;
-      font-weight: 500;
-    }
-  }
-
-  .hero-article-card {
-    position: absolute;
-    bottom: 55px;
-    left: 25px;
-    z-index: 1;
-    width: 80%;
-    padding: 0 25px;
-    color: white;
-  
-    .hero-title {
-      font-size: 48px;
-      font-weight: 500;
-    }
-    .hero-category {
-      font-size: 18px;
-      margin-bottom: 15px;
-    }
   }
 }

@@ -1,22 +1,22 @@
 // react import
-import { useState, useEffect, FC } from "react";
+import { useState, useEffect, FC } from "react"
 // traduzioni
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next"
 // componenti
-import Hero from "../components/hooks/Hero/Hero";
-import Footer from "../components/footer/Footer";
-import PreFooter from "../components/preFooter/PreFooter";
-import CardArticle from "../components/cardArticle/CardArticle";
+import Hero from "../components/hooks/Hero/Hero"
+import Footer from "../components/footer/Footer"
+import PreFooter from "../components/preFooter/PreFooter"
+import CardArticle from "../components/cardArticle/CardArticle"
 
 // style
-import "../styles/home.scss";
-import Header from "../components/hooks/Header/Header";
+import "../styles/home.scss"
+import Header from "../components/hooks/Header/Header"
 
 // mokup home (il json reale sarà diverso)
 const MokupHome = {
   hero: {
     title: "Salva i panda dai bambù",
-    subtitle: "Loremfzdsoifgzdsoihgfzdsoigfdzsoifghzdsoigfhziofgz",
+    subtitle: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
     image: "pandaImg.jpg",
   },
   results: {
@@ -41,7 +41,7 @@ const MokupHome = {
     image:
       "https://leganerd.com/wp-content/uploads/2016/10/pandas-live_64dff22c2fe56e9-999x562.jpg",
   },
-};
+}
 const articles = [
   {
     id: 1,
@@ -133,20 +133,20 @@ const articles = [
       },
     ],
   },
-];
+]
 
 const Home: FC = () => {
   // inizializzo traduzioni
-  const { t }: any = useTranslation();
-  const [state, setState] = useState({ articlesArray: articles });
+  const { t }: any = useTranslation()
+  const [state, setState] = useState({ articlesArray: articles })
 
   useEffect(() => {
-    getArticles();
-  }, []);
+    getArticles()
+  }, [])
 
   const getArticles = (): void => {
-    setState({ articlesArray: articles });
-  };
+    setState({ articlesArray: articles })
+  }
 
   const mapArticles = (item: any, key: number) => {
     return (
@@ -159,8 +159,8 @@ const Home: FC = () => {
           image={item.cover}
         />
       </article>
-    );
-  };
+    )
+  }
 
   return (
     <div id="home">
@@ -229,7 +229,7 @@ const Home: FC = () => {
       <PreFooter />
       <Footer />
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
