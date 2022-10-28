@@ -18,7 +18,7 @@ interface CardProps {
 
 const CardArticle: FC<CardProps> = (props) => {
   return (
-    <Card sx={{ minWidth: props.minWidth, margin: "20px" }}>
+    <Card sx={{ minWidth: props.minWidth, maxWidth: "400px", margin: "20px" }}>
       <CardActionArea>
         <CardHeader subheader={props.date} sx={{ paddingBottom: "0px" }} />
         <CardContent>

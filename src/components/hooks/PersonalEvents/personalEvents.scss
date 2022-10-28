@@ -1,21 +1,25 @@
-.txt {
-  font-size: 1.5rem;
-  margin-bottom: 25px;
-}
+.eventsSection {
+  .txt {
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+  }
 
-.singleCardContainer {
-  margin-bottom: 20px;
+  .singleCardContainer {
+    margin-bottom: 20px;
+  }
 }
 
 @media only screen and (min-width: 768px) {
-  .cardsContainer {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    justify-items: stretch;
-    gap: 50px;
-  }
-  .singleCardContainer {
-    margin-bottom: 0px;
+  .eventsSection {
+    .cardsContainer {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      justify-items: stretch;
+      gap: 50px;
+    }
+    .singleCardContainer {
+      margin-bottom: 0px;
+    }
   }
 }
 
