@@ -12,7 +12,7 @@ const Home: FC = () => {
 
       <button onClick={() => i18n.changeLanguage("en")}>EN</button>
       <button onClick={() => i18n.changeLanguage("it")}>IT</button>
-      <PersonalArea />
+
     </div>
   )
 }
