@@ -5,6 +5,7 @@ import Header from "../components/hooks/Header/Header";
 import PreFooter from "../components/preFooter/PreFooter";
 import InputBox from "../components/ui/inputBox/InputBox";
 import SelectBox from "../components/ui/inputBox/SelectBox";
+import { Helmet } from "react-helmet";
 
 //utils
 import { articles, categories } from "../utils/data";
@@ -35,6 +36,8 @@ const Mobile = ({ children }: any) => {
   return isMobile ? children : null;
 };
 
+let localArticles: Array<any> = articles;
+
 const Blog: FC = () => {
   const [state, setState] = useState<State>(initialState);
   const { t }: any = useTranslation();
@@ -63,7 +66,7 @@ const Blog: FC = () => {
     return (
       <div key={key}>
         <Mobile>
-        <CardArticle
+          <CardArticle
             date={el.date}
             image={el.cover}
             title={el.title}
@@ -84,7 +87,17 @@ const Blog: FC = () => {
     );
   };
 
-  const search = (): void => {};
+  const search = (e: any): void => {
+    let textInputValue: string = e.target.value;
+    let filteredArticles: Array<any> = localArticles.filter((obj) => {
+      return obj.title.toLowerCase().includes(textInputValue.toLowerCase());
+    });
+    console.log(filteredArticles);
+    setState({
+      ...state,
+      articles: filteredArticles,
+    });
+  };
 
   const handleCategory = (): void => {
     //chiamata api
@@ -92,8 +105,12 @@ const Blog: FC = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Onlus - {t("metaTitles.blog")}</title>
+        <meta name="description" content={`${t("metaTitles.blog")} page`} />
+      </Helmet>
       <Header />
-      <main className="blog">
+      <main className="container blog">
         <h1>{t("titles.blogTitle")}</h1>
         <InputBox label={t("search")} type="text" callbackChange={search} />
         <SelectBox
