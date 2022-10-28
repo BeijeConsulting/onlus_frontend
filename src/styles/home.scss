@@ -61,6 +61,25 @@
             }
         }
     }
+    
+    .articles{
+        .articlesContainer{
+            display:flex;
+            flex-direction:row; 
+            flex-wrap:nowrap; 
+            overflow-x:scroll;
+        }
+
+        .articlesContainer::-webkit-scrollbar{
+            background: none;
+            height: 10px;
+        }
+
+        .articlesContainer::-webkit-scrollbar-thumb{
+            background-color: $primary;
+        }
+    }
+
     .stayUpToDate {
         width: 100%;
         .subTitle {
