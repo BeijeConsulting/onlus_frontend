@@ -1,3 +1,5 @@
+@import './common.scss';
+
 #home {
 
     // utils
@@ -40,7 +42,25 @@
             margin: 30px 0;
         }
     }
-
+    .events{
+        .articleContainer::-webkit-scrollbar{
+            background:none;
+            height: 10px;
+        }
+        .articleContainer::-webkit-scrollbar-thumb{
+            background-color: $primary;
+        }
+        .articleContainer{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            overflow-x: scroll;
+            article{
+                width: 100%;
+                margin: 20px 20px 20px 0;
+            }
+        }
+    }
     .stayUpToDate {
         width: 100%;
         .subTitle {

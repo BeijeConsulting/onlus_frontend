@@ -12,7 +12,7 @@ interface CardProps {
     description:string
 }
 
-const CardArticolo:FC<CardProps> = (props) => {
+const CardArticle:FC<CardProps> = (props) => {
 
   return (
 
@@ -46,4 +46,4 @@ const CardArticolo:FC<CardProps> = (props) => {
 
 }
 
-export default CardArticolo;
+export default CardArticle;
