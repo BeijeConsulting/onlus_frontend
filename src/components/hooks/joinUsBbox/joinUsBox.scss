@@ -4,12 +4,13 @@
   text-align: left;
   color: white;
   padding: 20px;
+  margin: -20px -20px 0px -20px;
 }
 
 .header1 {
   font-size: 2rem;
 }
-.header2{
+.header2 {
   font-size: 1rem;
 }
 
@@ -49,8 +50,9 @@
 @media only screen and (min-width: 768px) {
   .joinUsBox {
     text-align: center;
+    margin: -50px -50px 0px -50px;
   }
-  .header2{
+  .header2 {
     font-size: 1.5rem;
   }
   .separator {
@@ -71,5 +73,11 @@
     margin-left: 20px;
     width: 350px;
   }
+}
 
+@media only screen and (min-width: 992px) {
+  .joinUsBox {
+    text-align: center;
+    margin: -100px -100px 0px -100px;
+  }
 }
