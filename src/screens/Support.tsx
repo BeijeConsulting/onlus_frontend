@@ -35,6 +35,8 @@ function Support() {
     getData()
   }, [])
 
+  const { t, i18n }: any = useTranslation()
+
   async function getData(): Promise<void> {
     let result = await axios.get("mockAPI/support.json")
     console.log("result", result.data)
@@ -61,8 +63,8 @@ function Support() {
   return (
     <>
       <Helmet>
-        <title>Onlus - Support</title>
-        <meta name="description" content="Support page" />
+        <title>Onlus - {t("metaTitles.support")}</title>
+        <meta name="description" content={`${t("metaTitles.support")} page`} />
       </Helmet>
       <Header />
       <main id="support">
