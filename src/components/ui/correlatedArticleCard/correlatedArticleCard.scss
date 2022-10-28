@@ -6,7 +6,7 @@
     object-fit: cover;
   }
   .titleContainer {
-    margin-left: 10px;
+    padding-left: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -24,17 +24,36 @@
 
 @media screen and (min-width: 768px) {
   .cardContainer {
+    flex-direction: column;
+    .image {
+      height: 120px;
+      width: 120px;
+    }
+    .titleContainer {
+      padding-left: 0px;
+
+      .cardTitle {
+        font-size: 18px;
+        padding: 20px 0;
+      }
+      .continue {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  .cardContainer {
+    flex-direction: row;
     .image {
       height: 150px;
       width: 150px;
     }
     .titleContainer {
-      margin-left: 20px;
+      padding-left: 20px;
       .cardTitle {
-        font-size: 25px;
-      }
-      .continue {
-        font-size: 16px;
+        padding: 0;
       }
     }
   }

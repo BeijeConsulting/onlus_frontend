@@ -105,7 +105,7 @@ const Article: FC = () => {
   return (
     <>
       <Header />
-      <main>
+      <main className="article">
         <div className="date">{singleArticle.date}</div>
         <article>
           <section>{singleArticle.content.map(mappingParagraph)}</section>
