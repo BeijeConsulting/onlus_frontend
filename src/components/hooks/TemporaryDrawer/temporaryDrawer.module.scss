@@ -1,48 +1,49 @@
-@import '../../../styles/common.scss';
+@import "../../../styles/common.scss";
 
-.boxContainer{
-    width: 100vw;
-    height: 100vh;
-    background-color: $primary;
-    display: grid;
-    grid-template-rows: 6fr 2fr;
-    align-items: center;
+.boxContainer {
+  width: 100vw;
+  height: 100vh;
+  background-color: $primary;
+  display: grid;
+  grid-template-rows: 6fr 2fr;
+  align-items: center;
+  overflow-x: hidden;
 }
-.burgerIcons{
-    width: 24px;
-    height: 24px;
-    color: $white;
+.burgerIcons {
+  width: 24px;
+  height: 24px;
+  color: $white;
 }
-.navContainer{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    padding-top: 50px;
+.navContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-top: 50px;
 }
 
-.socialIcons{
-    height: 20px;
-    width: auto;
+.socialIcons {
+  height: 20px;
+  width: auto;
 }
-.navItemContainer{
-    > div:first-child{
-        padding: 0;
-    }
+.navItemContainer {
+  > div:first-child {
+    padding: 0;
+  }
 }
-.navItem{
-    font-size: 20px;
-    text-transform: uppercase;
-    color: $white;
-    padding: 30px 20px;
-    border-bottom: solid 1px rgba(255, 255, 255, 0.5);
+.navItem {
+  font-size: 20px;
+  text-transform: uppercase;
+  color: $white;
+  padding: 30px 20px;
+  border-bottom: solid 1px rgba(255, 255, 255, 0.5);
 }
-.buttonsContainer{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.buttonsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.closeButton{
-    position: fixed;
-    top: 30px;
-    right: 20px;
+.closeButton {
+  position: fixed;
+  top: 30px;
+  right: 20px;
 }

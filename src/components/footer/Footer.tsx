@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import CustomButton from "../ui/buttons/CustomButton/CustomButton";
 // style
 import "./footer.scss";
+import SCREENS from "../../route/router";
 
 // style
 const primary: string = "#262E36";
@@ -79,34 +80,26 @@ const Footer: FC = () => {
   let navigate = useNavigate();
 
   // navigazione
+  const goToHome = (): void => {
+    navigate(SCREENS.home);
+  };
   const goToAbout = (): void => {
-    navigate("/about");
-    console.log("vai ad about");
+    navigate(SCREENS.about);
   };
-
   const goToEvents = (): void => {
-    navigate("/events");
-    console.log("vai ad Events");
+    navigate(SCREENS.events);
   };
-
   const goToBlog = (): void => {
-    navigate("/blog");
-    console.log("vai a blog");
+    navigate(SCREENS.blog);
   };
-
   const goToSupport = (): void => {
-    navigate("/support");
-    console.log("vai a supportaci");
+    navigate(SCREENS.support);
   };
-
   const goToInfo = (): void => {
-    navigate("/faq");
-    console.log("vai ad about");
+    navigate(SCREENS.faq);
   };
-
   const goToLogin = (): void => {
-    navigate("/login");
-    console.log("vai al login");
+    navigate(SCREENS.login);
   };
 
   // tranlation hook
@@ -154,6 +147,7 @@ const Footer: FC = () => {
       </Mobile>
       <Default>
         <section className="nav">
+          <div onClick={goToHome}>{t("nav.home")}</div>
           <div onClick={goToAbout}>{t("nav.about")}</div>
           <div onClick={goToEvents}>{t("nav.events")}</div>
           <div onClick={goToBlog}>{t("nav.blog")}</div>

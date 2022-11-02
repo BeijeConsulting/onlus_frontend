@@ -1,81 +1,95 @@
-@import '../../../styles/common.scss';
+@import "../../../styles/common.scss";
 
-header{
-    padding: 20px;
+header {
+  padding: 20px;
+  background-color: $primary;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  transition: all 0.5s ease;
+  .bottom-header {
+    display: none;
+  }
+  &.home {
+    background-color: transparent;
+    .bottom-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 20px;
+      .bottom-header-button {
+        font-size: 16px;
+        font-weight: 400;
+        color: $white;
+        padding: 0 10px;
+        &:hover {
+          text-decoration: underline;
+        }
+        cursor: pointer;
+      }
+    }
+  }
+  &.home.active {
     background-color: $primary;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 99;
-    transition: all .5s ease;
-    .bottom-header{
-        display: none;
-    }
-    &.home{
-        background-color: transparent;
-        .bottom-header{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding-top: 20px;
-            .bottom-header-button{
-                font-size: 16px;
-                font-weight: 400;
-                color: $white;
-                padding: 0 10px;
-            }
-        }
-    }
-    &.home.active{
-        background-color: $primary;
-    }
-    .top-header{ 
-        padding-left: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        .nav-desktop{
-            display: flex;
-            p{
-                padding: 0 10px;
-                color: $white;
-            }
-        }
-    }
-}
-.lng-buttons{
+  }
+  .top-header {
+    padding-left: 8px;
     display: flex;
     align-items: center;
-    color: $white;
-}
-.langButton{
-    color: $white;
-}
-
-.logo{
-    width: 50px;
-    height: 50px;
-    color: $white;
-}
-
-.profile-icon{
-    color:$white;
-    height: 24px;
-    width: auto;
-    margin: 20px;
-}
-
-.header-right{
-    display: flex;
-    align-items: center;
-}
-
-@media(min-width: 992px){
-    header{
-        padding: 20px 50px;
+    justify-content: space-between;
+    .nav-desktop {
+      display: flex;
+      div {
+        cursor: pointer;
+        padding: 0 10px;
+        color: $white;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
-    .logo{
-        margin-right: 74.66px;
-    }
+  }
+}
+.lng-buttons {
+  display: flex;
+  align-items: center;
+  color: $white;
+}
+.langButton {
+  cursor: pointer;
+  color: $white;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+  color: $white;
+  cursor: pointer;
+}
+
+.profile-icon {
+  color: $white;
+  height: 24px;
+  width: auto;
+  margin: 20px;
+  cursor: pointer;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+@media (min-width: 992px) {
+  header {
+    padding: 20px 50px;
+  }
+  .logo {
+    margin-right: 74.66px;
+  }
 }
