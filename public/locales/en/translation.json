@@ -3,13 +3,14 @@
   "selectCategory": "Select category",
 
   "nav": {
+    "home": "Home",
     "about": "About us",
     "events": "Events",
     "blog": "Blog",
     "supportUs": "Support us",
     "info": "Info"
   },
-  
+
   "metaTitles": {
     "about": "About us",
     "blog": "Blog",
