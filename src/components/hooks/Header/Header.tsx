@@ -87,7 +87,6 @@ const Header: FC<HeaderProps> = (props) => {
 
         <Default>
           <nav className={"nav-desktop"}>
-            <p>{t("Home")}</p>
             <p>{t("nav.about")}</p>
             <p>{t("nav.events")}</p>
             <p>{t("nav.blog")}</p>
