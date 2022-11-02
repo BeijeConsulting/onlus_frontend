@@ -1,6 +1,8 @@
 import { Helmet } from "react-helmet"
+import { Typography } from "@mui/material"
+
 //Components
-import Footer from "../components/footer/Footer"
+import Footer from "../components/hooks/Footer/Footer"
 import Header from "../components/hooks/Header/Header"
 import CustomButton from "../components/ui/buttons/CustomButton/CustomButton"
 import InputBox from "../components/ui/inputBox/InputBox"
@@ -8,24 +10,18 @@ import InputBox from "../components/ui/inputBox/InputBox"
 //Router
 import SCREENS from "../route/router"
 import { Link } from "react-router-dom"
-import { useNavigate } from "react-router-dom"
 
 //i18n
 import { useTranslation } from "react-i18next"
 
 //Styles
 import "../styles/login.scss"
-import PreFooter from "../components/preFooter/PreFooter"
+import PreFooter from "../components/hooks/PreFooter/PreFooter"
 
 function Login() {
-  const navigate = useNavigate()
   const { t }: any = useTranslation()
   const login = () => {
     console.log("login")
-  }
-
-  const resetPassword=():void=>{
-    navigate("/reset-password")
   }
 
   return (
@@ -38,14 +34,16 @@ function Login() {
       <Header />
 
       <main id="login" className="sectionContainer">
-        <h1>{t("titles.loginTitle")}</h1>
+        <Typography variant="h1">{t("titles.loginTitle")}</Typography>
         <form className="login-container" onSubmit={login}>
           <InputBox label={t("login.email")} type={"mail"} />
           <InputBox label={t("login.password")} type={"password"} />
 
-          <p className="forgot-password" onClick={resetPassword}>
-            {t("login.forgottenPassword")}
-          </p>
+          <Link to={"#"} className="forgot-password">
+            <Typography variant="caption">
+              {t("login.forgottenPassword")}
+            </Typography>
+          </Link>
 
           <CustomButton
             size={"big"}
@@ -56,8 +54,10 @@ function Login() {
         </form>
 
         <div className="aside-section">
-          <p>{t("login.notRegistered")}</p>
-          <Link to={SCREENS.signup}>{t("buttons.signupButton")}</Link>
+          <Typography variant="body2">{t("login.notRegistered")}</Typography>
+          <Link to={SCREENS.signup}>
+            <Typography variant="body2">{t("buttons.signupButton")}</Typography>
+          </Link>
         </div>
       </main>
 
