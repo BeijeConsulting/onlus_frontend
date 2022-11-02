@@ -1,4 +1,5 @@
 import { FC, useEffect, useState } from "react"
+
 import Footer from "../components/hooks/Footer/Footer"
 import Header from "../components/hooks/Header/Header"
 import PreFooter from "../components/hooks/PreFooter/PreFooter"

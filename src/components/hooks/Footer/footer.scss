@@ -46,7 +46,7 @@ footer {
     }
 
     .nav {
-        div {
+        p {
             cursor: pointer;
             &:hover{
                 text-decoration: underline;
@@ -157,7 +157,7 @@ footer{
         .nav {
             gap: 18px;
 
-            div {
+            p{
                 text-align: center;
             }
         }

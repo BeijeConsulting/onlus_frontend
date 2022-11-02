@@ -2,6 +2,7 @@ import React, { useEffect, useState, ReactElement } from "react"
 import axios from "axios"
 import { useTranslation } from "react-i18next"
 import { Helmet } from "react-helmet"
+import { Typography } from "@mui/material"
 
 //components
 import JoinUs from "../components/hooks/JoinUsBbox/JoinUsBox"
@@ -48,7 +49,7 @@ function Support() {
     console.log(`../assets/images/${item.media}`)
     return (
       <section className="content-about-container" key={key}>
-        <div className="text-about">{item.paragraph}</div>
+        <Typography variant="body1">{item.paragraph}</Typography>
         <div className="img-container">
           <img
             className="img-about"
@@ -70,7 +71,7 @@ function Support() {
       <main id="support">
         <JoinUs type="donate" />
         <div className="sectionContainer">
-          <h1>{state?.title}</h1>
+          <Typography variant="h1">{state?.title}</Typography>
           {state?.content.map(mapping)}
         </div>
         <Hero type="home" title={state?.hero.text} image={"pandaImg.jpg"} />

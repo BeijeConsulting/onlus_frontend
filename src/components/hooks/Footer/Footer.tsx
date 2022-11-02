@@ -1,4 +1,7 @@
 import { FC } from "react"
+import { Typography } from "@mui/material"
+import { Link } from "react-router-dom"
+
 // mediaquery
 import { useMediaQuery } from "react-responsive"
 // translation
@@ -9,6 +12,7 @@ import { useNavigate } from "react-router-dom"
 import CustomButton from "../../ui/buttons/CustomButton/CustomButton"
 // style
 import "./footer.scss"
+
 import SCREENS from "../../../route/router"
 
 // style
@@ -112,7 +116,7 @@ const Footer: FC = () => {
           <img className="socialIcon" src={el.icon} />
           <Default>
             <div>
-              <p>{el.name}</p>
+              <Typography variant="body1">{el.name}</Typography>
             </div>
           </Default>
         </div>
@@ -125,13 +129,25 @@ const Footer: FC = () => {
   return (
     <footer style={{ backgroundColor: primary }} id="footer">
       <section className="contacts">
-        <div className="titleContacts">{t("footer.contacts")}</div>
+        <Typography variant="h4" className="titleContacts">
+          {t("footer.contacts")}
+        </Typography>
         <ul className="contactsList">
-          <li>{contacts.telephone}</li>
-          <li>{contacts.email}</li>
-          <li>{contacts.address}</li>
-          <li>P.Iva: {contacts.PIva}</li>
-          <li>C.F: {contacts.CF}</li>
+          <li>
+            <Typography variant="body1">{contacts.telephone}</Typography>
+          </li>
+          <li>
+            <Typography variant="body1">{contacts.email}</Typography>
+          </li>
+          <li>
+            <Typography variant="body1">{contacts.address}</Typography>
+          </li>
+          <li>
+            <Typography variant="body1">P.Iva: {contacts.PIva}</Typography>
+          </li>
+          <li>
+            <Typography variant="body1">C.F: {contacts.CF}</Typography>
+          </li>
         </ul>
       </section>
       <section className="social">{social.map(mapping)}</section>
@@ -147,18 +163,36 @@ const Footer: FC = () => {
       </Mobile>
       <Default>
         <section className="nav">
-          <div onClick={goToHome}>{t("nav.home")}</div>
-          <div onClick={goToAbout}>{t("nav.about")}</div>
-          <div onClick={goToEvents}>{t("nav.events")}</div>
-          <div onClick={goToBlog}>{t("nav.blog")}</div>
-          <div onClick={goToSupport}>{t("nav.supportUs")}</div>
-          <div onClick={goToInfo}>{t("nav.info")}</div>
+          <Typography variant="body1" onClick={goToHome}>
+            {t("nav.home")}
+          </Typography>
+          <Typography variant="body1" onClick={goToAbout}>
+            {t("nav.about")}
+          </Typography>
+          <Typography variant="body1" onClick={goToEvents}>
+            {t("nav.events")}
+          </Typography>
+          <Typography variant="body1" onClick={goToBlog}>
+            {t("nav.blog")}
+          </Typography>
+          <Typography variant="body1" onClick={goToSupport}>
+            {t("nav.supportUs")}
+          </Typography>
+          <Typography variant="body1" onClick={goToInfo}>
+            {t("nav.info")}
+          </Typography>
         </section>
       </Default>
       <section className="privacy">
-        <a href="#">{t("footer.privacyPolicy")} </a>
-        <a href="#">{t("footer.cookiePolicy")} </a>
-        <a href="#">{t("footer.terms")} </a>
+        <Link to="#">
+          <Typography variant="body1">{t("footer.privacyPolicy")} </Typography>
+        </Link>
+        <Link to="#">
+          <Typography variant="body1">{t("footer.cookiePolicy")} </Typography>
+        </Link>
+        <Link to="#">
+          <Typography variant="body1">{t("footer.terms")} </Typography>
+        </Link>
         <Default>
           <div className="buttonContainer">
             <CustomButton
@@ -171,7 +205,9 @@ const Footer: FC = () => {
         </Default>
       </section>
 
-      <span className="rightReserved">{t("footer.rightReserved")}</span>
+      <Typography className="rightReserved">
+        {t("footer.rightReserved")}
+      </Typography>
     </footer>
   )
 }

@@ -1,6 +1,7 @@
 import React, { ReactElement, useEffect, useState, FC } from "react"
 import CardEventsMobile from "../CardEvents/CardEventsMobile"
 import { useTranslation } from "react-i18next"
+import Typography from "@mui/material/Typography"
 
 import "./personalEvents.scss"
 
@@ -59,11 +60,15 @@ const PersonalEvents: FC<Props> = (props): ReactElement => {
   return (
     <article className="eventsSection">
       <section>
-        <div className="txt">{t("personalArea.programmedEvents")}</div>
+        <Typography variant="h3" sx={{ paddingBottom: "25px" }}>
+          {t("personalArea.programmedEvents")}
+        </Typography>
         <section className="cardsContainer">
           {props.events.map(mapEvents)}
         </section>
-        <div className="txt">{t("personalArea.pastEvents")}</div>
+        <Typography variant="h3" sx={{ paddingBottom: "25px" }}>
+          {t("personalArea.pastEvents")}
+        </Typography>
         <section className="cardsContainer">
           {props.events.map(mapEvents)}
         </section>

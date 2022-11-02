@@ -44,7 +44,9 @@ const Hero: FC<HeroProps> = (props) => {
             <Typography variant="h1">{props.title}</Typography>
             {/* <h1 className="hero-title">{props.title}</h1> */}
             <div className="hero-linebr" />
-            <Typography variant="h4">{props.subtitle}</Typography>
+            <Typography variant="h5" className="hero-subtitle">
+              {props.subtitle}
+            </Typography>
             {props.type === "home" ? (
               <CustomButton
                 size="small"
@@ -78,8 +80,10 @@ const Hero: FC<HeroProps> = (props) => {
             }}
           >
             <div className="hero-content">
-              <h4 className="hero-category">{props.category}</h4>
-              <h1 className="hero-title">{props.title}</h1>
+              <Typography variant="h5" className="hero-category">
+                {props.category}
+              </Typography>
+              <Typography variant="h1">{props.title}</Typography>
             </div>
           </section>
         </>
@@ -99,7 +103,7 @@ const Hero: FC<HeroProps> = (props) => {
             }}
           >
             <div className="hero-content">
-              <h1 className="hero-mission">{props.title}</h1>
+              <Typography variant="h1">{props.title}</Typography>
             </div>
           </section>
         </>

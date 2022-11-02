@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next"
 import { useMediaQuery } from "react-responsive"
 import axios from "axios"
 import { Helmet } from "react-helmet"
+import { Typography } from "@mui/material"
 
 import Footer from "../components/hooks/Footer/Footer"
 import Header from "../components/hooks/Header/Header"
@@ -54,7 +55,7 @@ function PersonalArea() {
       <main id="personalArea" className="sectionContainer">
         <section className="welcomeCard">
           <div className="icon-container"></div>
-          <h1>{t("personalArea.welcome")}</h1>
+          <Typography variant="h1">{t("personalArea.welcome")}</Typography>
         </section>
         {state.isLoaded &&
           (isDesktop ? (

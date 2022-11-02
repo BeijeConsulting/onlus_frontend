@@ -139,9 +139,7 @@ const ExpandButton: FC = () => {
                     className={styles.expandedButtonItem}
                     onClick={goToSignup}
                   >
-                    <Typography variant="button">
-                      {t("buttons.volunteerButton")}
-                    </Typography>
+                    {t("buttons.volunteerButton")}
                     <BiDonateHeart />
                   </MenuItem>
                 </MenuList>

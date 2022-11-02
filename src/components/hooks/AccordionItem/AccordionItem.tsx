@@ -49,10 +49,10 @@ const AccordionItem: FC<AccordionItemProps> = (props) => {
         aria-controls="panel1a-content"
         id="panel1a-header"
       >
-        <Typography variant="h6">{props.title}</Typography>
+        <Typography variant="h4">{props.title}</Typography>
       </AccordionSummary>
       <AccordionDetails>
-        <Typography>{props.content}</Typography>
+        <Typography variant="body1">{props.content}</Typography>
       </AccordionDetails>
     </Accordion>
   )

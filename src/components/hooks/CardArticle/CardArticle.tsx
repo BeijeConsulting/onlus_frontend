@@ -18,7 +18,7 @@ interface CardProps {
 
 const CardArticle: FC<CardProps> = (props) => {
   return (
-    <Card sx={{ minWidth: props.minWidth, maxWidth: "400px", margin: "20px" }}>
+    <Card sx={{ minWidth: props.minWidth, maxWidth: "400px" }}>
       <CardActionArea>
         <CardHeader subheader={props.date} sx={{ paddingBottom: "0px" }} />
         <CardContent>
@@ -28,7 +28,7 @@ const CardArticle: FC<CardProps> = (props) => {
             alt="green iguana"
             sx={{ height: 250, objectFit: "cover" }}
           />
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h4" sx={{ paddingTop: 5 }}>
             {props.title}
           </Typography>
           <Typography

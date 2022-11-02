@@ -1,5 +1,10 @@
-.myInfo-container {
-    padding: 76px;
-    width: 100%;
+.myInfo-container{
+    display: flex;
+    justify-content: center;
 }
 
+@media only screen and (min-width: 992px) {
+    .myInfo-container {
+      padding: 76px;
+    }
+  }

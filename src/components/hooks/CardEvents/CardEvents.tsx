@@ -51,11 +51,7 @@ const CardEvents: FC<CardProps> = (props) => {
           style={{ width: "30%", display: "flex", flexDirection: "column" }}
         >
           <figcaption style={{ height: "20%" }}>
-            <CardHeader
-              sx={{ padding: "0" }}
-              titleTypographyProps={{ fontWeight: 700 }}
-              title={props.title}
-            />
+            <Typography variant="h3">{props.title}</Typography>
           </figcaption>
           <div style={{ height: "80%" }}>
             <CardMedia
@@ -75,27 +71,22 @@ const CardEvents: FC<CardProps> = (props) => {
             <CardContent
               sx={{ flex: "1 0 auto", paddingX: "20px", paddingY: "0" }}
             >
-              <Typography
-                style={{ marginBottom: "22px" }}
-                component="div"
-                variant="h4"
-              >
+              <Typography sx={{ marginBottom: "10px" }} variant="h4">
                 {t("events.description")}
               </Typography>
               <Typography variant="body1" color="text.primary" component="div">
                 {props.description}
               </Typography>
               <Typography
-                component="div"
                 variant="h4"
                 sx={{
-                  marginTop: "15px",
-                  marginBottom: "22px",
+                  marginTop: "20px",
+                  marginBottom: "10px",
                 }}
               >
                 {t("events.requirements")}
               </Typography>
-              <Typography variant="body2" color="text.primary" component="div">
+              <Typography variant="body1" color="text.primary" component="div">
                 {props.requirement}
               </Typography>
             </CardContent>
@@ -111,15 +102,9 @@ const CardEvents: FC<CardProps> = (props) => {
           }}
         >
           <CardContent sx={{ flex: "1 0 auto", textAlign: "end" }}>
-            <Typography component="div" variant="body2" color="text.secondary">
-              {props.date}
-            </Typography>
-            <Typography variant="body2" color="text.secondary" component="div">
-              {props.time}
-            </Typography>
-            <Typography variant="body2" color="text.secondary" component="div">
-              {props.place}
-            </Typography>
+            <Typography variant="body2">{props.date}</Typography>
+            <Typography variant="body2">{props.time}</Typography>
+            <Typography variant="body2">{props.place}</Typography>
           </CardContent>
           <Box
             sx={{
