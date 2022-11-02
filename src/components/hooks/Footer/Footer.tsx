@@ -1,28 +1,28 @@
-import { FC } from "react";
+import { FC } from "react"
 // mediaquery
-import { useMediaQuery } from "react-responsive";
+import { useMediaQuery } from "react-responsive"
 // translation
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next"
 // navigazione
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
 // components
-import CustomButton from "../ui/buttons/CustomButton/CustomButton";
+import CustomButton from "../../ui/buttons/CustomButton/CustomButton"
 // style
-import "./footer.scss";
-import SCREENS from "../../route/router";
+import "./footer.scss"
+import SCREENS from "../../../route/router"
 
 // style
-const primary: string = "#262E36";
-const secondary: string = "#B12009";
+const primary: string = "#262E36"
+const secondary: string = "#B12009"
 
 // type
 type social = {
-  name: string;
-  icon: any; //come tipizzare image? come ce lo passa backend? (string)
-  link: string;
-  footerOn: boolean;
-  homepageOn: boolean;
-};
+  name: string
+  icon: any //come tipizzare image? come ce lo passa backend? (string)
+  link: string
+  footerOn: boolean
+  homepageOn: boolean
+}
 
 // dati mokup
 // contatti
@@ -32,7 +32,7 @@ const contacts = {
   address: "via dei panda 2, Milano, Italy",
   PIva: "IT 0221212121210212",
   CF: "8008976565786",
-};
+}
 // social
 const social: Array<social> = [
   {
@@ -63,47 +63,47 @@ const social: Array<social> = [
     footerOn: true,
     homepageOn: false,
   },
-];
+]
 
 //React responsive const
 const Default = ({ children }: any) => {
-  const isNotMobile = useMediaQuery({ minWidth: 992 });
-  return isNotMobile ? children : null;
-};
+  const isNotMobile = useMediaQuery({ minWidth: 992 })
+  return isNotMobile ? children : null
+}
 const Mobile = ({ children }: any) => {
-  const isMobile = useMediaQuery({ maxWidth: 991 });
-  return isMobile ? children : null;
-};
+  const isMobile = useMediaQuery({ maxWidth: 991 })
+  return isMobile ? children : null
+}
 
 const Footer: FC = () => {
   // inizializzo navigazione
-  let navigate = useNavigate();
+  let navigate = useNavigate()
 
   // navigazione
   const goToHome = (): void => {
-    navigate(SCREENS.home);
-  };
+    navigate(SCREENS.home)
+  }
   const goToAbout = (): void => {
-    navigate(SCREENS.about);
-  };
+    navigate(SCREENS.about)
+  }
   const goToEvents = (): void => {
-    navigate(SCREENS.events);
-  };
+    navigate(SCREENS.events)
+  }
   const goToBlog = (): void => {
-    navigate(SCREENS.blog);
-  };
+    navigate(SCREENS.blog)
+  }
   const goToSupport = (): void => {
-    navigate(SCREENS.support);
-  };
+    navigate(SCREENS.support)
+  }
   const goToInfo = (): void => {
-    navigate(SCREENS.faq);
-  };
+    navigate(SCREENS.faq)
+  }
   const goToLogin = (): void => {
-    navigate(SCREENS.login);
-  };
+    navigate(SCREENS.login)
+  }
 
   // tranlation hook
-  const { t }: any = useTranslation();
+  const { t }: any = useTranslation()
 
   const mapping = (el: social, key: number): JSX.Element | boolean => {
     if (el.footerOn) {
@@ -116,11 +116,11 @@ const Footer: FC = () => {
             </div>
           </Default>
         </div>
-      );
+      )
     } else {
-      return false;
+      return false
     }
-  };
+  }
 
   return (
     <footer style={{ backgroundColor: primary }} id="footer">
@@ -173,7 +173,7 @@ const Footer: FC = () => {
 
       <span className="rightReserved">{t("footer.rightReserved")}</span>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

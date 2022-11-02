@@ -3,9 +3,9 @@ import { useTranslation } from "react-i18next"
 import { Helmet } from "react-helmet"
 
 //components
-import Footer from "../components/footer/Footer"
+import Footer from "../components/hooks/Footer/Footer"
 import Header from "../components/hooks/Header/Header"
-import PreFooter from "../components/preFooter/PreFooter"
+import PreFooter from "../components/hooks/PreFooter/PreFooter"
 import CustomButton from "../components/ui/buttons/CustomButton/CustomButton"
 import InputBox from "../components/ui/inputBox/InputBox"
 import InputCheckbox from "../components/ui/inputBox/InputCheckbox"

@@ -7,7 +7,7 @@ import Skeleton from "@mui/material/Skeleton"
 import Stack from "@mui/material/Stack"
 
 import Header from "../components/hooks/Header/Header"
-import Footer from "../components/footer/Footer"
+import Footer from "../components/hooks/Footer/Footer"
 import AccordionItem from "../components/hooks/AccordionItem/AccordionItem"
 
 import "../styles/faq.scss"

@@ -11,7 +11,7 @@ import { useTranslation } from "react-i18next"
 // navigazione
 import { useNavigate } from "react-router-dom"
 // componenti
-import CustomButton from "../ui/buttons/CustomButton/CustomButton"
+import CustomButton from "../../ui/buttons/CustomButton/CustomButton"
 
 // props
 interface CardProps {

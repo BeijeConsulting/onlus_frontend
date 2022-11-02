@@ -4,14 +4,14 @@ import { useMediaQuery } from "react-responsive"
 import axios from "axios"
 import { Helmet } from "react-helmet"
 
-import Footer from "../components/footer/Footer"
+import Footer from "../components/hooks/Footer/Footer"
 import Header from "../components/hooks/Header/Header"
 import NavTab from "../components/ui/NavTab/NavTab"
 import VerticalNavTab from "../components/ui/VerticalNavTab/VerticalNavTab"
-import PreFooter from "../components/preFooter/PreFooter"
+import PreFooter from "../components/hooks/PreFooter/PreFooter"
 import DonationHistory from "../components/hooks/DonationsHistory/DonationHistory"
 import PersonalEvents from "../components/hooks/PersonalEvents/PersonalEvents"
-import MyInfoSection from "../components/MyInfoSection/MyInfoSection"
+import MyInfoSection from "../components/hooks/MyInfoSection/MyInfoSection"
 
 import "../styles/personalArea.scss"
 

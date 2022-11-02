@@ -4,10 +4,10 @@ import { useTranslation } from "react-i18next"
 import { Helmet } from "react-helmet"
 
 //components
-import JoinUs from "../components/hooks/joinUsBbox/JoinUsBox"
+import JoinUs from "../components/hooks/JoinUsBbox/JoinUsBox"
 import Header from "../components/hooks/Header/Header"
-import PreFooter from "../components/preFooter/PreFooter"
-import Footer from "../components/footer/Footer"
+import PreFooter from "../components/hooks/PreFooter/PreFooter"
+import Footer from "../components/hooks/Footer/Footer"
 
 //styles
 import "../styles/support.scss"

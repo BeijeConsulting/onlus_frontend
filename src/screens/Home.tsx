@@ -4,9 +4,9 @@ import { useState, useEffect, FC } from "react"
 import { useTranslation } from "react-i18next"
 // componenti
 import Hero from "../components/hooks/Hero/Hero"
-import Footer from "../components/footer/Footer"
-import PreFooter from "../components/preFooter/PreFooter"
-import CardArticle from "../components/cardArticle/CardArticle"
+import Footer from "../components/hooks/Footer/Footer"
+import PreFooter from "../components/hooks/PreFooter/PreFooter"
+import CardArticle from "../components/hooks/CardArticle/CardArticle"
 
 // style
 import "../styles/home.scss"

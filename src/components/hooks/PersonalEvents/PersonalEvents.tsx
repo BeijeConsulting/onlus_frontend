@@ -1,21 +1,21 @@
-import React, { ReactElement, useEffect, useState } from "react";
-import CardEventsMobile from "../../cardEvents/CardEventsMobile";
-import { useTranslation } from "react-i18next";
+import React, { ReactElement, useEffect, useState } from "react"
+import CardEventsMobile from "../CardEvents/CardEventsMobile"
+import { useTranslation } from "react-i18next"
 
-import "./personalEvents.scss";
+import "./personalEvents.scss"
 
 interface event {
-  title: string;
-  image: string;
-  description: string;
-  requirement: string;
-  date: string;
-  time: string;
-  place: string;
+  title: string
+  image: string
+  description: string
+  requirement: string
+  date: string
+  time: string
+  place: string
 }
 
 interface Props {
-  events: event[];
+  events: event[]
 }
 
 /*title: string,
@@ -27,16 +27,16 @@ interface Props {
     place: string*/
 
 function PersonalEvents(props: Props) {
-  const { t }: any = useTranslation();
-  const [today, setToday] = useState<Date>(new Date());
+  const { t }: any = useTranslation()
+  const [today, setToday] = useState<Date>(new Date())
 
   //   useEffect(() => {
   //     setToday(new Date());
   //   }, []);
 
   function mapCurrentEvents(element: event, key: number): any {
-    let eventDate = Date.parse(element.date);
-    let todaySec = today.getTime();
+    let eventDate = Date.parse(element.date)
+    let todaySec = today.getTime()
     if (eventDate > todaySec) {
       return (
         <div key={key} className="singleCardContainer">
@@ -50,16 +50,16 @@ function PersonalEvents(props: Props) {
             place={element.place}
           />
         </div>
-      );
+      )
     } else {
-      return <></>;
+      return <></>
     }
   }
 
   function mapPastEvents(element: event, key: number): ReactElement {
-    let eventDate = Date.parse(element.date);
-    let todaySec: number = today!.getTime();
-    console.log("i valori da paragonare", eventDate, todaySec);
+    let eventDate = Date.parse(element.date)
+    let todaySec: number = today!.getTime()
+    console.log("i valori da paragonare", eventDate, todaySec)
     if (eventDate < todaySec) {
       return (
         <div key={key} className="singleCardContainer">
@@ -73,9 +73,9 @@ function PersonalEvents(props: Props) {
             place={element.place}
           />
         </div>
-      );
+      )
     } else {
-      return <></>;
+      return <></>
     }
   }
   return (
@@ -91,7 +91,7 @@ function PersonalEvents(props: Props) {
         </section>
       </section>
     </article>
-  );
+  )
 }
 
-export default PersonalEvents;
+export default PersonalEvents
