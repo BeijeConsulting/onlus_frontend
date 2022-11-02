@@ -1,5 +1,7 @@
 import { FC, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
+import { Typography } from "@mui/material"
+
 import Footer from "../components/hooks/Footer/Footer"
 import Header from "../components/hooks/Header/Header"
 import PreFooter from "../components/hooks/PreFooter/PreFooter"
@@ -111,7 +113,7 @@ const Blog: FC = () => {
       </Helmet>
       <Header />
       <main id="blog" className="sectionContainer">
-        <h1>{t("titles.blogTitle")}</h1>
+        <Typography variant="h1">{t("titles.blogTitle")}</Typography>
         <section className="searchContainer">
           <InputBox label={t("search")} type="text" callbackChange={search} />
           <SelectBox

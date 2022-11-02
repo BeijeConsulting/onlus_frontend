@@ -4,6 +4,7 @@ import Header from "../components/hooks/Header/Header"
 import PreFooter from "../components/hooks/PreFooter/PreFooter"
 import { useTranslation } from "react-i18next"
 import axios from "axios"
+import { Typography } from "@mui/material"
 
 import { article, content } from "../utils/type"
 
@@ -82,7 +83,7 @@ const Article: FC = () => {
   const mappingParagraph = (el: content, key: number): JSX.Element => {
     return (
       <div key={key} className="paragraph">
-        <p className="paragraphText">{el.paragraph}</p>
+        <Typography variant="body1">{el.paragraph}</Typography>
         {/* {!!el.media && <img className="image" src={el.media} />} */}
         {!!el.media &&
           (el.media.type === "image" ? (
@@ -115,10 +116,10 @@ const Article: FC = () => {
           type="article"
         />
         <section className="sectionContainer">
-          <div className="date">{singleArticle.date}</div>
+          <Typography variant="body1">{singleArticle.date}</Typography>
           <article>
             <section>{singleArticle.content.map(mappingParagraph)}</section>
-            <div className="title">{t("home.relatedArticles")}</div>
+            <Typography variant="h3">{t("home.relatedArticles")}</Typography>
             <section className="correlatedArticles">
               {state.localArray.length > 0 &&
                 state.localArray.map(mappingCorrelated)}

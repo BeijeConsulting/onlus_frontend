@@ -13,7 +13,7 @@ import {
 } from "../../../utils/checkForm"
 
 import "./myInfoSection.scss"
-import "../../styles/signup.scss"
+import "../../../styles/signup.scss"
 
 interface InfoProps {
   datas: datas

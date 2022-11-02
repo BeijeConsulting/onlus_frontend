@@ -2,6 +2,7 @@ import { FC, useState, useEffect } from "react"
 import { useTranslation } from "react-i18next"
 import axios from "axios"
 import { Helmet } from "react-helmet"
+import { Typography } from "@mui/material"
 
 import Skeleton from "@mui/material/Skeleton"
 import Stack from "@mui/material/Stack"
@@ -54,11 +55,11 @@ const Faq: FC = () => {
       {state.data && (
         <main id={"faq"} className="sectionContainer">
           <section>
-            <h1>{state.data.info.title}</h1>
-            <p>{state.data.info.text}</p>
+            <Typography variant="h1">{state.data.info.title}</Typography>
+            <Typography variant="body1">{state.data.info.text}</Typography>
           </section>
           <section>
-            <h1>Faq</h1>
+            <Typography variant="h1">Faq</Typography>
             <div className="faq-container">{state.data.qna.map(mapFaq)}</div>
           </section>
         </main>

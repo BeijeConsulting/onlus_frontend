@@ -1,4 +1,6 @@
 import { Helmet } from "react-helmet"
+import { Typography } from "@mui/material"
+
 //Components
 import Footer from "../components/hooks/Footer/Footer"
 import Header from "../components/hooks/Header/Header"
@@ -32,14 +34,16 @@ function Login() {
       <Header />
 
       <main id="login" className="sectionContainer">
-        <h1>{t("titles.loginTitle")}</h1>
+        <Typography variant="h1">{t("titles.loginTitle")}</Typography>
         <form className="login-container" onSubmit={login}>
           <InputBox label={t("login.email")} type={"mail"} />
           <InputBox label={t("login.password")} type={"password"} />
 
-          <a href="#" className="forgot-password">
-            {t("login.forgottenPassword")}
-          </a>
+          <Link to={"#"} className="forgot-password">
+            <Typography variant="caption">
+              {t("login.forgottenPassword")}
+            </Typography>
+          </Link>
 
           <CustomButton
             size={"big"}
@@ -50,8 +54,10 @@ function Login() {
         </form>
 
         <div className="aside-section">
-          <p>{t("login.notRegistered")}</p>
-          <Link to={SCREENS.signup}>{t("buttons.signupButton")}</Link>
+          <Typography variant="body2">{t("login.notRegistered")}</Typography>
+          <Link to={SCREENS.signup}>
+            <Typography variant="body2">{t("buttons.signupButton")}</Typography>
+          </Link>
         </div>
       </main>
 

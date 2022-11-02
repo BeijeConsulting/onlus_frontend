@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import { Helmet } from "react-helmet"
+import { Typography } from "@mui/material"
 
 //Components
 import Footer from "../components/hooks/Footer/Footer"
@@ -45,7 +46,7 @@ const About: FC = () => {
   const mappingContent = (item: any, key: any) => {
     return (
       <section className="content-about-container" key={key}>
-        <div className="text-about">{item.text}</div>
+        <Typography variant="body1">{item.text}</Typography>
         <div className="img-container">
           <img
             className="img-about"
@@ -73,7 +74,7 @@ const About: FC = () => {
           image={"pandaImg.jpg"}
         />
         <section className="sectionContainer">
-          <h1>{t("nav.about")}</h1>
+          <Typography variant="h1">{t("nav.about")}</Typography>
           {state.content.map(mappingContent)}
         </section>
       </main>

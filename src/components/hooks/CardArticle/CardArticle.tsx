@@ -1,19 +1,19 @@
-import { FC } from "react";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import { CardActionArea, CardHeader } from "@mui/material";
+import { FC } from "react"
+import Card from "@mui/material/Card"
+import CardContent from "@mui/material/CardContent"
+import CardMedia from "@mui/material/CardMedia"
+import Typography from "@mui/material/Typography"
+import { CardActionArea, CardHeader } from "@mui/material"
 
 //style
-import "./cardarticle.scss";
+import "./cardarticle.scss"
 
 interface CardProps {
-  date: string;
-  image: string;
-  title: string;
-  description: string;
-  minWidth: string;
+  date: string
+  image: string
+  title: string
+  description: string
+  minWidth: string
 }
 
 const CardArticle: FC<CardProps> = (props) => {
@@ -32,7 +32,7 @@ const CardArticle: FC<CardProps> = (props) => {
             {props.title}
           </Typography>
           <Typography
-            variant="body2"
+            variant="body1"
             color="text.secondary"
             sx={{ paddingBottom: "20px", height: 120, overflowY: "hidden" }}
           >
@@ -40,13 +40,13 @@ const CardArticle: FC<CardProps> = (props) => {
           </Typography>
           <div className="continueContainer">
             <a href="#" className="continue">
-              Continua a leggere
+              <Typography variant="caption">Continua a leggere</Typography>
             </a>
           </div>
         </CardContent>
       </CardActionArea>
     </Card>
-  );
-};
+  )
+}
 
-export default CardArticle;
+export default CardArticle

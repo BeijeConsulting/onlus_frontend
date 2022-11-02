@@ -9,6 +9,8 @@ import Paper from "@mui/material/Paper"
 import Popper from "@mui/material/Popper"
 import MenuItem from "@mui/material/MenuItem"
 import MenuList from "@mui/material/MenuList"
+import { Typography } from "@mui/material"
+
 // icons
 import { TbHeartHandshake } from "react-icons/tb"
 import { BiDonateHeart } from "react-icons/bi"
@@ -94,7 +96,9 @@ const ExpandButton: FC = () => {
           }}
           className={styles.expandedButtonItem}
         >
-          {t("buttons.supportNavButton")}
+          <Typography variant="button">
+            {t("buttons.supportNavButton")}
+          </Typography>
           <ArrowDropDownIcon />
         </Button>
       </ButtonGroup>
@@ -135,7 +139,9 @@ const ExpandButton: FC = () => {
                     className={styles.expandedButtonItem}
                     onClick={goToSignup}
                   >
-                    {t("buttons.volunteerButton")}
+                    <Typography variant="button">
+                      {t("buttons.volunteerButton")}
+                    </Typography>
                     <BiDonateHeart />
                   </MenuItem>
                 </MenuList>

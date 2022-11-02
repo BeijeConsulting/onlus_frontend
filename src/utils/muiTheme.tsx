@@ -83,9 +83,19 @@ export const theme = createTheme({
       fontSize: "16px",
       fontWeight: "400",
     },
+    body2: {
+      fontSize: "14px",
+      fontWeight: "400",
+      color: "rgba(0,0,0,0.6)",
+    },
     button: {
       fontSize: "16px",
       textTransform: "uppercase",
+    },
+    caption: {
+      fontSize: "14px",
+      textDecoration: "underline",
+      color: "rgba(0,0,0,0.6)",
     },
   },
   components: {

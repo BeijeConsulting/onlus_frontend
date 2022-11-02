@@ -1,4 +1,4 @@
-import { Button, ThemeProvider } from "@mui/material"
+import { Button, ThemeProvider, Typography } from "@mui/material"
 import React, { FC, ReactElement } from "react"
 
 import { theme } from "../../../../utils/muiTheme"
@@ -25,11 +25,11 @@ const CustomButton: FC<Props> = (props): ReactElement => {
         variant="contained"
         disabled={props.isDisable}
         disableElevation
-        color={props.colorType} 
+        color={props.colorType}
         onClick={handleClick}
         className={styles.btn}
       >
-        {props.label}
+        <Typography variant="button">{props.label}</Typography>
       </Button>
     </ThemeProvider>
   )
