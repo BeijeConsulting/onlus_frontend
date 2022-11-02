@@ -11,7 +11,7 @@ import { useTranslation } from "react-i18next"
 // navigazione
 import { useNavigate } from "react-router-dom"
 // componenti
-import CustomButton from "../ui/buttons/CustomButton/CustomButton"
+import CustomButton from "../../ui/buttons/CustomButton/CustomButton"
 
 // props
 interface CardProps {
@@ -51,11 +51,7 @@ const CardEvents: FC<CardProps> = (props) => {
           style={{ width: "30%", display: "flex", flexDirection: "column" }}
         >
           <figcaption style={{ height: "20%" }}>
-            <CardHeader
-              sx={{ padding: "0" }}
-              titleTypographyProps={{ fontWeight: 700 }}
-              title={props.title}
-            />
+            <Typography variant="h3">{props.title}</Typography>
           </figcaption>
           <div style={{ height: "80%" }}>
             <CardMedia
@@ -75,36 +71,22 @@ const CardEvents: FC<CardProps> = (props) => {
             <CardContent
               sx={{ flex: "1 0 auto", paddingX: "20px", paddingY: "0" }}
             >
-              <Typography
-                style={{ marginBottom: "22px", fontWeight: 700 }}
-                component="div"
-                variant="h5"
-              >
+              <Typography sx={{ marginBottom: "10px" }} variant="h4">
                 {t("events.description")}
               </Typography>
-              <Typography
-                variant="subtitle1"
-                color="text.primary"
-                component="div"
-              >
+              <Typography variant="body1" color="text.primary" component="div">
                 {props.description}
               </Typography>
               <Typography
-                component="div"
-                variant="h5"
+                variant="h4"
                 sx={{
-                  marginTop: "15px",
-                  marginBottom: "22px",
-                  fontWeight: 700,
+                  marginTop: "20px",
+                  marginBottom: "10px",
                 }}
               >
                 {t("events.requirements")}
               </Typography>
-              <Typography
-                variant="subtitle1"
-                color="text.primary"
-                component="div"
-              >
+              <Typography variant="body1" color="text.primary" component="div">
                 {props.requirement}
               </Typography>
             </CardContent>
@@ -120,30 +102,9 @@ const CardEvents: FC<CardProps> = (props) => {
           }}
         >
           <CardContent sx={{ flex: "1 0 auto", textAlign: "end" }}>
-            <Typography
-              component="div"
-              variant="subtitle2"
-              color="text.secondary"
-              sx={{ fontSize: "15px", fontWeight: 700 }}
-            >
-              {props.date}
-            </Typography>
-            <Typography
-              variant="subtitle1"
-              color="text.secondary"
-              component="div"
-              sx={{ fontSize: "15px", fontWeight: 700 }}
-            >
-              {props.time}
-            </Typography>
-            <Typography
-              variant="subtitle1"
-              color="text.secondary"
-              component="div"
-              sx={{ fontSize: "15px", fontWeight: 700 }}
-            >
-              {props.place}
-            </Typography>
+            <Typography variant="body2">{props.date}</Typography>
+            <Typography variant="body2">{props.time}</Typography>
+            <Typography variant="body2">{props.place}</Typography>
           </CardContent>
           <Box
             sx={{

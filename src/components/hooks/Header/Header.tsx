@@ -1,101 +1,104 @@
-import { FC, useState, useEffect } from "react";
+import { FC, useState, useEffect } from "react"
+import { Link } from "react-router-dom"
+import { HashLink } from "react-router-hash-link"
+import { Typography } from "@mui/material"
 
 //Hooks
-import { useNavigate } from "react-router-dom";
-import { useMediaQuery } from "react-responsive";
+import { useNavigate } from "react-router-dom"
+import { useMediaQuery } from "react-responsive"
 //Components
-import TemporaryDrawer from "../TemporaryDrawer/TemporaryDrawer";
-import ExpandButton from "../../ui/buttons/ExpandButton";
+import TemporaryDrawer from "../TemporaryDrawer/TemporaryDrawer"
+import ExpandButton from "../../ui/buttons/ExpandButton"
 
 // Route
-import SCREENS from "../../../route/router";
+import SCREENS from "../../../route/router"
 
 // Icons
-import { BiUser } from "react-icons/bi";
-import { SiFoodpanda } from "react-icons/si";
+import { BiUser } from "react-icons/bi"
+import { SiFoodpanda } from "react-icons/si"
 
 //Style
-import "./header.scss";
+import "./header.scss"
 
 //i18n
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next"
 
 interface HeaderProps {
-  isHome?: boolean;
+  isHome?: boolean
 }
 interface State {
-  scroll: boolean;
+  scroll: boolean
 }
 const initialState = {
   scroll: false,
-};
+}
 
 const Header: FC<HeaderProps> = (props) => {
-  const [state, setState] = useState<State>(initialState);
+  const [state, setState] = useState<State>(initialState)
 
-  const navigate: any = useNavigate();
-  const { t, i18n }: any = useTranslation();
+  const navigate: any = useNavigate()
+  const { t, i18n }: any = useTranslation()
 
   const Default = ({ children }: any) => {
-    const isNotMobile = useMediaQuery({ minWidth: 992 });
-    return isNotMobile ? children : null;
-  };
+    const isNotMobile = useMediaQuery({ minWidth: 992 })
+    return isNotMobile ? children : null
+  }
 
   const Mobile = ({ children }: any) => {
-    const isMobile = useMediaQuery({ maxWidth: 991 });
-    return isMobile ? children : null;
-  };
+    const isMobile = useMediaQuery({ maxWidth: 991 })
+    return isMobile ? children : null
+  }
 
   //navigation functions
   const goToHome = (): void => {
-    navigate(SCREENS.home);
-  };
+    navigate(SCREENS.home)
+  }
   const goToAbout = (): void => {
-    navigate(SCREENS.about);
-  };
+    navigate(SCREENS.about)
+  }
   const goToEvents = (): void => {
-    navigate(SCREENS.events);
-  };
+    navigate(SCREENS.events)
+  }
   const goToBlog = (): void => {
-    navigate(SCREENS.blog);
-  };
+    navigate(SCREENS.blog)
+  }
   const goToSupport = (): void => {
-    navigate(SCREENS.support);
-  };
+    navigate(SCREENS.support)
+  }
   const goToInfo = (): void => {
-    navigate(SCREENS.faq);
-  };
+    navigate(SCREENS.faq)
+  }
   const goToPersonalArea = (): void => {
-    navigate(SCREENS.personalArea);
-  };
+    navigate(SCREENS.personalArea)
+  }
 
   // Changelanguage
   const changeLanguageClick = (lang: string) => (): void => {
-    i18n.changeLanguage(lang);
-  };
+    i18n.changeLanguage(lang)
+  }
 
   // Scroll
   function handleScroll() {
-    let windowScroll = window.scrollY;
-    let scrolly = false;
+    let windowScroll = window.scrollY
+    let scrolly = false
 
     if (windowScroll > 150) {
-      scrolly = true;
-    } else scrolly = false;
+      scrolly = true
+    } else scrolly = false
 
     setState({
       ...state,
       scroll: scrolly,
-    });
+    })
   }
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll)
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [state.scroll]);
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, [state.scroll])
 
   return (
     <header
@@ -105,25 +108,45 @@ const Header: FC<HeaderProps> = (props) => {
         <SiFoodpanda className="logo" onClick={goToHome} />
         <Default>
           <nav className={"nav-desktop"}>
-            <div onClick={goToHome}>{t("nav.home")}</div>
-            <div onClick={goToAbout}>{t("nav.about")}</div>
-            <div onClick={goToEvents}>{t("nav.events")}</div>
-            <div onClick={goToBlog}>{t("nav.blog")}</div>
-            <div onClick={goToSupport}>{t("nav.supportUs")}</div>
-            <div onClick={goToInfo}>{t("nav.info")}</div>
+            <Typography variant="body1" onClick={goToHome}>
+              {t("nav.home")}
+            </Typography>
+            <Typography variant="body1" onClick={goToAbout}>
+              {t("nav.about")}
+            </Typography>
+            <Typography variant="body1" onClick={goToEvents}>
+              {t("nav.events")}
+            </Typography>
+            <Typography variant="body1" onClick={goToBlog}>
+              {t("nav.blog")}
+            </Typography>
+            <Typography variant="body1" onClick={goToSupport}>
+              {t("nav.supportUs")}
+            </Typography>
+            <Typography variant="body1" onClick={goToInfo}>
+              {t("nav.info")}
+            </Typography>
           </nav>
           <ExpandButton />
         </Default>
 
         <div className="header-right">
           <div className="lng-buttons">
-            <p className="langButton" onClick={changeLanguageClick("en")}>
+            <Typography
+              variant="body1"
+              className="langButton"
+              onClick={changeLanguageClick("en")}
+            >
               EN
-            </p>
+            </Typography>
             <p style={{ padding: "0 10px" }}>•</p>
-            <p className="langButton" onClick={changeLanguageClick("it")}>
+            <Typography
+              variant="body1"
+              className="langButton"
+              onClick={changeLanguageClick("it")}
+            >
               IT
-            </p>
+            </Typography>
           </div>
 
           <BiUser onClick={goToPersonalArea} className="profile-icon" />
@@ -136,12 +159,18 @@ const Header: FC<HeaderProps> = (props) => {
         </div>
       </div>
       <div className="bottom-header">
-        <a href="#events" className="bottom-header-button">{t("nav.events")}</a>
-        <a href="#blog" className="bottom-header-button">{t("nav.blog")}</a>
-        <a href="#history" className="bottom-header-button">{t("home.history")}</a>
+        <HashLink to="#events" className="bottom-header-button">
+          <Typography variant="body1">{t("nav.events")}</Typography>
+        </HashLink>
+        <HashLink to="#blog" className="bottom-header-button">
+          <Typography variant="body1">{t("nav.blog")}</Typography>
+        </HashLink>
+        <HashLink to="#history" className="bottom-header-button">
+          <Typography variant="body1">{t("home.history")}</Typography>
+        </HashLink>
       </div>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

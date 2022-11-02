@@ -1,26 +1,29 @@
 // react import
 import { useState, useEffect, FC } from "react"
+import { Link } from "react-router-dom"
+import { HashLink } from "react-router-hash-link"
 // traduzioni
 import { useTranslation } from "react-i18next"
 // componenti
 import Hero from "../components/hooks/Hero/Hero"
-import Footer from "../components/footer/Footer"
-import PreFooter from "../components/preFooter/PreFooter"
-import CardEventsMobile from "../components/cardEvents/CardEventsMobile"
-import CardArticle from "../components/cardArticle/CardArticle"
+import Footer from "../components/hooks/Footer/Footer"
+import PreFooter from "../components/hooks/PreFooter/PreFooter"
+import CardEventsMobile from "../components/hooks/CardEvents/CardEventsMobile"
+import CardArticle from "../components/hooks/CardArticle/CardArticle"
 
 // style
 import "../styles/home.scss"
 import Header from "../components/hooks/Header/Header"
 //icons
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp"
+import { Typography } from "@mui/material"
 
 // mokup home (il json reale sarà diverso)
 const MokupHome = {
   hero: {
     title: "Salva i panda dai bambù",
-    subtitle: "Loremfzdsoifgzdsoihgfzdsoigfdzsoifghzdsoigfhziofgz",
-    image: "pandaImg.jpg"
+    subtitle: "Lorem ipsum dolor sit amet consectetur adipisicing elit",
+    image: "pandaImg.jpg",
   },
   results: {
     resultTitle: "lorem ipsum dei risultati",
@@ -34,14 +37,16 @@ const MokupHome = {
     },
   },
   stayUpToDate: {
-    subTitle: 'Seguici su facebook',
-    link: 'https://www.wwf.it/'
+    subTitle: "Seguici su facebook",
+    link: "https://www.wwf.it/",
   },
   story: {
-    title: 'Storia...',
-    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos architecto consequuntur ab quasi nostrum rem error numquam! Error laborum sit iusto fugit, doloribus doloremque quos repellendus minima. Architecto, sequi adipisci.',
-    image: 'https://leganerd.com/wp-content/uploads/2016/10/pandas-live_64dff22c2fe56e9-999x562.jpg'
-  }
+    title: "Storia...",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos architecto consequuntur ab quasi nostrum rem error numquam! Error laborum sit iusto fugit, doloribus doloremque quos repellendus minima. Architecto, sequi adipisci.",
+    image:
+      "https://leganerd.com/wp-content/uploads/2016/10/pandas-live_64dff22c2fe56e9-999x562.jpg",
+  },
 }
 
 // definisco typo evento
@@ -66,7 +71,7 @@ const EVENTI: Array<Event> = [
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi vero culpa velit magni aliquam. Voluptas non ullam quo temporibus aut, cum, sequi eaque recusandae iusto praesentium cumque omnis laudantium, saepe labore! Odio dicta tenetur, enim laboriosam quidem libero vel ipsam animi vitae ducimus aperiam magni fuga, ex cumque repudiandae eaque?",
     date: "4 ottobre 2022",
     time: "h 12.00",
-    place: "Milano"
+    place: "Milano",
   },
   {
     title: "Un gancio in cielo",
@@ -77,7 +82,7 @@ const EVENTI: Array<Event> = [
     requirement: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. ",
     date: "12 ottobre 2022",
     time: "h 12.00",
-    place: "Milano"
+    place: "Milano",
   },
   {
     title: "United for the heart",
@@ -88,10 +93,9 @@ const EVENTI: Array<Event> = [
     requirement: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. ",
     date: "12 ottobre 2022",
     time: "h 12.00",
-    place: "Milano"
+    place: "Milano",
   },
 ]
-
 
 const articles = [
   {
@@ -201,15 +205,14 @@ const Home: FC = () => {
 
   const mapArticles = (item: any, key: number) => {
     return (
-      <article key={key}>
-        <CardArticle
-          minWidth="350px"
-          title={item.title}
-          description={item.content[0].text}
-          date={item.date}
-          image={item.cover}
-        />
-      </article>
+      <CardArticle
+        key={key}
+        minWidth="350px"
+        title={item.title}
+        description={item.content[0].text}
+        date={item.date}
+        image={item.cover}
+      />
     )
   }
 
@@ -217,28 +220,27 @@ const Home: FC = () => {
   const mapEvents = (event: Event, key: number): JSX.Element => {
     return (
       <article key={key}>
-          <CardEventsMobile
-            title={event.title}
-            description={event.description}
-            image={event.image}
-            requirement={event.requirement}
-            time={event.time}
-            date={event.date}
-            place={event.place}
-            minWidth={'330px'}
-          />
+        <CardEventsMobile
+          title={event.title}
+          description={event.description}
+          image={event.image}
+          requirement={event.requirement}
+          time={event.time}
+          date={event.date}
+          place={event.place}
+          minWidth={"330px"}
+        />
       </article>
     )
   }
-
 
   return (
     <>
       <Header isHome={true} />
 
-      <a href="#home" className="scrollToTopButton">
-        <KeyboardArrowUpIcon sx={{height:40, width:40}}/>
-      </a>
+      <HashLink to="#home" className="scrollToTopButton">
+        <KeyboardArrowUpIcon sx={{ height: 40, width: 40 }} />
+      </HashLink>
 
       <main id="home">
         <Hero
@@ -248,9 +250,11 @@ const Home: FC = () => {
           image={MokupHome.hero.image}
         />
 
-        <section className="sectionContainer">
+        <div className="sectionContainer">
           <section className="results">
-            <h4 className="title">{MokupHome.results.resultTitle}</h4>
+            <Typography variant="h2">
+              {MokupHome.results.resultTitle}
+            </Typography>
             <figure>
               <img
                 src={MokupHome.results.resultsImage}
@@ -259,42 +263,48 @@ const Home: FC = () => {
             </figure>
             <div className="statics">
               <div>
-                <h6>{MokupHome.results.staticsResults.staticsOne} %</h6>
+                <Typography variant="h6">
+                  {MokupHome.results.staticsResults.staticsOne} %
+                </Typography>
               </div>
               <div>
-                <h6>{MokupHome.results.staticsResults.staticsOne} %</h6>
+                <Typography variant="h6">
+                  {MokupHome.results.staticsResults.staticsOne} %
+                </Typography>
               </div>
               <div>
-                <h6>{MokupHome.results.staticsResults.staticsOne} %</h6>
+                <Typography variant="h6">
+                  {MokupHome.results.staticsResults.staticsOne} %
+                </Typography>
               </div>
             </div>
             <div className="caption">
-              <p>{MokupHome.results.resultsCaption}</p>
+              <Typography variant="body1">
+                {MokupHome.results.resultsCaption}
+              </Typography>
             </div>
           </section>
 
           {/* sezione eventi */}
           <section className="events" id="events">
-            <h4 className="title">
-              {t("titles.eventsTitle")}
-            </h4>
-            <div className="articleContainer">
-              {EVENTI.map(mapEvents)}
-            </div>
+            <Typography variant="h2">{t("titles.eventsTitle")}</Typography>
+            <div className="articleContainer">{EVENTI.map(mapEvents)}</div>
           </section>
 
           {/* sezione articoli blog */}
           <section className="articles" id="blog">
-            <h4 className="title">{t("home.latestNews")}</h4>
-            <div className="articlesContainer">
+            <Typography variant="h2">{t("home.latestNews")}</Typography>
+            <div className="articleContainer">
               {state.articlesArray.map(mapArticles)}
             </div>
           </section>
 
           {/* sezione rimani aggiornato sui social */}
           <section className="stayUpToDate">
-            <h4 className="title">{t("home.stayUpToDate")}</h4>
-            <p className="subTitle">{MokupHome.stayUpToDate.subTitle}</p>
+            <Typography variant="h2">{t("home.stayUpToDate")}</Typography>
+            <Typography variant="body1" className="description">
+              {MokupHome.stayUpToDate.subTitle}
+            </Typography>
             <div className="iframeContainer">
               <iframe src={MokupHome.stayUpToDate.link}></iframe>
             </div>
@@ -302,14 +312,15 @@ const Home: FC = () => {
 
           {/* sezione storia  */}
           <section className="history" id="history">
-            <h4 className="title">{MokupHome.story.title}</h4>
-            <p className="description">{MokupHome.story.description}</p>
+            <Typography variant="h2">{MokupHome.story.title}</Typography>
+            <Typography variant="body1" className="description">
+              {MokupHome.story.description}
+            </Typography>
             <div className="imageContainer">
               <img src={MokupHome.story.image} alt="story image" />
             </div>
           </section>
-        </section>
-
+        </div>
       </main>
 
       {/* footer e prefooter */}

@@ -2,9 +2,10 @@ import { FC, useState } from "react"
 import { Link } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 import { Helmet } from "react-helmet"
+import { Typography } from "@mui/material"
 
-import Footer from "../components/footer/Footer"
-import PreFooter from "../components/preFooter/PreFooter"
+import Footer from "../components/hooks/Footer/Footer"
+import PreFooter from "../components/hooks/PreFooter/PreFooter"
 import Header from "../components/hooks/Header/Header"
 import InputBox from "../components/ui/inputBox/InputBox"
 import SelectBox from "../components/ui/inputBox/SelectBox"
@@ -133,7 +134,7 @@ const SignUp: FC = () => {
       <Header />
 
       <main id="signup" className="sectionContainer">
-        <h1>{t("titles.signupTitle")}</h1>
+        <Typography variant="h1">{t("titles.signupTitle")}</Typography>
         <form action="" className={"form"} onSubmit={submit}>
           <div className={"input-box"}>
             <InputBox
@@ -194,8 +195,12 @@ const SignUp: FC = () => {
           />
         </form>
         <div className="aside-section">
-          <p>{t("login.alreadyRegistered")}</p>
-          <Link to={SCREENS.login}>{t("buttons.loginButton")}</Link>
+          <Typography variant="body2">
+            {t("login.alreadyRegistered")}
+          </Typography>
+          <Link to={SCREENS.login}>
+            <Typography variant="body2">{t("buttons.loginButton")}</Typography>
+          </Link>
         </div>
       </main>
 
