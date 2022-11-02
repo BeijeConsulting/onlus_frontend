@@ -1,13 +1,12 @@
-import React, { FC, useState } from "react";
+import { FC, useState } from "react";
 import { useTranslation } from "react-i18next";
-
-//helmet
 import { Helmet } from "react-helmet";
+import { Typography } from "@mui/material";
 
 //components
-import Footer from "../components/ui/Footer/Footer";
-import Header from "../components/ui/Header/Header";
-import PreFooter from "../components/hooks/preFooter/PreFooter";
+import Footer from "../components/hooks/Footer/Footer";
+import Header from "../components/hooks/Header/Header";
+import PreFooter from "../components/hooks/PreFooter/PreFooter";
 import CustomButton from "../components/ui/buttons/CustomButton/CustomButton";
 import InputBox from "../components/hooks/inputBox/InputBox";
 import InputCheckbox from "../components/hooks/inputBox/InputCheckbox";
@@ -148,11 +147,9 @@ const Donate: FC = () => {
       <Header />
 
       <main id="donate" className="sectionContainer">
-        <h1>{t("personalArea.donate")}</h1>
+        <Typography variant="h1">{t("personalArea.donate")}</Typography>
         <form action="">
-          <div className="titlePersonalData">
-            {t("personalArea.personalData")}
-          </div>
+          <Typography variant="h3">{t("personalArea.personalData")}</Typography>
           <section className="personalData">
             <div className="input-box">
               <InputBox
@@ -208,9 +205,9 @@ const Donate: FC = () => {
               />
             </div>
           </section>
-          <div className="titlePersonalData">
+          <Typography variant="h3">
             {t("personalArea.paymentOption")}
-          </div>
+          </Typography>
           <section className="personalData">
             <InputBox
               label={t("donate.holderName")}

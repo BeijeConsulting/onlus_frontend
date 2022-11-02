@@ -1,39 +1,66 @@
-import React, { ReactElement } from "react";
-import Button from "@mui/material/Button";
-import Link from "@mui/material/Link";
-import "./joinUsBox.scss";
-import { useNavigate, NavigateFunction } from "react-router-dom";
-import CustomButton from "../../ui/buttons/CustomButton/CustomButton";
-import { useTranslation } from "react-i18next";
-import SCREENS from "../../../route/router";
+import React, { ReactElement, useState, useEffect } from "react"
+import Button from "@mui/material/Button"
+import Link from "@mui/material/Link"
+import "./joinUsBox.scss"
+import { useNavigate, NavigateFunction } from "react-router-dom"
+import CustomButton from "../../ui/buttons/CustomButton/CustomButton"
+import { useTranslation } from "react-i18next"
+import axios from "axios"
+import SCREENS from "../../../route/router"
+import { Typography } from "@mui/material"
 
 //ammessi valori "support" e "donate"
 interface Props {
-  type: string;
+  type: string
+}
+
+interface State {
+  title: string
+  donate: string
+  text: string
+  link: string
+}
+
+const initialState = {
+  title: "",
+  text: "",
+  link: "",
+  donate: "",
 }
 
 function JoinUs(props: Props): ReactElement {
-  const { t }: any = useTranslation();
-  const navigate: NavigateFunction = useNavigate();
+  const { t }: any = useTranslation()
+  const navigate: NavigateFunction = useNavigate()
+  const [state, setState] = useState<State>(initialState)
+
+  useEffect(() => {
+    getData()
+  }, [])
 
   function goToDonations(): void {
-    navigate(SCREENS.donate);
+    navigate(SCREENS.donate)
   }
 
   function goToJoin(): void {
-    navigate(SCREENS.signup);
+    navigate(SCREENS.signup)
   }
+
+  async function getData(): Promise<void> {
+    let mockData: any = await axios.get("mockAPI/joinUsBox.json")
+    setState(mockData.data)
+  }
+
   return (
     <article className="joinUsBox">
       <section className="upperSection">
         {props.type === "support" ? (
-          <div className="header1"> {t("preFooter.title")}</div>
+          <Typography variant="h1"> {state.title}</Typography>
         ) : (
-          <div className="header1"> {t("buttons.donateButton")}</div>
+          <Typography variant="h1"> {state.donate}</Typography>
         )}
 
         <hr className="separator" />
-        <div className="header2">{t("preFooter.caption")}</div>
+        <Typography variant="h3">{state.text}</Typography>
       </section>
       <div className="buttons">
         <div className="btn1">
@@ -57,11 +84,11 @@ function JoinUs(props: Props): ReactElement {
       </div>
       {props.type === "support" && (
         <section className="lowerSection">
-          Lorem, ipsum dolor. <Link href="#">Link</Link>
+          <Typography variant="body1">{state.link}</Typography>
         </section>
       )}
     </article>
-  );
+  )
 }
 
-export default JoinUs;
+export default JoinUs

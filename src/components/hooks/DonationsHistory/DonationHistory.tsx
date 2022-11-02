@@ -2,6 +2,7 @@ import React, { ReactElement, useState, useEffect } from "react";
 import "./donationHistory.scss";
 import { useTranslation } from "react-i18next";
 import { donation } from "../../../utils/type";
+import { Typography } from "@mui/material";
 
 interface Props {
   datas: Array<donation>;
@@ -36,11 +37,20 @@ function DonationHistory(props: Props): ReactElement {
     <article className="donationsSection">
       <section className="windowBox">
         <div className="donationTotal">
-          {t("personalArea.totalDonated")}
-          <span className="bigNumber">{`${state}€`}</span>
+          <Typography variant="body1">
+            {t("personalArea.totalDonated")}
+
+            <span className="bigNumber">{`${state}€`}</span>
+          </Typography>
         </div>
-        <div className="titleHistory">{t("personalArea.donationsHistory")}</div>
-        <section className="donations">{props.datas.map(mapping)}</section>
+        <div className="titleHistory">
+          <Typography variant="h3">
+            {t("personalArea.donationsHistory")}
+          </Typography>
+        </div>
+        <section className="donations">
+          <Typography variant="body1">{props.datas.map(mapping)}</Typography>
+        </section>
       </section>
     </article>
   );

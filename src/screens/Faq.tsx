@@ -3,15 +3,14 @@ import { FC, useState, useEffect } from "react";
 //translation
 import { useTranslation } from "react-i18next";
 
-//axios
 import axios from "axios";
 
 //helmet
 import { Helmet } from "react-helmet";
 
 //components
-import Header from "../components/ui/Header/Header";
-import Footer from "../components/ui/Footer/Footer";
+import Header from "../components/hooks/Header/Header";
+import Footer from "../components/hooks/Footer/Footer";
 import AccordionItem from "../components/hooks/AccordionItem/AccordionItem";
 
 //style
@@ -19,6 +18,7 @@ import "../styles/faq.scss";
 
 //type
 import { faq, infoType } from "../utils/type";
+import { Typography } from "@mui/material";
 
 interface State {
   data: infoType;
@@ -62,11 +62,11 @@ const Faq: FC = () => {
       {state.data && (
         <main id={"faq"} className="sectionContainer">
           <section>
-            <h1>{state.data.info.title}</h1>
-            <p>{state.data.info.text}</p>
+            <Typography variant="h1">{state.data.info.title}</Typography>
+            <Typography variant="body1">{state.data.info.text}</Typography>
           </section>
           <section>
-            <h1>Faq</h1>
+            <Typography variant="h1">Faq</Typography>
             <div className="faq-container">{state.data.qna.map(mapFaq)}</div>
           </section>
         </main>

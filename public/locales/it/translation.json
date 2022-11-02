@@ -21,7 +21,8 @@
     "notFound": "Pagina non trovata",
     "personalArea": "Area personale",
     "signup": "Registrati",
-    "support": "Supportaci"
+    "support": "Supportaci",
+    "resetPassword":"Reset Password"
   },
 
   "titles": {
@@ -90,6 +91,12 @@
     "alreadyRegistered": "Hai già un account?"
   },
 
+  "forgotPassword": {
+    "resetPassword":"Reimposta la tua password",
+    "labelReset":"Inserisci la tua mail",
+    "clickReset":"Reset password"
+  },
+
   "personalArea": {
     "myInfo": "I miei dati",
     "donations": "Donazioni",
@@ -121,5 +128,10 @@
     "errorDateOfBirth": "Inserire una data valida",
     "errorPassword": "Inserire una password lunga almeno 8 caratteri, contenente almeno una lettera maiuscola, minuscola, numero e carattere speciale",
     "errorConfirmPassword": "Le due password non coincidono"
+  },
+
+  "error":{
+    "notFound":"Errore",
+    "description":"Pagina non trovata! Ci scusiamo per il disagio."
   }
 }

@@ -1,8 +1,10 @@
-import { FC, ReactElement, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import Footer from "../components/ui/Footer/Footer";
-import Header from "../components/ui/Header/Header";
-import PreFooter from "../components/hooks/preFooter/PreFooter";
+import { Typography } from "@mui/material";
+
+import Footer from "../components/hooks/Footer/Footer";
+import Header from "../components/hooks/Header/Header";
+import PreFooter from "../components/hooks/PreFooter/PreFooter";
 import InputBox from "../components/hooks/inputBox/InputBox";
 import SelectBox from "../components/hooks/inputBox/SelectBox";
 import { Helmet } from "react-helmet";
@@ -111,7 +113,7 @@ const Blog: FC = () => {
       </Helmet>
       <Header />
       <main id="blog" className="sectionContainer">
-        <h1>{t("titles.blogTitle")}</h1>
+        <Typography variant="h1">{t("titles.blogTitle")}</Typography>
         <section className="searchContainer">
           <InputBox label={t("search")} type="text" callbackChange={search} />
           <SelectBox

@@ -8,9 +8,10 @@ import axios, { AxiosResponse } from "axios";
 import { Helmet } from "react-helmet";
 
 //Components
-import Footer from "../components/ui/Footer/Footer";
-import Header from "../components/ui/Header/Header";
-import Hero from "../components/ui/Hero/Hero";
+
+import Footer from "../components/hooks/Footer/Footer";
+import Header from "../components/hooks/Header/Header";
+import Hero from "../components/hooks/Hero/Hero";
 import JoinUs from "../components/hooks/joinUsBbox/JoinUsBox";
 import PreFooter from "../components/hooks/preFooter/PreFooter";
 
@@ -19,6 +20,7 @@ import { content } from "../utils/type";
 
 //Styles
 import "../styles/about.scss";
+import { Typography } from "@mui/material";
 
 interface State {
   content: Array<content>;
@@ -44,16 +46,13 @@ const About: FC = () => {
   const mappingContent = (item: content, key: number) => {
     return (
       <section className="content-about-container" key={key}>
-        <div className="text-about">{item.paragraph}</div>
-        <div className="img-about">
-          {!!item.media &&
-            (item.media.type === "image" ? (
-              <img className="media" src={item.media.content} />
-            ) : (
-              <video controls className="img-about">
-                <source type="video/webm" src={item.media.content} />
-              </video>
-            ))}
+        <Typography variant="body1">{item.paragraph}</Typography>
+        <div className="img-container">
+          <img
+            className="img-about"
+            src={require(`../assets/images/${item.media?.content}`)}
+            alt="hero-img"
+          />
         </div>
       </section>
     );
@@ -75,7 +74,7 @@ const About: FC = () => {
           image={"pandaImg.jpg"}
         />
         <section className="sectionContainer">
-          <h1>{t("nav.about")}</h1>
+          <Typography variant="h1">{t("nav.about")}</Typography>
           {state.content.map(mappingContent)}
         </section>
       </main>

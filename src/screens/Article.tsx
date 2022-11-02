@@ -1,11 +1,11 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react"
 
 //components
-import Footer from "../components/ui/Footer/Footer";
-import Header from "../components/ui/Header/Header";
+import Footer from "../components/hooks/Footer/Footer";
+import Header from "../components/hooks/Header/Header";
 import PreFooter from "../components/hooks/preFooter/PreFooter";
 import CorrelatedArticleCard from "../components/ui/correlatedArticleCard/CorrelatedArticleCard";
-import Hero from "../components/ui/Hero/Hero";
+import Hero from "../components/hooks/Hero/Hero";
 
 //translation
 import { useTranslation } from "react-i18next";
@@ -89,6 +89,7 @@ const Article: FC = () => {
     return (
       <div key={key} className="paragraph">
         <p className="paragraphText">{el.paragraph}</p>
+        {/* {!!el.media && <img className="image" src={el.media} />} */}
         {!!el.media &&
           (el.media.type === "image" ? (
             <img className="media" src={el.media.content} />
@@ -125,10 +126,10 @@ const Article: FC = () => {
           type="article"
         />
         <section className="sectionContainer">
-          <div className="date">{singleArticle.date}</div>
+          <Typography variant="body1">{singleArticle.date}</Typography>
           <article>
             <section>{singleArticle.content.map(mappingParagraph)}</section>
-            <div className="title">{t("home.relatedArticles")}</div>
+            <Typography variant="h3">{t("home.relatedArticles")}</Typography>
             <section className="correlatedArticles">
               {state.localArray.length > 0 &&
                 state.localArray.map(mappingCorrelated)}

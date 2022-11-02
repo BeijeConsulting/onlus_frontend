@@ -8,17 +8,18 @@ import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet";
 
 //components
-import JoinUs from "../components/hooks/joinUsBbox/JoinUsBox";
+import JoinUs from "../components/hooks/Header/Header/JoinUsBox";
 import Header from "../components/ui/Header/Header";
 import PreFooter from "../components/hooks/preFooter/PreFooter";
-import Footer from "../components/ui/Footer/Footer";
-import Hero from "../components/ui/Hero/Hero";
+import Footer from "../components/hooks/Footer/Footer";
+import Hero from "../components/hooks/Hero/Hero";
 
 //styles
 import "../styles/support.scss";
 
 //type
 import { content, hero } from "../utils/type";
+import { Typography } from "@mui/material";
 
 interface State {
   hero: hero;
@@ -45,7 +46,7 @@ function Support() {
     console.log(`../assets/images/${item.media}`);
     return (
       <section className="content-about-container" key={key}>
-        <div className="text-about">{item.paragraph}</div>
+        <Typography variant="body1">{item.paragraph}</Typography>
         <div className="img-container">
           <img
             className="img-about"
@@ -67,7 +68,7 @@ function Support() {
       <main id="support">
         <JoinUs type="donate" />
         <div className="sectionContainer">
-          <h1>{state?.title}</h1>
+          <Typography variant="h1">{state?.title}</Typography>
           {state?.content.map(mapping)}
         </div>
         <Hero type="home" title={state?.hero.text} image={"pandaImg.jpg"} />

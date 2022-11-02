@@ -13,6 +13,10 @@ html{
   scroll-behavior: smooth;
 }
 
+body{
+  overflow-x: hidden;
+}
+
 ul,
 ul li {
   list-style: none;
@@ -25,13 +29,8 @@ img {
   height: auto;
 }
 
-body {
-  font-family: "Noto Sans JP", sans-serif;
-  overflow-x: hidden;
-}
-
 main{
-  &#blog, &#donate, &#events, &#faq, &#login, &#personalArea, &#signup{
+  &#blog, &#donate, &#events, &#faq, &#login, &#personalArea, &#signup, &#notFound, &#resetPassword{
     padding-top: calc(104px + 20px);
   }
   &#about, &#support, &#article{
@@ -39,32 +38,20 @@ main{
   }
 }
 
-// main {
-//   padding-top: calc(104px + 20px);
-//   &.home {
-//     padding-top: 147.2px;
-//   }
-//   &.article, &.about, &.support {
-//     padding-top: 104px;
-//   }
-// }
-
 .sectionContainer{
   padding: 20px;
 }
 
 h1 {
-  font-size: 24px;
   padding-bottom: 10px;
 }
 
 @media (min-width: 768px) {
   h1 {
-    font-size: 36px;
     padding-bottom: 20px;
   }
   main{
-    &#blog, &#donate, &#events, &#faq, &#login, &#personalArea, &#signup{
+    &#blog, &#donate, &#events, &#faq, &#login, &#personalArea, &#signup, &#notFound, &#resetPassword{
       padding-top: calc(104px + 50px);
     }
   }
@@ -74,11 +61,8 @@ h1 {
 }
 
 @media (min-width: 992px) {
-  h1 {
-    font-size: 48px;
-  }
   main{
-    &#blog, &#donate, &#events, &#faq, &#login, &#personalArea, &#signup{
+    &#blog, &#donate, &#events, &#faq, &#login, &#personalArea, &#signup, &#notFound, &#resetPassword{
       padding-top: calc(104px + 100px);
     }
   }

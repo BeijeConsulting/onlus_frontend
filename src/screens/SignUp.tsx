@@ -7,9 +7,9 @@ import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet";
 
 //components
-import Footer from "../components/ui/Footer/Footer";
+import Footer from "../components/hooks/Footer/Footer";
 import PreFooter from "../components/hooks/preFooter/PreFooter";
-import Header from "../components/ui/Header/Header";
+import Header from "../components/hooks/Header/Header";
 import InputBox from "../components/hooks/inputBox/InputBox";
 import SelectBox from "../components/hooks/inputBox/SelectBox";
 import InputCheckbox from "../components/hooks/inputBox/InputCheckbox";
@@ -33,6 +33,7 @@ import "../styles/signup.scss";
 
 //type
 import { language } from "../utils/type";
+import { Typography } from "@mui/material";
 
 interface State {
   errorName: boolean;
@@ -146,7 +147,7 @@ const SignUp: FC = () => {
       <Header />
 
       <main id="signup" className="sectionContainer">
-        <h1>{t("titles.signupTitle")}</h1>
+        <Typography variant="h1">{t("titles.signupTitle")}</Typography>
         <form action="" className={"form"} onSubmit={submit}>
           <div className={"input-box"}>
             <InputBox
@@ -207,8 +208,12 @@ const SignUp: FC = () => {
           />
         </form>
         <div className="aside-section">
-          <p>{t("login.alreadyRegistered")}</p>
-          <Link to={SCREENS.login}>{t("buttons.loginButton")}</Link>
+          <Typography variant="body2">
+            {t("login.alreadyRegistered")}
+          </Typography>
+          <Link to={SCREENS.login}>
+            <Typography variant="body2">{t("buttons.loginButton")}</Typography>
+          </Link>
         </div>
       </main>
 

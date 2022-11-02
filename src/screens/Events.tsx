@@ -1,14 +1,18 @@
 import React, { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { Helmet } from "react-helmet"
+import { Typography } from "@mui/material"
+
 // componenti
-import Footer from "../components/ui/Footer/Footer"
-import PreFooter from "../components/hooks/preFooter/PreFooter"
+import Footer from "../components/hooks/Footer/Footer"
+import PreFooter from "../components/hooks/PreFooter/PreFooter"
 import CardEvents from "../components/hooks/CardEvents/CardEvents"
 import CardEventsMobile from "../components/hooks/CardEvents/CardEventsMobile"
-import Header from "../components/ui/Header/Header"
+import Header from "../components/hooks/Header/Header"
+
 // mediaquery
 import { useMediaQuery } from "react-responsive"
+
 // stile
 import "../styles/events.scss"
 
@@ -112,7 +116,7 @@ const Events: FC = () => {
       <Header />
 
       <main id={"events"} className="sectionContainer">
-        <h1 className="title">{t("titles.eventsTitle")}</h1>
+        <Typography variant="h1">{t("titles.eventsTitle")}</Typography>
         {EVENTI.map(mapEvents)}
       </main>
 

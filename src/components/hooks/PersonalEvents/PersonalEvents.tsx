@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { FC, ReactElement, useEffect, useState } from "react";
 import CardEventsMobile from "../CardEvents/CardEventsMobile";
 import { useTranslation } from "react-i18next";
@@ -7,6 +8,27 @@ import { Events } from "../../../utils/type";
 
 interface Props {
   events: Array<Events>;
+=======
+import React, { ReactElement, useEffect, useState, FC } from "react"
+import CardEventsMobile from "../CardEvents/CardEventsMobile"
+import { useTranslation } from "react-i18next"
+import Typography from "@mui/material/Typography"
+
+import "./personalEvents.scss"
+
+type event = {
+  title: string
+  image: string
+  description: string
+  requirement: string
+  date: string
+  time: string
+  place: string
+}
+
+interface Props {
+  events: event[]
+>>>>>>> develop
 }
 
 /*title: string,
@@ -17,19 +39,32 @@ interface Props {
     time: string,
     place: string*/
 
+<<<<<<< HEAD
 const PersonalEvents: FC<Props> = (props) => {
   const { t }: any = useTranslation();
   const [today, setToday] = useState<Date>(new Date());
+=======
+const PersonalEvents: FC<Props> = (props): ReactElement => {
+  const { t }: any = useTranslation()
+  const [today, setToday] = useState<Date>(new Date())
+>>>>>>> develop
 
   //   useEffect(() => {
   //     setToday(new Date());
   //   }, []);
 
+<<<<<<< HEAD
   function mapEvents(element: Events, key: number): ReactElement {
     let eventDate = Date.parse(element.date);
     let todaySec: number = today!.getTime();
     console.log("i valori da paragonare", eventDate, todaySec);
     if (eventDate < todaySec) {
+=======
+  function mapEvents(element: event, key: number): ReactElement {
+    let eventDate = Date.parse(element.date)
+    let todaySec: number = today!.getTime()
+    if (eventDate > todaySec) {
+>>>>>>> develop
       return (
         <div key={key} className="singleCardContainer">
           <CardEventsMobile
@@ -42,25 +77,43 @@ const PersonalEvents: FC<Props> = (props) => {
             place={element.place}
           />
         </div>
+<<<<<<< HEAD
       );
     } else {
       return <></>;
     }
   }
+=======
+      )
+    } else {
+      return <></>
+    }
+  }
+
+>>>>>>> develop
   return (
     <article className="eventsSection">
       <section>
-        <div className="txt">{t("personalArea.programmedEvents")}</div>
+        <Typography variant="h3" sx={{ paddingBottom: "25px" }}>
+          {t("personalArea.programmedEvents")}
+        </Typography>
         <section className="cardsContainer">
           {props.events.map(mapEvents)}
         </section>
-        <div className="txt">{t("personalArea.pastEvents")}</div>
+        <Typography variant="h3" sx={{ paddingBottom: "25px" }}>
+          {t("personalArea.pastEvents")}
+        </Typography>
         <section className="cardsContainer">
           {props.events.map(mapEvents)}
         </section>
       </section>
     </article>
+<<<<<<< HEAD
   );
 };
+=======
+  )
+}
+>>>>>>> develop
 
-export default PersonalEvents;
+export default PersonalEvents

@@ -9,8 +9,8 @@ import axios, { AxiosResponse } from "axios";
 import { Helmet } from "react-helmet";
 
 //components
-import Footer from "../components/ui/Footer/Footer";
-import Header from "../components/ui/Header/Header";
+import Footer from "../components/hooks/Footer/Footer";
+import Header from "../components/hooks/Header/Header";
 import NavTab from "../components/ui/NavTab/NavTab";
 import VerticalNavTab from "../components/ui/VerticalNavTab/VerticalNavTab";
 import PreFooter from "../components/hooks/preFooter/PreFooter";
@@ -23,6 +23,7 @@ import "../styles/personalArea.scss";
 
 //type
 import { personalData } from "../utils/type";
+import { Typography } from "@mui/material";
 
 interface State {
   isLoaded: boolean;
@@ -77,7 +78,7 @@ const PersonalArea: FC = () => {
       <main id="personalArea" className="sectionContainer">
         <section className="welcomeCard">
           <div className="icon-container"></div>
-          <h1>{t("personalArea.welcome")}</h1>
+          <Typography variant="h1">{t("personalArea.welcome")}</Typography>
         </section>
         {state.isLoaded && (
           <>

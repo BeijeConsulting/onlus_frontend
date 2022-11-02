@@ -1,8 +1,13 @@
 import React, { FC, ReactElement, useState, useLayoutEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import CustomButton from "../buttons/CustomButton/CustomButton";
+import CustomButton from "../../ui/buttons/CustomButton/CustomButton";
+import axios from "axios";
+
+import { Typography } from "@mui/material";
+
 import "./hero.scss";
+import { url } from "inspector";
 
 import SCREENS from "../../../route/router";
 
@@ -36,9 +41,12 @@ const Hero: FC<HeroProps> = (props) => {
           }}
         >
           <div className="hero-content">
-            <h1 className="hero-title">{props.title}</h1>
+            <Typography variant="h1">{props.title}</Typography>
+            {/* <h1 className="hero-title">{props.title}</h1> */}
             <div className="hero-linebr" />
-            <h4 className="hero-subtitle">{props.subtitle}</h4>
+            <Typography variant="h5" className="hero-subtitle">
+              {props.subtitle}
+            </Typography>
             {props.type === "home" ? (
               <CustomButton
                 size="small"
@@ -72,8 +80,10 @@ const Hero: FC<HeroProps> = (props) => {
             }}
           >
             <div className="hero-content">
-              <h4 className="hero-category">{props.category}</h4>
-              <h1 className="hero-title">{props.title}</h1>
+              <Typography variant="h5" className="hero-category">
+                {props.category}
+              </Typography>
+              <Typography variant="h1">{props.title}</Typography>
             </div>
           </section>
         </>
@@ -93,7 +103,7 @@ const Hero: FC<HeroProps> = (props) => {
             }}
           >
             <div className="hero-content">
-              <h1 className="hero-mission">{props.title}</h1>
+              <Typography variant="h1">{props.title}</Typography>
             </div>
           </section>
         </>
