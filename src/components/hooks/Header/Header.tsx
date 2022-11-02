@@ -87,6 +87,7 @@ const Header: FC<HeaderProps> = (props) => {
 
         <Default>
           <nav className={"nav-desktop"}>
+            <p>{t("Home")}</p>
             <p>{t("nav.about")}</p>
             <p>{t("nav.events")}</p>
             <p>{t("nav.blog")}</p>
@@ -118,9 +119,9 @@ const Header: FC<HeaderProps> = (props) => {
       </div>
 
       <div className="bottom-header">
-        <p className="bottom-header-button">{t("nav.events")}</p>
-        <p className="bottom-header-button">{t("nav.blog")}</p>
-        <p className="bottom-header-button">{t("home.history")}</p>
+        <a href="#events" className="bottom-header-button">{t("nav.events")}</a>
+        <a href="#blog" className="bottom-header-button">{t("nav.blog")}</a>
+        <a href="#history" className="bottom-header-button">{t("home.history")}</a>
       </div>
     </header>
   )

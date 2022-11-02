@@ -2,8 +2,6 @@
 import { useState, useEffect, FC } from "react"
 // traduzioni
 import { useTranslation } from "react-i18next"
-// mediaquery
-import { useMediaQuery } from "react-responsive"
 // componenti
 import Hero from "../components/hooks/Hero/Hero"
 import Footer from "../components/footer/Footer"
@@ -14,6 +12,8 @@ import CardArticle from "../components/cardArticle/CardArticle"
 // style
 import "../styles/home.scss"
 import Header from "../components/hooks/Header/Header"
+//icons
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
 // mokup home (il json reale sarà diverso)
 const MokupHome = {
@@ -236,72 +236,82 @@ const Home: FC = () => {
     <>
       <Header isHome={true} />
 
-      <Hero
-        type={"home"}
-        title={MokupHome.hero.title}
-        subtitle={MokupHome.hero.subtitle}
-        image={MokupHome.hero.image}
-      />
+      <a href="#home" className="scrollToTopButton">
+        <KeyboardArrowUpIcon sx={{height:40, width:40}}/>
+      </a>
+
       <main id="home">
-        <section className="results">
-          <h4 className="title">{MokupHome.results.resultTitle}</h4>
-          <figure>
-            <img
-              src={MokupHome.results.resultsImage}
-              alt="illustrative image"
-            />
-          </figure>
-          <div className="statics">
-            <div>
-              <h6>{MokupHome.results.staticsResults.staticsOne} %</h6>
+        <Hero
+          type={"home"}
+          title={MokupHome.hero.title}
+          subtitle={MokupHome.hero.subtitle}
+          image={MokupHome.hero.image}
+        />
+
+        <section className="sectionContainer">
+          <section className="results">
+            <h4 className="title">{MokupHome.results.resultTitle}</h4>
+            <figure>
+              <img
+                src={MokupHome.results.resultsImage}
+                alt="illustrative image"
+              />
+            </figure>
+            <div className="statics">
+              <div>
+                <h6>{MokupHome.results.staticsResults.staticsOne} %</h6>
+              </div>
+              <div>
+                <h6>{MokupHome.results.staticsResults.staticsOne} %</h6>
+              </div>
+              <div>
+                <h6>{MokupHome.results.staticsResults.staticsOne} %</h6>
+              </div>
             </div>
-            <div>
-              <h6>{MokupHome.results.staticsResults.staticsOne} %</h6>
+            <div className="caption">
+              <p>{MokupHome.results.resultsCaption}</p>
             </div>
-            <div>
-              <h6>{MokupHome.results.staticsResults.staticsOne} %</h6>
+          </section>
+
+          {/* sezione eventi */}
+          <section className="events" id="events">
+            <h4 className="title">
+              {t("titles.eventsTitle")}
+            </h4>
+            <div className="articleContainer">
+              {EVENTI.map(mapEvents)}
             </div>
-          </div>
-          <div className="caption">
-            <p>{MokupHome.results.resultsCaption}</p>
-          </div>
+          </section>
+
+          {/* sezione articoli blog */}
+          <section className="articles" id="blog">
+            <h4 className="title">{t("home.latestNews")}</h4>
+            <div className="articlesContainer">
+              {state.articlesArray.map(mapArticles)}
+            </div>
+          </section>
+
+          {/* sezione rimani aggiornato sui social */}
+          <section className="stayUpToDate">
+            <h4 className="title">{t("home.stayUpToDate")}</h4>
+            <p className="subTitle">{MokupHome.stayUpToDate.subTitle}</p>
+            <div className="iframeContainer">
+              <iframe src={MokupHome.stayUpToDate.link}></iframe>
+            </div>
+          </section>
+
+          {/* sezione storia  */}
+          <section className="history" id="history">
+            <h4 className="title">{MokupHome.story.title}</h4>
+            <p className="description">{MokupHome.story.description}</p>
+            <div className="imageContainer">
+              <img src={MokupHome.story.image} alt="story image" />
+            </div>
+          </section>
         </section>
+
       </main>
-      {/* componente unisciti a noi da inserire*/}
-      <main>
-        {/* sezione eventi */}
-        <section className="events">
-          <h4 className="title">
-            {t("titles.eventsTitle")}
-          </h4>
-          <div className="articleContainer">
-            {EVENTI.map(mapEvents)}
-          </div>
-        </section>
-        {/* sezione articoli blog */}
-        <section className="articles">
-          <h4 className="title">{t("home.latestNews")}</h4>
-          <div className="articlesContainer">
-            {state.articlesArray.map(mapArticles)}
-          </div>
-        </section>
-        {/* sezione rimani aggiornato sui social */}
-        <section className="stayUpToDate">
-          <h4 className="title">{t("home.stayUpToDate")}</h4>
-          <p className="subTitle">{MokupHome.stayUpToDate.subTitle}</p>
-          <div className="iframeContainer">
-            <iframe src={MokupHome.stayUpToDate.link}></iframe>
-          </div>
-        </section>
-        {/* sezione storia  */}
-        <section className="history">
-          <h4 className="title">{MokupHome.story.title}</h4>
-          <p className="description">{MokupHome.story.description}</p>
-          <div className="imageContainer">
-            <img src={MokupHome.story.image} alt="story image" />
-          </div>
-        </section>
-      </main>
+
       {/* footer e prefooter */}
       <PreFooter />
       <Footer />

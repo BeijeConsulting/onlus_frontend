@@ -1,5 +1,26 @@
 @import './common.scss';
 
+.scrollToTopButton{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgb(0, 0, 0, 0.65);
+    cursor: pointer;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: all 0.2s ease-in-out;
+    &:hover{
+        transform: scale(105%);
+    }
+}
+
 #home {
 
     // utils
