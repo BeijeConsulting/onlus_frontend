@@ -7,6 +7,7 @@ const SCREENS = {
   events: "/events",
   faq: "/faq",
   login: "/login",
+  resetPassword: "/reset-password",
   personalArea: "/personal-area",
   signup: "/signup",
   support: "/support",

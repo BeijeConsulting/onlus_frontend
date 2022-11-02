@@ -21,7 +21,8 @@
     "notFound": "Page not found",
     "personalArea": "Personal area",
     "signup": "Sign up",
-    "support": "Support us"
+    "support": "Support us",
+    "resetPassword":"Reset Password"
   },
 
   "titles": {
@@ -90,6 +91,12 @@
     "alreadyRegistered": "Already registered?"
   },
 
+  "forgotPassword": {
+    "resetPassword":"Reset your password",
+    "labelReset":"Enter a valid email",
+    "clickReset":"Reset password"
+  },
+
   "personalArea": {
     "myInfo": "Personal data",
     "donations": "Donations",
@@ -121,5 +128,10 @@
     "errorDateOfBirth": "Enter a valid date",
     "errorPassword": "Enter a password at least 8 characters long, containing at least one capital letter, lowercase, number and special character",
     "errorConfirmPassword": "The two passwords do not coincide"
+  },
+
+  "error":{
+    "notFound":"Error",
+    "description":"We are sorry, the page you requested was not found!"
   }
 }

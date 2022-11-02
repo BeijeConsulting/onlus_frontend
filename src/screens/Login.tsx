@@ -8,6 +8,7 @@ import InputBox from "../components/ui/inputBox/InputBox"
 //Router
 import SCREENS from "../route/router"
 import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 //i18n
 import { useTranslation } from "react-i18next"
@@ -17,9 +18,14 @@ import "../styles/login.scss"
 import PreFooter from "../components/preFooter/PreFooter"
 
 function Login() {
+  const navigate = useNavigate()
   const { t }: any = useTranslation()
   const login = () => {
     console.log("login")
+  }
+
+  const resetPassword=():void=>{
+    navigate("/reset-password")
   }
 
   return (
@@ -37,9 +43,9 @@ function Login() {
           <InputBox label={t("login.email")} type={"mail"} />
           <InputBox label={t("login.password")} type={"password"} />
 
-          <a href="#" className="forgot-password">
+          <p className="forgot-password" onClick={resetPassword}>
             {t("login.forgottenPassword")}
-          </a>
+          </p>
 
           <CustomButton
             size={"big"}

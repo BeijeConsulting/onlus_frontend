@@ -31,7 +31,7 @@ body {
 }
 
 main{
-  &#blog, &#donate, &#events, &#faq, &#login, &#personalArea, &#signup{
+  &#blog, &#donate, &#events, &#faq, &#login, &#personalArea, &#signup, &#notFound, &#resetPassword{
     padding-top: calc(104px + 20px);
   }
   &#about, &#support, &#article{
@@ -64,7 +64,7 @@ h1 {
     padding-bottom: 20px;
   }
   main{
-    &#blog, &#donate, &#events, &#faq, &#login, &#personalArea, &#signup{
+    &#blog, &#donate, &#events, &#faq, &#login, &#personalArea, &#signup, &#notFound, &#resetPassword{
       padding-top: calc(104px + 50px);
     }
   }
@@ -78,7 +78,7 @@ h1 {
     font-size: 48px;
   }
   main{
-    &#blog, &#donate, &#events, &#faq, &#login, &#personalArea, &#signup{
+    &#blog, &#donate, &#events, &#faq, &#login, &#personalArea, &#signup, &#notFound, &#resetPassword{
       padding-top: calc(104px + 100px);
     }
   }
