@@ -2,15 +2,15 @@ import { Helmet } from "react-helmet"
 import { useState } from "react"
 import { Typography } from "@mui/material";
 //Components
-import Footer from "../components/footer/Footer"
+import Footer from "../components/hooks/Footer/Footer";
 import Header from "../components/hooks/Header/Header"
 import CustomButton from "../components/ui/buttons/CustomButton/CustomButton"
 import InputBox from "../components/ui/inputBox/InputBox"
+import PreFooter from "../components/hooks/PreFooter/PreFooter";
 //i18n
 import { useTranslation } from "react-i18next"
 //Styles
 import "../styles/resetPassword.scss"
-import PreFooter from "../components/preFooter/PreFooter"
 //Check mail
 import {checkEmail} from "../utils/checkForm"
 

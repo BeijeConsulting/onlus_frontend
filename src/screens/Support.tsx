@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet"
 import { Typography } from "@mui/material"
 
 //components
-import JoinUs from "../components/hooks/JoinUsBbox/JoinUsBox"
+import JoinUs from "../components/hooks/joinUsBbox/JoinUsBox"
 import Header from "../components/hooks/Header/Header"
 import PreFooter from "../components/hooks/PreFooter/PreFooter"
 import Footer from "../components/hooks/Footer/Footer"

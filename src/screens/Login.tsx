@@ -39,7 +39,7 @@ function Login() {
           <InputBox label={t("login.email")} type={"mail"} />
           <InputBox label={t("login.password")} type={"password"} />
 
-          <Link to={"#"} className="forgot-password">
+          <Link to={"/reset-password"} className="forgot-password">
             <Typography variant="caption">
               {t("login.forgottenPassword")}
             </Typography>

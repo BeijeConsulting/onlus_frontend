@@ -9,7 +9,7 @@ import { Typography } from "@mui/material"
 import Footer from "../components/hooks/Footer/Footer"
 import Header from "../components/hooks/Header/Header"
 import Hero from "../components/hooks/Hero/Hero"
-import JoinUs from "../components/hooks/JoinUsBbox/JoinUsBox"
+import JoinUs from "../components/hooks/joinUsBbox/JoinUsBox"
 import PreFooter from "../components/hooks/PreFooter/PreFooter"
 
 //Styles
