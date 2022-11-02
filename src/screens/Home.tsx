@@ -1,26 +1,35 @@
 // react import
-import { useState, useEffect, FC } from "react"
-// traduzioni
-import { useTranslation } from "react-i18next"
-// componenti
-import Hero from "../components/hooks/Hero/Hero"
-import Footer from "../components/footer/Footer"
-import PreFooter from "../components/preFooter/PreFooter"
-import CardEventsMobile from "../components/cardEvents/CardEventsMobile"
-import CardArticle from "../components/cardArticle/CardArticle"
+import { useState, useEffect, FC } from "react";
+
+// translation
+import { useTranslation } from "react-i18next";
+
+// components
+import Hero from "../components/ui/Hero/Hero";
+import Footer from "../components/ui/Footer/Footer";
+import PreFooter from "../components/hooks/preFooter/PreFooter";
+import CardEventsMobile from "../components/hooks/CardEvents/CardEventsMobile";
+import CardArticle from "../components/ui/CardArticle/CardArticle";
+import Header from "../components/ui/Header/Header";
 
 // style
-import "../styles/home.scss"
-import Header from "../components/hooks/Header/Header"
+import "../styles/home.scss";
+
 //icons
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+
+//type
+import { article, Events } from "../utils/type";
+
+//mockup article
+import { articles } from "../utils/data";
 
 // mokup home (il json reale sarà diverso)
 const MokupHome = {
   hero: {
     title: "Salva i panda dai bambù",
     subtitle: "Loremfzdsoifgzdsoihgfzdsoigfdzsoifghzdsoigfhziofgz",
-    image: "pandaImg.jpg"
+    image: "pandaImg.jpg",
   },
   results: {
     resultTitle: "lorem ipsum dei risultati",
@@ -34,29 +43,20 @@ const MokupHome = {
     },
   },
   stayUpToDate: {
-    subTitle: 'Seguici su facebook',
-    link: 'https://www.wwf.it/'
+    subTitle: "Seguici su facebook",
+    link: "https://www.wwf.it/",
   },
   story: {
-    title: 'Storia...',
-    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos architecto consequuntur ab quasi nostrum rem error numquam! Error laborum sit iusto fugit, doloribus doloremque quos repellendus minima. Architecto, sequi adipisci.',
-    image: 'https://leganerd.com/wp-content/uploads/2016/10/pandas-live_64dff22c2fe56e9-999x562.jpg'
-  }
-}
-
-// definisco typo evento
-type Event = {
-  title: string
-  image: string
-  description: string
-  requirement: string
-  date: string
-  time: string
-  place: string
-}
+    title: "Storia...",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos architecto consequuntur ab quasi nostrum rem error numquam! Error laborum sit iusto fugit, doloribus doloremque quos repellendus minima. Architecto, sequi adipisci.",
+    image:
+      "https://leganerd.com/wp-content/uploads/2016/10/pandas-live_64dff22c2fe56e9-999x562.jpg",
+  },
+};
 
 // mokup eventi
-const EVENTI: Array<Event> = [
+const EVENTI: Array<Events> = [
   {
     title: "Save the planet",
     image: "https://www.plasticfreeonlus.it/seo/plastic-free-raccolta-fb.jpeg",
@@ -66,7 +66,7 @@ const EVENTI: Array<Event> = [
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi vero culpa velit magni aliquam. Voluptas non ullam quo temporibus aut, cum, sequi eaque recusandae iusto praesentium cumque omnis laudantium, saepe labore! Odio dicta tenetur, enim laboriosam quidem libero vel ipsam animi vitae ducimus aperiam magni fuga, ex cumque repudiandae eaque?",
     date: "4 ottobre 2022",
     time: "h 12.00",
-    place: "Milano"
+    place: "Milano",
   },
   {
     title: "Un gancio in cielo",
@@ -77,7 +77,7 @@ const EVENTI: Array<Event> = [
     requirement: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. ",
     date: "12 ottobre 2022",
     time: "h 12.00",
-    place: "Milano"
+    place: "Milano",
   },
   {
     title: "United for the heart",
@@ -88,156 +88,61 @@ const EVENTI: Array<Event> = [
     requirement: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. ",
     date: "12 ottobre 2022",
     time: "h 12.00",
-    place: "Milano"
+    place: "Milano",
   },
-]
-
-
-const articles = [
-  {
-    id: 1,
-    name: "riccardo",
-    surname: "bottoli",
-    email: "aletia@milan.it",
-    date: Date.now(),
-    title: "amare il prossimo",
-    status: "published",
-    cover:
-      "https://cdn.pixabay.com/photo/2016/11/29/12/13/fence-1869401_960_720.jpg",
-    categories: ["buongiorismo", "religione", "scemenze"],
-    content: [
-      {
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras in sem vitae leo consequat convallis. Duis fermentum euismod dui, sollicitudin rutrum purus. Proin posuere commodo mollis. Nam finibus pretium risus. Quisque vel maximus risus. Donec ultrices leo id aliquam hendrerit. Proin gravida dui id nulla venenatis suscipit. Morbi scelerisque tincidunt velit, bibendum dignissim velit sagittis ut. Suspendisse semper tincidunt odio, eget laoreet justo aliquet nec. Duis ut nunc posuere, tincidunt nulla sit amet, ultrices sapien. Quisque a pretium est. Nam malesuada convallis ipsum, sed volutpat ante accumsan nec. Donec ultrices scelerisque posuere.",
-        media: null,
-      },
-    ],
-  },
-  {
-    id: 2,
-    name: "riccardo",
-    surname: "bottoli",
-    email: "aletia@milan.it",
-    date: Date.now(),
-    title: "i panda",
-    status: "published",
-    cover:
-      "https://cdn.pixabay.com/photo/2013/05/15/09/12/tourist-attraction-111329_960_720.jpg",
-    categories: ["animali", "protezione", "scemenze"],
-    content: [
-      {
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras in sem vitae leo consequat convallis. Duis fermentum euismod dui, sollicitudin rutrum purus. Proin posuere commodo mollis. Nam finibus pretium risus. Quisque vel maximus risus. Donec ultrices leo id aliquam hendrerit. Proin gravida dui id nulla venenatis suscipit. Morbi scelerisque tincidunt velit, bibendum dignissim velit sagittis ut. Suspendisse semper tincidunt odio, eget laoreet justo aliquet nec. Duis ut nunc posuere, tincidunt nulla sit amet, ultrices sapien. Quisque a pretium est. Nam malesuada convallis ipsum, sed volutpat ante accumsan nec. Donec ultrices scelerisque posuere.",
-        media: null,
-      },
-    ],
-  },
-  {
-    id: 3,
-    name: "riccardo",
-    surname: "bottoli",
-    email: "aletia@milan.it",
-    date: Date.now(),
-    title: "riccardo",
-    status: "published",
-    cover:
-      "https://cdn.pixabay.com/photo/2019/04/04/15/17/smartphone-4103051_960_720.jpg",
-    categories: ["barba", "occhiali", "scemenze"],
-    content: [
-      {
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras in sem vitae leo consequat convallis. Duis fermentum euismod dui, sollicitudin rutrum purus. Proin posuere commodo mollis. Nam finibus pretium risus. Quisque vel maximus risus. Donec ultrices leo id aliquam hendrerit. Proin gravida dui id nulla venenatis suscipit. Morbi scelerisque tincidunt velit, bibendum dignissim velit sagittis ut. Suspendisse semper tincidunt odio, eget laoreet justo aliquet nec. Duis ut nunc posuere, tincidunt nulla sit amet, ultrices sapien. Quisque a pretium est. Nam malesuada convallis ipsum, sed volutpat ante accumsan nec. Donec ultrices scelerisque posuere.",
-        media: null,
-      },
-    ],
-  },
-  {
-    id: 4,
-    name: "riccardo",
-    surname: "bottoli",
-    email: "aletia@milan.it",
-    date: Date.now(),
-    title: "luca",
-    status: "published",
-    cover:
-      "https://cdn.pixabay.com/photo/2014/04/05/09/30/tablet-314153_960_720.png",
-    categories: ["champagne", "pelato", "rasato"],
-    content: [
-      {
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras in sem vitae leo consequat convallis. Duis fermentum euismod dui, sollicitudin rutrum purus. Proin posuere commodo mollis. Nam finibus pretium risus. Quisque vel maximus risus. Donec ultrices leo id aliquam hendrerit. Proin gravida dui id nulla venenatis suscipit. Morbi scelerisque tincidunt velit, bibendum dignissim velit sagittis ut. Suspendisse semper tincidunt odio, eget laoreet justo aliquet nec. Duis ut nunc posuere, tincidunt nulla sit amet, ultrices sapien. Quisque a pretium est. Nam malesuada convallis ipsum, sed volutpat ante accumsan nec. Donec ultrices scelerisque posuere.",
-        media: null,
-      },
-    ],
-  },
-  {
-    id: 5,
-    name: "riccardo",
-    surname: "bottoli",
-    email: "aletia@milan.it",
-    date: Date.now(),
-    title: "mattia",
-    status: "published",
-    cover:
-      "https://cdn.pixabay.com/photo/2016/02/07/16/35/world-1185076_960_720.png",
-    categories: ["calcio", "ciuffo", "sbagliato"],
-    content: [
-      {
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras in sem vitae leo consequat convallis. Duis fermentum euismod dui, sollicitudin rutrum purus. Proin posuere commodo mollis. Nam finibus pretium risus. Quisque vel maximus risus. Donec ultrices leo id aliquam hendrerit. Proin gravida dui id nulla venenatis suscipit. Morbi scelerisque tincidunt velit, bibendum dignissim velit sagittis ut. Suspendisse semper tincidunt odio, eget laoreet justo aliquet nec. Duis ut nunc posuere, tincidunt nulla sit amet, ultrices sapien. Quisque a pretium est. Nam malesuada convallis ipsum, sed volutpat ante accumsan nec. Donec ultrices scelerisque posuere.",
-        media: null,
-      },
-    ],
-  },
-]
+];
 
 const Home: FC = () => {
   // inizializzo traduzioni
-  const { t }: any = useTranslation()
-  const [state, setState] = useState({ articlesArray: articles })
+  const { t }: any = useTranslation();
+  const [state, setState] = useState({ articlesArray: articles });
 
   useEffect(() => {
-    getArticles()
-  }, [])
+    getArticles();
+  }, []);
 
   const getArticles = (): void => {
-    setState({ articlesArray: articles })
-  }
+    setState({ articlesArray: articles });
+  };
 
-  const mapArticles = (item: any, key: number) => {
+  const mapArticles = (item: article, key: number) => {
     return (
       <article key={key}>
         <CardArticle
           minWidth="350px"
           title={item.title}
-          description={item.content[0].text}
+          description={item.content[0].paragraph}
           date={item.date}
           image={item.cover}
         />
       </article>
-    )
-  }
+    );
+  };
 
   // map degli eventi
-  const mapEvents = (event: Event, key: number): JSX.Element => {
+  const mapEvents = (event: Events, key: number): JSX.Element => {
     return (
       <article key={key}>
-          <CardEventsMobile
-            title={event.title}
-            description={event.description}
-            image={event.image}
-            requirement={event.requirement}
-            time={event.time}
-            date={event.date}
-            place={event.place}
-            minWidth={'330px'}
-          />
+        <CardEventsMobile
+          title={event.title}
+          description={event.description}
+          image={event.image}
+          requirement={event.requirement}
+          time={event.time}
+          date={event.date}
+          place={event.place}
+          minWidth={"330px"}
+        />
       </article>
-    )
-  }
-
+    );
+  };
 
   return (
     <>
       <Header isHome={true} />
 
       <a href="#home" className="scrollToTopButton">
-        <KeyboardArrowUpIcon sx={{height:40, width:40}}/>
+        <KeyboardArrowUpIcon sx={{ height: 40, width: 40 }} />
       </a>
 
       <main id="home">
@@ -275,12 +180,8 @@ const Home: FC = () => {
 
           {/* sezione eventi */}
           <section className="events" id="events">
-            <h4 className="title">
-              {t("titles.eventsTitle")}
-            </h4>
-            <div className="articleContainer">
-              {EVENTI.map(mapEvents)}
-            </div>
+            <h4 className="title">{t("titles.eventsTitle")}</h4>
+            <div className="articleContainer">{EVENTI.map(mapEvents)}</div>
           </section>
 
           {/* sezione articoli blog */}
@@ -309,14 +210,13 @@ const Home: FC = () => {
             </div>
           </section>
         </section>
-
       </main>
 
       {/* footer e prefooter */}
       <PreFooter />
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

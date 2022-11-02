@@ -4,8 +4,8 @@ import { FC, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 //Components
-import TemporaryDrawer from "../TemporaryDrawer/TemporaryDrawer";
-import ExpandButton from "../../ui/buttons/ExpandButton";
+import TemporaryDrawer from "../../hooks/TemporaryDrawer/TemporaryDrawer";
+import ExpandButton from "../buttons/ExpandButton";
 
 // Route
 import SCREENS from "../../../route/router";
@@ -33,7 +33,8 @@ const initialState = {
 const Header: FC<HeaderProps> = (props) => {
   const [state, setState] = useState<State>(initialState);
 
-  const navigate: any = useNavigate();
+  const navigate: Function = useNavigate();
+
   const { t, i18n }: any = useTranslation();
 
   const Default = ({ children }: any) => {
@@ -76,8 +77,8 @@ const Header: FC<HeaderProps> = (props) => {
 
   // Scroll
   function handleScroll() {
-    let windowScroll = window.scrollY;
-    let scrolly = false;
+    let windowScroll: number = window.scrollY;
+    let scrolly: boolean = false;
 
     if (windowScroll > 150) {
       scrolly = true;
@@ -136,9 +137,15 @@ const Header: FC<HeaderProps> = (props) => {
         </div>
       </div>
       <div className="bottom-header">
-        <a href="#events" className="bottom-header-button">{t("nav.events")}</a>
-        <a href="#blog" className="bottom-header-button">{t("nav.blog")}</a>
-        <a href="#history" className="bottom-header-button">{t("home.history")}</a>
+        <a href="#events" className="bottom-header-button">
+          {t("nav.events")}
+        </a>
+        <a href="#blog" className="bottom-header-button">
+          {t("nav.blog")}
+        </a>
+        <a href="#history" className="bottom-header-button">
+          {t("home.history")}
+        </a>
       </div>
     </header>
   );

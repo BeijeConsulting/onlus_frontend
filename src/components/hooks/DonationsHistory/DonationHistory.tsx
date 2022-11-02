@@ -1,15 +1,10 @@
 import React, { ReactElement, useState, useEffect } from "react";
 import "./donationHistory.scss";
 import { useTranslation } from "react-i18next";
-
-interface donations {
-  id: number;
-  date: Date;
-  amount: number;
-}
+import { donation } from "../../../utils/type";
 
 interface Props {
-  datas: donations[];
+  datas: Array<donation>;
 }
 
 function DonationHistory(props: Props): ReactElement {
@@ -22,13 +17,13 @@ function DonationHistory(props: Props): ReactElement {
 
   function sumDonations(): void {
     let sum: number = 0;
-    props.datas.forEach((elem: donations) => {
+    props.datas.forEach((elem: donation) => {
       sum = sum + elem.amount;
     });
     setState(sum);
   }
 
-  function mapping(element: donations): ReactElement {
+  function mapping(element: donation): ReactElement {
     return (
       <div key={element.id} className="singleDonation">
         <span>{`${element.date}`}</span>

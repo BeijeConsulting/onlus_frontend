@@ -1,10 +1,10 @@
-import { FC, useEffect, useState } from "react";
+import { FC, ReactElement, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import Footer from "../components/footer/Footer";
-import Header from "../components/hooks/Header/Header";
-import PreFooter from "../components/preFooter/PreFooter";
-import InputBox from "../components/ui/inputBox/InputBox";
-import SelectBox from "../components/ui/inputBox/SelectBox";
+import Footer from "../components/ui/Footer/Footer";
+import Header from "../components/ui/Header/Header";
+import PreFooter from "../components/hooks/preFooter/PreFooter";
+import InputBox from "../components/hooks/inputBox/InputBox";
+import SelectBox from "../components/hooks/inputBox/SelectBox";
 import { Helmet } from "react-helmet";
 
 //utils
@@ -13,12 +13,12 @@ import { article, category } from "../utils/type";
 
 //style
 import "../styles/blog.scss";
-import CardArticle from "../components/cardArticle/CardArticle";
+import CardArticle from "../components/ui/CardArticle/CardArticle";
 import { useMediaQuery } from "react-responsive";
 
 interface State {
   categories: Array<category>;
-  articles: Array<any>;
+  articles: Array<article>;
 }
 
 const initialState = {
@@ -36,7 +36,7 @@ const Mobile = ({ children }: any) => {
   return isMobile ? children : null;
 };
 
-let localArticles: Array<any> = articles;
+let localArticles: Array<article> = articles;
 
 const Blog: FC = () => {
   const [state, setState] = useState<State>(initialState);
@@ -49,7 +49,7 @@ const Blog: FC = () => {
   const createCategories = (): void => {
     let localCategories: Array<category> = [];
     categories.forEach((e) => {
-      let singleCategory: any = {
+      let singleCategory: category = {
         label: e.name,
         value: e.name,
       };
@@ -87,9 +87,9 @@ const Blog: FC = () => {
     );
   };
 
-  const search = (e: any): void => {
+  const search = (e: React.ChangeEvent<HTMLInputElement>): void => {
     let textInputValue: string = e.target.value;
-    let filteredArticles: Array<any> = localArticles.filter((obj) => {
+    let filteredArticles: Array<article> = localArticles.filter((obj) => {
       return obj.title.toLowerCase().includes(textInputValue.toLowerCase());
     });
     console.log(filteredArticles);

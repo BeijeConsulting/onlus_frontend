@@ -1,47 +1,55 @@
-import { FC, useState, useEffect } from "react"
-import { useTranslation } from "react-i18next"
-import axios from "axios"
-import { Helmet } from "react-helmet"
+import { FC, useState, useEffect } from "react";
 
-import Skeleton from "@mui/material/Skeleton"
-import Stack from "@mui/material/Stack"
+//translation
+import { useTranslation } from "react-i18next";
 
-import Header from "../components/hooks/Header/Header"
-import Footer from "../components/footer/Footer"
-import AccordionItem from "../components/hooks/AccordionItem/AccordionItem"
+//axios
+import axios from "axios";
 
-import "../styles/faq.scss"
+//helmet
+import { Helmet } from "react-helmet";
+
+//components
+import Header from "../components/ui/Header/Header";
+import Footer from "../components/ui/Footer/Footer";
+import AccordionItem from "../components/hooks/AccordionItem/AccordionItem";
+
+//style
+import "../styles/faq.scss";
+
+//type
+import { faq, infoType } from "../utils/type";
 
 interface State {
-  data: any
+  data: infoType;
 }
 
 const initialState = {
   data: null,
-}
+};
 
 const Faq: FC = () => {
-  const [state, setState] = useState<State>(initialState)
-  const { t }: any = useTranslation()
+  const [state, setState] = useState<State>(initialState);
+  const { t }: any = useTranslation();
 
   async function fetchDatas(): Promise<void> {
-    let result = await axios.get("mockAPI/faq.json")
+    let result = await axios.get("mockAPI/faq.json");
     setState({
       ...state,
       data: result.data,
-    })
-    console.log("result", result)
+    });
+    console.log("result", result);
   }
 
   useEffect(() => {
-    fetchDatas()
-  }, [])
+    fetchDatas();
+  }, []);
 
-  const mapFaq = (item: any, key: number): JSX.Element => {
+  const mapFaq = (item: faq, key: number): JSX.Element => {
     return (
       <AccordionItem key={key} title={item.question} content={item.answer} />
-    )
-  }
+    );
+  };
 
   return (
     <>
@@ -65,7 +73,7 @@ const Faq: FC = () => {
       )}
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default Faq
+export default Faq;

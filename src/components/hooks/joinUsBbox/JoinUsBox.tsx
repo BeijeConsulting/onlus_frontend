@@ -5,6 +5,7 @@ import "./joinUsBox.scss";
 import { useNavigate, NavigateFunction } from "react-router-dom";
 import CustomButton from "../../ui/buttons/CustomButton/CustomButton";
 import { useTranslation } from "react-i18next";
+import SCREENS from "../../../route/router";
 
 //ammessi valori "support" e "donate"
 interface Props {
@@ -16,11 +17,11 @@ function JoinUs(props: Props): ReactElement {
   const navigate: NavigateFunction = useNavigate();
 
   function goToDonations(): void {
-    navigate("/donate");
+    navigate(SCREENS.donate);
   }
 
   function goToJoin(): void {
-    navigate("/signup");
+    navigate(SCREENS.signup);
   }
   return (
     <article className="joinUsBox">

@@ -2,11 +2,11 @@ import React, { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { Helmet } from "react-helmet"
 // componenti
-import Footer from "../components/footer/Footer"
-import PreFooter from "../components/preFooter/PreFooter"
-import CardEvents from "../components/cardEvents/CardEvents"
-import CardEventsMobile from "../components/cardEvents/CardEventsMobile"
-import Header from "../components/hooks/Header/Header"
+import Footer from "../components/ui/Footer/Footer"
+import PreFooter from "../components/hooks/preFooter/PreFooter"
+import CardEvents from "../components/hooks/CardEvents/CardEvents"
+import CardEventsMobile from "../components/hooks/CardEvents/CardEventsMobile"
+import Header from "../components/ui/Header/Header"
 // mediaquery
 import { useMediaQuery } from "react-responsive"
 // stile

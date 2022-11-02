@@ -1,9 +1,9 @@
 import { Helmet } from "react-helmet"
 //Components
-import Footer from "../components/footer/Footer"
-import Header from "../components/hooks/Header/Header"
+import Footer from "../components/ui/Footer/Footer"
+import Header from "../components/ui/Header/Header"
 import CustomButton from "../components/ui/buttons/CustomButton/CustomButton"
-import InputBox from "../components/ui/inputBox/InputBox"
+import InputBox from "../components/hooks/inputBox/InputBox"
 
 //Router
 import SCREENS from "../route/router"
@@ -14,7 +14,7 @@ import { useTranslation } from "react-i18next"
 
 //Styles
 import "../styles/login.scss"
-import PreFooter from "../components/preFooter/PreFooter"
+import PreFooter from "../components/hooks/preFooter/PreFooter"
 
 function Login() {
   const { t }: any = useTranslation()

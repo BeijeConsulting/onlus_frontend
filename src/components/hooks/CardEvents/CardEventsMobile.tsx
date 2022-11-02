@@ -12,7 +12,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
 // mediaquery
 import { useMediaQuery } from "react-responsive"
 // components
-import CustomButton from "../ui/buttons/CustomButton/CustomButton"
+import CustomButton from "../../ui/buttons/CustomButton/CustomButton"
 // translation
 import { useTranslation } from "react-i18next"
 // navigazione
@@ -58,7 +58,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 
 const CardEventsMobile: FC<CardProps> = (props) => {
   // inizializzo navigazione
-  let navigate = useNavigate()
+  let navigate:Function = useNavigate()
   // tranlation hook
   const { t }: any = useTranslation()
   // stato

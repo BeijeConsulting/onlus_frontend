@@ -1,21 +1,12 @@
-import React, { ReactElement, useEffect, useState } from "react";
-import CardEventsMobile from "../../cardEvents/CardEventsMobile";
+import React, { FC, ReactElement, useEffect, useState } from "react";
+import CardEventsMobile from "../CardEvents/CardEventsMobile";
 import { useTranslation } from "react-i18next";
 
 import "./personalEvents.scss";
-
-interface event {
-  title: string;
-  image: string;
-  description: string;
-  requirement: string;
-  date: string;
-  time: string;
-  place: string;
-}
+import { Events } from "../../../utils/type";
 
 interface Props {
-  events: event[];
+  events: Array<Events>;
 }
 
 /*title: string,
@@ -26,7 +17,7 @@ interface Props {
     time: string,
     place: string*/
 
-function PersonalEvents(props: Props) {
+const PersonalEvents: FC<Props> = (props) => {
   const { t }: any = useTranslation();
   const [today, setToday] = useState<Date>(new Date());
 
@@ -34,29 +25,7 @@ function PersonalEvents(props: Props) {
   //     setToday(new Date());
   //   }, []);
 
-  function mapCurrentEvents(element: event, key: number): any {
-    let eventDate = Date.parse(element.date);
-    let todaySec = today.getTime();
-    if (eventDate > todaySec) {
-      return (
-        <div key={key} className="singleCardContainer">
-          <CardEventsMobile
-            title={element.title}
-            image={element.image}
-            requirement={element.requirement}
-            description={element.description}
-            date={element.date}
-            time={element.time}
-            place={element.place}
-          />
-        </div>
-      );
-    } else {
-      return <></>;
-    }
-  }
-
-  function mapPastEvents(element: event, key: number): ReactElement {
+  function mapEvents(element: Events, key: number): ReactElement {
     let eventDate = Date.parse(element.date);
     let todaySec: number = today!.getTime();
     console.log("i valori da paragonare", eventDate, todaySec);
@@ -83,15 +52,15 @@ function PersonalEvents(props: Props) {
       <section>
         <div className="txt">{t("personalArea.programmedEvents")}</div>
         <section className="cardsContainer">
-          {props.events.map(mapCurrentEvents)}
+          {props.events.map(mapEvents)}
         </section>
         <div className="txt">{t("personalArea.pastEvents")}</div>
         <section className="cardsContainer">
-          {props.events.map(mapPastEvents)}
+          {props.events.map(mapEvents)}
         </section>
       </section>
     </article>
   );
-}
+};
 
 export default PersonalEvents;

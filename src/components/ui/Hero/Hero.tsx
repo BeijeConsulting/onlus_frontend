@@ -1,27 +1,25 @@
-import React, { FC, ReactElement, useState, useLayoutEffect } from "react"
-import { useTranslation } from "react-i18next"
-import { useNavigate } from "react-router-dom"
-import CustomButton from "../../ui/buttons/CustomButton/CustomButton"
-import axios from "axios"
-import "./hero.scss"
-import { url } from "inspector"
+import React, { FC, ReactElement, useState, useLayoutEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+import CustomButton from "../buttons/CustomButton/CustomButton";
+import "./hero.scss";
 
-import SCREENS from "../../../route/router"
+import SCREENS from "../../../route/router";
 
 interface HeroProps {
-  type: "home" | "article" | "about" | "support"
-  category?: string
-  title: string | undefined
-  subtitle?: string | undefined
-  image: string | undefined
+  type: "home" | "article" | "about" | "support";
+  category?: string;
+  title: string | undefined;
+  subtitle?: string | undefined;
+  image: string | undefined;
 }
 
 const Hero: FC<HeroProps> = (props) => {
-  const { t }: any = useTranslation()
-  const navigate: any = useNavigate()
+  const { t }: any = useTranslation();
+  const navigate: Function = useNavigate();
 
   function handleNavigate() {
-    props.type === "home" ? navigate(SCREENS.donate) : navigate(SCREENS.signup)
+    props.type === "home" ? navigate(SCREENS.donate) : navigate(SCREENS.signup);
   }
 
   switch (props.type) {
@@ -58,7 +56,7 @@ const Hero: FC<HeroProps> = (props) => {
             )}
           </div>
         </section>
-      )
+      );
 
     case "article":
       return (
@@ -79,7 +77,7 @@ const Hero: FC<HeroProps> = (props) => {
             </div>
           </section>
         </>
-      )
+      );
 
     case "about":
       return (
@@ -99,10 +97,10 @@ const Hero: FC<HeroProps> = (props) => {
             </div>
           </section>
         </>
-      )
+      );
     default:
-      return <div>Errore</div>
+      return <div>Errore</div>;
   }
-}
+};
 
-export default Hero
+export default Hero;

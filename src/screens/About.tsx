@@ -1,61 +1,63 @@
-import { useState, useEffect, FC } from "react"
-import { useTranslation } from "react-i18next"
-import { useNavigate } from "react-router-dom"
-import axios from "axios"
-import { Helmet } from "react-helmet"
+import { useState, useEffect, FC } from "react";
+import { useTranslation } from "react-i18next";
+
+//axios
+import axios, { AxiosResponse } from "axios";
+
+//helmet
+import { Helmet } from "react-helmet";
 
 //Components
-import Footer from "../components/footer/Footer"
-import Header from "../components/hooks/Header/Header"
-import Hero from "../components/hooks/Hero/Hero"
-import JoinUs from "../components/hooks/joinUsBbox/JoinUsBox"
-import PreFooter from "../components/preFooter/PreFooter"
+import Footer from "../components/ui/Footer/Footer";
+import Header from "../components/ui/Header/Header";
+import Hero from "../components/ui/Hero/Hero";
+import JoinUs from "../components/hooks/joinUsBbox/JoinUsBox";
+import PreFooter from "../components/hooks/preFooter/PreFooter";
+
+//type
+import { content } from "../utils/type";
 
 //Styles
-import "../styles/about.scss"
+import "../styles/about.scss";
 
 interface State {
-  content: Array<content>
-}
-type content = {
-  text: string
-  img: string
+  content: Array<content>;
 }
 
 const initialState: State = {
   content: [],
-}
+};
+
 const About: FC = () => {
-  const { t }: any = useTranslation()
-  const navigate: any = useNavigate()
-  const [state, setState] = useState<State>(initialState)
+  const { t }: any = useTranslation();
+  const [state, setState] = useState<State>(initialState);
 
   useEffect(() => {
-    fetchDatas()
-  }, [])
-
-  function handleNavigate() {
-    navigate("/donate")
-  }
+    fetchDatas();
+  }, []);
 
   async function fetchDatas() {
-    let result: any = await axios.get("mockAPI/about.json")
-    setState({ content: result.data.content })
+    let result: AxiosResponse = await axios.get("mockAPI/about.json");
+    console.log(result);
+    setState({ content: result.data.about.content });
   }
-  const mappingContent = (item: any, key: any) => {
+  const mappingContent = (item: content, key: number) => {
     return (
       <section className="content-about-container" key={key}>
-        <div className="text-about">{item.text}</div>
-        <div className="img-container">
-          <img
-            className="img-about"
-            src={require(`../assets/images/${item.image}`)}
-            alt="hero-img"
-          />
+        <div className="text-about">{item.paragraph}</div>
+        <div className="img-about">
+          {!!item.media &&
+            (item.media.type === "image" ? (
+              <img className="media" src={item.media.content} />
+            ) : (
+              <video controls className="img-about">
+                <source type="video/webm" src={item.media.content} />
+              </video>
+            ))}
         </div>
       </section>
-    )
-  }
+    );
+  };
 
   return (
     <>
@@ -82,7 +84,7 @@ const About: FC = () => {
       <PreFooter />
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default About
+export default About;

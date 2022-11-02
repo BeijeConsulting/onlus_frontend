@@ -1,20 +1,39 @@
 {
-    "content":[
-        {
-            "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae excepturi esse suscipit deserunt voluptatem obcaecati repellendus quaerat soluta ut maiores!",
-            "image": "giraffeImg.jpg"
-        },
-        {
-            "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae excepturi esse suscipit deserunt voluptatem obcaecati repellendus quaerat soluta ut maiores!",
-            "image": "giraffeImg.jpg"
-        },
-        {
-            "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae excepturi esse suscipit deserunt voluptatem obcaecati repellendus quaerat soluta ut maiores!",
-            "image": "giraffeImg.jpg"
-        },
-        {
-            "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae excepturi esse suscipit deserunt voluptatem obcaecati repellendus quaerat soluta ut maiores!",
-            "image": "giraffeImg.jpg"
+  "about": {
+    "hero": {
+      "img": "https://media.istockphoto.com/photos/giraffe-in-front-of-kilimanjaro-mountain-picture-id488580536?k=20&m=488580536&s=612x612&w=0&h=xXmFHuCU9Phc0rcxAm9jjeoToeQw-H_2y5HMgkMgs6k=",
+      "text": "Titolo accattivante"
+    },
+    "title": "About",
+    "content": [
+      {
+        "paragraph": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae excepturi esse suscipit deserunt voluptatem obcaecati repellendus quaerat soluta ut maiores!",
+        "media": {
+          "content": "https://media.istockphoto.com/photos/giraffe-in-front-of-kilimanjaro-mountain-picture-id488580536?k=20&m=488580536&s=612x612&w=0&h=xXmFHuCU9Phc0rcxAm9jjeoToeQw-H_2y5HMgkMgs6k=",
+          "type": "image"
         }
+      },
+      {
+        "paragraph": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae excepturi esse suscipit deserunt voluptatem obcaecati repellendus quaerat soluta ut maiores!",
+        "media": {
+          "content": "https://media.istockphoto.com/photos/giraffe-in-front-of-kilimanjaro-mountain-picture-id488580536?k=20&m=488580536&s=612x612&w=0&h=xXmFHuCU9Phc0rcxAm9jjeoToeQw-H_2y5HMgkMgs6k=",
+          "type": "image"
+        }
+      },
+      {
+        "paragraph": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae excepturi esse suscipit deserunt voluptatem obcaecati repellendus quaerat soluta ut maiores!",
+        "media": {
+          "content": "https://media.istockphoto.com/photos/giraffe-in-front-of-kilimanjaro-mountain-picture-id488580536?k=20&m=488580536&s=612x612&w=0&h=xXmFHuCU9Phc0rcxAm9jjeoToeQw-H_2y5HMgkMgs6k=",
+          "type": "image"
+        }
+      },
+      {
+        "paragraph": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae excepturi esse suscipit deserunt voluptatem obcaecati repellendus quaerat soluta ut maiores!",
+        "media": {
+          "content": "https://media.istockphoto.com/photos/giraffe-in-front-of-kilimanjaro-mountain-picture-id488580536?k=20&m=488580536&s=612x612&w=0&h=xXmFHuCU9Phc0rcxAm9jjeoToeQw-H_2y5HMgkMgs6k=",
+          "type": "image"
+        }
+      }
     ]
+  }
 }

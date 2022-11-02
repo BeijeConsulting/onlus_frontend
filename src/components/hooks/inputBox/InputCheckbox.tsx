@@ -11,6 +11,7 @@ interface InputCheckboxProps {
 }
 
 const InputCheckbox: FC<InputCheckboxProps> = (props) => {
+  
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!!props.callbackChange) {
       props.callbackChange(event.target.checked)

@@ -6,27 +6,21 @@ import { useTranslation } from "react-i18next";
 // navigazione
 import { useNavigate } from "react-router-dom";
 // components
-import CustomButton from "../ui/buttons/CustomButton/CustomButton";
+import CustomButton from "../buttons/CustomButton/CustomButton";
 // style
 import "./footer.scss";
-import SCREENS from "../../route/router";
+import SCREENS from "../../../route/router";
+
+import { contact, social } from "../../../utils/type";
 
 // style
 const primary: string = "#262E36";
-const secondary: string = "#B12009";
 
 // type
-type social = {
-  name: string;
-  icon: any; //come tipizzare image? come ce lo passa backend? (string)
-  link: string;
-  footerOn: boolean;
-  homepageOn: boolean;
-};
 
 // dati mokup
 // contatti
-const contacts = {
+const contacts: contact = {
   telephone: "+39 331 211 345",
   email: "panda@gmail.com",
   address: "via dei panda 2, Milano, Italy",
@@ -77,7 +71,7 @@ const Mobile = ({ children }: any) => {
 
 const Footer: FC = () => {
   // inizializzo navigazione
-  let navigate = useNavigate();
+  let navigate: Function = useNavigate();
 
   // navigazione
   const goToHome = (): void => {
