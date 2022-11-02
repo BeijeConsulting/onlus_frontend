@@ -5,15 +5,13 @@ import { useMediaQuery } from "react-responsive";
 import { useTranslation } from "react-i18next";
 // navigazione
 import { useNavigate } from "react-router-dom";
+// redux
+import { useSelector } from 'react-redux'
 // components
 import CustomButton from "../ui/buttons/CustomButton/CustomButton";
 // style
 import "./footer.scss";
 import SCREENS from "../../route/router";
-
-// style
-const primary: string = "#262E36";
-const secondary: string = "#B12009";
 
 // type
 type social = {
@@ -23,47 +21,20 @@ type social = {
   footerOn: boolean;
   homepageOn: boolean;
 };
-
-// dati mokup
-// contatti
-const contacts = {
-  telephone: "+39 331 211 345",
-  email: "panda@gmail.com",
-  address: "via dei panda 2, Milano, Italy",
-  PIva: "IT 0221212121210212",
-  CF: "8008976565786",
-};
-// social
-const social: Array<social> = [
-  {
-    name: "Facebook",
-    icon: "https://www.ancoraprint.it/cms/docs/archive/Facebookicona.png",
-    link: "#",
-    footerOn: true,
-    homepageOn: false,
-  },
-  {
-    name: "Youtube",
-    icon: "https://www.dayoffreedom.it/wp-content/uploads/2021/03/icona-bianca-youtube3.png",
-    link: "#",
-    footerOn: true,
-    homepageOn: false,
-  },
-  {
-    name: "Twitter",
-    icon: "https://fratelliscantamburlo.it/it/design/iconabiancatwitter.png",
-    link: "#",
-    footerOn: true,
-    homepageOn: false,
-  },
-  {
-    name: "Instagram",
-    icon: "https://www.rifipack.it/wp-content/uploads/2019/11/instagram-icona-font-awesome-bianca-buste-personalizzate-300x225.png",
-    link: "#",
-    footerOn: true,
-    homepageOn: false,
-  },
-];
+// contacts
+type contactsTypo = {
+  phone: number,
+  email: string,
+  address: string,
+  PIva: string,
+  CF: string,
+}
+// color
+type color = {
+  name: string,
+  bgColor: string,
+  textColor: string
+}
 
 //React responsive const
 const Default = ({ children }: any) => {
@@ -76,6 +47,13 @@ const Mobile = ({ children }: any) => {
 };
 
 const Footer: FC = () => {
+
+  // popolo contacts
+  const CONTACTS: contactsTypo = useSelector((state: any) => state.generalDuck.contacts)
+  // popolo social
+  const SOCIAL: Array<social> = useSelector((state: any) => state.generalDuck.social)
+  // POPOLO IL COLOR PALLETTE
+  const PALLETTE: Array<color> = useSelector((state: any) => state.generalDuck.pallette)
   // inizializzo navigazione
   let navigate = useNavigate();
 
@@ -123,18 +101,18 @@ const Footer: FC = () => {
   };
 
   return (
-    <footer style={{ backgroundColor: primary }} id="footer">
+    <footer style={{ backgroundColor: PALLETTE[0].bgColor }} id="footer">
       <section className="contacts">
         <div className="titleContacts">{t("footer.contacts")}</div>
         <ul className="contactsList">
-          <li>{contacts.telephone}</li>
-          <li>{contacts.email}</li>
-          <li>{contacts.address}</li>
-          <li>P.Iva: {contacts.PIva}</li>
-          <li>C.F: {contacts.CF}</li>
+          <li>{CONTACTS.phone}</li>
+          <li>{CONTACTS.email}</li>
+          <li>{CONTACTS.address}</li>
+          <li>P.Iva: {CONTACTS.PIva}</li>
+          <li>C.F: {CONTACTS.CF}</li>
         </ul>
       </section>
-      <section className="social">{social.map(mapping)}</section>
+      <section className="social">{SOCIAL.map(mapping)}</section>
       <Mobile>
         <div className="buttonContainer">
           <CustomButton

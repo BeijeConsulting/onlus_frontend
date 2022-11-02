@@ -1,5 +1,9 @@
-import { FC } from "react"
+import { FC,useEffect } from "react"
+// import router
 import { Routes, Route } from "react-router-dom"
+// import redux
+import { setGeneral } from "./redux/duck/general"
+import { useDispatch} from 'react-redux'
 
 // Screens
 import About from "./screens/About"
@@ -14,14 +18,37 @@ import NotFound from "./screens/NotFound"
 import PersonalArea from "./screens/PersonalArea"
 import SignUp from "./screens/SignUp"
 import Support from "./screens/Support"
-
+import axios from "axios"
+// import route
 import SCREENS from "./route/router"
-
+// import mui
 import { StyledEngineProvider } from "@mui/material"
-
+// import style
 import "./App.scss"
 
 const App: FC = () => {
+
+  // hook redux x inviare dati di general
+  const dispatch:Function = useDispatch()
+  // useeffect per inviare dati all'avvio
+  useEffect(() => {
+    fetchDatas()
+  },[])
+  // funzione per recuperare i dati da chiamata api
+  async function fetchDatas() {
+    // estrapolo i dati dalle chiamate
+    let generalResult: any = await axios.get("mockAPI/general.json");
+    let socialResult: any = await axios.get("mockAPI/social.json");
+    const social:Array<Object> = socialResult.data.response;
+    // compongo l'oggetto da mandare a redux
+    const generalData:Object = {
+      ...generalResult.data.response,
+      social
+    }
+    // modifico gli stati su redux
+    dispatch(setGeneral(generalData))
+  }
+
   return (
     <StyledEngineProvider injectFirst>
       <div className="app">
