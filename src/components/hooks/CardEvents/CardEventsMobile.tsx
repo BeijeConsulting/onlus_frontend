@@ -32,6 +32,7 @@ interface CardProps {
   date: string
   time: string
   place: string
+  minWidth?:string
 }
 
 const Default = ({ children }: any) => {
@@ -73,7 +74,7 @@ const CardEventsMobile: FC<CardProps> = (props) => {
   }
 
   return (
-    <Card sx={{ padding: "20px" }}>
+    <Card sx={{ padding: "20px",minWidth:props.minWidth }}>
       <CardHeader
         sx={{ padding: "0px" }}
         titleTypographyProps={{ fontWeight: 700, fontSize: "25px" }}
