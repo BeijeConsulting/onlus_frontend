@@ -4,6 +4,7 @@ const SCREENS = {
   article: "/article/:id",
   blog: "/blog",
   donate: "/donate",
+  confirmDonate: "/confirm-donation",
   events: "/events",
   faq: "/faq",
   login: "/login",

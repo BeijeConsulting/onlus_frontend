@@ -16,6 +16,7 @@ import PersonalArea from "./screens/PersonalArea"
 import SignUp from "./screens/SignUp"
 import Support from "./screens/Support"
 import ResetPassword from "./screens/ResetPassword"
+import ConfirmDonation from "./screens/ConfirmDonation"
 
 import SCREENS from "./route/router"
 import { theme } from "./utils/muiTheme"
@@ -35,6 +36,7 @@ const App: FC = () => {
             <Route path={SCREENS.article} element={<Article />} />
             <Route path={SCREENS.blog} element={<Blog />} />
             <Route path={SCREENS.donate} element={<Donate />} />
+            <Route path={SCREENS.confirmDonate} element={<ConfirmDonation />} />
             <Route path={SCREENS.events} element={<Events />} />
             <Route path={SCREENS.faq} element={<Faq />} />
             <Route path={SCREENS.login} element={<Login />} />

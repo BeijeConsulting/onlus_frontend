@@ -30,7 +30,7 @@ img {
 }
 
 main{
-  &#blog, &#donate, &#events, &#faq, &#login, &#personalArea, &#signup, &#notFound, &#resetPassword{
+  &#blog, &#donate, &#events, &#faq, &#login, &#personalArea, &#signup, &#notFound, &#resetPassword, &#confirmDonation{
     padding-top: calc(104px + 20px);
   }
   &#about, &#support, &#article{
@@ -51,7 +51,7 @@ h1 {
     padding-bottom: 20px;
   }
   main{
-    &#blog, &#donate, &#events, &#faq, &#login, &#personalArea, &#signup, &#notFound, &#resetPassword{
+    &#blog, &#donate, &#events, &#faq, &#login, &#personalArea, &#signup, &#notFound, &#resetPassword, &#confirmDonation{
       padding-top: calc(104px + 50px);
     }
   }
@@ -62,7 +62,7 @@ h1 {
 
 @media (min-width: 992px) {
   main{
-    &#blog, &#donate, &#events, &#faq, &#login, &#personalArea, &#signup, &#notFound, &#resetPassword{
+    &#blog, &#donate, &#events, &#faq, &#login, &#personalArea, &#signup, &#notFound, &#resetPassword, &#confirmDonation{
       padding-top: calc(104px + 100px);
     }
   }
