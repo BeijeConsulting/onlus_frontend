@@ -32,7 +32,8 @@ interface CardProps {
   date: string
   time: string
   place: string
-  minWidth?: string
+  minWidth?: string,
+  opaque:boolean
 }
 
 const Default = ({ children }: any) => {
@@ -74,7 +75,8 @@ const CardEventsMobile: FC<CardProps> = (props) => {
   }
 
   return (
-    <Card sx={{ padding: "20px", minWidth: props.minWidth }}>
+    <Card sx={{ padding: "20px", minWidth: props.minWidth, position: 'relative' }}>
+      {props.opaque && <div style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 2, backgroundColor: 'rgba(0,0,0,0.4)'}} />}
       <Typography variant="h3">{props.title}</Typography>
       {/* <CardHeader
         sx={{ padding: "0px" }}
@@ -133,7 +135,7 @@ const CardEventsMobile: FC<CardProps> = (props) => {
         disableSpacing
       >
         <ExpandMore
-          sx={{ margin: "0" }}
+          sx={{ margin: "0", zIndex: 3 }}
           expand={expanded}
           onClick={handleExpandClick}
           aria-expanded={expanded}

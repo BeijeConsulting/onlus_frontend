@@ -130,6 +130,7 @@ const Home: FC = () => {
           date={event.date}
           place={event.place}
           minWidth={"330px"}
+          opaque={false}
         />
       </article>
     );

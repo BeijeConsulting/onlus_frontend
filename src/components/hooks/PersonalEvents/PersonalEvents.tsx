@@ -62,7 +62,7 @@ const PersonalEvents: FC<Props> = (props) => {
 
     }
 
-  function mapEvents(element: Events, key: number): ReactElement {
+  const mapEvents = (past:boolean) => (element: Events, key: number): ReactElement => {
       return (
         <div key={key} className="singleCardContainer">
           <CardEventsMobile
@@ -73,6 +73,7 @@ const PersonalEvents: FC<Props> = (props) => {
             date={element.date}
             time={element.time}
             place={element.place}
+            opaque={past}
           />
         </div>
       );
@@ -85,13 +86,13 @@ const PersonalEvents: FC<Props> = (props) => {
           {t("personalArea.programmedEvents")}
         </Typography>
         <section className="cardsContainer">
-          {state.futureEvents?.map(mapEvents)}
+          {state.futureEvents?.map(mapEvents(false))}
         </section>
         <Typography variant="h3" sx={{ paddingBottom: "25px" }}>
           {t("personalArea.pastEvents")}
         </Typography>
         <section className="cardsContainer">
-          {state.pastEvents?.map(mapEvents)}
+          {state.pastEvents?.map(mapEvents(true))}
         </section>
       </section>
     </article>
