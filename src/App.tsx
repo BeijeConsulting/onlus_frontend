@@ -27,23 +27,25 @@ import "./App.scss"
 const App: FC = () => {
   return (
     <StyledEngineProvider injectFirst>
-      <div className="app">
-        <Routes>
-          <Route path={SCREENS.home} element={<Home />} />
-          <Route path={SCREENS.about} element={<About />} />
-          <Route path={SCREENS.article} element={<Article />} />
-          <Route path={SCREENS.blog} element={<Blog />} />
-          <Route path={SCREENS.donate} element={<Donate />} />
-          <Route path={SCREENS.events} element={<Events />} />
-          <Route path={SCREENS.faq} element={<Faq />} />
-          <Route path={SCREENS.login} element={<Login />} />
-          <Route path={SCREENS.resetPassword} element={<ResetPassword />} />
-          <Route path={SCREENS.personalArea} element={<PersonalArea />} />
-          <Route path={SCREENS.signup} element={<SignUp />} />
-          <Route path={SCREENS.support} element={<Support />} />
-          <Route path={SCREENS.notFound} element={<NotFound />} />
-        </Routes>
-      </div>
+      <ThemeProvider theme={theme}>
+        <div className="app">
+          <Routes>
+            <Route path={SCREENS.home} element={<Home />} />
+            <Route path={SCREENS.about} element={<About />} />
+            <Route path={SCREENS.article} element={<Article />} />
+            <Route path={SCREENS.blog} element={<Blog />} />
+            <Route path={SCREENS.donate} element={<Donate />} />
+            <Route path={SCREENS.events} element={<Events />} />
+            <Route path={SCREENS.faq} element={<Faq />} />
+            <Route path={SCREENS.login} element={<Login />} />
+            <Route path={SCREENS.resetPassword} element={<ResetPassword />} />
+            <Route path={SCREENS.personalArea} element={<PersonalArea />} />
+            <Route path={SCREENS.signup} element={<SignUp />} />
+            <Route path={SCREENS.support} element={<Support />} />
+            <Route path={SCREENS.notFound} element={<NotFound />} />
+          </Routes>
+        </div>
+      </ThemeProvider>
     </StyledEngineProvider>
   )
 }
