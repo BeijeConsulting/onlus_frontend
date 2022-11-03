@@ -45,9 +45,6 @@ header {
         cursor: pointer;
         padding: 0 10px;
         color: $white;
-        &:hover {
-          text-decoration: underline;
-        }
       }
     }
   }
@@ -56,14 +53,16 @@ header {
   display: flex;
   align-items: center;
   color: $white;
-}
-.langButton {
-  cursor: pointer;
-  color: $white;
-  &:hover {
-    text-decoration: underline;
+  .langButton {
+    cursor: pointer;
+    color: $white;
+    font-weight: 300;
+    &.active-lng{
+      font-weight: 700;
+    }
   }
 }
+
 
 .logo {
   width: 50px;
@@ -91,5 +90,25 @@ header {
   }
   .logo {
     margin-right: 74.66px;
+  }
+
+  .nav-desktop{
+    p{
+      &:after{
+        display: block;
+        content: "";
+        height: 2px;
+        border-radius: 5px;
+        width: 0%;
+        background-color: white;
+        transition: width .3s ease-in-out;
+      }
+      &:hover:after{
+        width: 100%;
+      }
+      &:hover{
+          opacity: 100%;
+      }
+    }
   }
 }

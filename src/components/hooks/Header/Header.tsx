@@ -7,8 +7,8 @@ import { Typography } from "@mui/material"
 import { useNavigate } from "react-router-dom"
 import { useMediaQuery } from "react-responsive"
 //Components
-import TemporaryDrawer from "../TemporaryDrawer/TemporaryDrawer";
-import ExpandButton from "../../ui/buttons/ExpandButton";
+import TemporaryDrawer from "../TemporaryDrawer/TemporaryDrawer"
+import ExpandButton from "../../ui/buttons/ExpandButton"
 
 // Route
 import SCREENS from "../../../route/router"
@@ -28,17 +28,19 @@ interface HeaderProps {
 }
 interface State {
   scroll: boolean
+  lng: string
 }
 const initialState = {
   scroll: false,
+  lng: "it",
 }
 
 const Header: FC<HeaderProps> = (props) => {
   const [state, setState] = useState<State>(initialState)
 
-  const navigate: Function = useNavigate();
+  const navigate: Function = useNavigate()
 
-  const { t, i18n }: any = useTranslation();
+  const { t, i18n }: any = useTranslation()
 
   const Default = ({ children }: any) => {
     const isNotMobile = useMediaQuery({ minWidth: 992 })
@@ -80,8 +82,8 @@ const Header: FC<HeaderProps> = (props) => {
 
   // Scroll
   function handleScroll() {
-    let windowScroll: number = window.scrollY;
-    let scrolly: boolean = false;
+    let windowScroll: number = window.scrollY
+    let scrolly: boolean = false
 
     if (windowScroll > 150) {
       scrolly = true
@@ -135,16 +137,20 @@ const Header: FC<HeaderProps> = (props) => {
           <div className="lng-buttons">
             <Typography
               variant="body1"
-              className="langButton"
               onClick={changeLanguageClick("en")}
+              className={
+                (i18n.language === "en" ? "active-lng" : "") + " langButton"
+              }
             >
               EN
             </Typography>
             <p style={{ padding: "0 10px" }}>•</p>
             <Typography
               variant="body1"
-              className="langButton"
               onClick={changeLanguageClick("it")}
+              className={
+                (i18n.language === "it" ? "active-lng" : "") + " langButton"
+              }
             >
               IT
             </Typography>
