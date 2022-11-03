@@ -15,6 +15,7 @@
     "about": "About us",
     "blog": "Blog",
     "donate": "Donate",
+    "confirmDonate": "Congratulations!",
     "events": "Events",
     "faq": "Frequently Asked Questions",
     "login": "Login",
@@ -117,6 +118,12 @@
     "expirationDate": "MM/YY",
     "cvc": "CVC",
     "amount": "Amount €"
+  },
+  
+  "confirmDonate":{
+    "congrats":"Congratulations!",
+    "report":"You have donated",
+    "backToHome":"Back to Home"
   },
 
   "form": {
