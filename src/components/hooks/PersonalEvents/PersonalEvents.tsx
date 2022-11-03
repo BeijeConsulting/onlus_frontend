@@ -10,30 +10,59 @@ interface Props {
   events: Events[] | null;
 }
 
-/*title: string,
-    image: string,
-    description: string,
-    requirement: string,
-    date: string,
-    time: string,
-    place: string*/
+interface LocalState {
+  futureEvents: Events[] | null;
+  pastEvents: Events[] | null;
+}
 
 const PersonalEvents: FC<Props> = (props) => {
   const { t }: any = useTranslation();
   const [today, setToday] = useState<Date>(new Date());
+  const [state, setState] = useState<LocalState>({
+    futureEvents: null,
+    pastEvents: null,
+  });
 
-  //   useEffect(() => {
-  //     setToday(new Date());
-  //   }, []);
+     useEffect(() => {
+       splitEvents()
+     }, []);
+
+     useEffect(() => {
+      console.log(state)
+    }, [state]);
+
+  function splitEvents(): void {
+    let future: Events[] = [];
+    let past: Events[] = [];    
+
+      props.events!.forEach((event: Events) => {
+        var dateTokens = event.date.split("-");
+        console.log(dateTokens);
+        let tempDate = new Date(
+          parseInt(dateTokens[0]),
+          parseInt(dateTokens[1]) - 1,
+          parseInt(dateTokens[2])
+        );
+        let eventDate = tempDate.getTime();
+        let todaySec: number = today!.getTime();
+        if(eventDate < todaySec) {
+          past.push(event);
+          console.log(event)
+        } else {
+          future.push(event);
+          console.log(event)
+        }
+      });
+
+      setState({
+        ...state,
+        futureEvents: future,
+        pastEvents: past,
+      })
+
+    }
 
   function mapEvents(element: Events, key: number): ReactElement {
-    var dateTokens = element.date.split("-");
-    console.log(dateTokens);
-    let tempDate = new Date(parseInt(dateTokens[0]), parseInt(dateTokens[1]) - 1, parseInt(dateTokens[2]));
-    let eventDate = tempDate.getTime();
-    let todaySec: number = today!.getTime();
-    console.log("i valori da paragonare", eventDate, todaySec);
-    if (eventDate < todaySec) {
       return (
         <div key={key} className="singleCardContainer">
           <CardEventsMobile
@@ -47,10 +76,8 @@ const PersonalEvents: FC<Props> = (props) => {
           />
         </div>
       );
-    } else {
-      return <></>;
-    }
   }
+
   return (
     <article className="eventsSection">
       <section>
@@ -58,17 +85,17 @@ const PersonalEvents: FC<Props> = (props) => {
           {t("personalArea.programmedEvents")}
         </Typography>
         <section className="cardsContainer">
-          {props.events?.map(mapEvents)}
+          {state.futureEvents?.map(mapEvents)}
         </section>
         <Typography variant="h3" sx={{ paddingBottom: "25px" }}>
           {t("personalArea.pastEvents")}
         </Typography>
         <section className="cardsContainer">
-          {props.events?.map(mapEvents)}
+          {state.pastEvents?.map(mapEvents)}
         </section>
       </section>
     </article>
   );
 };
 
-export default PersonalEvents
+export default PersonalEvents;
