@@ -1,43 +1,67 @@
-import React, { useEffect, useState } from "react"
-import { useTranslation } from "react-i18next"
-import { useMediaQuery } from "react-responsive"
-import axios from "axios"
-import { Helmet } from "react-helmet"
+import { FC, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useMediaQuery } from "react-responsive";
 
-import Footer from "../components/footer/Footer"
-import Header from "../components/hooks/Header/Header"
-import NavTab from "../components/ui/NavTab/NavTab"
-import VerticalNavTab from "../components/ui/VerticalNavTab/VerticalNavTab"
-import PreFooter from "../components/preFooter/PreFooter"
-import DonationHistory from "../components/hooks/DonationsHistory/DonationHistory"
-import PersonalEvents from "../components/hooks/PersonalEvents/PersonalEvents"
-import MyInfoSection from "../components/MyInfoSection/MyInfoSection"
+//axios
+import axios, { AxiosResponse } from "axios";
 
-import "../styles/personalArea.scss"
+//helmet
+import { Helmet } from "react-helmet";
 
-function PersonalArea() {
-  const { t }: any = useTranslation()
-  const isDesktop = useMediaQuery({ minWidth: "991px" })
+//components
+import Footer from "../components/hooks/Footer/Footer";
+import Header from "../components/hooks/Header/Header";
+import NavTab from "../components/ui/NavTab/NavTab";
+import VerticalNavTab from "../components/ui/VerticalNavTab/VerticalNavTab";
+import PreFooter from "../components/hooks/preFooter/PreFooter";
+import DonationHistory from "../components/hooks/DonationsHistory/DonationHistory";
+import PersonalEvents from "../components/hooks/PersonalEvents/PersonalEvents";
+import MyInfoSection from "../components/hooks/MyInfoSection/MyInfoSection";
 
-  const [state, setState] = useState<any>({
-    isLoaded: false,
-  })
+//style
+import "../styles/personalArea.scss";
+
+//type
+import { personalData } from "../utils/type";
+import { Typography } from "@mui/material";
+
+interface State {
+  isLoaded: boolean;
+  data: personalData;
+}
+
+const initialState = {
+  isLoaded: false,
+  data: null,
+};
+
+const PersonalArea: FC = () => {
+  const { t }: any = useTranslation();
+
+  const [state, setState] = useState<State>(initialState);
+
+  const Default = ({ children }: any) => {
+    const isNotMobile = useMediaQuery({ minWidth: 992 });
+    return isNotMobile ? children : null;
+  };
+  const Mobile = ({ children }: any) => {
+    const isMobile = useMediaQuery({ maxWidth: 991 });
+    return isMobile ? children : null;
+  };
 
   async function fetchDatas(): Promise<void> {
-    let result = await axios.get("mockAPI/personalArea.json")
-    let temp = result.data
-    temp.isLoaded = true
-    console.log(temp)
+    let result: AxiosResponse = await axios.get("mockAPI/personalArea.json");
+    console.log(result.data);
     setState({
       ...state,
       isLoaded: true,
-      data: temp,
-    })
+      data: result.data,
+    });
   }
 
   useEffect(() => {
-    fetchDatas()
-  }, [])
+    fetchDatas();
+  }, []);
 
   return (
     <>
@@ -54,41 +78,45 @@ function PersonalArea() {
       <main id="personalArea" className="sectionContainer">
         <section className="welcomeCard">
           <div className="icon-container"></div>
-          <h1>{t("personalArea.welcome")}</h1>
+          <Typography variant="h1">{t("personalArea.welcome")}</Typography>
         </section>
-        {state.isLoaded &&
-          (isDesktop ? (
-            <VerticalNavTab
-              pages={[
-                t("personalArea.myInfo"),
-                t("nav.events"),
-                t("personalArea.donations"),
-              ]}
-              children={[
-                <MyInfoSection datas={state.data.myInfo} />,
-                <PersonalEvents events={state.data.events} />,
-                <DonationHistory datas={state.data.donations} />,
-              ]}
-            />
-          ) : (
-            <NavTab
-              pages={[
-                t("personalArea.myInfo"),
-                t("nav.events"),
-                t("personalArea.donations"),
-              ]}
-              children={[
-                <MyInfoSection datas={state.data.myInfo} />,
-                <PersonalEvents events={state.data.events} />,
-                <DonationHistory datas={state.data.donations} />,
-              ]}
-            />
-          ))}
+        {state.isLoaded && (
+          <>
+            <Default>
+              <VerticalNavTab
+                pages={[
+                  t("personalArea.myInfo"),
+                  t("nav.events"),
+                  t("personalArea.donations"),
+                ]}
+                children={[
+                  <MyInfoSection datas={state.data!.myInfo} />,
+                  <PersonalEvents events={state.data!.events} />,
+                  <DonationHistory datas={state.data!.donations} />,
+                ]}
+              />
+            </Default>
+            <Mobile>
+              <NavTab
+                pages={[
+                  t("personalArea.myInfo"),
+                  t("nav.events"),
+                  t("personalArea.donations"),
+                ]}
+                children={[
+                  <MyInfoSection datas={state.data!.myInfo} />,
+                  <PersonalEvents events={state.data!.events} />,
+                  <DonationHistory datas={state.data!.donations} />,
+                ]}
+              />
+            </Mobile>
+          </>
+        )}
       </main>
       <PreFooter />
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default PersonalArea
+export default PersonalArea;

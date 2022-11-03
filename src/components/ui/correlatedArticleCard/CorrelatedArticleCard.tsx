@@ -1,4 +1,5 @@
 import { FC } from "react"
+import { Typography } from "@mui/material"
 
 //style
 import "./correlatedArticleCard.scss"
@@ -13,9 +14,9 @@ const CorrelatedArticleCard: FC<CorrelatedArticleCardProps> = (props) => {
     <div className="articleCardContainer">
       <img src={props.cover} className="image" />
       <div className="titleContainer">
-        <div className="cardTitle">{props.title}</div>
-        <a href="#" className="continue">
-          Continua a leggere...
+        <Typography variant="body1">{props.title}</Typography>
+        <a href="#">
+          <Typography variant="caption">Continua a leggere...</Typography>
         </a>
       </div>
     </div>

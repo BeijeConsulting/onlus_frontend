@@ -12,7 +12,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
 // mediaquery
 import { useMediaQuery } from "react-responsive"
 // components
-import CustomButton from "../ui/buttons/CustomButton/CustomButton"
+import CustomButton from "../../ui/buttons/CustomButton/CustomButton"
 // translation
 import { useTranslation } from "react-i18next"
 // navigazione
@@ -32,7 +32,7 @@ interface CardProps {
   date: string
   time: string
   place: string
-  minWidth?:string
+  minWidth?: string
 }
 
 const Default = ({ children }: any) => {
@@ -58,7 +58,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 
 const CardEventsMobile: FC<CardProps> = (props) => {
   // inizializzo navigazione
-  let navigate = useNavigate()
+  let navigate:Function = useNavigate()
   // tranlation hook
   const { t }: any = useTranslation()
   // stato
@@ -74,12 +74,13 @@ const CardEventsMobile: FC<CardProps> = (props) => {
   }
 
   return (
-    <Card sx={{ padding: "20px",minWidth:props.minWidth }}>
-      <CardHeader
+    <Card sx={{ padding: "20px", minWidth: props.minWidth }}>
+      <Typography variant="h3">{props.title}</Typography>
+      {/* <CardHeader
         sx={{ padding: "0px" }}
         titleTypographyProps={{ fontWeight: 700, fontSize: "25px" }}
         title={props.title}
-      />
+      /> */}
       <Default>
         <CardMedia
           component="img"
@@ -98,21 +99,15 @@ const CardEventsMobile: FC<CardProps> = (props) => {
       </Mobile>
       <div style={{ display: "flex", flexWrap: "wrap", width: "100%" }}>
         <div style={{ width: "60%" }}>
-          <CardHeader
-            sx={{ padding: "0", marginY: "10px" }}
-            subheader={props.date}
-            subheaderTypographyProps={{ fontWeight: 600, fontSize: "16px" }}
-          />
-          <CardHeader
-            sx={{ padding: "0", marginY: "10px" }}
-            subheader={props.time}
-            subheaderTypographyProps={{ fontWeight: 600, fontSize: "16px" }}
-          />
-          <CardHeader
-            sx={{ padding: "0px", marginY: "10px" }}
-            subheader={props.place}
-            subheaderTypographyProps={{ fontWeight: 600, fontSize: "16px" }}
-          />
+          <Typography sx={{ padding: "0", marginY: "10px" }} variant="body2">
+            {props.date}
+          </Typography>
+          <Typography sx={{ padding: "0", marginY: "10px" }} variant="body2">
+            {props.time}
+          </Typography>
+          <Typography sx={{ padding: "0", marginY: "10px" }} variant="body2">
+            {props.place}
+          </Typography>
         </div>
         {!expanded && (
           <div
@@ -149,18 +144,24 @@ const CardEventsMobile: FC<CardProps> = (props) => {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <CardHeader
+          <Typography
+            variant="h3"
             sx={{ padding: "0px", marginBottom: "10px" }}
-            titleTypographyProps={{ fontWeight: 700, fontSize: "25px" }}
-            title={t("events.description")}
-          />
-          <Typography paragraph>{props.description}</Typography>
-          <CardHeader
+          >
+            {t("events.description")}
+          </Typography>
+          <Typography paragraph variant="body1">
+            {props.description}
+          </Typography>
+          <Typography
+            variant="h3"
             sx={{ padding: "0px", marginBottom: "10px" }}
-            titleTypographyProps={{ fontWeight: 700, fontSize: "25px" }}
-            title={t("events.requirements")}
-          />
-          <Typography paragraph>{props.requirement}</Typography>
+          >
+            {t("events.requirements")}
+          </Typography>
+          <Typography paragraph variant="body1">
+            {props.requirement}
+          </Typography>
           <CustomButton
             colorType="secondary"
             callback={goToBooking}

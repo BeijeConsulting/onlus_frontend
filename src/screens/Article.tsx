@@ -1,16 +1,27 @@
 import { FC, useEffect, useState } from "react"
-import Footer from "../components/footer/Footer"
-import Header from "../components/hooks/Header/Header"
-import PreFooter from "../components/preFooter/PreFooter"
-import { useTranslation } from "react-i18next"
-import axios from "axios"
 
-import { article, content } from "../utils/type"
+//components
+import Footer from "../components/hooks/Footer/Footer";
+import Header from "../components/hooks/Header/Header";
+import PreFooter from "../components/hooks/preFooter/PreFooter";
+import CorrelatedArticleCard from "../components/ui/correlatedArticleCard/CorrelatedArticleCard";
+import Hero from "../components/hooks/Hero/Hero";
+
+//translation
+import { useTranslation } from "react-i18next";
+
+//axios
+import axios, { AxiosResponse } from "axios";
+
+//type
+import { article, content } from "../utils/type";
 
 //style
-import "../styles/article.scss"
-import CorrelatedArticleCard from "../components/ui/correlatedArticleCard/CorrelatedArticleCard"
-import Hero from "../components/hooks/Hero/Hero"
+import "../styles/article.scss";
+
+//helmet
+import { Helmet } from "react-helmet";
+import { Typography } from "@mui/material";
 
 const singleArticle = {
   id: 1,
@@ -48,35 +59,31 @@ const singleArticle = {
       },
     },
   ],
-}
+};
 
 interface State {
-  localArray: Array<article>
+  localArray: Array<article>;
 }
 const initialState = {
   localArray: [],
-}
+};
 
 const Article: FC = () => {
-  const [state, setState] = useState<State>(initialState)
+  const [state, setState] = useState<State>(initialState);
 
-  const { t }: any = useTranslation()
+  const { t }: any = useTranslation();
 
   useEffect(() => {
-    fetchDatas()
-  }, [])
+    fetchDatas();
+  }, []);
 
   async function fetchDatas() {
-    let result: any = await axios.get("/mockAPI/articles.json")
-    console.log(result.data.articles)
+    let result: AxiosResponse = await axios.get("/mockAPI/articles.json");
+    console.log(result.data.articles);
     setState({
       ...state,
       localArray: result.data.articles,
-    })
-    // localArray = localArray.filter((obj) => {
-    //   return obj.categories.some(singleArticle.categories);
-    // });
-    // console.log(localArray);
+    });
   }
 
   const mappingParagraph = (el: content, key: number): JSX.Element => {
@@ -93,19 +100,24 @@ const Article: FC = () => {
             </video>
           ))}
       </div>
-    )
-  }
+    );
+  };
 
   const mappingCorrelated = (el: article, key: number): JSX.Element => {
     return (
       <div key={key}>
         <CorrelatedArticleCard cover={el.cover} title={el.title} />
       </div>
-    )
-  }
+    );
+  };
 
   return (
     <>
+      <Helmet>
+        <title>Onlus - {singleArticle.title}</title>
+        <meta name="description" content={`${t("metaTitles.about")} page`} />
+      </Helmet>
+
       <Header />
 
       <main id="article">
@@ -115,10 +127,10 @@ const Article: FC = () => {
           type="article"
         />
         <section className="sectionContainer">
-          <div className="date">{singleArticle.date}</div>
+          <Typography variant="body1">{singleArticle.date}</Typography>
           <article>
             <section>{singleArticle.content.map(mappingParagraph)}</section>
-            <div className="title">{t("home.relatedArticles")}</div>
+            <Typography variant="h3">{t("home.relatedArticles")}</Typography>
             <section className="correlatedArticles">
               {state.localArray.length > 0 &&
                 state.localArray.map(mappingCorrelated)}
@@ -129,7 +141,7 @@ const Article: FC = () => {
       <PreFooter />
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default Article
+export default Article;

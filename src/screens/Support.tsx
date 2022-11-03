@@ -1,54 +1,52 @@
-import React, { useEffect, useState, ReactElement } from "react"
-import axios from "axios"
-import { useTranslation } from "react-i18next"
-import { Helmet } from "react-helmet"
+import React, { useEffect, useState, ReactElement } from "react";
+
+//axios
+import axios from "axios";
+import { useTranslation } from "react-i18next";
+
+//helmet
+import { Helmet } from "react-helmet";
 
 //components
-import JoinUs from "../components/hooks/joinUsBbox/JoinUsBox"
-import Header from "../components/hooks/Header/Header"
-import PreFooter from "../components/preFooter/PreFooter"
-import Footer from "../components/footer/Footer"
+import PreFooter from "../components/hooks/preFooter/PreFooter";
+import Footer from "../components/hooks/Footer/Footer";
+import Hero from "../components/hooks/Hero/Hero";
 
 //styles
-import "../styles/support.scss"
-import Hero from "../components/hooks/Hero/Hero"
+import "../styles/support.scss";
+
+//type
+import { content, hero } from "../utils/type";
+import { Typography } from "@mui/material";
+import Header from "../components/hooks/Header/Header";
+import JoinUs from "../components/hooks/joinUsBbox/JoinUsBox";
 
 interface State {
-  hero: Hero
-  title: string
-  content: Array<Content>
-}
-
-type Hero = {
-  img: string
-  text: string
-}
-
-type Content = {
-  paragraph: string
-  media: string
+  hero: hero;
+  title: string;
+  content: Array<content>;
 }
 
 function Support() {
-  const [state, setState] = useState<State>()
-  useEffect(() => {
-    getData()
-  }, [])
+  const [state, setState] = useState<State>();
+  const { t }: any = useTranslation();
 
-  const { t, i18n }: any = useTranslation()
+  useEffect(() => {
+    getData();
+  }, []);
 
   async function getData(): Promise<void> {
-    let result = await axios.get("mockAPI/support.json")
-    console.log("result", result.data)
-    setState(result.data)
+    let result = await axios.get("mockAPI/support.json");
+    console.log("result", result.data);
+    setState(result.data);
   }
 
-  const mapping = (item: any, key: any) => {
-    console.log("item è", item)
-    console.log(`../assets/images/${item.media}`)
+  const mapping = (item: content, key: number) => {
+    console.log("item è", item);
+    console.log(`../assets/images/${item.media}`);
     return (
       <section className="content-about-container" key={key}>
-        <div className="text-about">{item.paragraph}</div>
+        <Typography variant="body1">{item.paragraph}</Typography>
         <div className="img-container">
           <img
             className="img-about"
@@ -57,8 +55,8 @@ function Support() {
           />
         </div>
       </section>
-    )
-  }
+    );
+  };
 
   return (
     <>
@@ -70,7 +68,7 @@ function Support() {
       <main id="support">
         <JoinUs type="donate" />
         <div className="sectionContainer">
-          <h1>{state?.title}</h1>
+          <Typography variant="h1">{state?.title}</Typography>
           {state?.content.map(mapping)}
         </div>
         <Hero type="home" title={state?.hero.text} image={"pandaImg.jpg"} />
@@ -78,7 +76,7 @@ function Support() {
       <PreFooter />
       <Footer />
     </>
-  )
+  );
 }
 
-export default Support
+export default Support;

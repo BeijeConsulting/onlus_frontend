@@ -1,15 +1,22 @@
 import React, { FC,useEffect,useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Helmet } from "react-helmet"
+<<<<<<< HEAD
 import axios from "axios"
+=======
+import { Typography } from "@mui/material"
+
+>>>>>>> develop
 // componenti
-import Footer from "../components/footer/Footer"
-import PreFooter from "../components/preFooter/PreFooter"
-import CardEvents from "../components/cardEvents/CardEvents"
-import CardEventsMobile from "../components/cardEvents/CardEventsMobile"
+import Footer from "../components/hooks/Footer/Footer"
+import PreFooter from "../components/hooks/preFooter/PreFooter";
+import CardEvents from "../components/hooks/CardEvents/CardEvents"
+import CardEventsMobile from "../components/hooks/CardEvents/CardEventsMobile"
 import Header from "../components/hooks/Header/Header"
+
 // mediaquery
 import { useMediaQuery } from "react-responsive"
+
 // stile
 import "../styles/events.scss"
 
@@ -86,11 +93,16 @@ const Events: FC = () => {
       <Header />
 
       <main id={"events"} className="sectionContainer">
+<<<<<<< HEAD
         <h1 className="title">{t("titles.eventsTitle")}</h1>
         {
           events.length > 0 &&
           events.map(mapEvents)
         }
+=======
+        <Typography variant="h1">{t("titles.eventsTitle")}</Typography>
+        {EVENTI.map(mapEvents)}
+>>>>>>> develop
       </main>
 
       <PreFooter />

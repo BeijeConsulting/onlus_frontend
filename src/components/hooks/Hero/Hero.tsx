@@ -1,27 +1,30 @@
-import React, { FC, ReactElement, useState, useLayoutEffect } from "react"
-import { useTranslation } from "react-i18next"
-import { useNavigate } from "react-router-dom"
-import CustomButton from "../../ui/buttons/CustomButton/CustomButton"
-import axios from "axios"
-import "./hero.scss"
-import { url } from "inspector"
+import React, { FC, ReactElement, useState, useLayoutEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+import CustomButton from "../../ui/buttons/CustomButton/CustomButton";
+import axios from "axios";
 
-import SCREENS from "../../../route/router"
+import { Typography } from "@mui/material";
+
+import "./hero.scss";
+import { url } from "inspector";
+
+import SCREENS from "../../../route/router";
 
 interface HeroProps {
-  type: "home" | "article" | "about" | "support"
-  category?: string
-  title: string | undefined
-  subtitle?: string | undefined
-  image: string | undefined
+  type: "home" | "article" | "about" | "support";
+  category?: string;
+  title: string | undefined;
+  subtitle?: string | undefined;
+  image: string | undefined;
 }
 
 const Hero: FC<HeroProps> = (props) => {
-  const { t }: any = useTranslation()
-  const navigate: any = useNavigate()
+  const { t }: any = useTranslation();
+  const navigate: Function = useNavigate();
 
   function handleNavigate() {
-    props.type === "home" ? navigate(SCREENS.donate) : navigate(SCREENS.signup)
+    props.type === "home" ? navigate(SCREENS.donate) : navigate(SCREENS.signup);
   }
 
   switch (props.type) {
@@ -38,9 +41,12 @@ const Hero: FC<HeroProps> = (props) => {
           }}
         >
           <div className="hero-content">
-            <h1 className="hero-title">{props.title}</h1>
+            <Typography variant="h1">{props.title}</Typography>
+            {/* <h1 className="hero-title">{props.title}</h1> */}
             <div className="hero-linebr" />
-            <h4 className="hero-subtitle">{props.subtitle}</h4>
+            <Typography variant="h5" className="hero-subtitle">
+              {props.subtitle}
+            </Typography>
             {props.type === "home" ? (
               <CustomButton
                 size="small"
@@ -58,7 +64,7 @@ const Hero: FC<HeroProps> = (props) => {
             )}
           </div>
         </section>
-      )
+      );
 
     case "article":
       return (
@@ -74,12 +80,14 @@ const Hero: FC<HeroProps> = (props) => {
             }}
           >
             <div className="hero-content">
-              <h4 className="hero-category">{props.category}</h4>
-              <h1 className="hero-title">{props.title}</h1>
+              <Typography variant="h5" className="hero-category">
+                {props.category}
+              </Typography>
+              <Typography variant="h1">{props.title}</Typography>
             </div>
           </section>
         </>
-      )
+      );
 
     case "about":
       return (
@@ -95,14 +103,14 @@ const Hero: FC<HeroProps> = (props) => {
             }}
           >
             <div className="hero-content">
-              <h1 className="hero-mission">{props.title}</h1>
+              <Typography variant="h1">{props.title}</Typography>
             </div>
           </section>
         </>
-      )
+      );
     default:
-      return <div>Errore</div>
+      return <div>Errore</div>;
   }
-}
+};
 
-export default Hero
+export default Hero;

@@ -1,29 +1,30 @@
-import { FC, useState } from "react"
-import { useTranslation } from "react-i18next"
-import { Helmet } from "react-helmet"
+import { FC, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Helmet } from "react-helmet";
+import { Typography } from "@mui/material";
 
 //components
-import Footer from "../components/footer/Footer"
-import Header from "../components/hooks/Header/Header"
-import PreFooter from "../components/preFooter/PreFooter"
-import CustomButton from "../components/ui/buttons/CustomButton/CustomButton"
-import InputBox from "../components/ui/inputBox/InputBox"
-import InputCheckbox from "../components/ui/inputBox/InputCheckbox"
+import Footer from "../components/hooks/Footer/Footer";
+import Header from "../components/hooks/Header/Header";
+import PreFooter from "../components/hooks/preFooter/PreFooter";
+import CustomButton from "../components/ui/buttons/CustomButton/CustomButton";
+import InputBox from "../components/hooks/inputBox/InputBox";
+import InputCheckbox from "../components/hooks/inputBox/InputCheckbox";
 
 //check functions
-import { checkText, checkEmail, checkPhone, checkCF } from "../utils/checkForm"
+import { checkText, checkEmail, checkPhone, checkCF } from "../utils/checkForm";
 
 //style
-import "../styles/donate.scss"
+import "../styles/donate.scss";
 
 interface State {
-  isChecked: boolean
-  errorName: boolean
-  errorSurname: boolean
-  errorEmail: boolean
-  errorPhone: boolean
-  errorCf: boolean
-  errorDate: boolean
+  isChecked: boolean;
+  errorName: boolean;
+  errorSurname: boolean;
+  errorEmail: boolean;
+  errorPhone: boolean;
+  errorCf: boolean;
+  errorDate: boolean;
 }
 
 const initialState = {
@@ -34,21 +35,21 @@ const initialState = {
   errorPhone: false,
   errorCf: false,
   errorDate: false,
-}
+};
 
 type dataObject = {
-  name: string
-  surname: string
-  email: string
-  phone: string
-  cf: string
-  dateOfBirth: string
+  name: string;
+  surname: string;
+  email: string;
+  phone: string;
+  cf: string;
+  dateOfBirth: string;
   // holderName: string;
   // cardNumber: string;
   // expirationDate: string;
   // cvc: string;
   // amount: string;
-}
+};
 
 let data: dataObject = {
   name: "",
@@ -62,22 +63,22 @@ let data: dataObject = {
   // expirationDate: "",
   // cvc: "",
   // amount: "",
-}
+};
 
 const Donate: FC = () => {
-  const [state, setState] = useState<State>(initialState)
-  const { t }: any = useTranslation()
+  const [state, setState] = useState<State>(initialState);
+  const { t }: any = useTranslation();
 
   // const checkForm = (): void => {
   //   console.log("check");
   // };
 
-  const setTerms = (e: any): void => {
+  const setTerms = (e: boolean): void => {
     setState({
       ...state,
       isChecked: e,
-    })
-  }
+    });
+  };
 
   const checkForm = (): void => {
     setState({
@@ -88,53 +89,53 @@ const Donate: FC = () => {
       errorPhone: !checkPhone(data.phone),
       errorCf: !checkCF(data.cf),
       errorDate: data.dateOfBirth === "",
-    })
-    console.log(data)
-  }
+    });
+    console.log(data);
+  };
 
   //setData
-  const setName = (name: any): void => {
-    data.name = name.target.value
+  const setName = (name: React.ChangeEvent<HTMLInputElement>): void => {
+    data.name = name.target.value;
     setState({
       ...state,
       errorName: false,
-    })
-  }
-  const setSurname = (surname: any): void => {
+    });
+  };
+  const setSurname = (surname: React.ChangeEvent<HTMLInputElement>): void => {
     setState({
       ...state,
       errorSurname: false,
-    })
-    data.surname = surname.target.value
-  }
-  const setEmail = (email: any): void => {
+    });
+    data.surname = surname.target.value;
+  };
+  const setEmail = (email: React.ChangeEvent<HTMLInputElement>): void => {
     setState({
       ...state,
       errorEmail: false,
-    })
-    data.email = email.target.value
-  }
-  const setPhone = (phone: any): void => {
+    });
+    data.email = email.target.value;
+  };
+  const setPhone = (phone: React.ChangeEvent<HTMLInputElement>): void => {
     setState({
       ...state,
       errorPhone: false,
-    })
-    data.phone = phone.target.value
-  }
-  const setCf = (cf: any): void => {
+    });
+    data.phone = phone.target.value;
+  };
+  const setCf = (cf: React.ChangeEvent<HTMLInputElement>): void => {
     setState({
       ...state,
       errorCf: false,
-    })
-    data.cf = cf.target.value
-  }
-  const setDate = (date: any): void => {
+    });
+    data.cf = cf.target.value;
+  };
+  const setDate = (date: React.ChangeEvent<HTMLInputElement>): void => {
     setState({
       ...state,
       errorDate: false,
-    })
-    data.dateOfBirth = date.target.value
-  }
+    });
+    data.dateOfBirth = date.target.value;
+  };
 
   return (
     <>
@@ -146,11 +147,9 @@ const Donate: FC = () => {
       <Header />
 
       <main id="donate" className="sectionContainer">
-        <h1>{t("personalArea.donate")}</h1>
+        <Typography variant="h1">{t("personalArea.donate")}</Typography>
         <form action="">
-          <div className="titlePersonalData">
-            {t("personalArea.personalData")}
-          </div>
+          <Typography variant="h3">{t("personalArea.personalData")}</Typography>
           <section className="personalData">
             <div className="input-box">
               <InputBox
@@ -206,9 +205,9 @@ const Donate: FC = () => {
               />
             </div>
           </section>
-          <div className="titlePersonalData">
+          <Typography variant="h3">
             {t("personalArea.paymentOption")}
-          </div>
+          </Typography>
           <section className="personalData">
             <InputBox
               label={t("donate.holderName")}
@@ -251,7 +250,7 @@ const Donate: FC = () => {
       <PreFooter />
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default Donate
+export default Donate;

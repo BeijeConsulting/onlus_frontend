@@ -1,47 +1,55 @@
-import { FC, useState, useEffect } from "react"
-import { useTranslation } from "react-i18next"
-import axios from "axios"
-import { Helmet } from "react-helmet"
+import { FC, useState, useEffect } from "react";
 
-import Skeleton from "@mui/material/Skeleton"
-import Stack from "@mui/material/Stack"
+//translation
+import { useTranslation } from "react-i18next";
 
-import Header from "../components/hooks/Header/Header"
-import Footer from "../components/footer/Footer"
-import AccordionItem from "../components/hooks/AccordionItem/AccordionItem"
+import axios from "axios";
 
-import "../styles/faq.scss"
+//helmet
+import { Helmet } from "react-helmet";
+
+//components
+import Header from "../components/hooks/Header/Header";
+import Footer from "../components/hooks/Footer/Footer";
+import AccordionItem from "../components/hooks/AccordionItem/AccordionItem";
+
+//style
+import "../styles/faq.scss";
+
+//type
+import { faq, infoType } from "../utils/type";
+import { Typography } from "@mui/material";
 
 interface State {
-  data: any
+  data: infoType;
 }
 
 const initialState = {
   data: null,
-}
+};
 
 const Faq: FC = () => {
-  const [state, setState] = useState<State>(initialState)
-  const { t }: any = useTranslation()
+  const [state, setState] = useState<State>(initialState);
+  const { t }: any = useTranslation();
 
   async function fetchDatas(): Promise<void> {
-    let result = await axios.get("mockAPI/faq.json")
+    let result = await axios.get("mockAPI/faq.json");
     setState({
       ...state,
       data: result.data,
-    })
-    console.log("result", result)
+    });
+    console.log("result", result);
   }
 
   useEffect(() => {
-    fetchDatas()
-  }, [])
+    fetchDatas();
+  }, []);
 
-  const mapFaq = (item: any, key: number): JSX.Element => {
+  const mapFaq = (item: faq, key: number): JSX.Element => {
     return (
       <AccordionItem key={key} title={item.question} content={item.answer} />
-    )
-  }
+    );
+  };
 
   return (
     <>
@@ -54,18 +62,18 @@ const Faq: FC = () => {
       {state.data && (
         <main id={"faq"} className="sectionContainer">
           <section>
-            <h1>{state.data.info.title}</h1>
-            <p>{state.data.info.text}</p>
+            <Typography variant="h1">{state.data.info.title}</Typography>
+            <Typography variant="body1">{state.data.info.text}</Typography>
           </section>
           <section>
-            <h1>Faq</h1>
+            <Typography variant="h1">Faq</Typography>
             <div className="faq-container">{state.data.qna.map(mapFaq)}</div>
           </section>
         </main>
       )}
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default Faq
+export default Faq;

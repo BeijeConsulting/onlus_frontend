@@ -1,15 +1,11 @@
 import React, { ReactElement, useState, useEffect } from "react";
 import "./donationHistory.scss";
 import { useTranslation } from "react-i18next";
-
-interface donations {
-  id: number;
-  date: Date;
-  amount: number;
-}
+import { donation } from "../../../utils/type";
+import { Typography } from "@mui/material";
 
 interface Props {
-  datas: donations[];
+  datas: Array<donation>;
 }
 
 function DonationHistory(props: Props): ReactElement {
@@ -22,13 +18,13 @@ function DonationHistory(props: Props): ReactElement {
 
   function sumDonations(): void {
     let sum: number = 0;
-    props.datas.forEach((elem: donations) => {
+    props.datas.forEach((elem: donation) => {
       sum = sum + elem.amount;
     });
     setState(sum);
   }
 
-  function mapping(element: donations): ReactElement {
+  function mapping(element: donation): ReactElement {
     return (
       <div key={element.id} className="singleDonation">
         <span>{`${element.date}`}</span>
@@ -41,11 +37,20 @@ function DonationHistory(props: Props): ReactElement {
     <article className="donationsSection">
       <section className="windowBox">
         <div className="donationTotal">
-          {t("personalArea.totalDonated")}
-          <span className="bigNumber">{`${state}€`}</span>
+          <Typography variant="body1">
+            {t("personalArea.totalDonated")}
+
+            <span className="bigNumber">{`${state}€`}</span>
+          </Typography>
         </div>
-        <div className="titleHistory">{t("personalArea.donationsHistory")}</div>
-        <section className="donations">{props.datas.map(mapping)}</section>
+        <div className="titleHistory">
+          <Typography variant="h3">
+            {t("personalArea.donationsHistory")}
+          </Typography>
+        </div>
+        <section className="donations">
+          <Typography variant="body1">{props.datas.map(mapping)}</Typography>
+        </section>
       </section>
     </article>
   );

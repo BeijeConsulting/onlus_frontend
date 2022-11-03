@@ -21,21 +21,15 @@
   .hero-content{
     position: relative;
     z-index: 9;
-  }
-
-  .hero-title{
-    font-size: 30px;
+    padding: 20px;
   }
 
   .hero-subtitle{
-    font-weight: 300;
     padding-bottom: 30px;
   }
 
   .hero-category {
-    font-size: 15px;
     margin-bottom: 15px;
-    text-transform: uppercase;
   }
 
   .hero-linebr {
@@ -86,18 +80,12 @@
     padding: 50px;
     .hero-content{
       width: 50vw;
-      .hero-title{
-        font-size: 60px;
-      }
+      padding: 50px;
       .hero-subtitle{
-        font-size: 24px;
-        font-weight: 300;
         padding-bottom: 50px;
       }
       .hero-category {
-        font-size: 15px;
         margin-bottom: 18px;
-        text-transform: uppercase;
       }
     }
   }
@@ -107,29 +95,11 @@
   .hero-container{
     padding: 50px;
     .hero-content{
+      padding: 100px;
       width: 50vw;
       .hero-subtitle{
-        font-size: 24px;
-        font-weight: 300;
         padding-bottom: 50px;
       }
     }
-  }
-}
-
-
-.hero-about-card {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1;
-  width: 100%;
-  padding: 0 25px;
-  color: white;
-
-  .hero-mission {
-    font-size: 30px;
-    text-align: center;
   }
 }
