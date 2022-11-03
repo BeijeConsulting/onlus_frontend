@@ -8,7 +8,6 @@ import axios, { AxiosResponse } from "axios"
 import { Helmet } from "react-helmet"
 
 //Components
-
 import Footer from "../components/hooks/Footer/Footer"
 import Header from "../components/hooks/Header/Header"
 import Hero from "../components/hooks/Hero/Hero"
@@ -47,8 +46,18 @@ const About: FC = () => {
     return (
       <section className="content-about-container" key={key}>
         <Typography variant="body1">{item.paragraph}</Typography>
-        <div className="img-container">
-          <img className="img-about" src={item.media?.content} alt="hero-img" />
+        <div className="media-container">
+          
+          {!!item.media &&
+          (item.media.type === "image" ? (
+            <img className="content-about" src={item.media?.content} alt="hero-img" />
+          ) : (
+            <video controls className="content-about">
+              <source type="video/mp4" src={item.media.content} />
+            </video>
+          ))}
+
+
         </div>
       </section>
     )
