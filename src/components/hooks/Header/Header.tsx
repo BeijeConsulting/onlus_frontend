@@ -35,33 +35,18 @@ const initialState = {
 }
 
 const Header: FC<HeaderProps> = (props) => {
-<<<<<<< HEAD
-  // stati
-  const [state, setState] = useState<State>(initialState);
-
-  // navigazione
-  const navigate: any = useNavigate();
-  // traduzione
-=======
   const [state, setState] = useState<State>(initialState)
 
   const navigate: Function = useNavigate();
 
->>>>>>> develop
   const { t, i18n }: any = useTranslation();
 
   // mediaquery
   const Default = ({ children }: any) => {
-<<<<<<< HEAD
-    const isNotMobile = useMediaQuery({ minWidth: 992 });
-    return isNotMobile ? children : null;
-  };
-=======
     const isNotMobile = useMediaQuery({ minWidth: 992 })
     return isNotMobile ? children : null
   }
 
->>>>>>> develop
   const Mobile = ({ children }: any) => {
     const isMobile = useMediaQuery({ maxWidth: 991 })
     return isMobile ? children : null

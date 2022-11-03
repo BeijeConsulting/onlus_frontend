@@ -1,12 +1,9 @@
 import React, { FC,useEffect,useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Helmet } from "react-helmet"
-<<<<<<< HEAD
 import axios from "axios"
-=======
 import { Typography } from "@mui/material"
 
->>>>>>> develop
 // componenti
 import Footer from "../components/hooks/Footer/Footer"
 import PreFooter from "../components/hooks/preFooter/PreFooter";
@@ -93,16 +90,10 @@ const Events: FC = () => {
       <Header />
 
       <main id={"events"} className="sectionContainer">
-<<<<<<< HEAD
-        <h1 className="title">{t("titles.eventsTitle")}</h1>
-        {
+      <Typography variant="h1">{t("titles.eventsTitle")}</Typography>        {
           events.length > 0 &&
           events.map(mapEvents)
         }
-=======
-        <Typography variant="h1">{t("titles.eventsTitle")}</Typography>
-        {EVENTI.map(mapEvents)}
->>>>>>> develop
       </main>
 
       <PreFooter />

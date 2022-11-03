@@ -110,29 +110,21 @@ const Footer: FC = () => {
           {t("footer.contacts")}
         </Typography>
         <ul className="contactsList">
-<<<<<<< HEAD:src/components/footer/Footer.tsx
-          <li>{CONTACTS.phone}</li>
-          <li>{CONTACTS.email}</li>
-          <li>{CONTACTS.address}</li>
-          <li>P.Iva: {CONTACTS.PIva}</li>
-          <li>C.F: {CONTACTS.CF}</li>
-=======
           <li>
-            <Typography variant="body1">{contacts.telephone}</Typography>
+            <Typography variant="body1">{CONTACTS.phone}</Typography>
           </li>
           <li>
-            <Typography variant="body1">{contacts.email}</Typography>
+            <Typography variant="body1">{CONTACTS.email}</Typography>
           </li>
           <li>
-            <Typography variant="body1">{contacts.address}</Typography>
+            <Typography variant="body1">{CONTACTS.address}</Typography>
           </li>
           <li>
-            <Typography variant="body1">P.Iva: {contacts.PIva}</Typography>
+            <Typography variant="body1">P.Iva: {CONTACTS.PIva}</Typography>
           </li>
           <li>
-            <Typography variant="body1">C.F: {contacts.CF}</Typography>
+            <Typography variant="body1">C.F: {CONTACTS.CF}</Typography>
           </li>
->>>>>>> develop:src/components/hooks/Footer/Footer.tsx
         </ul>
       </section>
       <section className="social">{SOCIAL.map(mapping)}</section>

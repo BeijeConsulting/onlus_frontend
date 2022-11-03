@@ -1,13 +1,10 @@
 import { FC,useEffect } from "react"
 // import router
 import { Routes, Route } from "react-router-dom"
-<<<<<<< HEAD
 // import redux
 import { setGeneral } from "./redux/duck/general"
 import { useDispatch} from 'react-redux'
-=======
 import { createTheme, ThemeProvider } from "@mui/material/styles"
->>>>>>> develop
 
 // Screens
 import About from "./screens/About"
@@ -22,19 +19,15 @@ import NotFound from "./screens/NotFound"
 import PersonalArea from "./screens/PersonalArea"
 import SignUp from "./screens/SignUp"
 import Support from "./screens/Support"
-<<<<<<< HEAD
 import axios from "axios"
 // import route
-import SCREENS from "./route/router"
 // import mui
-=======
 import ResetPassword from "./screens/ResetPassword"
 import ConfirmDonation from "./screens/ConfirmDonation"
 
 import SCREENS from "./route/router"
 import { theme } from "./utils/muiTheme"
 
->>>>>>> develop
 import { StyledEngineProvider } from "@mui/material"
 // import style
 import "./App.scss"
