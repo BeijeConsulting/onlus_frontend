@@ -90,7 +90,7 @@ const PersonalArea: FC = () => {
                   t("personalArea.donations"),
                 ]}
                 children={[
-                  <MyInfoSection datas={state.data!.myInfo} />,
+                  <MyInfoSection datas={state.data} />,
                   <PersonalEvents events={state.data!.events} />,
                   <DonationHistory datas={state.data!.donations} />,
                 ]}
