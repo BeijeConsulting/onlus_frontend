@@ -16,7 +16,7 @@ interface HeroProps {
   category?: string;
   title: string | undefined;
   subtitle?: string | undefined;
-  image: string | undefined;
+  image?: string | undefined;
 }
 
 const Hero: FC<HeroProps> = (props) => {

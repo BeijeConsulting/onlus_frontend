@@ -7,7 +7,7 @@ import { Events } from "../../../utils/type";
 import { Typography } from "@mui/material";
 
 interface Props {
-  events: Array<Events>;
+  events: Events[] | null;
 }
 
 /*title: string,
@@ -27,7 +27,10 @@ const PersonalEvents: FC<Props> = (props) => {
   //   }, []);
 
   function mapEvents(element: Events, key: number): ReactElement {
-    let eventDate = Date.parse(element.date);
+    var dateTokens = element.date.split("-");
+    console.log(dateTokens);
+    let tempDate = new Date(parseInt(dateTokens[0]), parseInt(dateTokens[1]) - 1, parseInt(dateTokens[2]));
+    let eventDate = tempDate.getTime();
     let todaySec: number = today!.getTime();
     console.log("i valori da paragonare", eventDate, todaySec);
     if (eventDate < todaySec) {
@@ -55,13 +58,13 @@ const PersonalEvents: FC<Props> = (props) => {
           {t("personalArea.programmedEvents")}
         </Typography>
         <section className="cardsContainer">
-          {props.events.map(mapEvents)}
+          {props.events?.map(mapEvents)}
         </section>
         <Typography variant="h3" sx={{ paddingBottom: "25px" }}>
           {t("personalArea.pastEvents")}
         </Typography>
         <section className="cardsContainer">
-          {props.events.map(mapEvents)}
+          {props.events?.map(mapEvents)}
         </section>
       </section>
     </article>

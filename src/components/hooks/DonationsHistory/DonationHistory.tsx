@@ -1,11 +1,11 @@
 import React, { ReactElement, useState, useEffect } from "react";
 import "./donationHistory.scss";
 import { useTranslation } from "react-i18next";
-import { donation } from "../../../utils/type";
+import { donationData, donation } from "../../../utils/type";
 import { Typography } from "@mui/material";
 
 interface Props {
-  datas: Array<donation>;
+  datas: donationData | null;
 }
 
 function DonationHistory(props: Props): ReactElement {
@@ -14,11 +14,12 @@ function DonationHistory(props: Props): ReactElement {
 
   useEffect(() => {
     sumDonations();
+    console.log(props.datas)
   }, []);
 
   function sumDonations(): void {
     let sum: number = 0;
-    props.datas.forEach((elem: donation) => {
+    props.datas?.history?.forEach((elem: donation) => {
       sum = sum + elem.amount;
     });
     setState(sum);
@@ -49,7 +50,7 @@ function DonationHistory(props: Props): ReactElement {
           </Typography>
         </div>
         <section className="donations">
-          <Typography variant="body1">{props.datas.map(mapping)}</Typography>
+          <Typography variant="body1">{props.datas?.history?.map(mapping)}</Typography>
         </section>
       </section>
     </article>
