@@ -24,9 +24,6 @@ header {
         font-weight: 400;
         color: $white;
         padding: 0 10px;
-        &:hover {
-          text-decoration: underline;
-        }
         cursor: pointer;
       }
     }
@@ -92,7 +89,7 @@ header {
     margin-right: 74.66px;
   }
 
-  .nav-desktop{
+  .nav-desktop, .bottom-header-button{
     p{
       &:after{
         display: block;
