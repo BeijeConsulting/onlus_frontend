@@ -1,6 +1,6 @@
 {
+  "id": 1,
   "Info": {
-    "id": 1,
     "name": "Luca",
     "surname": "Bottoli",
     "role": "owner",
@@ -10,5 +10,25 @@
     "language": "it",
     "publishedArticles": 5,
     "active": true
+  },
+  "events": [
+    {
+      "title": "Save the planet",
+      "image": "https://www.plasticfreeonlus.it/seo/plastic-free-raccolta-fb.jpeg",
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi vero culpa velit magni aliquam. Voluptas non ullam quo temporibus aut, cum, sequi eaque recusandae iusto praesentium cumque omnis laudantium, saepe labore! Odio dicta tenetur, enim laboriosam quidem libero vel ipsam animi vitae ducimus aperiam magni fuga, ex cumque repudiandae eaque?",
+      "requirement": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi vero culpa velit magni aliquam. Voluptas non ullam quo temporibus aut, cum, sequi eaque recusandae iusto praesentium cumque omnis laudantium, saepe labore! Odio dicta tenetur, enim laboriosam quidem libero vel ipsam animi vitae ducimus aperiam magni fuga, ex cumque repudiandae eaque?",
+      "date": "2022-10-24",
+      "time": "h 12.00",
+      "place": "Milano"
+    }
+  ],
+  "donations": {
+    "totalAmount": 1230,
+    "history": [
+      {
+        "date": "2020-12-18",
+        "amount": 30
+      }
+    ]
   }
 }

@@ -18,6 +18,8 @@ import { article, category } from "../utils/type";
 import "../styles/blog.scss";
 import CardArticle from "../components/ui/CardArticle/CardArticle";
 import { useMediaQuery } from "react-responsive";
+import { useNavigate } from "react-router-dom";
+import SCREENS from "../route/router";
 
 interface State {
   categories: Array<category>;
@@ -42,6 +44,7 @@ const Mobile = ({ children }: any) => {
 let localArticles: Array<article> = articles;
 
 const Blog: FC = () => {
+  const navigate: Function = useNavigate();
   const [state, setState] = useState<State>(initialState);
   const { t }: any = useTranslation();
 
@@ -65,9 +68,13 @@ const Blog: FC = () => {
     });
   };
 
+  const goToArticle = (id: number) => (): void => {
+    navigate(SCREENS.article + `/${id}`);
+  };
+
   const mapping = (el: article, key: number): JSX.Element => {
     return (
-      <div key={key}>
+      <div key={key} onClick={goToArticle(el.id)}>
         <Mobile>
           <CardArticle
             date={el.date}
