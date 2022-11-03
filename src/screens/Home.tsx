@@ -17,91 +17,28 @@ import "../styles/home.scss";
 //icons
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { Typography } from "@mui/material";
-import { t } from "i18next";
 import Header from "../components/hooks/Header/Header";
-import { articles } from "../utils/data";
-import { article } from "../utils/type";
-import { Events } from "../utils/type";
+import { article, event } from "../utils/type";
 
-// mokup home (il json reale sarà diverso)
-const MokupHome = {
-  hero: {
-    title: "Salva i panda dai bambù",
-    subtitle: "Lorem ipsum dolor sit amet consectetur adipisicing elit",
-    image: "pandaImg.jpg",
-  },
-  results: {
-    resultTitle: "lorem ipsum dei risultati",
-    resultsImage: "https://cdn-icons-png.flaticon.com/512/16/16121.png?w=360",
-    resultsCaption:
-      " Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos architecto consequuntur ab quasi nostrum rem error numquam! Error laborum sit iusto fugit, doloribus doloremque quos repellendus minima. Architecto, sequi adipisci.",
-    staticsResults: {
-      staticsOne: 20,
-      staticsTwo: 40,
-      staticTrhee: 39,
-    },
-  },
-  stayUpToDate: {
-    subTitle: "Seguici su facebook",
-    link: "https://www.wwf.it/",
-  },
-  story: {
-    title: "Storia...",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos architecto consequuntur ab quasi nostrum rem error numquam! Error laborum sit iusto fugit, doloribus doloremque quos repellendus minima. Architecto, sequi adipisci.",
-    image:
-      "https://leganerd.com/wp-content/uploads/2016/10/pandas-live_64dff22c2fe56e9-999x562.jpg",
-  },
+interface State {
+  articlesArray: Array<article> | null;
+}
+
+const initialState = {
+  articlesArray: null,
 };
-
-// mokup eventi
-const EVENTI: Array<Events> = [
-  {
-    title: "Save the planet",
-    image: "https://www.plasticfreeonlus.it/seo/plastic-free-raccolta-fb.jpeg",
-    description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi vero culpa velit magni aliquam. Voluptas non ullam quo temporibus aut, cum, sequi eaque recusandae iusto praesentium cumque omnis laudantium, saepe labore! Odio dicta tenetur, enim laboriosam quidem libero vel ipsam animi vitae ducimus aperiam magni fuga, ex cumque repudiandae eaque?",
-    requirement:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi vero culpa velit magni aliquam. Voluptas non ullam quo temporibus aut, cum, sequi eaque recusandae iusto praesentium cumque omnis laudantium, saepe labore! Odio dicta tenetur, enim laboriosam quidem libero vel ipsam animi vitae ducimus aperiam magni fuga, ex cumque repudiandae eaque?",
-    date: "4 ottobre 2022",
-    time: "h 12.00",
-    place: "Milano",
-  },
-  {
-    title: "Un gancio in cielo",
-    image:
-      "https://www.congiulia.com/wp-content/uploads/2022/03/IMG-20220329-WA0008.jpg",
-    description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi vero culpa velit magni aliquam. Voluptas non ullam quo temporibus aut, cum, sequi eaque recusandae iusto praesentium cumque omnis laudantium, saepe labore! Odio dicta tenetur, enim laboriosam quidem libero vel ipsam animi vitae ducimus aperiam magni fuga, ex cumque repudiandae eaque?",
-    requirement: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. ",
-    date: "12 ottobre 2022",
-    time: "h 12.00",
-    place: "Milano",
-  },
-  {
-    title: "United for the heart",
-    image:
-      "http://incodaalgruppo.gazzetta.it/files/2022/03/United-Onlus-evento-21-marzo-2022-Milano-500x506.jpeg",
-    description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi vero culpa velit magni aliquam. Voluptas non ullam quo temporibus aut, cum, sequi eaque recusandae iusto praesentium cumque omnis laudantium, saepe labore! Odio dicta tenetur, enim laboriosam quidem libero vel ipsam animi vitae ducimus aperiam magni fuga, ex cumque repudiandae eaque?",
-    requirement: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. ",
-    date: "12 ottobre 2022",
-    time: "h 12.00",
-    place: "Milano",
-  },
-];
 
 const Home: FC = () => {
   // inizializzo traduzioni
   const { t }: any = useTranslation();
-  const [state, setState] = useState({ articlesArray: articles });
+  const [state, setState] = useState<State>(initialState);
 
   useEffect(() => {
-    getArticles();
+    fetchDatas();
   }, []);
 
-  const getArticles = (): void => {
-    setState({ articlesArray: articles });
+  const fetchDatas = (): void => {
+
   };
 
   const mapArticles = (item: article, key: number) => {
@@ -118,13 +55,13 @@ const Home: FC = () => {
   };
 
   // map degli eventi
-  const mapEvents = (event: Events, key: number): JSX.Element => {
+  const mapEvents = (event: event, key: number): JSX.Element => {
     return (
       <article key={key}>
         <CardEventsMobile
           title={event.title}
           description={event.description}
-          image={event.image}
+          image={event.cover}
           requirement={event.requirement}
           time={event.time}
           date={event.date}

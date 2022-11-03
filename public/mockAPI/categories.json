@@ -1,0 +1,29 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "buongiorismo",
+      "relatedArticles": 2
+    },
+    {
+      "id": 1,
+      "name": "religione",
+      "relatedArticles": 2
+    },
+    {
+      "id": 1,
+      "name": "scemenze",
+      "relatedArticles": 2
+    },
+    {
+      "id": 1,
+      "name": "animali",
+      "relatedArticles": 2
+    },
+    {
+      "id": 1,
+      "name": "protezione",
+      "relatedArticles": 2
+    }
+  ]
+}

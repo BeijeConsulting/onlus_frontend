@@ -37,20 +37,22 @@ export type faq = {
   answer: string;
 };
 
-export type Events = {
+export type event = {
+  id: number;
   title: string;
-  image: string;
+  cover: string;
   description: string;
   requirement: string;
   date: string;
   time: string;
   place: string;
+  attendants: Array<string>;
 };
 
 export type personalData = {
   myInfo: personalInfo;
   donations: Array<donation>;
-  events: Array<Events>;
+  events: Array<event>;
 } | null;
 
 export type donation = {
@@ -78,6 +80,7 @@ export type hero = {
   text: string;
 };
 export type social = {
+  id: number;
   name: string;
   icon: string;
   link: string;

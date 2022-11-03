@@ -16,7 +16,7 @@ const generalDuck = createSlice(
     initialState: {
       websiteName: 'Panda',
       logo:'nomeImmagine',   //nome immagine da abbinare a path predefinito
-      pallette:
+      palette:
       [
         {
           name:'primary',

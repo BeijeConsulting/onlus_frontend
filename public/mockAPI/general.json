@@ -2,7 +2,7 @@
     "response": {
         "websiteName": "Panda",
         "logo": "https://st2.depositphotos.com/1035649/10943/v/600/depositphotos_109435792-stock-illustration-panda-bear-template.jpg",
-        "pallette": [
+        "palette": [
             {
                 "name": "primary",
                 "bgColor": "#262E36",

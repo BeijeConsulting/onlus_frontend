@@ -1,21 +1,31 @@
 {
   "hero": {
     "img": "pandaImg.jpg",
-    "text": "evento per bruciare il bambu"
+    "text": "evento per bruciare il bambu",
+    "subtitle": "salvaci tu perfavore"
   },
   "title": "Questo è il supportaci",
   "content": [
     {
       "paragraph": "Celerisque tincidunt velit, bibendum dignissim velit sagittis ut. Suspendisse semper tincidunt odio, eget laoreet justo aliquet nec",
-      "media": "giraffeImg.jpg"
+      "media": {
+        "content": "https://media.istockphoto.com/photos/giraffe-in-front-of-kilimanjaro-mountain-picture-id488580536?k=20&m=488580536&s=612x612&w=0&h=xXmFHuCU9Phc0rcxAm9jjeoToeQw-H_2y5HMgkMgs6k=",
+        "type": "image"
+      }
     },
     {
       "paragraph": "Cc posuere, tincidunt nulla sit amet, ultrices sapien. Quisque a pretium est. Nam malesuada convallis ipsum, sed volutpat ante accumsan nec. Donec ultrices",
-      "media": "giraffeImg.jpg"
+      "media": {
+        "content": "https://media.istockphoto.com/photos/giraffe-in-front-of-kilimanjaro-mountain-picture-id488580536?k=20&m=488580536&s=612x612&w=0&h=xXmFHuCU9Phc0rcxAm9jjeoToeQw-H_2y5HMgkMgs6k=",
+        "type": "image"
+      }
     },
     {
       "paragraph": "AHAHAHSUHQUWERHQRWIUHCc posuere, tincidunt nulla sit amet, ultrices sapien. Quisque a pretium est. Nam malesuada convallis ipsum, sed volutpat ante accumsan nec. Donec ultrices",
-      "media": "giraffeImg.jpg"
+      "media": {
+        "content": "https://media.istockphoto.com/photos/giraffe-in-front-of-kilimanjaro-mountain-picture-id488580536?k=20&m=488580536&s=612x612&w=0&h=xXmFHuCU9Phc0rcxAm9jjeoToeQw-H_2y5HMgkMgs6k=",
+        "type": "image"
+      }
     }
   ]
 }

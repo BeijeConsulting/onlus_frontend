@@ -39,9 +39,9 @@ const Footer: FC = () => {
   const SOCIAL: Array<social> = useSelector(
     (state: any) => state.generalDuck.social
   );
-  // POPOLO IL COLOR PALLETTE
-  const PALLETTE: Array<color> = useSelector(
-    (state: any) => state.generalDuck.pallette
+  // POPOLO IL COLOR PALETTE
+  const PALETTE: Array<color> = useSelector(
+    (state: any) => state.generalDuck.palette
   );
   // inizializzo navigazione
   let navigate = useNavigate();
@@ -89,7 +89,7 @@ const Footer: FC = () => {
     }
   };
   return (
-    <footer style={{ backgroundColor: PALLETTE[0].bgColor }} id="footer">
+    <footer style={{ backgroundColor: PALETTE[0].bgColor }} id="footer">
       <section className="contacts">
         <Typography variant="h4" className="titleContacts">
           {t("footer.contacts")}

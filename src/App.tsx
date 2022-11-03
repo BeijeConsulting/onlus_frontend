@@ -19,7 +19,7 @@ import NotFound from "./screens/NotFound";
 import PersonalArea from "./screens/PersonalArea";
 import SignUp from "./screens/SignUp";
 import Support from "./screens/Support";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 // import route
 // import mui
 import ResetPassword from "./screens/ResetPassword";
@@ -31,6 +31,7 @@ import { theme } from "./utils/muiTheme";
 import { StyledEngineProvider } from "@mui/material";
 // import style
 import "./App.scss";
+import { social } from "./utils/type";
 
 const App: FC = () => {
   // hook redux x inviare dati di general
@@ -42,14 +43,17 @@ const App: FC = () => {
   // funzione per recuperare i dati da chiamata api
   async function fetchDatas() {
     // estrapolo i dati dalle chiamate
-    let generalResult: any = await axios.get("mockAPI/general.json");
-    let socialResult: any = await axios.get("mockAPI/social.json");
-    const social: Array<Object> = socialResult.data.response;
+    let generalResult: AxiosResponse = await axios.get("mockAPI/general.json");
+    let socialResult: AxiosResponse = await axios.get("mockAPI/social.json");
+
+    const social: Array<social> = socialResult.data.social;
+
     // compongo l'oggetto da mandare a redux
     const generalData: Object = {
       ...generalResult.data.response,
       social,
     };
+
     // modifico gli stati su redux
     dispatch(setGeneral(generalData));
   }
