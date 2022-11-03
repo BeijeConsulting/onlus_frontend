@@ -49,7 +49,7 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
     email: props.datas?.email,
     password: props.datas?.password,
     phoneNumber: props.datas?.phoneNumber,
-    language: props.datas?.language,
+    language: i18n.language,
     errorName: false,
     errorSurname: false,
     errorEmail: false,
@@ -195,7 +195,7 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
             label={t("login.language")}
             items={lngs}
             callbackChange={setLanguage}
-            defaultValue={state.language === 'it' ? t('login.italian') : t('login.english')}
+            defaultValue={i18n.language === 'it' ? t('login.italian') : t('login.english')}
           />
         </div>
         <CustomButton
