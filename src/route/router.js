@@ -1,7 +1,7 @@
 const SCREENS = {
   home: "/",
   about: "/about",
-  article: "/article/:id",
+  article: "/article",
   blog: "/blog",
   donate: "/donate",
   confirmDonate: "/confirm-donation",

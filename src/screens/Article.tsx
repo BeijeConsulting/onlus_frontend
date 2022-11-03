@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react"
+import { FC, useEffect, useState } from "react";
 
 //components
 import Footer from "../components/hooks/Footer/Footer";
@@ -22,6 +22,7 @@ import "../styles/article.scss";
 //helmet
 import { Helmet } from "react-helmet";
 import { Typography } from "@mui/material";
+import { useParams } from "react-router-dom";
 
 const singleArticle = {
   id: 1,
@@ -70,6 +71,9 @@ const initialState = {
 
 const Article: FC = () => {
   const [state, setState] = useState<State>(initialState);
+
+  //id dell articolo corrispondente
+  let params = useParams();
 
   const { t }: any = useTranslation();
 

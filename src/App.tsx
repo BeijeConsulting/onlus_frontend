@@ -1,58 +1,57 @@
-import { FC,useEffect } from "react"
+import { FC, useEffect } from "react";
 // import router
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route } from "react-router-dom";
 // import redux
-import { setGeneral } from "./redux/duck/general"
-import { useDispatch} from 'react-redux'
-import { createTheme, ThemeProvider } from "@mui/material/styles"
+import { setGeneral } from "./redux/duck/general";
+import { useDispatch } from "react-redux";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 // Screens
-import About from "./screens/About"
-import Article from "./screens/Article"
-import Blog from "./screens/Blog"
-import Donate from "./screens/Donate"
-import Events from "./screens/Events"
-import Faq from "./screens/Faq"
-import Home from "./screens/Home"
-import Login from "./screens/Login"
-import NotFound from "./screens/NotFound"
-import PersonalArea from "./screens/PersonalArea"
-import SignUp from "./screens/SignUp"
-import Support from "./screens/Support"
-import axios from "axios"
+import About from "./screens/About";
+import Article from "./screens/Article";
+import Blog from "./screens/Blog";
+import Donate from "./screens/Donate";
+import Events from "./screens/Events";
+import Faq from "./screens/Faq";
+import Home from "./screens/Home";
+import Login from "./screens/Login";
+import NotFound from "./screens/NotFound";
+import PersonalArea from "./screens/PersonalArea";
+import SignUp from "./screens/SignUp";
+import Support from "./screens/Support";
+import axios from "axios";
 // import route
 // import mui
-import ResetPassword from "./screens/ResetPassword"
-import ConfirmDonation from "./screens/ConfirmDonation"
+import ResetPassword from "./screens/ResetPassword";
+import ConfirmDonation from "./screens/ConfirmDonation";
 
-import SCREENS from "./route/router"
-import { theme } from "./utils/muiTheme"
+import SCREENS from "./route/router";
+import { theme } from "./utils/muiTheme";
 
-import { StyledEngineProvider } from "@mui/material"
+import { StyledEngineProvider } from "@mui/material";
 // import style
-import "./App.scss"
+import "./App.scss";
 
 const App: FC = () => {
-
   // hook redux x inviare dati di general
-  const dispatch:Function = useDispatch()
+  const dispatch: Function = useDispatch();
   // useeffect per inviare dati all'avvio
   useEffect(() => {
-    fetchDatas()
-  },[])
+    fetchDatas();
+  }, []);
   // funzione per recuperare i dati da chiamata api
   async function fetchDatas() {
     // estrapolo i dati dalle chiamate
     let generalResult: any = await axios.get("mockAPI/general.json");
     let socialResult: any = await axios.get("mockAPI/social.json");
-    const social:Array<Object> = socialResult.data.response;
+    const social: Array<Object> = socialResult.data.response;
     // compongo l'oggetto da mandare a redux
-    const generalData:Object = {
+    const generalData: Object = {
       ...generalResult.data.response,
-      social
-    }
+      social,
+    };
     // modifico gli stati su redux
-    dispatch(setGeneral(generalData))
+    dispatch(setGeneral(generalData));
   }
 
   return (
@@ -62,7 +61,7 @@ const App: FC = () => {
           <Routes>
             <Route path={SCREENS.home} element={<Home />} />
             <Route path={SCREENS.about} element={<About />} />
-            <Route path={SCREENS.article} element={<Article />} />
+            <Route path={SCREENS.article + "/:id"} element={<Article />} />
             <Route path={SCREENS.blog} element={<Blog />} />
             <Route path={SCREENS.donate} element={<Donate />} />
             <Route path={SCREENS.confirmDonate} element={<ConfirmDonation />} />
@@ -78,7 +77,7 @@ const App: FC = () => {
         </div>
       </ThemeProvider>
     </StyledEngineProvider>
-  )
-}
+  );
+};
 
-export default App
+export default App;
