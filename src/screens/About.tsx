@@ -48,11 +48,7 @@ const About: FC = () => {
       <section className="content-about-container" key={key}>
         <Typography variant="body1">{item.paragraph}</Typography>
         <div className="img-container">
-          <img
-            className="img-about"
-            src={require(`../assets/images/${item.media?.content}`)}
-            alt="hero-img"
-          />
+          <img className="img-about" src={item.media?.content} alt="hero-img" />
         </div>
       </section>
     );
