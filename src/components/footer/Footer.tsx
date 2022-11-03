@@ -1,7 +1,4 @@
 import { FC } from "react";
-import { Typography } from "@mui/material";
-import { Link } from "react-router-dom";
-
 // mediaquery
 import { useMediaQuery } from "react-responsive";
 // translation
@@ -11,11 +8,10 @@ import { useNavigate } from "react-router-dom";
 // redux
 import { useSelector } from 'react-redux'
 // components
-import CustomButton from "../../ui/buttons/CustomButton/CustomButton";
+import CustomButton from "../ui/buttons/CustomButton/CustomButton";
 // style
 import "./footer.scss";
-
-import SCREENS from "../../../route/router";
+import SCREENS from "../../route/router";
 
 // type
 type social = {
@@ -94,7 +90,7 @@ const Footer: FC = () => {
           <img className="socialIcon" src={el.icon} />
           <Default>
             <div>
-              <Typography variant="body1">{el.name}</Typography>
+              <p>{el.name}</p>
             </div>
           </Default>
         </div>
@@ -103,28 +99,17 @@ const Footer: FC = () => {
       return false;
     }
   };
+
   return (
     <footer style={{ backgroundColor: PALLETTE[0].bgColor }} id="footer">
       <section className="contacts">
-        <Typography variant="h4" className="titleContacts">
-          {t("footer.contacts")}
-        </Typography>
+        <div className="titleContacts">{t("footer.contacts")}</div>
         <ul className="contactsList">
-          <li>
-            <Typography variant="body1">{CONTACTS.phone}</Typography>
-          </li>
-          <li>
-            <Typography variant="body1">{CONTACTS.email}</Typography>
-          </li>
-          <li>
-            <Typography variant="body1">{CONTACTS.address}</Typography>
-          </li>
-          <li>
-            <Typography variant="body1">P.Iva: {CONTACTS.PIva}</Typography>
-          </li>
-          <li>
-            <Typography variant="body1">C.F: {CONTACTS.CF}</Typography>
-          </li>
+          <li>{CONTACTS.phone}</li>
+          <li>{CONTACTS.email}</li>
+          <li>{CONTACTS.address}</li>
+          <li>P.Iva: {CONTACTS.PIva}</li>
+          <li>C.F: {CONTACTS.CF}</li>
         </ul>
       </section>
       <section className="social">{SOCIAL.map(mapping)}</section>
@@ -140,36 +125,18 @@ const Footer: FC = () => {
       </Mobile>
       <Default>
         <section className="nav">
-          <Typography variant="body1" onClick={goToHome}>
-            {t("nav.home")}
-          </Typography>
-          <Typography variant="body1" onClick={goToAbout}>
-            {t("nav.about")}
-          </Typography>
-          <Typography variant="body1" onClick={goToEvents}>
-            {t("nav.events")}
-          </Typography>
-          <Typography variant="body1" onClick={goToBlog}>
-            {t("nav.blog")}
-          </Typography>
-          <Typography variant="body1" onClick={goToSupport}>
-            {t("nav.supportUs")}
-          </Typography>
-          <Typography variant="body1" onClick={goToInfo}>
-            {t("nav.info")}
-          </Typography>
+          <div onClick={goToHome}>{t("nav.home")}</div>
+          <div onClick={goToAbout}>{t("nav.about")}</div>
+          <div onClick={goToEvents}>{t("nav.events")}</div>
+          <div onClick={goToBlog}>{t("nav.blog")}</div>
+          <div onClick={goToSupport}>{t("nav.supportUs")}</div>
+          <div onClick={goToInfo}>{t("nav.info")}</div>
         </section>
       </Default>
       <section className="privacy">
-        <Link to="#">
-          <Typography variant="body1">{t("footer.privacyPolicy")} </Typography>
-        </Link>
-        <Link to="#">
-          <Typography variant="body1">{t("footer.cookiePolicy")} </Typography>
-        </Link>
-        <Link to="#">
-          <Typography variant="body1">{t("footer.terms")} </Typography>
-        </Link>
+        <a href="#">{t("footer.privacyPolicy")} </a>
+        <a href="#">{t("footer.cookiePolicy")} </a>
+        <a href="#">{t("footer.terms")} </a>
         <Default>
           <div className="buttonContainer">
             <CustomButton
@@ -182,9 +149,7 @@ const Footer: FC = () => {
         </Default>
       </section>
 
-      <Typography className="rightReserved">
-        {t("footer.rightReserved")}
-      </Typography>
+      <span className="rightReserved">{t("footer.rightReserved")}</span>
     </footer>
   );
 };

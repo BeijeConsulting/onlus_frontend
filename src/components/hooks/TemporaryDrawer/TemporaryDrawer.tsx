@@ -21,6 +21,8 @@ import SCREENS from "../../../route/router"
 import IconButton from "../../ui/buttons/IconButton"
 // style
 import styles from "./temporaryDrawer.module.scss"
+// redux
+import { useSelector } from "react-redux"
 
 interface State {
   right: any
@@ -29,8 +31,30 @@ const InitialState = {
   right: false,
 }
 
+// type
+type social = {
+  name: string
+  icon: any
+  link: string
+  footerOn: boolean
+  homepageOn: boolean
+}
+
+// type
+type social = {
+  name: string
+  icon: any
+  link: string
+  footerOn: boolean
+  homepageOn: boolean
+}
+
 const TemporaryDrawer: FC = () => {
+  // stati
   const [state, setState] = useState<State>(InitialState)
+  // redux
+  const PALLETTE = useSelector((state: any) => state.generalDuck.pallette)
+  const SOCIAL = useSelector((state: any) => state.generalDuck.social)
 
   const navigate: any = useNavigate()
 
@@ -117,6 +141,7 @@ const TemporaryDrawer: FC = () => {
   const list = () => (
     <Box
       className={styles.boxContainer}
+      style={{ backgroundColor: PALLETTE[0].bgColor }}
       role="presentation"
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
@@ -170,7 +195,7 @@ const TemporaryDrawer: FC = () => {
             marginTop: "25px",
           }}
         >
-          {social.map((elem, key) => {
+          {SOCIAL.map((elem: social, key: any) => {
             return (
               <ListItemIcon
                 key={key}

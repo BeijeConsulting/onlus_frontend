@@ -10,6 +10,7 @@ import { useMediaQuery } from "react-responsive"
 import TemporaryDrawer from "../TemporaryDrawer/TemporaryDrawer"
 import ExpandButton from "../../ui/buttons/ExpandButton"
 
+
 // Route
 import SCREENS from "../../../route/router"
 
@@ -42,6 +43,7 @@ const Header: FC<HeaderProps> = (props) => {
 
   const { t, i18n }: any = useTranslation()
 
+  // mediaquery
   const Default = ({ children }: any) => {
     const isNotMobile = useMediaQuery({ minWidth: 992 })
     return isNotMobile ? children : null

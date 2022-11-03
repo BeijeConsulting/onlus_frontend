@@ -1,0 +1,28 @@
+{
+    "donations": [
+        {
+            "email": "isabella.bagnulo@beije.it",
+            "date": "21-10-2022",
+            "amount": 10000,
+            "anonyme": false
+          },
+          {
+            "email": "marco.ottaiano@beije.it",
+            "date": "21-10-2017",
+            "amount": 25.50,
+            "anonyme": false
+          },
+          {
+            "email": "anonimo1@beije.it",
+            "date": "21-10-2020",
+            "amount": 3444,
+            "anonyme": true
+          },
+          {
+            "email": "anonimo2@beije.it",
+            "date": "25-11-2019",
+            "amount": 1.30,
+            "anonyme": true
+          }
+      ]
+}
