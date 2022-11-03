@@ -44,8 +44,8 @@ const About: FC = () => {
   }, []);
 
   async function fetchDatas() {
-    let result: AxiosResponse = await axios.get("mockAPI/about.json");
-    console.log(result);
+    let result: AxiosResponse = await axios.get("mockAPI/about.json")
+    console.log(result.data.about.hero.img)
     setState({
       pageIsLoaded: true,
       imageHero: result.data.about.hero.img,
@@ -53,6 +53,7 @@ const About: FC = () => {
       content: result.data.about.content,
     });
   }
+
   const mappingContent = (item: content, key: number) => {
     return (
       <section className="content-about-container" key={key}>
