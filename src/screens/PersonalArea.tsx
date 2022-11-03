@@ -22,17 +22,21 @@ import MyInfoSection from "../components/hooks/MyInfoSection/MyInfoSection";
 import "../styles/personalArea.scss";
 
 //type
-import { personalData } from "../utils/type";
+import { personalInfo, Events, donation } from "../utils/type";
 import { Typography } from "@mui/material";
 
 interface State {
   isLoaded: boolean;
-  data: personalData;
+  data: personalInfo | null;
+  eventsData: Events[] | null;
+  donationData: donation[] | null;
 }
 
 const initialState = {
   isLoaded: false,
   data: null,
+  eventsData: null,
+  donationData: null
 };
 
 const PersonalArea: FC = () => {
@@ -51,17 +55,25 @@ const PersonalArea: FC = () => {
 
   async function fetchDatas(): Promise<void> {
     let result: AxiosResponse = await axios.get("mockAPI/personalArea.json");
-    console.log(result.data);
+    let result2: AxiosResponse = await axios.get("mockAPI/events.json");
+    let result3: AxiosResponse = await axios.get("mockAPI/donations.json");
+
+    console.log(result.data, result2.data, result3.data);
     setState({
       ...state,
       isLoaded: true,
       data: result.data,
+      eventsData: result2.data.events,
+      donationData: result3.data.donations,
     });
   }
 
   useEffect(() => {
     fetchDatas();
   }, []);
+  useEffect(() => {
+    console.log(state)
+  }, [state])
 
   return (
     <>
@@ -90,9 +102,9 @@ const PersonalArea: FC = () => {
                   t("personalArea.donations"),
                 ]}
                 children={[
-                  <MyInfoSection datas={state.data} />,
-                  <PersonalEvents events={state.data!.events} />,
-                  <DonationHistory datas={state.data!.donations} />,
+                  <MyInfoSection datas={state!.data} />,
+                  <PersonalEvents events={state!.eventsData} />,
+                  <DonationHistory datas={state!.donationData} />,
                 ]}
               />
             </Default>
@@ -104,9 +116,9 @@ const PersonalArea: FC = () => {
                   t("personalArea.donations"),
                 ]}
                 children={[
-                  <MyInfoSection datas={state.data!.myInfo} />,
-                  <PersonalEvents events={state.data!.events} />,
-                  <DonationHistory datas={state.data!.donations} />,
+                  <MyInfoSection datas={state!.data} />,
+                  <PersonalEvents events={state!.eventsData} />,
+                  <DonationHistory datas={state!.donationData} />,
                 ]}
               />
             </Mobile>

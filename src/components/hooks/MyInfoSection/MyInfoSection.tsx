@@ -17,7 +17,7 @@ import "../../../styles/signup.scss";
 import { personalInfo } from "../../../utils/type";
 
 interface InfoProps {
-  datas: personalInfo;
+  datas: personalInfo | null;
 }
 
 interface State {
@@ -44,12 +44,12 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
 
   const [state, setState] = useState<any>({
     buttonDisabled: true,
-    name: props.datas.name,
-    surname: props.datas.surname,
-    email: props.datas.email,
-    password: props.datas.password,
-    phoneNumber: props.datas.phoneNumber,
-    language: props.datas.language,
+    name: props.datas?.name,
+    surname: props.datas?.surname,
+    email: props.datas?.email,
+    password: props.datas?.password,
+    phoneNumber: props.datas?.phoneNumber,
+    language: props.datas?.language,
     errorName: false,
     errorSurname: false,
     errorEmail: false,
@@ -146,14 +146,14 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
         <div className={"input-box"}>
           <InputBox
             label={t("login.name")}
-            defaultValue={props.datas.name}
+            defaultValue={props.datas?.name}
             callbackChange={setName}
             type={"text"}
             isRequired={true}
             notValid={state.errorName}
           />
           <InputBox
-            defaultValue={props.datas.surname}
+            defaultValue={props.datas?.surname}
             callbackChange={setSurname}
             label={t("login.surname")}
             type={"text"}
@@ -163,7 +163,7 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
         </div>
         <div className={"input-box"}>
           <InputBox
-            defaultValue={props.datas.email}
+            defaultValue={props.datas?.email}
             label={t("login.email")}
             callbackChange={setEmail}
             type={"email"}
@@ -171,7 +171,7 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
             notValid={state.errorEmail}
           />
           <InputBox
-            defaultValue={props.datas.password}
+            defaultValue={props.datas?.password}
             label={t("login.password")}
             callbackChange={setPassword}
             type={"password"}
@@ -181,7 +181,7 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
         </div>
         <div className={"input-box"}>
           <InputBox
-            defaultValue={props.datas.phoneNumber}
+            defaultValue={props.datas?.phoneNumber}
             callbackChange={setPhoneNumber}
             label={t("login.phone")}
             type={"text"}
