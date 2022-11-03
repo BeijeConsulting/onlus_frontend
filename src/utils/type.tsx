@@ -48,8 +48,8 @@ export type Events = {
 };
 
 export type personalData = {
-  myInfo: personalInfo;
-  donations: Array<donation>;
+  info: personalInfo;
+  donations: donationData;
   events: Array<Events>;
 } | null;
 
@@ -58,6 +58,11 @@ export type donation = {
   date: string;
   amount: number;
 };
+
+export type donationData = {
+  totalAmount: number,
+  history: donation[]
+}
 
 export type personalInfo = {
   email: string;

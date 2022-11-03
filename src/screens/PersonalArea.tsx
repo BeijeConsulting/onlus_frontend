@@ -22,14 +22,14 @@ import MyInfoSection from "../components/hooks/MyInfoSection/MyInfoSection";
 import "../styles/personalArea.scss";
 
 //type
-import { personalInfo, Events, donation } from "../utils/type";
+import { personalInfo, Events, donationData } from "../utils/type";
 import { Typography } from "@mui/material";
 
 interface State {
   isLoaded: boolean;
   data: personalInfo | null;
   eventsData: Events[] | null;
-  donationData: donation[] | null;
+  donationData: donationData | null;
 }
 
 const initialState = {
@@ -55,22 +55,21 @@ const PersonalArea: FC = () => {
 
   async function fetchDatas(): Promise<void> {
     let result: AxiosResponse = await axios.get("mockAPI/personalArea.json");
-    let result2: AxiosResponse = await axios.get("mockAPI/events.json");
-    let result3: AxiosResponse = await axios.get("mockAPI/donations.json");
 
-    console.log(result.data, result2.data, result3.data);
+    console.log(result.data, result.data, result.data);
     setState({
       ...state,
       isLoaded: true,
-      data: result.data,
-      eventsData: result2.data.events,
-      donationData: result3.data.donations,
+      data: result.data.info,
+      eventsData: result.data.events,
+      donationData: result.data.donations,
     });
   }
 
   useEffect(() => {
     fetchDatas();
   }, []);
+
   useEffect(() => {
     console.log(state)
   }, [state])
