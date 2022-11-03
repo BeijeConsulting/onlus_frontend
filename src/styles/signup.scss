@@ -1,7 +1,9 @@
 @import "../styles/common.scss";
-#signup {
+main#signup {
   .form {
-    margin: -5px;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
   }
   .aside-section {
     padding-top: 20px;
@@ -15,21 +17,26 @@
   }
 }
 
-@media (min-width: 992px) {
+.input-box{
+  gap: 10px;
+}
+
+@media (min-width: 768px) {
   main#signup {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
   }
-  .input-box {
-    display: flex;
-    justify-content: stretch;
-  }
   .form {
     width: 50vw;
   }
   .aside-section {
     padding-top: 50px;
+  }
+
+  .input-box {
+    display: flex;
+    justify-content: stretch;
   }
 }

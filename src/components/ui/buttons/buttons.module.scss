@@ -9,6 +9,9 @@
     padding: 10px 20px;
     width: calc((100vw / 2) - 20px);
     height: 85px;
+    &:hover{
+        background-color: $tertiary;
+    }
     .icon svg{
         height: 24px;
         width: auto;
