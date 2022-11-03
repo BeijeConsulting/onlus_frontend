@@ -80,6 +80,10 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
     state.errorSurname,
   ]);
 
+  useEffect(() => {
+    console.log(state)
+  }, [state])
+
   function submit(): void {
     console.log("submitted");
     setState({
@@ -191,6 +195,7 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
             label={t("login.language")}
             items={lngs}
             callbackChange={setLanguage}
+            defaultValue={state.language === 'it' ? t('login.italian') : t('login.english')}
           />
         </div>
         <CustomButton
