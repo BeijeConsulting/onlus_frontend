@@ -7,6 +7,7 @@ import { useMediaQuery } from "react-responsive";
 import TemporaryDrawer from "../TemporaryDrawer/TemporaryDrawer";
 import ExpandButton from "../../ui/buttons/ExpandButton";
 
+
 // Route
 import SCREENS from "../../../route/router";
 
@@ -31,16 +32,19 @@ const initialState = {
 };
 
 const Header: FC<HeaderProps> = (props) => {
+  // stati
   const [state, setState] = useState<State>(initialState);
 
+  // navigazione
   const navigate: any = useNavigate();
+  // traduzione
   const { t, i18n }: any = useTranslation();
 
+  // mediaquery
   const Default = ({ children }: any) => {
     const isNotMobile = useMediaQuery({ minWidth: 992 });
     return isNotMobile ? children : null;
   };
-
   const Mobile = ({ children }: any) => {
     const isMobile = useMediaQuery({ maxWidth: 991 });
     return isMobile ? children : null;

@@ -1,6 +1,7 @@
-import React, { FC } from "react"
+import React, { FC,useEffect,useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Helmet } from "react-helmet"
+import axios from "axios"
 // componenti
 import Footer from "../components/footer/Footer"
 import PreFooter from "../components/preFooter/PreFooter"
@@ -23,43 +24,6 @@ type Event = {
   place: string
 }
 
-// mokup eventi
-const EVENTI: Array<Event> = [
-  {
-    title: "Save the planet",
-    image: "https://www.plasticfreeonlus.it/seo/plastic-free-raccolta-fb.jpeg",
-    description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi vero culpa velit magni aliquam. Voluptas non ullam quo temporibus aut, cum, sequi eaque recusandae iusto praesentium cumque omnis laudantium, saepe labore! Odio dicta tenetur, enim laboriosam quidem libero vel ipsam animi vitae ducimus aperiam magni fuga, ex cumque repudiandae eaque?",
-    requirement:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi vero culpa velit magni aliquam. Voluptas non ullam quo temporibus aut, cum, sequi eaque recusandae iusto praesentium cumque omnis laudantium, saepe labore! Odio dicta tenetur, enim laboriosam quidem libero vel ipsam animi vitae ducimus aperiam magni fuga, ex cumque repudiandae eaque?",
-    date: "4 ottobre 2022",
-    time: "h 12.00",
-    place: "Milano",
-  },
-  {
-    title: "Un gancio in mezzo al cielo",
-    image:
-      "https://www.congiulia.com/wp-content/uploads/2022/03/IMG-20220329-WA0008.jpg",
-    description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi vero culpa velit magni aliquam. Voluptas non ullam quo temporibus aut, cum, sequi eaque recusandae iusto praesentium cumque omnis laudantium, saepe labore! Odio dicta tenetur, enim laboriosam quidem libero vel ipsam animi vitae ducimus aperiam magni fuga, ex cumque repudiandae eaque?",
-    requirement: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. ",
-    date: "12 ottobre 2022",
-    time: "h 12.00",
-    place: "Milano",
-  },
-  {
-    title: "United for the heart",
-    image:
-      "http://incodaalgruppo.gazzetta.it/files/2022/03/United-Onlus-evento-21-marzo-2022-Milano-500x506.jpeg",
-    description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi vero culpa velit magni aliquam. Voluptas non ullam quo temporibus aut, cum, sequi eaque recusandae iusto praesentium cumque omnis laudantium, saepe labore! Odio dicta tenetur, enim laboriosam quidem libero vel ipsam animi vitae ducimus aperiam magni fuga, ex cumque repudiandae eaque?",
-    requirement: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. ",
-    date: "12 ottobre 2022",
-    time: "h 12.00",
-    place: "Milano",
-  },
-]
-
 //React responsive const
 const Default = ({ children }: any) => {
   const isNotMobile = useMediaQuery({ minWidth: 992 })
@@ -71,8 +35,18 @@ const Mobile = ({ children }: any) => {
 }
 
 const Events: FC = () => {
-  const { t }: any = useTranslation()
 
+  const [events,setEvents] = useState([])
+
+  useEffect(() => {
+    axios.get('mockAPI/events.json')
+    .then((response) => {
+      setEvents(response.data.events)
+    })
+  },[])
+  // translate
+  const { t }: any = useTranslation()
+  // map
   const mapEvents = (event: Event, key: number): JSX.Element => {
     return (
       <article key={key}>
@@ -113,7 +87,10 @@ const Events: FC = () => {
 
       <main id={"events"} className="sectionContainer">
         <h1 className="title">{t("titles.eventsTitle")}</h1>
-        {EVENTI.map(mapEvents)}
+        {
+          events.length > 0 &&
+          events.map(mapEvents)
+        }
       </main>
 
       <PreFooter />
