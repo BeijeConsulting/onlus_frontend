@@ -40,15 +40,6 @@ type social = {
   homepageOn: boolean
 }
 
-// type
-type social = {
-  name: string
-  icon: any
-  link: string
-  footerOn: boolean
-  homepageOn: boolean
-}
-
 const TemporaryDrawer: FC = () => {
   // stati
   const [state, setState] = useState<State>(InitialState)
