@@ -86,9 +86,15 @@ export type social = {
 };
 
 export type contact = {
-  telephone: string;
+  phone: string;
   email: string;
   address: string;
   PIva: string;
   CF: string;
+};
+
+export type color = {
+  name: string;
+  bgColor: string;
+  textColor: string;
 };
