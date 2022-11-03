@@ -4,9 +4,10 @@ import { Typography } from "@mui/material";
 
 import Footer from "../components/hooks/Footer/Footer";
 import Header from "../components/hooks/Header/Header";
-import PreFooter from "../components/hooks/PreFooter/PreFooter";
 import InputBox from "../components/hooks/inputBox/InputBox";
 import SelectBox from "../components/hooks/inputBox/SelectBox";
+import PreFooter from "../components/hooks/preFooter/PreFooter";
+
 import { Helmet } from "react-helmet";
 
 //utils

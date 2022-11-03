@@ -6,7 +6,7 @@ import Footer from "../components/hooks/Footer/Footer";
 import Header from "../components/hooks/Header/Header"
 import CustomButton from "../components/ui/buttons/CustomButton/CustomButton"
 import InputBox from "../components/hooks/inputBox/InputBox"
-import PreFooter from "../components/hooks/PreFooter/PreFooter";
+import PreFooter from "../components/hooks/preFooter/PreFooter";
 //i18n
 import { useTranslation } from "react-i18next"
 //Styles

@@ -1,27 +1,27 @@
 // react import
-import { useState, useEffect, FC } from "react"
-import { Link } from "react-router-dom"
-import { HashLink } from "react-router-hash-link"
+import { useState, useEffect, FC } from "react";
+import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 // traduzioni
-import { useTranslation } from "react-i18next"
+import { useTranslation } from "react-i18next";
 // componenti
-import Hero from "../components/hooks/Hero/Hero"
-import Footer from "../components/hooks/Footer/Footer"
-import PreFooter from "../components/hooks/PreFooter/PreFooter"
-import CardEventsMobile from "../components/hooks/CardEvents/CardEventsMobile"
-import CardArticle from "../components/ui/CardArticle/CardArticle"
+import Hero from "../components/hooks/Hero/Hero";
+import Footer from "../components/hooks/Footer/Footer";
+import PreFooter from "../components/hooks/preFooter/PreFooter";
+import CardEventsMobile from "../components/hooks/CardEvents/CardEventsMobile";
+import CardArticle from "../components/ui/CardArticle/CardArticle";
 
 // style
 import "../styles/home.scss";
 
 //icons
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp"
-import { Typography } from "@mui/material"
-import { t } from "i18next"
-import Header from "../components/hooks/Header/Header"
-import { articles } from "../utils/data"
-import { article } from "../utils/type"
-import Events from "./Events"
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import { Typography } from "@mui/material";
+import { t } from "i18next";
+import Header from "../components/hooks/Header/Header";
+import { articles } from "../utils/data";
+import { article } from "../utils/type";
+import { Events } from "../utils/type";
 
 // mokup home (il json reale sarà diverso)
 const MokupHome = {
@@ -110,12 +110,12 @@ const Home: FC = () => {
         key={key}
         minWidth="350px"
         title={item.title}
-        description={item.content[0].text}
+        description={item.content[0].paragraph}
         date={item.date}
         image={item.cover}
       />
-    )
-  }
+    );
+  };
 
   // map degli eventi
   const mapEvents = (event: Events, key: number): JSX.Element => {

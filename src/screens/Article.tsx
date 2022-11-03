@@ -21,6 +21,7 @@ import "../styles/article.scss";
 
 //helmet
 import { Helmet } from "react-helmet";
+import { Typography } from "@mui/material";
 
 const singleArticle = {
   id: 1,

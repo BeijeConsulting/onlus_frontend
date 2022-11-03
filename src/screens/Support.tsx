@@ -8,8 +8,6 @@ import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet";
 
 //components
-import JoinUs from "../components/hooks/Header/Header/JoinUsBox";
-import Header from "../components/ui/Header/Header";
 import PreFooter from "../components/hooks/preFooter/PreFooter";
 import Footer from "../components/hooks/Footer/Footer";
 import Hero from "../components/hooks/Hero/Hero";
@@ -20,6 +18,8 @@ import "../styles/support.scss";
 //type
 import { content, hero } from "../utils/type";
 import { Typography } from "@mui/material";
+import Header from "../components/hooks/Header/Header";
+import JoinUs from "../components/hooks/joinUsBbox/JoinUsBox";
 
 interface State {
   hero: hero;

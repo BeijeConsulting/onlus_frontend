@@ -6,7 +6,7 @@ import { Typography } from "@mui/material";
 //components
 import Footer from "../components/hooks/Footer/Footer";
 import Header from "../components/hooks/Header/Header";
-import PreFooter from "../components/hooks/PreFooter/PreFooter";
+import PreFooter from "../components/hooks/preFooter/PreFooter";
 import CustomButton from "../components/ui/buttons/CustomButton/CustomButton";
 import InputBox from "../components/hooks/inputBox/InputBox";
 import InputCheckbox from "../components/hooks/inputBox/InputCheckbox";

@@ -5,7 +5,7 @@ import { Typography } from "@mui/material"
 
 // componenti
 import Footer from "../components/hooks/Footer/Footer"
-import PreFooter from "../components/hooks/PreFooter/PreFooter"
+import PreFooter from "../components/hooks/preFooter/PreFooter";
 import CardEvents from "../components/hooks/CardEvents/CardEvents"
 import CardEventsMobile from "../components/hooks/CardEvents/CardEventsMobile"
 import Header from "../components/hooks/Header/Header"

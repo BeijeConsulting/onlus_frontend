@@ -16,7 +16,7 @@ import { useTranslation } from "react-i18next"
 
 //Styles
 import "../styles/login.scss"
-import PreFooter from "../components/hooks/PreFooter/PreFooter"
+import PreFooter from "../components/hooks/preFooter/PreFooter";
 
 function Login() {
   const { t }: any = useTranslation()
