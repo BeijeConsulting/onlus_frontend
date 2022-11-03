@@ -7,6 +7,7 @@ import Header from "../components/hooks/Header/Header"
 import InputBox from "../components/hooks/inputBox/InputBox"
 import SelectBox from "../components/hooks/inputBox/SelectBox"
 import PreFooter from "../components/hooks/preFooter/PreFooter"
+import CustomPagination from "../components/ui/CustomPagination/CustomPagination"
 
 import { Helmet } from "react-helmet"
 
@@ -24,11 +25,13 @@ import SCREENS from "../route/router"
 interface State {
   categories: Array<category>
   articles: Array<article>
+  numberOfPages: number
 }
 
 const initialState = {
   categories: [],
   articles: articles,
+  numberOfPages: 1,
 }
 
 //React responsive const
@@ -47,9 +50,11 @@ const Blog: FC = () => {
   const navigate: Function = useNavigate()
   const [state, setState] = useState<State>(initialState)
   const { t }: any = useTranslation()
+  const ARTICLESXPAGES = 6
 
   useEffect(() => {
     createCategories()
+    pagesCalc()
   }, [])
 
   const createCategories = (): void => {
@@ -113,6 +118,15 @@ const Blog: FC = () => {
     //chiamata api
   }
 
+  const pagesCalc = (): void => {
+    let pages = 1
+    pages = Math.ceil(state.articles.length / ARTICLESXPAGES)
+    setState({
+      ...state,
+      numberOfPages: pages,
+    })
+  }
+
   return (
     <>
       <Helmet>
@@ -133,6 +147,11 @@ const Blog: FC = () => {
         <section className="cardsContainer">
           {state.articles.map(mapping)}
         </section>
+
+        <CustomPagination
+          callbackChange={handleCategory}
+          numberOfPages={state.numberOfPages}
+        />
       </main>
       <PreFooter />
       <Footer />

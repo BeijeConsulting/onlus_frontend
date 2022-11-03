@@ -1,24 +1,39 @@
-import * as React from "react"
-import Typography from "@mui/material/Typography"
+import React, { FC, useState } from "react"
 import Pagination from "@mui/material/Pagination"
 import Stack from "@mui/material/Stack"
 
-interface LocalProps {
+interface CustomPaginationProps {
   callbackChange: Function
+  numberOfPages: number
 }
 
-function CustomPagination(props: LocalProps): React.ReactElement {
-  const [page, setPage] = React.useState(1)
+interface State {
+  page: number
+}
+
+const initialState = {
+  page: 1,
+}
+
+const CustomPagination: FC<CustomPaginationProps> = (props) => {
+  const [state, setState] = useState<State>(initialState)
 
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
-    setPage(value)
+    setState({
+      ...state,
+      page: value,
+    })
     props.callbackChange(value)
   }
 
   return (
     <Stack spacing={2}>
-      <Typography variant="body2">Page: {page}</Typography>
-      <Pagination count={10} page={page} onChange={handleChange} />
+      <Pagination
+        count={props.numberOfPages}
+        page={state.page}
+        onChange={handleChange}
+      />
+      <div>{props.numberOfPages}</div>
     </Stack>
   )
 }
