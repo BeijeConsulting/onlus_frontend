@@ -22,10 +22,14 @@ import "../styles/about.scss"
 import { Typography } from "@mui/material"
 
 interface State {
+  imageHero: string,
+  titleHero: string,
   content: Array<content>
 }
 
 const initialState: State = {
+  imageHero:'',
+  titleHero:'',
   content: [],
 }
 
@@ -40,7 +44,11 @@ const About: FC = () => {
   async function fetchDatas() {
     let result: AxiosResponse = await axios.get("mockAPI/about.json")
     console.log(result)
-    setState({ content: result.data.about.content })
+    setState({
+      imageHero:result.data.about.hero.img,
+      titleHero:result.data.about.hero.text,
+      content: result.data.about.content
+    })
   }
   const mappingContent = (item: content, key: number) => {
     return (
@@ -75,8 +83,8 @@ const About: FC = () => {
       <main id="about">
         <Hero
           type={"about"}
-          title={"Frase motivazionale super d'effetto per convincerti a donare"}
-          image={"pandaImg.jpg"}
+          title={state.titleHero}
+          image={require(state.imageHero)}
         />
         <section className="sectionContainer">
           <Typography variant="h1">{t("nav.about")}</Typography>
