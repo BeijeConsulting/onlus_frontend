@@ -9,36 +9,16 @@ import { useTranslation } from "react-i18next";
 // navigazione
 import { useNavigate } from "react-router-dom";
 // redux
-import { useSelector } from 'react-redux'
+import { useSelector } from "react-redux";
 // components
 import CustomButton from "../../ui/buttons/CustomButton/CustomButton";
 // style
 import "./footer.scss";
 
+import { social, contact, color } from "../../../utils/type";
+
 import SCREENS from "../../../route/router";
 
-// type
-type social = {
-  name: string;
-  icon: any; //come tipizzare image? come ce lo passa backend? (string)
-  link: string;
-  footerOn: boolean;
-  homepageOn: boolean;
-};
-// contacts
-type contactsTypo = {
-  phone: number,
-  email: string,
-  address: string,
-  PIva: string,
-  CF: string,
-}
-// color
-type color = {
-  name: string,
-  bgColor: string,
-  textColor: string
-}
 
 //React responsive const
 const Default = ({ children }: any) => {
@@ -51,13 +31,18 @@ const Mobile = ({ children }: any) => {
 };
 
 const Footer: FC = () => {
-
   // popolo contacts
-  const CONTACTS: contactsTypo = useSelector((state: any) => state.generalDuck.contacts)
+  const CONTACTS: contact = useSelector(
+    (state: any) => state.generalDuck.contacts
+  );
   // popolo social
-  const SOCIAL: Array<social> = useSelector((state: any) => state.generalDuck.social)
+  const SOCIAL: Array<social> = useSelector(
+    (state: any) => state.generalDuck.social
+  );
   // POPOLO IL COLOR PALLETTE
-  const PALLETTE: Array<color> = useSelector((state: any) => state.generalDuck.pallette)
+  const PALLETTE: Array<color> = useSelector(
+    (state: any) => state.generalDuck.pallette
+  );
   // inizializzo navigazione
   let navigate = useNavigate();
 
