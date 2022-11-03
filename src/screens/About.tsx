@@ -44,8 +44,8 @@ const About: FC = () => {
   }, []);
 
   async function fetchDatas() {
-    let result: AxiosResponse = await axios.get("mockAPI/about.json")
-    console.log(result.data.about.hero.img)
+    let result: AxiosResponse = await axios.get("mockAPI/about.json");
+    console.log(result.data.about.hero.img);
     setState({
       pageIsLoaded: true,
       imageHero: result.data.about.hero.img,
@@ -57,13 +57,16 @@ const About: FC = () => {
   const mappingContent = (item: content, key: number) => {
     return (
       <section className="content-about-container" key={key}>
-        {/* {state.pageIsLoaded ? (
+        {state.pageIsLoaded ? (
+          <Typography variant="body1">{item.paragraph}</Typography>
+        ) : (
           <Typography variant="body1">
             <Skeleton variant="text" />
+            <Skeleton variant="text" />
+            <Skeleton variant="text" />
+            <Skeleton variant="text" />
           </Typography>
-        ) : ( */}
-          <Typography variant="body1">{item.paragraph}</Typography>
-        {/* )} */}
+        )}
         <div className="media-container">
           {!!item.media &&
             (item.media.type === "image" ? (
@@ -92,11 +95,7 @@ const About: FC = () => {
       <Header />
 
       <main id="about">
-        <Hero
-          type={"about"}
-          title={state.titleHero}
-          image={state.imageHero}
-        />
+        <Hero type={"about"} title={state.titleHero} image={state.imageHero} />
         <section className="sectionContainer">
           <Typography variant="h1">{t("nav.about")}</Typography>
           {state.content.map(mappingContent)}
