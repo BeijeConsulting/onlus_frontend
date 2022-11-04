@@ -44,7 +44,7 @@ const About: FC = () => {
   }, []);
 
   async function fetchDatas() {
-    let result: AxiosResponse = await axios.get("mockAPI/about.json");
+    let result: AxiosResponse = await axios.get("mockAPI/about.jso");
     console.log(result.data.about.hero.img);
     setState({
       pageIsLoaded: true,
@@ -57,16 +57,7 @@ const About: FC = () => {
   const mappingContent = (item: content, key: number) => {
     return (
       <section className="content-about-container" key={key}>
-        {state.pageIsLoaded ? (
-          <Typography variant="body1">{item.paragraph}</Typography>
-        ) : (
-          <Typography variant="body1">
-            <Skeleton variant="text" />
-            <Skeleton variant="text" />
-            <Skeleton variant="text" />
-            <Skeleton variant="text" />
-          </Typography>
-        )}
+        <Typography variant="body1">{item.paragraph}</Typography>
         <div className="media-container">
           {!!item.media &&
             (item.media.type === "image" ? (
@@ -93,14 +84,48 @@ const About: FC = () => {
       </Helmet>
 
       <Header />
+      {state.pageIsLoaded ? (
+        <main id="about">
+          <Hero
+            type={"about"}
+            title={state.titleHero}
+            image={state.imageHero}
+          />
+          <section className="sectionContainer">
+            <Typography variant="h1">{t("nav.about")}</Typography>
+            {state.content.map(mappingContent)}
+          </section>
+        </main>
+      ) : (
+        //Skeleton
+        <main id="about">
+          <Skeleton variant="rectangular" animation="wave">
+            <Hero
+              type={"about"}
+            />
+          </Skeleton>
+          <section className="sectionContainer">
+            <Typography variant="h1">{t("nav.about")}</Typography>
 
-      <main id="about">
-        <Hero type={"about"} title={state.titleHero} image={state.imageHero} />
-        <section className="sectionContainer">
-          <Typography variant="h1">{t("nav.about")}</Typography>
-          {state.content.map(mappingContent)}
-        </section>
-      </main>
+            <section className="content-about-container">
+              <Typography variant="body1">
+                <Skeleton variant="text" animation="wave" />
+                <Skeleton variant="text" animation="wave" />
+                <Skeleton variant="text" animation="wave" />
+                <Skeleton variant="text" animation="wave" />
+              </Typography>
+              <div className="media-container">
+                <Skeleton
+                  variant="rectangular"
+                  height="300px"
+                  animation="wave"
+                />
+              </div>
+            </section>
+          </section>
+        </main>
+      )}
+
       <JoinUs type="support" />
 
       <PreFooter />

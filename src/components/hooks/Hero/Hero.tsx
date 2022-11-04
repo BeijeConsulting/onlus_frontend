@@ -14,7 +14,7 @@ import SCREENS from "../../../route/router";
 interface HeroProps {
   type: "home" | "article" | "about" | "support";
   category?: string;
-  title: string | undefined;
+  title?: string | undefined;
   subtitle?: string | undefined;
   image?: string | undefined;
 }

@@ -16,7 +16,7 @@ import "../styles/home.scss";
 
 //icons
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import { Typography } from "@mui/material";
+import { Typography, Skeleton } from "@mui/material";
 import { t } from "i18next";
 import Header from "../components/hooks/Header/Header";
 import { articles } from "../utils/data";
