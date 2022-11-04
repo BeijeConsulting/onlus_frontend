@@ -2,6 +2,8 @@ import React, { FC, useState } from "react"
 import Pagination from "@mui/material/Pagination"
 import Stack from "@mui/material/Stack"
 
+import "./customPagination.scss"
+
 interface CustomPaginationProps {
   callbackChange: Function
   numberOfPages: number
@@ -27,7 +29,7 @@ const CustomPagination: FC<CustomPaginationProps> = (props) => {
   }
 
   return (
-    <Stack spacing={2}>
+    <Stack spacing={2} className={"pagination"}>
       <Pagination
         count={props.numberOfPages}
         page={state.page}
