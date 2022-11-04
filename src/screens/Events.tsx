@@ -74,6 +74,7 @@ const Events: FC = () => {
       <article key={key}>
         <Default>
           <CardEvents
+            isLoaded={false}
             title={event.title}
             description={event.description}
             image={event.image}
@@ -85,6 +86,7 @@ const Events: FC = () => {
         </Default>
         <Mobile>
           <CardEventsMobile
+            //isLoaded={true}
             title={event.title}
             description={event.description}
             image={event.image}

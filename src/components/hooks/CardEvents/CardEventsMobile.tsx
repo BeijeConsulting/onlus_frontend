@@ -25,15 +25,15 @@ interface ExpandMoreProps extends IconButtonProps {
 
 // props
 interface CardProps {
-  title: string
-  image: string
-  description: string
-  requirement: string
-  date: string
-  time: string
-  place: string
+  title?: string
+  image?: string
+  description?: string
+  requirement?: string
+  date?: string
+  time?: string
+  place?: string
   minWidth?: string,
-  opaque:boolean
+  opaque?:boolean
 }
 
 const Default = ({ children }: any) => {

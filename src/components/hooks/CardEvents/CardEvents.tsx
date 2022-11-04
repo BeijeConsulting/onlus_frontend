@@ -1,10 +1,10 @@
-import { FC } from "react";
+import { FC, useEffect, useState} from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { CardHeader } from "@mui/material";
+import { CardHeader, Skeleton } from "@mui/material";
 // translation
 import { useTranslation } from "react-i18next";
 // navigazione
@@ -12,22 +12,31 @@ import { useNavigate } from "react-router-dom";
 // componenti
 import CustomButton from "../../ui/buttons/CustomButton/CustomButton";
 
+//Style
+import './cardEvents.scss'
+
 // props
 interface CardProps {
-  title: string;
-  image: string;
-  description: string;
-  requirement: string;
-  date: string;
-  time: string;
-  place: string;
+  isLoaded?: boolean;
+  title?: string;
+  image?: string;
+  description?: string;
+  requirement?: string;
+  date?: string;
+  time?: string;
+  place?: string;
 }
+
 
 const CardEvents: FC<CardProps> = (props) => {
   // inizializzo navigazione
   let navigate: Function = useNavigate();
   // tranlation hook
   const { t }: any = useTranslation();
+
+  useEffect(()=>{
+    console.log("card events: ",props.isLoaded)
+  },[])
 
   const goToBooking = (): void => {
     // navigate('/login')
@@ -44,37 +53,40 @@ const CardEvents: FC<CardProps> = (props) => {
       }}
     >
       {/* cambiare la scrollbar e finire data section */}
-      <div className="cardContainer" style={{ display: "flex" }}>
+      <div className="cardContainer">
         {/* 25 */}
         <figure
-          style={{ width: "30%", display: "flex", flexDirection: "column" }}
+          style={{ display: "flex", flexDirection: "column" }}
         >
           <figcaption style={{ height: "20%" }}>
-            <Typography variant="h3">{props.title}</Typography>
+            <Typography variant="h3">
+                { !!props.isLoaded ? props.title : <Skeleton variant="text" animation="wave" />}
+            </Typography>
           </figcaption>
           <div style={{ height: "80%" }}>
-            <CardMedia
+
+            { !!props.isLoaded ? (
+              <CardMedia
               component="img"
               sx={{ width: "100%", height: "100%", marginTop: "auto" }}
               image={props.image}
               alt="Live from space album cover"
             />
+            ) : <Skeleton variant="rectangular" animation="wave" height='100%'/>}
+            
           </div>
         </figure>
         {/* 65 */}
-        <section
-          className="details"
-          style={{ width: "55%", overflowY: "auto" }}
-        >
-          <Box sx={{ display: "flex", flexDirection: "column" }}>
+        <section className='details' style={{overflowY: "auto"}}>
+          <Box sx={{ display: "flex", flexDirection: "column", }}>
             <CardContent
-              sx={{ flex: "1 0 auto", paddingX: "20px", paddingY: "0" }}
+              sx={{ flex: "1 0 auto", paddingX: "20px", paddingY: "0", width:'100%'}}
             >
               <Typography sx={{ marginBottom: "10px" }} variant="h4">
                 {t("events.description")}
               </Typography>
               <Typography variant="body1" color="text.primary" component="div">
-                {props.description}
+                { !!props.isLoaded ? props.description : <Skeleton variant="text" animation="wave"/> }
               </Typography>
               <Typography
                 variant="h4"
@@ -86,7 +98,7 @@ const CardEvents: FC<CardProps> = (props) => {
                 {t("events.requirements")}
               </Typography>
               <Typography variant="body1" color="text.primary" component="div">
-                {props.requirement}
+              { !!props.isLoaded ? props.requirement : <Skeleton variant="text" animation="wave"/> }
               </Typography>
             </CardContent>
           </Box>
@@ -94,16 +106,21 @@ const CardEvents: FC<CardProps> = (props) => {
         {/* 10 */}
         <section
           style={{
-            width: "20%",
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
           }}
         >
           <CardContent sx={{ flex: "1 0 auto", textAlign: "end" }}>
-            <Typography variant="body2">{props.date}</Typography>
-            <Typography variant="body2">{props.time}</Typography>
-            <Typography variant="body2">{props.place}</Typography>
+            <Typography variant="body2">
+            { !!props.isLoaded ? props.date : <Skeleton variant="text" animation="wave"/> }
+            </Typography>
+            <Typography variant="body2">
+            { !!props.isLoaded ? props.time : <Skeleton variant="text" animation="wave"/> }
+            </Typography>
+            <Typography variant="body2">
+            { !!props.isLoaded ? props.place : <Skeleton variant="text" animation="wave"/> }
+            </Typography>
           </CardContent>
           <Box
             sx={{
