@@ -17,14 +17,18 @@ import "../styles/support.scss";
 
 //type
 import { content, hero } from "../utils/type";
-import { Typography } from "@mui/material";
+import { Typography, Skeleton } from "@mui/material";
 import Header from "../components/hooks/Header/Header";
 import JoinUs from "../components/hooks/joinUsBbox/JoinUsBox";
 
-interface State {
+type data={
   hero: hero;
   title: string;
   content: Array<content>;
+}
+interface State {
+  data: data,
+  isLoaded: boolean|null
 }
 
 function Support() {
@@ -37,8 +41,10 @@ function Support() {
 
   async function getData(): Promise<void> {
     let result = await axios.get("mockAPI/support.json");
-    console.log("result", result.data);
-    setState(result.data);
+    setState({
+      data:result.data,
+      isLoaded:true
+    });
   }
 
   const mapping = (item: content, key: number) => {
@@ -68,10 +74,43 @@ function Support() {
       <main id="support">
         <JoinUs type="donate" />
         <div className="sectionContainer">
-          <Typography variant="h1">{state?.title}</Typography>
-          {state?.content.map(mapping)}
+          
+          { state?.isLoaded ? 
+            (
+              <>
+                <Typography variant="h1">{state?.data?.title}</Typography>
+                {state?.data?.content.map(mapping)}
+              </>
+            ) : (
+              <>
+                <Typography variant="h1"><Skeleton variant="text" animation="wave" width={300}/></Typography>
+                <section className="content-support-container">
+                  <Typography variant="body1">
+                    <Skeleton variant="text" animation="wave"/>
+                    <Skeleton variant="text" animation="wave"/>
+                    <Skeleton variant="text" animation="wave"/>
+                    <Skeleton variant="text" animation="wave"/>
+                  </Typography>
+                  <div className="media-container">
+                    <Skeleton
+                      variant="rectangular"
+                      className="content-support"
+                      animation="wave"
+                    />
+                  </div>
+                </section>
+              </>
+            )
+          }
         </div>
-        <Hero type="home" title={state?.hero.text} image={"pandaImg.jpg"} />
+         {
+          state?.isLoaded ? 
+            <Hero type="home" title={state?.data?.hero.text} image={"pandaImg.jpg"} />
+          :
+            <Skeleton variant="rectangular" animation="wave">
+              <Hero type="about" />
+            </Skeleton>
+         }
       </main>
       <PreFooter />
       <Footer />
