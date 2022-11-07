@@ -234,6 +234,12 @@ const Home: FC = () => {
                 <article>
                   <SkeletonCard/>
                 </article>
+                <article>
+                  <SkeletonCard/>
+                </article>
+                <article>
+                  <SkeletonCard/>
+                </article>
               </div>
               }
             </div>
