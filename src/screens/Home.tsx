@@ -11,6 +11,7 @@ import PreFooter from "../components/hooks/preFooter/PreFooter";
 import CardEventsMobile from "../components/hooks/CardEvents/CardEventsMobile";
 import CardArticle from "../components/ui/CardArticle/CardArticle";
 import SkeletonCard from "../components/ui/skeleton/skeletonCard/SkeletonCard";
+import SkeletonSquare from "../components/ui/skeleton/SkeletonSquare/SkeletonSquare";
 
 // style
 import "../styles/home.scss";
@@ -96,18 +97,18 @@ const Home: FC = () => {
   // inizializzo traduzioni
   const { t }: any = useTranslation();
   const [state, setState] = useState({
-     articlesArray: articles,
-     isLoaded:false
-     });
+    articlesArray: articles,
+    isLoaded: false
+  });
 
   useEffect(() => {
     getArticles();
   }, []);
 
   const getArticles = (): void => {
-    setState({ 
+    setState({
       ...state,
-      articlesArray: articles 
+      articlesArray: articles
     });
   };
 
@@ -138,7 +139,7 @@ const Home: FC = () => {
           place={event.place}
           minWidth={"330px"}
           opaque={false}
-          // isLoaded={false} //da camabiare
+        // isLoaded={false} //da camabiare
         />
       </article>
     );
@@ -153,23 +154,38 @@ const Home: FC = () => {
       </HashLink>
 
       <main id="home">
-        <Hero
-          type={"home"}
-          title={MokupHome.hero.title}
-          subtitle={MokupHome.hero.subtitle}
-          image={MokupHome.hero.image}
-        />
+        {
+          state.isLoaded ?
+            <Hero
+              type={"home"}
+              title={MokupHome.hero.title}
+              subtitle={MokupHome.hero.subtitle}
+              image={MokupHome.hero.image}
+            />
+            :
+
+            <Skeleton variant="rectangular" animation="wave">
+              <Hero
+                type={"about"}
+              />
+            </Skeleton>
+        }
+
 
         <div className="sectionContainer">
           <section className="results">
-            <Typography variant="h2">
-              {MokupHome.results.resultTitle}
+            <Typography variant="h2">     
+              Risultati
             </Typography>
+            {
+              state.isLoaded ?
+              <>
+              
             <figure>
               <img
                 src={MokupHome.results.resultsImage}
                 alt="illustrative image"
-              />
+                />
             </figure>
             <div className="statics">
               <div>
@@ -193,6 +209,10 @@ const Home: FC = () => {
                 {MokupHome.results.resultsCaption}
               </Typography>
             </div>
+        </>
+        :
+        <SkeletonSquare direction="column-reverse"/>
+        }
           </section>
 
           {/* sezione eventi */}
@@ -200,19 +220,19 @@ const Home: FC = () => {
             <Typography variant="h2">{t("titles.eventsTitle")}</Typography>
             {
               state.isLoaded ?
-              <div className="articleContainer">{EVENTI.map(mapEvents)}</div>
-              :
-              <div className="articleContainer">
-                <article>
-                  <SkeletonCard/>
-                </article>
-                <article>
-                  <SkeletonCard/>
-                </article>
-                <article>
-                  <SkeletonCard/>
-                </article>
-              </div>
+                <div className="articleContainer">{EVENTI.map(mapEvents)}</div>
+                :
+                <div className="articleContainer">
+                  <article>
+                    <SkeletonCard />
+                  </article>
+                  <article>
+                    <SkeletonCard />
+                  </article>
+                  <article>
+                    <SkeletonCard />
+                  </article>
+                </div>
             }
           </section>
 
@@ -221,26 +241,26 @@ const Home: FC = () => {
             <Typography variant="h2">{t("home.latestNews")}</Typography>
             <div className="articleContainer">
               {
-              state.isLoaded ?
-              state.articlesArray.map(mapArticles)
-              :
-              <div className="articleContainer">
-                <article>
-                  <SkeletonCard/>
-                </article>
-                <article>
-                  <SkeletonCard/>
-                </article>
-                <article>
-                  <SkeletonCard/>
-                </article>
-                <article>
-                  <SkeletonCard/>
-                </article>
-                <article>
-                  <SkeletonCard/>
-                </article>
-              </div>
+                state.isLoaded ?
+                  state.articlesArray.map(mapArticles)
+                  :
+                  <div className="articleContainer">
+                    <article>
+                      <SkeletonCard />
+                    </article>
+                    <article>
+                      <SkeletonCard />
+                    </article>
+                    <article>
+                      <SkeletonCard />
+                    </article>
+                    <article>
+                      <SkeletonCard />
+                    </article>
+                    <article>
+                      <SkeletonCard />
+                    </article>
+                  </div>
               }
             </div>
           </section>
@@ -248,23 +268,37 @@ const Home: FC = () => {
           {/* sezione rimani aggiornato sui social */}
           <section className="stayUpToDate">
             <Typography variant="h2">{t("home.stayUpToDate")}</Typography>
-            <Typography variant="body1" className="description">
-              {MokupHome.stayUpToDate.subTitle}
-            </Typography>
-            <div className="iframeContainer">
-              <iframe src={MokupHome.stayUpToDate.link}></iframe>
-            </div>
+            {
+              state.isLoaded ?
+                <>
+                  <Typography variant="body1" className="description">
+                    {MokupHome.stayUpToDate.subTitle}
+                  </Typography>
+                  <div className="iframeContainer">
+                    <iframe src={MokupHome.stayUpToDate.link}></iframe>
+                  </div>
+                </>
+                :
+                <SkeletonSquare />
+            }
           </section>
 
           {/* sezione storia  */}
           <section className="history" id="history">
             <Typography variant="h2">{MokupHome.story.title}</Typography>
-            <Typography variant="body1" className="description">
-              {MokupHome.story.description}
-            </Typography>
-            <div className="imageContainer">
-              <img src={MokupHome.story.image} alt="story image" />
-            </div>
+            {
+              state.isLoaded ?
+                <>
+                  <Typography variant="body1" className="description">
+                    {MokupHome.story.description}
+                  </Typography>
+                  <div className="imageContainer">
+                    <img src={MokupHome.story.image} alt="story image" />
+                  </div>
+                </>
+                :
+                <SkeletonSquare />
+            }
           </section>
         </div>
       </main>
