@@ -10,6 +10,7 @@ import PreFooter from "../components/hooks/preFooter/PreFooter";
 import CardEvents from "../components/hooks/CardEvents/CardEvents";
 import CardEventsMobile from "../components/hooks/CardEvents/CardEventsMobile";
 import Header from "../components/hooks/Header/Header";
+import SkeletonCardDesktop from "../components/ui/skeleton/SkeletonCardDesktop/SkeletonCardDesktop";
 
 // mediaquery
 import { useMediaQuery } from "react-responsive";
@@ -43,7 +44,7 @@ const Events: FC = () => {
   const [events, setEvents] = useState<Event[]>([]);
 
   useEffect(() => {
-    axios.get("mockAPI/events.json").then((response) => {
+    axios.get("mockAPI/events.jso").then((response) => {
       let tempEvents: Event[] = [];
       response.data.events!.forEach((event: Event) => {
         var dateTokens = event.date.split("-");
@@ -112,7 +113,20 @@ const Events: FC = () => {
 
       <main id={"events"} className="sectionContainer">
         <Typography variant="h1">{t("titles.eventsTitle")}</Typography>{" "}
-        {events.length > 0 && events.map(mapEvents)}
+
+        {isReady ?
+          events.map(mapEvents)
+          :
+          <div>
+            <article>
+              <SkeletonCardDesktop />
+            </article>
+            <article>
+              <SkeletonCardDesktop />
+            </article>
+          </div>
+
+        }
       </main>
 
       <PreFooter />

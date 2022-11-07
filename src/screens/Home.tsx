@@ -10,6 +10,7 @@ import Footer from "../components/hooks/Footer/Footer";
 import PreFooter from "../components/hooks/preFooter/PreFooter";
 import CardEventsMobile from "../components/hooks/CardEvents/CardEventsMobile";
 import CardArticle from "../components/ui/CardArticle/CardArticle";
+import SkeletonCard from "../components/ui/skeleton/skeletonCard/SkeletonCard";
 
 // style
 import "../styles/home.scss";
@@ -94,14 +95,20 @@ const EVENTI: Array<Events> = [
 const Home: FC = () => {
   // inizializzo traduzioni
   const { t }: any = useTranslation();
-  const [state, setState] = useState({ articlesArray: articles });
+  const [state, setState] = useState({
+     articlesArray: articles,
+     isLoaded:false
+     });
 
   useEffect(() => {
     getArticles();
   }, []);
 
   const getArticles = (): void => {
-    setState({ articlesArray: articles });
+    setState({ 
+      ...state,
+      articlesArray: articles 
+    });
   };
 
   const mapArticles = (item: article, key: number) => {
@@ -131,6 +138,7 @@ const Home: FC = () => {
           place={event.place}
           minWidth={"330px"}
           opaque={false}
+          // isLoaded={false} //da camabiare
         />
       </article>
     );
@@ -190,14 +198,44 @@ const Home: FC = () => {
           {/* sezione eventi */}
           <section className="events" id="events">
             <Typography variant="h2">{t("titles.eventsTitle")}</Typography>
-            <div className="articleContainer">{EVENTI.map(mapEvents)}</div>
+            {
+              state.isLoaded ?
+              <div className="articleContainer">{EVENTI.map(mapEvents)}</div>
+              :
+              <div className="articleContainer">
+                <article>
+                  <SkeletonCard/>
+                </article>
+                <article>
+                  <SkeletonCard/>
+                </article>
+                <article>
+                  <SkeletonCard/>
+                </article>
+              </div>
+            }
           </section>
 
           {/* sezione articoli blog */}
           <section className="articles" id="blog">
             <Typography variant="h2">{t("home.latestNews")}</Typography>
             <div className="articleContainer">
-              {state.articlesArray.map(mapArticles)}
+              {
+              state.isLoaded ?
+              state.articlesArray.map(mapArticles)
+              :
+              <div className="articleContainer">
+                <article>
+                  <SkeletonCard/>
+                </article>
+                <article>
+                  <SkeletonCard/>
+                </article>
+                <article>
+                  <SkeletonCard/>
+                </article>
+              </div>
+              }
             </div>
           </section>
 

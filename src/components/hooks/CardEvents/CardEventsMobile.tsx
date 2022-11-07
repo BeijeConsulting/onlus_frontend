@@ -168,48 +168,58 @@ const CardEventsMobile: FC<CardProps> = (props) => {
         )}
       </div>
 
-      <CardActions
-        sx={{ display: "flex", justifyContent: "center" }}
-        disableSpacing
-      >
-        <ExpandMore
-          sx={{ margin: "0", zIndex: 3 }}
-          expand={expanded}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
+      {
+        props.isLoaded &&
+
+        <CardActions
+          sx={{ display: "flex", justifyContent: "center" }}
+          disableSpacing
         >
-          <ExpandMoreIcon />
-        </ExpandMore>
-      </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Typography
-            variant="h3"
-            sx={{ padding: "0px", marginBottom: "10px" }}
+          <ExpandMore
+            sx={{ margin: "0", zIndex: 3 }}
+            expand={expanded}
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show more"
           >
-            {t("events.description")}
-          </Typography>
-          <Typography paragraph variant="body1">
-            {props.description}
-          </Typography>
-          <Typography
-            variant="h3"
-            sx={{ padding: "0px", marginBottom: "10px" }}
-          >
-            {t("events.requirements")}
-          </Typography>
-          <Typography paragraph variant="body1">
-            {props.requirement}
-          </Typography>
-          <CustomButton
-            colorType="secondary"
-            callback={goToBooking}
-            label={t("buttons.bookButton")}
-            size={"small"}
-          />
-        </CardContent>
-      </Collapse>
+            <ExpandMoreIcon />
+          </ExpandMore>
+        </CardActions>
+      }
+
+      {
+        props.isLoaded &&
+
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
+          <CardContent>
+            <Typography
+              variant="h3"
+              sx={{ padding: "0px", marginBottom: "10px" }}
+            >
+              {t("events.description")}
+            </Typography>
+            <Typography paragraph variant="body1">
+              {props.description}
+            </Typography>
+            <Typography
+              variant="h3"
+              sx={{ padding: "0px", marginBottom: "10px" }}
+            >
+              {t("events.requirements")}
+            </Typography>
+            <Typography paragraph variant="body1">
+              {props.requirement}
+            </Typography>
+            <CustomButton
+              colorType="secondary"
+              callback={goToBooking}
+              label={t("buttons.bookButton")}
+              size={"small"}
+            />
+          </CardContent>
+        </Collapse>
+      }
+
     </Card>
   );
 };
