@@ -11,12 +11,14 @@ import CardEvents from "../components/hooks/CardEvents/CardEvents";
 import CardEventsMobile from "../components/hooks/CardEvents/CardEventsMobile";
 import Header from "../components/hooks/Header/Header";
 import SkeletonCardDesktop from "../components/ui/skeleton/SkeletonCardDesktop/SkeletonCardDesktop";
+import SkeletonCard from "../components/ui/skeleton/skeletonCard/SkeletonCard";
 
 // mediaquery
 import { useMediaQuery } from "react-responsive";
 
 // stile
 import "../styles/events.scss";
+
 
 // definisco typo evento
 type Event = {
@@ -75,7 +77,6 @@ const Events: FC = () => {
       <article key={key}>
         <Default>
           <CardEvents
-            isLoaded={isReady}
             title={event.title}
             description={event.description}
             image={event.image}
@@ -87,7 +88,6 @@ const Events: FC = () => {
         </Default>
         <Mobile>
           <CardEventsMobile
-            isLoaded={isReady}
             title={event.title}
             description={event.description}
             image={event.image}
@@ -117,15 +117,27 @@ const Events: FC = () => {
         {isReady ?
           events.map(mapEvents)
           :
-          <div>
-            <article>
-              <SkeletonCardDesktop />
-            </article>
-            <article>
-              <SkeletonCardDesktop />
-            </article>
-          </div>
+          (<div>
 
+            <Default>
+              <article>
+                  <SkeletonCardDesktop />
+              </article>
+              <article>
+                  <SkeletonCardDesktop />
+              </article>
+            </Default>
+
+            <Mobile>
+              <article>
+                  <SkeletonCard />
+              </article>
+              <article>
+                  <SkeletonCard />
+              </article>
+            </Mobile>
+
+          </div>)
         }
       </main>
 

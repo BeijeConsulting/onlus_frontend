@@ -26,16 +26,15 @@ interface ExpandMoreProps extends IconButtonProps {
 
 // props
 interface CardProps {
-  title?: string;
-  image?: string;
-  description?: string;
-  requirement?: string;
-  date?: string;
-  time?: string;
-  place?: string;
+  title: string;
+  image: string;
+  description: string;
+  requirement: string;
+  date: string;
+  time: string;
+  place: string;
   minWidth?: string;
-  opaque?: boolean;
-  isLoaded?: boolean;
+  opaque: boolean;
 }
 
 const Default = ({ children }: any) => {
@@ -94,7 +93,7 @@ const CardEventsMobile: FC<CardProps> = (props) => {
         />
       )}
       <Typography variant="h3">
-        {props.isLoaded ? props.title : <Skeleton variant="text" />}
+        {props.title}
       </Typography>
       {/* <CardHeader
         sx={{ padding: "0px" }}
@@ -102,52 +101,26 @@ const CardEventsMobile: FC<CardProps> = (props) => {
         title={props.title}
       /> */}
       <Default>
-        {props.isLoaded ? (
-          <CardMedia
-            component="img"
-            sx={{ height: "400px", marginY: "20px" }}
-            image={props.image}
-            alt="event cover"
-          />
-        ) : (
-          <Skeleton variant="rectangular" height="400px" animation="wave" />
-        )}
+        <CardMedia
+          component="img"
+          sx={{ height: "400px", marginY: "20px" }}
+          image={props.image}
+          alt="event cover"
+        />
       </Default>
       <Mobile>
-        {props.isLoaded ? (
-          <CardMedia
-            component="img"
-            sx={{ height: "250px", marginY: "20px" }}
-            image={props.image}
-            alt="event cover"
-          />
-        ) : (
-          <Skeleton variant="rectangular" height="250px" animation="wave" />
-        )}
+        <CardMedia
+          component="img"
+          sx={{ height: "250px", marginY: "20px" }}
+          image={props.image}
+          alt="event cover"
+        />
       </Mobile>
       <div style={{ display: "flex", flexWrap: "wrap", width: "100%" }}>
         <div style={{ width: "60%" }}>
-          <Typography sx={{ padding: "0", marginY: "10px" }} variant="body2">
-            {props.isLoaded ? (
-              props.date
-            ) : (
-              <Skeleton variant="text" animation="wave" width="100px" />
-            )}
-          </Typography>
-          <Typography sx={{ padding: "0", marginY: "10px" }} variant="body2">
-            {props.isLoaded ? (
-              props.time
-            ) : (
-              <Skeleton variant="text" animation="wave" width="100px" />
-            )}
-          </Typography>
-          <Typography sx={{ padding: "0", marginY: "10px" }} variant="body2">
-            {props.isLoaded ? (
-              props.place
-            ) : (
-              <Skeleton variant="text" animation="wave" width="100px" />
-            )}
-          </Typography>
+          <Typography sx={{ padding: "0", marginY: "10px" }} variant="body2">{props.date}</Typography>
+          <Typography sx={{ padding: "0", marginY: "10px" }} variant="body2">{props.time}</Typography>
+          <Typography sx={{ padding: "0", marginY: "10px" }} variant="body2">{props.place}</Typography>
         </div>
         {!expanded && (
           <div
@@ -168,58 +141,50 @@ const CardEventsMobile: FC<CardProps> = (props) => {
         )}
       </div>
 
-      {
-        props.isLoaded &&
-
-        <CardActions
-          sx={{ display: "flex", justifyContent: "center" }}
-          disableSpacing
+      <CardActions
+        sx={{ display: "flex", justifyContent: "center" }}
+        disableSpacing
+      >
+        <ExpandMore
+          sx={{ margin: "0", zIndex: 3 }}
+          expand={expanded}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="show more"
         >
-          <ExpandMore
-            sx={{ margin: "0", zIndex: 3 }}
-            expand={expanded}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more"
+          <ExpandMoreIcon />
+        </ExpandMore>
+      </CardActions>
+
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <CardContent>
+          <Typography
+            variant="h3"
+            sx={{ padding: "0px", marginBottom: "10px" }}
           >
-            <ExpandMoreIcon />
-          </ExpandMore>
-        </CardActions>
-      }
-
-      {
-        props.isLoaded &&
-
-        <Collapse in={expanded} timeout="auto" unmountOnExit>
-          <CardContent>
-            <Typography
-              variant="h3"
-              sx={{ padding: "0px", marginBottom: "10px" }}
-            >
-              {t("events.description")}
-            </Typography>
-            <Typography paragraph variant="body1">
-              {props.description}
-            </Typography>
-            <Typography
-              variant="h3"
-              sx={{ padding: "0px", marginBottom: "10px" }}
-            >
-              {t("events.requirements")}
-            </Typography>
-            <Typography paragraph variant="body1">
-              {props.requirement}
-            </Typography>
-            <CustomButton
-              colorType="secondary"
-              callback={goToBooking}
-              label={t("buttons.bookButton")}
-              size={"small"}
-            />
-          </CardContent>
-        </Collapse>
-      }
-
+            {t("events.description")}
+          </Typography>
+          <Typography paragraph variant="body1">
+            {props.description}
+          </Typography>
+          <Typography
+            variant="h3"
+            sx={{ padding: "0px", marginBottom: "10px" }}
+          >
+            {t("events.requirements")}
+          </Typography>
+          <Typography paragraph variant="body1">
+            {props.requirement}
+          </Typography>
+          <CustomButton
+            colorType="secondary"
+            callback={goToBooking}
+            label={t("buttons.bookButton")}
+            size={"small"}
+          />
+        </CardContent>
+      </Collapse>
+      
     </Card>
   );
 };
