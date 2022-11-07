@@ -45,11 +45,11 @@ function Support() {
     console.log("item è", item);
     console.log(`../assets/images/${item.media}`);
     return (
-      <section className="content-about-container" key={key}>
+      <section className="content-support-container" key={key}>
         <Typography variant="body1">{item.paragraph}</Typography>
-        <div className="img-container">
+        <div className="media-container">
           <img
-            className="img-about"
+            className="content-support"
             src={require(`../assets/images/${item.media}`)}
             alt="hero-img"
           />
