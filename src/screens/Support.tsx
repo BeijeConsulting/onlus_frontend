@@ -40,7 +40,7 @@ function Support() {
   }, []);
 
   async function getData(): Promise<void> {
-    let result = await axios.get("mockAPI/support.json");
+    let result = await axios.get("mockAPI/support.jso");
     setState({
       data:result.data,
       isLoaded:true

@@ -56,7 +56,7 @@ function JoinUs(props: Props): ReactElement {
   }
 
   async function getData(): Promise<void> {
-    let mockData: any = await axios.get("mockAPI/joinUsBox.json")
+    let mockData: any = await axios.get("mockAPI/joinUsBox.jso")
     setState({
       data:mockData.data,
       isLoaded:true
@@ -105,8 +105,8 @@ function JoinUs(props: Props): ReactElement {
         </>
       ):(
         <div style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
-          <Skeleton variant="text" animation="wave" sx={{fontSize:70, width:300, backgroundColor: 'rgb(249 249 249 / 13%)'}}/>
-          <Skeleton variant="text" animation="wave" sx={{fontSize:40, width:800, backgroundColor: 'rgb(249 249 249 / 13%)'}}/>
+          <Skeleton variant="text" animation="wave" sx={{fontSize:70, width:'40%', backgroundColor: 'rgb(249 249 249 / 13%)'}}/>
+          <Skeleton variant="text" animation="wave" sx={{fontSize:40, width:'70%', backgroundColor: 'rgb(249 249 249 / 13%)'}}/>
         </div>
       )}
      

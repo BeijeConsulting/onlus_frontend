@@ -44,7 +44,7 @@ const About: FC = () => {
   }, []);
 
   async function fetchDatas() {
-    let result: AxiosResponse = await axios.get("mockAPI/about.json");
+    let result: AxiosResponse = await axios.get("mockAPI/about.jso");
     console.log(result.data.about.hero.img);
     setState({
       pageIsLoaded: true,

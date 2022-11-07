@@ -33,7 +33,7 @@ const Faq: FC = () => {
   const { t }: any = useTranslation();
 
   async function fetchDatas(): Promise<void> {
-    let result = await axios.get("mockAPI/faq.json");
+    let result = await axios.get("mockAPI/faq.jso");
     setState({
       ...state,
       data: result.data,
