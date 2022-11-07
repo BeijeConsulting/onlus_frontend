@@ -33,7 +33,7 @@ const Hero: FC<HeroProps> = (props) => {
         <section
           className="hero-container hero-container-home"
           style={{
-            backgroundImage:"url(" + require(`../../../assets/images/${props.image}`) + ")",
+            backgroundImage:`url("${props.image}")`,
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
             backgroundSize: "cover",
@@ -71,8 +71,7 @@ const Hero: FC<HeroProps> = (props) => {
           <section
             className="hero-container hero-container-article"
             style={{
-              backgroundImage:
-                "url(" + require(`../../../assets/images/${props.image}`) + ")",
+              backgroundImage:`url("${props.image}")`,
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center",
               backgroundSize: "cover",

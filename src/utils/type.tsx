@@ -37,7 +37,7 @@ export type faq = {
   answer: string;
 };
 
-export type Events = {
+export type events = {
   title: string;
   image: string;
   description: string;
@@ -50,7 +50,7 @@ export type Events = {
 export type personalData = {
   info: personalInfo;
   donations: donationData;
-  events: Array<Events>;
+  events: Array<events>;
 } | null;
 
 export type donation = {

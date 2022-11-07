@@ -3,16 +3,16 @@ import CardEventsMobile from "../CardEvents/CardEventsMobile";
 import { useTranslation } from "react-i18next";
 
 import "./personalEvents.scss";
-import { Events } from "../../../utils/type";
+import { events } from "../../../utils/type";
 import { Typography } from "@mui/material";
 
 interface Props {
-  events: Events[] | null;
+  events: events[] | null;
 }
 
 interface LocalState {
-  futureEvents: Events[] | null;
-  pastEvents: Events[] | null;
+  futureEvents: events[] | null;
+  pastEvents: events[] | null;
 }
 
 const PersonalEvents: FC<Props> = (props) => {
@@ -32,10 +32,10 @@ const PersonalEvents: FC<Props> = (props) => {
     }, [state]);
 
   function splitEvents(): void {
-    let future: Events[] = [];
-    let past: Events[] = [];    
+    let future: events[] = [];
+    let past: events[] = [];    
 
-      props.events!.forEach((event: Events) => {
+      props.events!.forEach((event: events) => {
         var dateTokens = event.date.split("-");
         console.log(dateTokens);
         let tempDate = new Date(
@@ -62,7 +62,7 @@ const PersonalEvents: FC<Props> = (props) => {
 
     }
 
-  const mapEvents = (past:boolean) => (element: Events, key: number): ReactElement => {
+  const mapEvents = (past:boolean) => (element: events, key: number): ReactElement => {
       return (
         <div key={key} className="singleCardContainer">
           <CardEventsMobile

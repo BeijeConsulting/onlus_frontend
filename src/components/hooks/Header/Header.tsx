@@ -55,27 +55,10 @@ const Header: FC<HeaderProps> = (props) => {
   }
 
   //navigation functions
-  const goToHome = (): void => {
-    navigate(SCREENS.home)
-  }
-  const goToAbout = (): void => {
-    navigate(SCREENS.about)
-  }
-  const goToEvents = (): void => {
-    navigate(SCREENS.events)
-  }
-  const goToBlog = (): void => {
-    navigate(SCREENS.blog)
-  }
-  const goToSupport = (): void => {
-    navigate(SCREENS.support)
-  }
-  const goToInfo = (): void => {
-    navigate(SCREENS.faq)
-  }
-  const goToPersonalArea = (): void => {
-    navigate(SCREENS.personalArea)
-  }
+  // navigazione
+  const goTo = (params:string) => (): void => {
+    navigate(params);
+  };
 
   // Changelanguage
   const changeLanguageClick = (lang: string) => (): void => {
@@ -110,25 +93,25 @@ const Header: FC<HeaderProps> = (props) => {
       className={(state.scroll ? "active " : "") + (props.isHome && "home")}
     >
       <div className={"top-header"}>
-        <SiFoodpanda className="logo" onClick={goToHome} />
+        <SiFoodpanda className="logo" onClick={goTo(SCREENS.home)} />
         <Default>
           <nav className={"nav-desktop"}>
-            <Typography variant="body1" onClick={goToHome}>
+            <Typography variant="body1" onClick={goTo(SCREENS.home)}>
               {t("nav.home")}
             </Typography>
-            <Typography variant="body1" onClick={goToAbout}>
+            <Typography variant="body1" onClick={goTo(SCREENS.about)}>
               {t("nav.about")}
             </Typography>
-            <Typography variant="body1" onClick={goToEvents}>
+            <Typography variant="body1" onClick={goTo(SCREENS.events)}>
               {t("nav.events")}
             </Typography>
-            <Typography variant="body1" onClick={goToBlog}>
+            <Typography variant="body1" onClick={goTo(SCREENS.blog)}>
               {t("nav.blog")}
             </Typography>
-            <Typography variant="body1" onClick={goToSupport}>
+            <Typography variant="body1" onClick={goTo(SCREENS.support)}>
               {t("nav.supportUs")}
             </Typography>
-            <Typography variant="body1" onClick={goToInfo}>
+            <Typography variant="body1" onClick={goTo(SCREENS.faq)}>
               {t("nav.info")}
             </Typography>
           </nav>
@@ -158,7 +141,7 @@ const Header: FC<HeaderProps> = (props) => {
             </Typography>
           </div>
 
-          <BiUser onClick={goToPersonalArea} className="profile-icon" />
+          <BiUser onClick={goTo(SCREENS.personalArea)} className="profile-icon" />
 
           <Mobile>
             <div className="burger-menu">

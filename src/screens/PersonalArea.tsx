@@ -22,13 +22,13 @@ import MyInfoSection from "../components/hooks/MyInfoSection/MyInfoSection";
 import "../styles/personalArea.scss";
 
 //type
-import { personalInfo, Events, donationData } from "../utils/type";
+import { personalInfo, events, donationData } from "../utils/type";
 import { Typography } from "@mui/material";
 
 interface State {
   isLoaded: boolean;
   data: personalInfo | null;
-  eventsData: Events[] | null;
+  eventsData: events[] | null;
   donationData: donationData | null;
 }
 
