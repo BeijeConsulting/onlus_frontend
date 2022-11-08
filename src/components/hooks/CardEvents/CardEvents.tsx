@@ -1,4 +1,4 @@
-import { FC, useEffect, useState} from "react";
+import { FC, useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 import CustomButton from "../../ui/buttons/CustomButton/CustomButton";
 
 //Style
-import './cardEvents.scss'
+import "./cardEvents.scss";
 
 // props
 interface CardProps {
@@ -24,7 +24,6 @@ interface CardProps {
   time: string;
   place: string;
 }
-
 
 const CardEvents: FC<CardProps> = (props) => {
   // tranlation hook
@@ -39,7 +38,7 @@ const CardEvents: FC<CardProps> = (props) => {
     <Card
       sx={{
         display: "flex",
-        maxHeight: "400px",
+        // maxHeight: "400px",
         padding: "40px",
         justifyContent: "space-between",
       }}
@@ -47,26 +46,30 @@ const CardEvents: FC<CardProps> = (props) => {
       {/* cambiare la scrollbar e finire data section */}
       <div className="cardContainer">
         {/* 25 */}
-        <figure
-          style={{ display: "flex", flexDirection: "column" }}
-        >
-          <figcaption style={{ height: "20%" }}>
+        <figure style={{ display: "flex", flexDirection: "column" }}>
+          <figcaption style={{ height: "20%", paddingBottom: "20px" }}>
             <Typography variant="h3">{props.title}</Typography>
           </figcaption>
-          <div style={{ height: "80%" }}>
-              <CardMedia
+          <div style={{ maxHeight: "258.38px" }}>
+            <CardMedia
               component="img"
               sx={{ width: "100%", height: "100%", marginTop: "auto" }}
               image={props.image}
               alt="Live from space album cover"
-            />            
+            />
           </div>
         </figure>
         {/* 65 */}
-        <section className='details' style={{overflowY: "auto"}}>
-          <Box sx={{ display: "flex", flexDirection: "column", }}>
+        <section className="details" style={{ overflowY: "auto" }}>
+          <Box sx={{ display: "flex", flexDirection: "column" }}>
             <CardContent
-              sx={{ flex: "1 0 auto", paddingX: "20px", paddingY: "0", width:'100%'}}
+              sx={{
+                maxHeight: "360px",
+                flex: "1 0 auto",
+                paddingX: "20px",
+                paddingY: "0",
+                width: "100%",
+              }}
             >
               <Typography sx={{ marginBottom: "10px" }} variant="h4">
                 {t("events.description")}
@@ -84,7 +87,7 @@ const CardEvents: FC<CardProps> = (props) => {
                 {t("events.requirements")}
               </Typography>
               <Typography variant="body1" color="text.primary" component="div">
-              {props.requirement}
+                {props.requirement}
               </Typography>
             </CardContent>
           </Box>

@@ -6,7 +6,7 @@ import Header from "../components/hooks/Header/Header";
 import PreFooter from "../components/hooks/preFooter/PreFooter";
 import CorrelatedArticleCard from "../components/ui/correlatedArticleCard/CorrelatedArticleCard";
 import Hero from "../components/hooks/Hero/Hero";
-import SkeletonCorrelated from "../components/ui/skeleton/skeletonCorrelated/SkeletonCorrelated"
+import SkeletonCorrelated from "../components/ui/skeleton/skeletonCorrelated/SkeletonCorrelated";
 
 //translation
 import { useTranslation } from "react-i18next";
@@ -23,58 +23,32 @@ import "../styles/article.scss";
 //helmet
 import { Helmet } from "react-helmet";
 import { Skeleton, Typography } from "@mui/material";
-import { useParams } from "react-router-dom";
-
-
-const singleArticle = {
-  id: 1,
-  name: "riccardo",
-  surname: "bottoli",
-  email: "aletia@milan.it",
-  date: "22 ottobre 2029",
-  title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  status: "published",
-  cover:
-    "https://media.istockphoto.com/photos/giraffe-in-front-of-kilimanjaro-mountain-picture-id488580536?k=20&m=488580536&s=612x612&w=0&h=xXmFHuCU9Phc0rcxAm9jjeoToeQw-H_2y5HMgkMgs6k=",
-  categories: ["buongiorismo", "religione", "scemenze"],
-  content: [
-    {
-      paragraph:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras in sem vitae leo consequat convallis. Duis fermentum euismod dui, sollicitudin rutrum purus. Proin posuere commodo mollis. Nam finibus pretium risus. Quisque vel maximus risus. Donec ultrices leo id aliquam hendrerit. Proin gravida dui id nulla venenatis suscipit. Morbi scelerisque tincidunt velit, bibendum dignissim velit sagittis ut. Suspendisse semper tincidunt odio, eget laoreet justo aliquet nec. Duis ut nunc posuere, tincidunt nulla sit amet, ultrices sapien. Quisque a pretium est. Nam malesuada convallis ipsum, sed volutpat ante accumsan nec. Donec ultrices scelerisque posuere.",
-      media: {
-        content:
-          "https://media.istockphoto.com/photos/giraffe-in-front-of-kilimanjaro-mountain-picture-id488580536?k=20&m=488580536&s=612x612&w=0&h=xXmFHuCU9Phc0rcxAm9jjeoToeQw-H_2y5HMgkMgs6k=",
-        type: "image",
-      },
-    },
-    {
-      paragraph:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras in sem vitae leo consequat convallis. Duis fermentum euismod dui, sollicitudin rutrum purus. Proin posuere commodo mollis. Nam finibus pretium risus. Quisque vel maximus risus. Donec ultrices leo id aliquam hendrerit. Proin gravida dui id nulla venenatis suscipit. Morbi scelerisque tincidunt velit, bibendum dignissim velit sagittis ut. Suspendisse semper tincidunt odio, eget laoreet justo aliquet nec. Duis ut nunc posuere, tincidunt nulla sit amet, ultrices sapien. Quisque a pretium est. Nam malesuada convallis ipsum, sed volutpat ante accumsan nec. Donec ultrices scelerisque posuere.",
-      media: null,
-    },
-    {
-      paragraph:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras in sem vitae leo consequat convallis. Duis fermentum euismod dui, sollicitudin rutrum purus. Proin posuere commodo mollis. Nam finibus pretium risus. Quisque vel maximus risus. Donec ultrices leo id aliquam hendrerit. Proin gravida dui id nulla venenatis suscipit. Morbi scelerisque tincidunt velit, bibendum dignissim velit sagittis ut. Suspendisse semper tincidunt odio, eget laoreet justo aliquet nec. Duis ut nunc posuere, tincidunt nulla sit amet, ultrices sapien. Quisque a pretium est. Nam malesuada convallis ipsum, sed volutpat ante accumsan nec. Donec ultrices scelerisque posuere.",
-      media: {
-        content:
-          "https://i.ytimg.com/an_webp/xExzNVgjpoo/mqdefault_6s.webp?du=3000&sqp=CLzQ6ZoG&rs=AOn4CLB4z3Z-51GQQ7pc6LFqDAVwIcDGYQ",
-        type: "video",
-      },
-    },
-  ],
-};
+import { Link, useNavigate, useParams } from "react-router-dom";
+import {
+  getArticles,
+  getArticlesFromCategory,
+  getSingleArticle,
+} from "../services/api/articleApi";
+import { HashLink } from "react-router-hash-link";
+import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+import SCREENS from "../route/router";
 
 interface State {
+  article: article | null;
   localArray: Array<article>;
+  isLoaded: boolean;
 }
 const initialState = {
+  article: null,
   localArray: [],
+  isLoaded: false,
 };
 
 const Article: FC = () => {
   const [state, setState] = useState<State>(initialState);
 
   //id dell articolo corrispondente
+  const navigate: any = useNavigate();
   let params = useParams();
 
   const { t }: any = useTranslation();
@@ -84,11 +58,17 @@ const Article: FC = () => {
   }, []);
 
   async function fetchDatas() {
-    let result: AxiosResponse = await axios.get("/mockAPI/articles.json");
-    console.log(result.data.articles);
+    let singleArticleResult: any = await getSingleArticle(params.id);
+    // let correlatedResult: any = await getArticlesFromCategory(
+    //   singleArticleResult.data.data.attributes.article.categories[0]
+    // );
+    let correlatedResult: any = await getArticles();
+
     setState({
       ...state,
-      localArray: result.data.articles,
+      article: singleArticleResult.data.data.attributes.article,
+      localArray: correlatedResult.data.data,
+      isLoaded: true,
     });
   }
 
@@ -109,58 +89,77 @@ const Article: FC = () => {
     );
   };
 
-  const mappingCorrelated = (el: article, key: number): JSX.Element => {
-    return (
-      <div key={key}>
-        <CorrelatedArticleCard cover={el.cover} title={el.title} />
-      </div>
-    );
+  const mappingCorrelated = (el: any, key: number): JSX.Element => {
+    if (key < 3) {
+      return (
+        <div key={key}>
+          <CorrelatedArticleCard
+            cover={el.attributes.article.cover}
+            title={el.attributes.article.title}
+          />
+        </div>
+      );
+    }
+    return <></>;
   };
 
   return (
     <>
-      <Helmet>
-        <title>Onlus - {singleArticle.title}</title>
-        <meta name="description" content={`${t("metaTitles.about")} page`} />
-      </Helmet>
-
+      {state.isLoaded ? (
+        <Helmet>
+          <title>Onlus - {state.article?.title}</title>
+          <meta name="description" content={`${t("metaTitles.about")} page`} />
+        </Helmet>
+      ) : (
+        <Helmet>
+          <title>Onlus - </title>
+          <meta name="description" content={`${t("metaTitles.about")} page`} />
+        </Helmet>
+      )}
       <Header />
-
-      {state.localArray.length >0 ? (
+      <Link to={SCREENS.blog} className="arrowButton goBackButton">
+        <KeyboardArrowLeftIcon sx={{ height: 40, width: 40 }} />
+      </Link>
+      {state.isLoaded ? (
         <main id="article">
           <Hero
-            image="giraffeImg.jpg"
-            title={singleArticle.title}
+            image={state.article!.cover}
+            title={state.article!.title}
             type="article"
           />
           <section className="sectionContainer">
-            <Typography variant="body1">{singleArticle.date}</Typography>
+            <Typography variant="body1">{state.article!.date}</Typography>
             <article>
-              <section>{singleArticle.content.map(mappingParagraph)}</section>
+              <section>{state.article!.content.map(mappingParagraph)}</section>
               <Typography variant="h3">{t("home.relatedArticles")}</Typography>
               <section className="correlatedArticles">
-                {state.localArray.length > 0 &&
-                  state.localArray.map(mappingCorrelated)}
+                {state.localArray.map(mappingCorrelated)}
               </section>
             </article>
           </section>
         </main>
-      ):(
+      ) : (
         <main id="article">
           <Skeleton variant="rectangular" animation="wave">
-            <Hero type="about"/>
+            <Hero type="about" />
           </Skeleton>
 
           <section className="sectionContainer">
-            <Typography variant="body1"><Skeleton variant="text" animation="wave" width={150}/></Typography>
+            <Typography variant="body1">
+              <Skeleton variant="text" animation="wave" width={150} />
+            </Typography>
             <article>
               <section>
-                <Skeleton variant="text" animation="wave"/>
-                <Skeleton variant="text" animation="wave"/>
-                <Skeleton variant="text" animation="wave"/>
-                <Skeleton variant="rectangular" animation="wave" height={'500px'}/>
-                <Skeleton variant="text" animation="wave"/>
-                <Skeleton variant="text" animation="wave"/>
+                <Skeleton variant="text" animation="wave" />
+                <Skeleton variant="text" animation="wave" />
+                <Skeleton variant="text" animation="wave" />
+                <Skeleton
+                  variant="rectangular"
+                  animation="wave"
+                  height={"500px"}
+                />
+                <Skeleton variant="text" animation="wave" />
+                <Skeleton variant="text" animation="wave" />
               </section>
               <Typography variant="h3">{t("home.relatedArticles")}</Typography>
               <section className="correlatedArticles">

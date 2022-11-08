@@ -114,7 +114,7 @@ const Home: FC = () => {
     <>
       <Header isHome={true} />
 
-      <HashLink to="#home" className="scrollToTopButton">
+      <HashLink to="#home" className="arrowButton scrollToTopButton">
         <KeyboardArrowUpIcon sx={{ height: 40, width: 40 }} />
       </HashLink>
 

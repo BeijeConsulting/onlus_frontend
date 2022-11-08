@@ -18,17 +18,16 @@ import { useMediaQuery } from "react-responsive";
 
 // stile
 import "../styles/events.scss";
+import { getEvents } from "../services/api/eventApi";
 
+interface State {
+  isLoaded: boolean;
+  events: Array<any>;
+}
 
-// definisco typo evento
-type Event = {
-  title: string;
-  image: string;
-  description: string;
-  requirement: string;
-  date: string;
-  time: string;
-  place: string;
+const initialState = {
+  isLoaded: false,
+  events: [],
 };
 
 //React responsive const
@@ -42,59 +41,71 @@ const Mobile = ({ children }: any) => {
 };
 
 const Events: FC = () => {
-  const [isReady, setIsReady] = useState<boolean>(false);
-  const [events, setEvents] = useState<Event[]>([]);
-
-  useEffect(() => {
-    axios.get("mockAPI/events.jso").then((response) => {
-      let tempEvents: Event[] = [];
-      response.data.events!.forEach((event: Event) => {
-        var dateTokens = event.date.split("-");
-        console.log(dateTokens);
-        let tempDate = new Date(
-          parseInt(dateTokens[0]),
-          parseInt(dateTokens[1]) - 1,
-          parseInt(dateTokens[2])
-        );
-        let eventDate = tempDate.getTime();
-        let todaySec: number = new Date().getTime();
-        if (eventDate < todaySec) {
-          return <></>;
-        } else {
-          tempEvents!.push(event);
-          console.log(event);
-        }
-      });
-      setEvents(tempEvents);
-      setIsReady(true);
-    });
-  }, []);
+  const [state, setState] = useState<State>(initialState);
   // translate
   const { t }: any = useTranslation();
+
+  useEffect(() => {
+    fetchDatas();
+  }, []);
+
+  //funzione traduzione data Simone
+  // axios.get("mockAPI/events.jso").then((response) => {
+  //   let tempEvents: Event[] = [];
+  //   response.data.events!.forEach((event: Event) => {
+  //     var dateTokens = event.date.split("-");
+  //     console.log(dateTokens);
+  //     let tempDate = new Date(
+  //       parseInt(dateTokens[0]),
+  //       parseInt(dateTokens[1]) - 1,
+  //       parseInt(dateTokens[2])
+  //     );
+  //     let eventDate = tempDate.getTime();
+  //     let todaySec: number = new Date().getTime();
+  //     if (eventDate < todaySec) {
+  //       return <></>;
+  //     } else {
+  //       tempEvents!.push(event);
+  //       console.log(event);
+  //     }
+  //   });
+  //   setEvents(tempEvents);
+  //   setIsReady(true);
+  // });
+
+  const fetchDatas = async (): Promise<void> => {
+    let result: any = await getEvents();
+    setState({
+      ...state,
+      isLoaded: true,
+      events: result.data.data,
+    });
+  };
+
   // map
-  const mapEvents = (event: Event, key: number): JSX.Element => {
+  const mapEvents = (event: any, key: number): JSX.Element => {
     return (
       <article key={key}>
         <Default>
           <CardEvents
-            title={event.title}
-            description={event.description}
-            image={event.image}
-            requirement={event.requirement}
-            time={event.time}
-            date={event.date}
-            place={event.place}
+            title={event.attributes.events.title}
+            description={event.attributes.events.description}
+            image={event.attributes.events.cover}
+            requirement={event.attributes.events.requirement}
+            time={event.attributes.events.time}
+            date={event.attributes.events.date}
+            place={event.attributes.events.place}
           />
         </Default>
         <Mobile>
           <CardEventsMobile
-            title={event.title}
-            description={event.description}
-            image={event.image}
-            requirement={event.requirement}
-            time={event.time}
-            date={event.date}
-            place={event.place}
+            title={event.attributes.events.title}
+            description={event.attributes.events.description}
+            image={event.attributes.events.cover}
+            requirement={event.attributes.events.requirement}
+            time={event.attributes.events.time}
+            date={event.attributes.events.date}
+            place={event.attributes.events.place}
             opaque={false}
           />
         </Mobile>
@@ -113,32 +124,29 @@ const Events: FC = () => {
 
       <main id={"events"} className="sectionContainer">
         <Typography variant="h1">{t("titles.eventsTitle")}</Typography>{" "}
-
-        {isReady ?
-          events.map(mapEvents)
-          :
-          (<div>
-
+        {state.isLoaded ? (
+          state.events.map(mapEvents)
+        ) : (
+          <div>
             <Default>
               <article>
-                  <SkeletonCardDesktop />
+                <SkeletonCardDesktop />
               </article>
               <article>
-                  <SkeletonCardDesktop />
+                <SkeletonCardDesktop />
               </article>
             </Default>
 
             <Mobile>
               <article>
-                  <SkeletonCard />
+                <SkeletonCard />
               </article>
               <article>
-                  <SkeletonCard />
+                <SkeletonCard />
               </article>
             </Mobile>
-
-          </div>)
-        }
+          </div>
+        )}
       </main>
 
       <PreFooter />
