@@ -3,7 +3,8 @@ import { FC, useState, useEffect } from "react";
 //translation
 import { useTranslation } from "react-i18next";
 
-import axios from "axios";
+//fetch
+import { getFAQs } from "../services/api/faqAPI";
 
 //helmet
 import { Helmet } from "react-helmet";
@@ -33,10 +34,11 @@ const Faq: FC = () => {
   const { t }: any = useTranslation();
 
   async function fetchDatas(): Promise<void> {
-    let result = await axios.get("mockAPI/faq.jso");
+    let result:any = await getFAQs();
+    
     setState({
       ...state,
-      data: result.data,
+      data: result.data.data.attributes.faq,
     });
     console.log("result", result);
   }
