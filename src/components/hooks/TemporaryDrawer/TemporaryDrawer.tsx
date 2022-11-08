@@ -64,11 +64,11 @@ const TemporaryDrawer: FC = () => {
   }
 
   const goToDonate = (): void => {
-    navigate.navigate(SCREENS.donate)
+    navigate(SCREENS.donate)
   }
 
   const goToSignup = (): void => {
-    navigate.navigate(SCREENS.signup)
+    navigate(SCREENS.signup)
   }
 
   //Navigation from sidebar
