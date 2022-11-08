@@ -54,7 +54,7 @@ function Support() {
     console.log(`${item?.media?.content}`);
     return (
       <section className="content-support-container" key={key}>
-        <Typography variant="body1">{item.paragraph}</Typography>
+        <Typography variant="body1">{item?.paragraph}</Typography>
         <div className="media-container">
           <img
             className="content-support"

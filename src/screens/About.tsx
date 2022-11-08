@@ -63,7 +63,7 @@ const About: FC = () => {
             (item.media.type === "image" ? (
               <img
                 className="content-about"
-                src={item.media?.content}
+                src={item.media.content}
                 alt="hero-img"
               />
             ) : (
