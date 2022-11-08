@@ -9,8 +9,8 @@ import Footer from "../components/hooks/Footer/Footer";
 import PreFooter from "../components/hooks/preFooter/PreFooter";
 import CardEventsMobile from "../components/hooks/CardEvents/CardEventsMobile";
 import CardArticle from "../components/ui/CardArticle/CardArticle";
-import SkeletonCard from "../components/ui/skeleton/skeletonCard/SkeletonCard";
-import SkeletonSquare from "../components/ui/skeleton/SkeletonSquare/SkeletonSquare";
+import SkeletonCard from "../components/ui/skeleton/skeletonCard/SkeletonCard"
+import SkeletonSquare from "../components/ui/skeleton/SkeletonSquare/SkeletonSquare"
 // style
 import "../styles/home.scss";
 // redux

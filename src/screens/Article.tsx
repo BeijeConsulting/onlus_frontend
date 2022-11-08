@@ -6,7 +6,7 @@ import Header from "../components/hooks/Header/Header";
 import PreFooter from "../components/hooks/preFooter/PreFooter";
 import CorrelatedArticleCard from "../components/ui/correlatedArticleCard/CorrelatedArticleCard";
 import Hero from "../components/hooks/Hero/Hero";
-import SkeletonCorrelated from "../components/ui/skeleton/skeletonCorrelated/SkeletonCorrelated";
+import SkeletonCorrelated from "../components/ui/skeleton/skeletonCorrelated/SkeletonCorrelated"
 
 //translation
 import { useTranslation } from "react-i18next";
