@@ -1,4 +1,4 @@
-# onlus_frontend
+# Onlus frontend
 Onlus frontend is a project for the creation of a site dedicated to a non-profit organization, totally editable by the administrator.
 
 ## Installation
@@ -23,6 +23,6 @@ $ npm start
 - **[sass](https://sass-lang.com/)**
 - **[typescript](https://www.typescriptlang.org/)**
 
-# Se non sovrascrive lo style in un tag
+## Se non sovrascrive lo style in un tag
 esempio -> <NomeComponente title={ecc ecc} style=ecc />
 per modificarlo -> <NomeComponente title={ecc ecc} titleTypographyProps={{scssCamelCase}} />
