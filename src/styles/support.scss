@@ -1,13 +1,40 @@
-#support {
-  .title {
-    font-size: 2rem;
+ #support {
+  .content-support-container {
+    display: grid;
+    gap: 20px;
+    padding: 10px 0;
+  }
+
+  .media-container {
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+  }
+  .content-support{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
   }
 }
 
 @media (min-width: 768px) {
   #support {
-    .title {
-      font-size: 3rem;
+    .content-support-container {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 50px;
+      padding: 30px 0;
+      .media-container {
+        width: 100%;
+        height: 300px;
+      }
+      &:nth-child(odd) {
+        .media-container {
+          grid-area: 1 / 1 / 2 / 2;
+        }
+        .text-support {
+          grid-area: 1 / 2 / 2 / 3;
+        }
+      }
     }
   }
 }

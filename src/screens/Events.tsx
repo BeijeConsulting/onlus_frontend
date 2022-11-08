@@ -40,13 +40,31 @@ const Mobile = ({ children }: any) => {
 
 const Events: FC = () => {
 
-  const [events,setEvents] = useState([])
+  const [events,setEvents] = useState<Event[]>([])
 
   useEffect(() => {
     axios.get('mockAPI/events.json')
     .then((response) => {
-      setEvents(response.data.events)
-    })
+      let tempEvents: Event[] = [];
+      response.data.events!.forEach((event: Event) => {
+        var dateTokens = event.date.split("-");
+        console.log(dateTokens);
+        let tempDate = new Date(
+          parseInt(dateTokens[0]),
+          parseInt(dateTokens[1]) - 1,
+          parseInt(dateTokens[2])
+        );
+        let eventDate = tempDate.getTime();
+        let todaySec: number = (new Date()).getTime();
+        if(eventDate < todaySec) {
+          return <></>
+        } else {
+          tempEvents!.push(event);
+          console.log(event)
+        }
+      })        
+      setEvents(tempEvents)
+    })           
   },[])
   // translate
   const { t }: any = useTranslation()
@@ -74,6 +92,7 @@ const Events: FC = () => {
             time={event.time}
             date={event.date}
             place={event.place}
+            opaque={false}
           />
         </Mobile>
       </article>
