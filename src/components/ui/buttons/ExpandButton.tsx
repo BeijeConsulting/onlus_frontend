@@ -36,17 +36,6 @@ const ExpandButton: FC = () => {
   const [state, setState] = useState<State>(initialState)
   const anchorRef = useRef<HTMLDivElement>(null)
 
-  const options = [
-    {
-      label: t("buttons.donateButton"),
-      icon: <TbHeartHandshake />,
-    },
-    {
-      label: t("buttons.volunteerButton"),
-      icon: <BiDonateHeart />,
-    },
-  ]
-
   const navigate: any = useNavigate()
 
   const goToDonate = (): void => {

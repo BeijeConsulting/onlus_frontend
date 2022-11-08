@@ -164,7 +164,7 @@ const TemporaryDrawer: FC = () => {
                   justifyContent: "center",
                 }}
               >
-                <img src={elem.icon} className={styles.socialIcons} />
+                <img src={elem.icon} className={styles.socialIcons} alt='social-icon'/>
               </ListItemIcon>
             )
           })}

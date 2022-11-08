@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import CustomButton from "../../ui/buttons/CustomButton/CustomButton";
 

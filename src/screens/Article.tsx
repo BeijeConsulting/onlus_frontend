@@ -11,9 +11,6 @@ import SkeletonCorrelated from "../components/ui/skeleton/skeletonCorrelated/Ske
 //translation
 import { useTranslation } from "react-i18next";
 
-//axios
-import axios, { AxiosResponse } from "axios";
-
 //type
 import { article, content } from "../utils/type";
 
@@ -23,12 +20,11 @@ import "../styles/article.scss";
 //helmet
 import { Helmet } from "react-helmet";
 import { Skeleton, Typography } from "@mui/material";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
   getArticles,
   getSingleArticle,
 } from "../services/api/articleApi";
-import { HashLink } from "react-router-hash-link";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import SCREENS from "../route/router";
 
@@ -47,7 +43,6 @@ const Article: FC = () => {
   const [state, setState] = useState<State>(initialState);
 
   //id dell articolo corrispondente
-  const navigate: any = useNavigate();
   let params = useParams();
 
   const { t }: any = useTranslation();
@@ -78,7 +73,7 @@ const Article: FC = () => {
         {/* {!!el.media && <img className="image" src={el.media} />} */}
         {!!el.media &&
           (el.media.type === "image" ? (
-            <img className="media" src={el.media.content} />
+            <img className="media" src={el.media.content} alt='article-pic'/>
           ) : (
             <video controls className="video">
               <source type="video/webm" src={el.media.content} />

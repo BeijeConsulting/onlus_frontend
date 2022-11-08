@@ -19,7 +19,7 @@ interface InfoProps {
   datas: personalInfo | null;
 }
 
-interface State {
+/* interface State {
   buttonDisabled: boolean;
   errorName: boolean;
   name: string | undefined;
@@ -31,7 +31,7 @@ interface State {
   email: string | undefined;
   errorPhoneNumber: boolean;
   phoneNumber: string | undefined;
-}
+} */
 
 const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
   const { t, i18n }: any = useTranslation();
