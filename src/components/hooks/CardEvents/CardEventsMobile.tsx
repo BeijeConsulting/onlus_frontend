@@ -1,83 +1,96 @@
-import React, { useState, FC } from "react"
-import { styled } from "@mui/material/styles"
-import Card from "@mui/material/Card"
-import CardHeader from "@mui/material/CardHeader"
-import CardMedia from "@mui/material/CardMedia"
-import CardContent from "@mui/material/CardContent"
-import CardActions from "@mui/material/CardActions"
-import Collapse from "@mui/material/Collapse"
-import IconButton, { IconButtonProps } from "@mui/material/IconButton"
-import Typography from "@mui/material/Typography"
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
+import { useState, FC } from "react";
+import { styled } from "@mui/material/styles";
+import Card from "@mui/material/Card";
+import CardMedia from "@mui/material/CardMedia";
+import CardContent from "@mui/material/CardContent";
+import CardActions from "@mui/material/CardActions";
+import Collapse from "@mui/material/Collapse";
+import IconButton, { IconButtonProps } from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 // mediaquery
-import { useMediaQuery } from "react-responsive"
+import { useMediaQuery } from "react-responsive";
 // components
-import CustomButton from "../../ui/buttons/CustomButton/CustomButton"
+import CustomButton from "../../ui/buttons/CustomButton/CustomButton";
 // translation
-import { useTranslation } from "react-i18next"
+import { useTranslation } from "react-i18next";
 // navigazione
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 // interfaccia
 interface ExpandMoreProps extends IconButtonProps {
-  expand: boolean
+  expand: boolean;
 }
 
 // props
 interface CardProps {
-  title: string
-  image: string
-  description: string
-  requirement: string
-  date: string
-  time: string
-  place: string
-  minWidth?: string,
-  opaque:boolean
+  title: string;
+  image: string;
+  description: string;
+  requirement: string;
+  date: string;
+  time: string;
+  place: string;
+  minWidth?: string;
+  opaque: boolean;
 }
 
 const Default = ({ children }: any) => {
-  const isNotMobile = useMediaQuery({ minWidth: 601 })
-  return isNotMobile ? children : null
-}
+  const isNotMobile = useMediaQuery({ minWidth: 601 });
+  return isNotMobile ? children : null;
+};
 
 const Mobile = ({ children }: any) => {
-  const isMobile = useMediaQuery({ maxWidth: 600 })
-  return isMobile ? children : null
-}
+  const isMobile = useMediaQuery({ maxWidth: 600 });
+  return isMobile ? children : null;
+};
 
 const ExpandMore = styled((props: ExpandMoreProps) => {
-  const { expand, ...other } = props
-  return <IconButton {...other} />
+  const { expand, ...other } = props;
+  return <IconButton {...other} />;
 })(({ theme, expand }) => ({
   transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
   marginLeft: "auto",
   transition: theme.transitions.create("transform", {
     duration: theme.transitions.duration.shortest,
   }),
-}))
+}));
 
 const CardEventsMobile: FC<CardProps> = (props) => {
-  // inizializzo navigazione
-  let navigate:Function = useNavigate()
   // tranlation hook
-  const { t }: any = useTranslation()
+  const { t }: any = useTranslation();
   // stato
-  const [expanded, setExpanded] = useState(false)
+  const [expanded, setExpanded] = useState(false);
   // estende pannello
   const handleExpandClick = () => {
-    setExpanded(!expanded)
-  }
+    setExpanded(!expanded);
+  };
   // naviga
   const goToBooking = (): void => {
     // navigate('/login')
-    console.log("book")
-  }
+    console.log("book");
+  };
 
   return (
-    <Card sx={{ padding: "20px", minWidth: props.minWidth, position: 'relative' }}>
-      {props.opaque && <div style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 2, backgroundColor: 'rgba(0,0,0,0.4)'}} />}
-      <Typography variant="h3">{props.title}</Typography>
+    <Card
+      sx={{ padding: "20px", minWidth: props.minWidth, position: "relative" }}
+    >
+      {props.opaque && (
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            zIndex: 2,
+            backgroundColor: "rgba(0,0,0,0.4)",
+          }}
+        />
+      )}
+      <Typography variant="h3">
+        {props.title}
+      </Typography>
       {/* <CardHeader
         sx={{ padding: "0px" }}
         titleTypographyProps={{ fontWeight: 700, fontSize: "25px" }}
@@ -101,15 +114,9 @@ const CardEventsMobile: FC<CardProps> = (props) => {
       </Mobile>
       <div style={{ display: "flex", flexWrap: "wrap", width: "100%" }}>
         <div style={{ width: "60%" }}>
-          <Typography sx={{ padding: "0", marginY: "10px" }} variant="body2">
-            {props.date}
-          </Typography>
-          <Typography sx={{ padding: "0", marginY: "10px" }} variant="body2">
-            {props.time}
-          </Typography>
-          <Typography sx={{ padding: "0", marginY: "10px" }} variant="body2">
-            {props.place}
-          </Typography>
+          <Typography sx={{ padding: "0", marginY: "10px" }} variant="body2">{props.date}</Typography>
+          <Typography sx={{ padding: "0", marginY: "10px" }} variant="body2">{props.time}</Typography>
+          <Typography sx={{ padding: "0", marginY: "10px" }} variant="body2">{props.place}</Typography>
         </div>
         {!expanded && (
           <div
@@ -144,6 +151,7 @@ const CardEventsMobile: FC<CardProps> = (props) => {
           <ExpandMoreIcon />
         </ExpandMore>
       </CardActions>
+
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography
@@ -172,8 +180,9 @@ const CardEventsMobile: FC<CardProps> = (props) => {
           />
         </CardContent>
       </Collapse>
+      
     </Card>
-  )
-}
+  );
+};
 
-export default CardEventsMobile
+export default CardEventsMobile;

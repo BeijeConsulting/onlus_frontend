@@ -21,17 +21,28 @@ import CardArticle from "../components/ui/CardArticle/CardArticle"
 import { useMediaQuery } from "react-responsive"
 import { useNavigate } from "react-router-dom"
 import SCREENS from "../route/router"
+import axios from "axios"
+import SkeletonCard from "../components/ui/skeleton/skeletonCard/SkeletonCard"
 
 interface State {
   categories: Array<category>
   articles: Array<article>
+<<<<<<< HEAD
   numberOfPages: number
+=======
+  isLoaded: boolean
+>>>>>>> develop
 }
 
 const initialState = {
   categories: [],
+<<<<<<< HEAD
   articles: articles,
   numberOfPages: 1,
+=======
+  articles: [],
+  isLoaded: false
+>>>>>>> develop
 }
 
 //React responsive const
@@ -54,8 +65,21 @@ const Blog: FC = () => {
 
   useEffect(() => {
     createCategories()
+<<<<<<< HEAD
     pagesCalc()
+=======
+    getArticles()
+>>>>>>> develop
   }, [])
+
+  const getArticles= async ()=>{
+    let result=await axios.get("/mockAPI/articles.jso")
+    setState({
+      ...state,
+      articles:result.data.articles,
+      isLoaded:true
+    })
+  }
 
   const createCategories = (): void => {
     let localCategories: Array<category> = []
@@ -145,7 +169,14 @@ const Blog: FC = () => {
           />
         </section>
         <section className="cardsContainer">
-          {state.articles.map(mapping)}
+          {state.isLoaded ? state.articles.map(mapping): (
+            <>
+              <SkeletonCard />
+              <SkeletonCard />
+              <SkeletonCard />
+              <SkeletonCard />
+            </>
+          )}
         </section>
 
         <CustomPagination

@@ -18,7 +18,7 @@ import "../styles/faq.scss";
 
 //type
 import { faq, infoType } from "../utils/type";
-import { Typography } from "@mui/material";
+import { Typography, Skeleton } from "@mui/material";
 
 interface State {
   data: infoType;
@@ -33,7 +33,7 @@ const Faq: FC = () => {
   const { t }: any = useTranslation();
 
   async function fetchDatas(): Promise<void> {
-    let result = await axios.get("mockAPI/faq.json");
+    let result = await axios.get("mockAPI/faq.jso");
     setState({
       ...state,
       data: result.data,
@@ -47,7 +47,9 @@ const Faq: FC = () => {
 
   const mapFaq = (item: faq, key: number): JSX.Element => {
     return (
-      <AccordionItem key={key} title={item.question} content={item.answer} />
+      <div style={{minHeight:'70px'}}>
+        <AccordionItem key={key} title={item.question} content={item.answer} />
+      </div>
     );
   };
 
@@ -59,7 +61,7 @@ const Faq: FC = () => {
       </Helmet>
 
       <Header />
-      {state.data && (
+      {state.data ? (
         <main id={"faq"} className="sectionContainer">
           <section>
             <Typography variant="h1">{state.data.info.title}</Typography>
@@ -69,6 +71,29 @@ const Faq: FC = () => {
             <Typography variant="h1">Faq</Typography>
             <div className="faq-container">{state.data.qna.map(mapFaq)}</div>
           </section>
+        </main>
+      ):(
+        <main id={"faq"} className="sectionContainer">
+          <section>
+            <Typography variant="h1"><Skeleton variant="text" animation="wave" width={300}/></Typography>
+            <Typography variant="body1"><Skeleton variant="text" animation="wave"/></Typography>
+            <Typography variant="body1"><Skeleton variant="text" animation="wave"/></Typography>
+            <Typography variant="body1"><Skeleton variant="text" animation="wave"/></Typography>
+          </section>
+
+          <section>
+            <Typography variant="h1">Faq</Typography>
+            <div className="faq-container"  style={{minHeight:'70px'}}>
+              <Skeleton variant="rectangular" animation="wave"/>
+            </div>
+            <div className="faq-container"  style={{minHeight:'70px'}}>
+              <Skeleton variant="rectangular" animation="wave"/>
+            </div>
+            <div className="faq-container"  style={{minHeight:'70px'}}>
+              <Skeleton variant="rectangular" animation="wave"/>
+            </div>
+          </section>
+
         </main>
       )}
       <Footer />

@@ -3,9 +3,9 @@
         {
             "name": "Facebook",
             "icon": "https://www.ancoraprint.it/cms/docs/archive/Facebookicona.png",
-            "link": "#",
+            "link": "https://www.wwf.it/",
             "footerOn": true,
-            "homepageOn": false
+            "homepageOn": true
           },
           {
             "name": "Youtube",

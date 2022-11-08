@@ -117,7 +117,7 @@ const TemporaryDrawer: FC = () => {
       case t("nav.blog"):
         navigate(SCREENS.blog)
         break
-      case t("nav.support"):
+      case t("nav.supportUs"):
         navigate(SCREENS.support)
         break
       case t("nav.info"):

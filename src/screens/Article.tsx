@@ -6,6 +6,7 @@ import Header from "../components/hooks/Header/Header";
 import PreFooter from "../components/hooks/preFooter/PreFooter";
 import CorrelatedArticleCard from "../components/ui/correlatedArticleCard/CorrelatedArticleCard";
 import Hero from "../components/hooks/Hero/Hero";
+import SkeletonCorrelated from "../components/ui/skeleton/skeletonCorrelated/SkeletonCorrelated"
 
 //translation
 import { useTranslation } from "react-i18next";
@@ -21,8 +22,9 @@ import "../styles/article.scss";
 
 //helmet
 import { Helmet } from "react-helmet";
-import { Typography } from "@mui/material";
+import { Skeleton, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
+
 
 const singleArticle = {
   id: 1,
@@ -124,24 +126,52 @@ const Article: FC = () => {
 
       <Header />
 
-      <main id="article">
-        <Hero
-          image="giraffeImg.jpg"
-          title={singleArticle.title}
-          type="article"
-        />
-        <section className="sectionContainer">
-          <Typography variant="body1">{singleArticle.date}</Typography>
-          <article>
-            <section>{singleArticle.content.map(mappingParagraph)}</section>
-            <Typography variant="h3">{t("home.relatedArticles")}</Typography>
-            <section className="correlatedArticles">
-              {state.localArray.length > 0 &&
-                state.localArray.map(mappingCorrelated)}
-            </section>
-          </article>
-        </section>
-      </main>
+      {state.localArray.length >0 ? (
+        <main id="article">
+          <Hero
+            image="giraffeImg.jpg"
+            title={singleArticle.title}
+            type="article"
+          />
+          <section className="sectionContainer">
+            <Typography variant="body1">{singleArticle.date}</Typography>
+            <article>
+              <section>{singleArticle.content.map(mappingParagraph)}</section>
+              <Typography variant="h3">{t("home.relatedArticles")}</Typography>
+              <section className="correlatedArticles">
+                {state.localArray.length > 0 &&
+                  state.localArray.map(mappingCorrelated)}
+              </section>
+            </article>
+          </section>
+        </main>
+      ):(
+        <main id="article">
+          <Skeleton variant="rectangular" animation="wave">
+            <Hero type="about"/>
+          </Skeleton>
+
+          <section className="sectionContainer">
+            <Typography variant="body1"><Skeleton variant="text" animation="wave" width={150}/></Typography>
+            <article>
+              <section>
+                <Skeleton variant="text" animation="wave"/>
+                <Skeleton variant="text" animation="wave"/>
+                <Skeleton variant="text" animation="wave"/>
+                <Skeleton variant="rectangular" animation="wave" height={'500px'}/>
+                <Skeleton variant="text" animation="wave"/>
+                <Skeleton variant="text" animation="wave"/>
+              </section>
+              <Typography variant="h3">{t("home.relatedArticles")}</Typography>
+              <section className="correlatedArticles">
+                <SkeletonCorrelated />
+                <SkeletonCorrelated />
+                <SkeletonCorrelated />
+              </section>
+            </article>
+          </section>
+        </main>
+      )}
       <PreFooter />
       <Footer />
     </>

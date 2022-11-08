@@ -1,54 +1,57 @@
-import { useState, useEffect, FC } from "react"
-import { useTranslation } from "react-i18next"
+import { useState, useEffect, FC } from "react";
+import { useTranslation } from "react-i18next";
 
 //axios
-import axios, { AxiosResponse } from "axios"
+import axios, { AxiosResponse } from "axios";
 
 //helmet
-import { Helmet } from "react-helmet"
+import { Helmet } from "react-helmet";
 
 //Components
-import Footer from "../components/hooks/Footer/Footer"
-import Header from "../components/hooks/Header/Header"
-import Hero from "../components/hooks/Hero/Hero"
-import JoinUs from "../components/hooks/joinUsBbox/JoinUsBox"
-import PreFooter from "../components/hooks/preFooter/PreFooter"
+import Footer from "../components/hooks/Footer/Footer";
+import Header from "../components/hooks/Header/Header";
+import Hero from "../components/hooks/Hero/Hero";
+import JoinUs from "../components/hooks/joinUsBbox/JoinUsBox";
+import PreFooter from "../components/hooks/preFooter/PreFooter";
 
 //type
-import { content } from "../utils/type"
+import { content } from "../utils/type";
 
 //Styles
-import "../styles/about.scss"
-import { Typography } from "@mui/material"
+import "../styles/about.scss";
+import { Typography, Skeleton } from "@mui/material";
 
 interface State {
-  imageHero: string,
-  titleHero: string,
-  content: Array<content>
+  imageHero: string;
+  titleHero: string;
+  pageIsLoaded: boolean;
+  content: Array<content>;
 }
 
 const initialState: State = {
-  imageHero:'',
-  titleHero:'',
+  imageHero: "",
+  titleHero: "",
+  pageIsLoaded: false,
   content: [],
-}
+};
 
 const About: FC = () => {
-  const { t }: any = useTranslation()
-  const [state, setState] = useState<State>(initialState)
+  const { t }: any = useTranslation();
+  const [state, setState] = useState<State>(initialState);
 
   useEffect(() => {
-    fetchDatas()
-  }, [])
+    fetchDatas();
+  }, []);
 
   async function fetchDatas() {
-    let result: AxiosResponse = await axios.get("mockAPI/about.json")
-    console.log(result.data.about.hero.img)
+    let result: AxiosResponse = await axios.get("mockAPI/about.jso");
+    console.log(result.data.about.hero.img);
     setState({
-      imageHero:result.data.about.hero.img,
-      titleHero:result.data.about.hero.text,
-      content: result.data.about.content
-    })
+      pageIsLoaded: true,
+      imageHero: result.data.about.hero.img,
+      titleHero: result.data.about.hero.text,
+      content: result.data.about.content,
+    });
   }
 
   const mappingContent = (item: content, key: number) => {
@@ -56,21 +59,22 @@ const About: FC = () => {
       <section className="content-about-container" key={key}>
         <Typography variant="body1">{item.paragraph}</Typography>
         <div className="media-container">
-          
           {!!item.media &&
-          (item.media.type === "image" ? (
-            <img className="content-about" src={item.media?.content} alt="hero-img" />
-          ) : (
-            <video controls className="content-about">
-              <source type="video/mp4" src={item.media.content} />
-            </video>
-          ))}
-
-
+            (item.media.type === "image" ? (
+              <img
+                className="content-about"
+                src={item.media?.content}
+                alt="hero-img"
+              />
+            ) : (
+              <video controls className="content-about">
+                <source type="video/mp4" src={item.media.content} />
+              </video>
+            ))}
         </div>
       </section>
-    )
-  }
+    );
+  };
 
   return (
     <>
@@ -80,24 +84,54 @@ const About: FC = () => {
       </Helmet>
 
       <Header />
+      {state.pageIsLoaded ? (
+        <main id="about">
+          <Hero
+            type={"about"}
+            title={state.titleHero}
+            image={state.imageHero}
+          />
+          <section className="sectionContainer">
+            <Typography variant="h1">{t("nav.about")}</Typography>
+            {state.content.map(mappingContent)}
+          </section>
+        </main>
+      ) : (
+        //Skeleton
+        <main id="about">
+          <Skeleton variant="rectangular" animation="wave">
+            <Hero
+              type={"about"}
+            />
+          </Skeleton>
+          <section className="sectionContainer">
+            <Typography variant="h1">{t("nav.about")}</Typography>
 
-      <main id="about">
-        <Hero
-          type={"about"}
-          title={state.titleHero}
-          image={state.imageHero}
-        />
-        <section className="sectionContainer">
-          <Typography variant="h1">{t("nav.about")}</Typography>
-          {state.content.map(mappingContent)}
-        </section>
-      </main>
+            <section className="content-about-container">
+              <Typography variant="body1">
+                <Skeleton variant="text" animation="wave" />
+                <Skeleton variant="text" animation="wave" />
+                <Skeleton variant="text" animation="wave" />
+                <Skeleton variant="text" animation="wave" />
+              </Typography>
+              <div className="media-container">
+                <Skeleton
+                  variant="rectangular"
+                  height="300px"
+                  animation="wave"
+                />
+              </div>
+            </section>
+          </section>
+        </main>
+      )}
+
       <JoinUs type="support" />
 
       <PreFooter />
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default About
+export default About;

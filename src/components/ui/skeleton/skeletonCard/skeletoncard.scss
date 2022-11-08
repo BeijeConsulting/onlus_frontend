@@ -1,0 +1,9 @@
+#skeletonCard{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    min-width: 330px;
+    .image{
+        height: 400px;
+    }
+}
