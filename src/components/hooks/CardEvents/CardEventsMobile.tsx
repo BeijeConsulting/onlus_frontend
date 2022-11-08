@@ -1,14 +1,12 @@
-import React, { useState, FC } from "react";
+import { useState, FC } from "react";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Collapse from "@mui/material/Collapse";
 import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import Skeleton from "@mui/material/Skeleton";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 // mediaquery
 import { useMediaQuery } from "react-responsive";
@@ -59,8 +57,6 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 }));
 
 const CardEventsMobile: FC<CardProps> = (props) => {
-  // inizializzo navigazione
-  let navigate: Function = useNavigate();
   // tranlation hook
   const { t }: any = useTranslation();
   // stato
