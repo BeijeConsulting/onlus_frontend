@@ -2,7 +2,7 @@
 import { ReactElement, useState, useEffect } from "react"
 import { useNavigate, NavigateFunction } from "react-router-dom"
 import { useTranslation } from "react-i18next"
-import { getJoinUsData } from "../../../services/api/joinUsBoxAPI"
+//import { getJoinUsData } from "../../../services/api/joinUsBoxAPI"
 import { Typography, Skeleton } from "@mui/material"
 //Components
 import CustomButton from "../../ui/buttons/CustomButton/CustomButton"
@@ -57,8 +57,8 @@ function JoinUs(props: Props): ReactElement {
   }
 
   async function getData(): Promise<void> {
-    let result: any = await getJoinUsData();
-    //let result: any = await axios.get("mockAPI/joinUsBox.json");
+    //let result: any = await getJoinUsData();
+    let result: any = await axios.get("mockAPI/joinUsBox.json");
     console.log(result)
     setState({
       data:result.data,
