@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router-dom";
 // import redux
 import { setGeneral } from "./redux/duck/general";
 import { useDispatch } from "react-redux";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { ThemeProvider } from "@mui/material/styles";
 
 // Screens
 import About from "./screens/About";
@@ -29,7 +29,6 @@ import SCREENS from "./route/router";
 import { theme } from "./utils/muiTheme";
 
 import { StyledEngineProvider } from "@mui/material";
-import DataUsageSharpIcon from "@mui/icons-material/DataUsageSharp";
 import Loader from "./assets/images/loader.jpg";
 
 // import style
@@ -98,7 +97,7 @@ const App: FC = () => {
           </div>
         ) : (
           <div className="loading-button">
-            <img src={Loader} alt="loader image" />
+            <img src={Loader} alt="loader" />
           </div>
         )}
       </ThemeProvider>

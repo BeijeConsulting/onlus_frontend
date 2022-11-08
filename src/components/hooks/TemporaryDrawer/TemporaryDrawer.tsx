@@ -49,39 +49,8 @@ const TemporaryDrawer: FC = () => {
 
   const navigate: any = useNavigate()
 
-  const social: Array<any> = [
-    {
-      name: "Facebook",
-      icon: "https://www.ancoraprint.it/cms/docs/archive/Facebookicona.png",
-      link: "#",
-      footerOn: true,
-      homepageOn: false,
-    },
-    {
-      name: "Youtube",
-      icon: "https://www.dayoffreedom.it/wp-content/uploads/2021/03/icona-bianca-youtube3.png",
-      link: "#",
-      footerOn: true,
-      homepageOn: false,
-    },
-    {
-      name: "Twitter",
-      icon: "https://fratelliscantamburlo.it/it/design/iconabiancatwitter.png",
-      link: "#",
-      footerOn: true,
-      homepageOn: false,
-    },
-    {
-      name: "Instagram",
-      icon: "https://www.rifipack.it/wp-content/uploads/2019/11/instagram-icona-font-awesome-bianca-buste-personalizzate-300x225.png",
-      link: "#",
-      footerOn: true,
-      homepageOn: false,
-    },
-  ]
-
   //i18n
-  const { t, i18n }: any = useTranslation()
+  const { t }: any = useTranslation()
 
   const toggleDrawer = (open: any) => (event: any) => {
     if (

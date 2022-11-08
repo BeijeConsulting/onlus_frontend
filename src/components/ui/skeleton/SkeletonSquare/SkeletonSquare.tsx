@@ -1,7 +1,6 @@
 import React,{FC} from 'react'
 import { Skeleton } from '@mui/material'
 import './skeletonSquare.scss'
-import { Navigate } from 'react-router-dom'
 
 interface Props {
     direction?: 'column-reverse'

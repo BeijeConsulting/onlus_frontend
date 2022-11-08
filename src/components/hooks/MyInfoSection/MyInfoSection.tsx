@@ -9,7 +9,6 @@ import {
   checkEmail,
   checkPhone,
   checkPassword,
-  checkConfirmPassword,
 } from "../../../utils/checkForm";
 
 import "../../../styles/signup.scss";
