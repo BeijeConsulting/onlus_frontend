@@ -43,7 +43,8 @@
     "continueReadingButton": "Continua a leggere",
     "supportNavButton": "Sostieni onlus",
     "bookButton": "Prenota",
-    "modifyButton": "Salva modifiche"
+    "modifyButton": "Salva modifiche",
+    "disableAccount": "Disattiva Account"
   },
 
   "footer": {

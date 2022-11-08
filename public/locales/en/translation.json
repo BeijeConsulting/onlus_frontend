@@ -43,7 +43,8 @@
     "continueReadingButton": "Continue reading",
     "supportNavButton": "Support onlus",
     "bookButton": "Book",
-    "modifyButton": "Apply Changes"
+    "modifyButton": "Apply Changes",
+    "disableAccount": "Disable Account"
   },
 
   "footer": {
