@@ -12,7 +12,6 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 // components
 import CustomButton from "../../ui/buttons/CustomButton/CustomButton";
-
 // style
 import "./footer.scss";
 
@@ -27,7 +26,7 @@ const Default = ({ children }: any) => {
   return isNotMobile ? children : null;
 };
 const Mobile = ({ children }: any) => {
-  const isMobile = useMediaQuery({ maxWidth: 991 });
+  const isMobile = useMediaQuery({ maxWidth: 991 }); 
   return isMobile ? children : null;
 };
 
@@ -48,8 +47,26 @@ const Footer: FC = () => {
   let navigate = useNavigate();
 
   // navigazione
-  const goTo = (params:string) => (): void => {
-    navigate(params);
+  const goToHome = (): void => {
+    navigate(SCREENS.home);
+  };
+  const goToAbout = (): void => {
+    navigate(SCREENS.about);
+  };
+  const goToEvents = (): void => {
+    navigate(SCREENS.events);
+  };
+  const goToBlog = (): void => {
+    navigate(SCREENS.blog);
+  };
+  const goToSupport = (): void => {
+    navigate(SCREENS.support);
+  };
+  const goToInfo = (): void => {
+    navigate(SCREENS.faq);
+  };
+  const goToLogin = (): void => {
+    navigate(SCREENS.login);
   };
 
   // tranlation hook
@@ -100,7 +117,7 @@ const Footer: FC = () => {
         <div className="buttonContainer">
           <CustomButton
             colorType="primary"
-            callback={goTo(SCREENS.login)}
+            callback={goToLogin}
             label={"LOGIN"}
             size={"small"}
           />
@@ -108,22 +125,22 @@ const Footer: FC = () => {
       </Mobile>
       <Default>
         <section className="nav">
-          <Typography variant="body1" onClick={goTo(SCREENS.home)}>
+          <Typography variant="body1" onClick={goToHome}>
             {t("nav.home")}
           </Typography>
-          <Typography variant="body1" onClick={goTo(SCREENS.about)}>
+          <Typography variant="body1" onClick={goToAbout}>
             {t("nav.about")}
           </Typography>
-          <Typography variant="body1" onClick={goTo(SCREENS.events)}>
+          <Typography variant="body1" onClick={goToEvents}>
             {t("nav.events")}
           </Typography>
-          <Typography variant="body1" onClick={goTo(SCREENS.blog)}>
+          <Typography variant="body1" onClick={goToBlog}>
             {t("nav.blog")}
           </Typography>
-          <Typography variant="body1" onClick={goTo(SCREENS.support)}>
+          <Typography variant="body1" onClick={goToSupport}>
             {t("nav.supportUs")}
           </Typography>
-          <Typography variant="body1" onClick={goTo(SCREENS.faq)}>
+          <Typography variant="body1" onClick={goToInfo}>
             {t("nav.info")}
           </Typography>
         </section>
@@ -142,7 +159,7 @@ const Footer: FC = () => {
           <div className="buttonContainer">
             <CustomButton
               colorType="primary"
-              callback={goTo(SCREENS.login)}
+              callback={goToLogin}
               label={"LOGIN"}
               size={"small"}
             />

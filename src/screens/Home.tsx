@@ -9,19 +9,22 @@ import Footer from "../components/hooks/Footer/Footer";
 import PreFooter from "../components/hooks/preFooter/PreFooter";
 import CardEventsMobile from "../components/hooks/CardEvents/CardEventsMobile";
 import CardArticle from "../components/ui/CardArticle/CardArticle";
-import SkeletonCard from "../components/ui/skeleton/skeletonCard/SkeletonCard"
-import SkeletonSquare from "../components/ui/skeleton/SkeletonSquare/SkeletonSquare"
+import SkeletonCard from "../components/ui/skeleton/skeletonCard/SkeletonCard";
+import SkeletonSquare from "../components/ui/skeleton/SkeletonSquare/SkeletonSquare";
 // style
 import "../styles/home.scss";
 // redux
 import { useSelector } from "react-redux";
 // axios
-import axios,{ AxiosResponse } from "axios";
+import axios, { AxiosResponse } from "axios";
 //icons
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { Typography, Skeleton } from "@mui/material";
 import Header from "../components/hooks/Header/Header";
-import { events,article,social  } from "../utils/type";
+import { events, article, social } from "../utils/type";
+import { getHome } from "../services/api/homeApi";
+import { getEvents } from "../services/api/eventApi";
+import { getArticles } from "../services/api/articleApi";
 
 // stati
 interface State {
@@ -29,7 +32,7 @@ interface State {
   homeData: any;
   eventArray: Array<events> | null;
   socialFrame: social | null;
-  isLoaded: boolean
+  isLoaded: boolean;
 }
 // inizializzazione
 const initialState = {
@@ -37,7 +40,7 @@ const initialState = {
   eventArray: null,
   homeData: null,
   socialFrame: null,
-  isLoaded: false
+  isLoaded: false,
 };
 
 const Home: FC = () => {
@@ -45,8 +48,7 @@ const Home: FC = () => {
   const { t }: any = useTranslation();
   const [state, setState] = useState<State>(initialState);
 
-
-  const SOCIAL: Array<social> = useSelector(
+  const SOCIAL: Array<any> = useSelector(
     (state: any) => state.generalDuck.social
   );
 
@@ -55,25 +57,22 @@ const Home: FC = () => {
   }, []);
 
   const fetchDatas = async (): Promise<void> => {
-    let homeResponse: AxiosResponse = await axios.get("http://localhost:1337/api/home");
-    let eventResponse: AxiosResponse = await axios.get("http://localhost:1337/api/events");
-    let articleResponse: AxiosResponse = await axios.get(
-      "http://localhost:1337/api/articles"
-    );
+    let homeResponse: any = await getHome();
+    let eventResponse: any = await getEvents();
+    let articleResponse: any = await getArticles();
     let socialHome: Array<social> = SOCIAL.filter((social: social) => {
       return social.homepageOn == true;
-    }); 
+    });
 
     console.log(socialHome);
-    
-    
+
     setState({
       ...state,
       homeData: homeResponse.data.data.attributes.home,
       eventArray: eventResponse.data.data,
       articlesArray: articleResponse.data.data,
       socialFrame: socialHome[0],
-      isLoaded:true
+      isLoaded: true,
     });
   };
 
@@ -104,7 +103,7 @@ const Home: FC = () => {
           place={event.attributes.events.place}
           minWidth={"330px"}
           opaque={false}
-        // isLoaded={false} //da camabiare
+          // isLoaded={false} //da camabiare
         />
       </article>
     );
@@ -119,57 +118,73 @@ const Home: FC = () => {
       </HashLink>
 
       <main id="home">
-        {
-          state.isLoaded ?
-            <Hero
-              type={"home"}
-              title={state.homeData.hero.title}
-              subtitle={state.homeData.hero.title}
-              image={state.homeData.hero.img}
-            />
-            :
-
-            <Skeleton variant="rectangular" animation="wave">
-              <Hero
-                type={"about"}
-              />
-            </Skeleton>
-        }
-
+        {state.isLoaded ? (
+          <Hero
+            type={"home"}
+            title={state.homeData.hero.title}
+            subtitle={state.homeData.hero.title}
+            image={state.homeData.hero.img}
+          />
+        ) : (
+          <Skeleton variant="rectangular" animation="wave">
+            <Hero type={"about"} />
+          </Skeleton>
+        )}
 
         <div className="sectionContainer">
           <section className="results">
-            {
-              state.isLoaded ?
+            {state.isLoaded ? (
               <>
-            <Typography variant="h2">     
-              {state.homeData.results.title}
-            </Typography>
-              
-            <figure>
-              <img
-                src={state.homeData.results.img}
-                alt="illustrative image"
-                />
-            </figure>
-            <div className="caption">
-              <Typography variant="body1">
-                {state.homeData.results.text}
-              </Typography>
-            </div>
-        </>
-        :
-        <SkeletonSquare direction="column-reverse"/>
-        }
+                <Typography variant="h2">
+                  {state.homeData.results.title}
+                </Typography>
+
+                <figure>
+                  <img
+                    src={state.homeData.results.img}
+                    alt="illustrative image"
+                  />
+                </figure>
+                <div className="caption">
+                  <Typography variant="body1">
+                    {state.homeData.results.text}
+                  </Typography>
+                </div>
+              </>
+            ) : (
+              <SkeletonSquare direction="column-reverse" />
+            )}
           </section>
 
           {/* sezione eventi */}
           <section className="events" id="events">
             <Typography variant="h2">{t("titles.eventsTitle")}</Typography>
-            {
-              state.isLoaded ?
-                <div className="articleContainer">{state.eventArray!.map(mapEvents)}</div>
-                :
+            {state.isLoaded ? (
+              <div className="articleContainer">
+                {state.eventArray!.map(mapEvents)}
+              </div>
+            ) : (
+              <div className="articleContainer">
+                <article>
+                  <SkeletonCard />
+                </article>
+                <article>
+                  <SkeletonCard />
+                </article>
+                <article>
+                  <SkeletonCard />
+                </article>
+              </div>
+            )}
+          </section>
+
+          {/* sezione articoli blog */}
+          <section className="articles" id="blog">
+            <Typography variant="h2">{t("home.latestNews")}</Typography>
+            <div className="articleContainer">
+              {state.isLoaded ? (
+                state.articlesArray!.map(mapArticles)
+              ) : (
                 <div className="articleContainer">
                   <article>
                     <SkeletonCard />
@@ -180,70 +195,46 @@ const Home: FC = () => {
                   <article>
                     <SkeletonCard />
                   </article>
+                  <article>
+                    <SkeletonCard />
+                  </article>
+                  <article>
+                    <SkeletonCard />
+                  </article>
                 </div>
-            }
-          </section>
-
-          {/* sezione articoli blog */}
-          <section className="articles" id="blog">
-            <Typography variant="h2">{t("home.latestNews")}</Typography>
-            <div className="articleContainer">
-              {
-                state.isLoaded ?
-                  state.articlesArray!.map(mapArticles)
-                  :
-                  <div className="articleContainer">
-                    <article>
-                      <SkeletonCard />
-                    </article>
-                    <article>
-                      <SkeletonCard />
-                    </article>
-                    <article>
-                      <SkeletonCard />
-                    </article>
-                    <article>
-                      <SkeletonCard />
-                    </article>
-                    <article>
-                      <SkeletonCard />
-                    </article>
-                  </div>
-              }
+              )}
             </div>
           </section>
 
           {/* sezione rimani aggiornato sui social */}
           <section className="stayUpToDate">
             <Typography variant="h2">{t("home.stayUpToDate")}</Typography>
-            {
-              state.isLoaded ?
-                <>
-                  <div className="iframeContainer">
-                    <iframe src={state.socialFrame!.link}></iframe>
-                  </div>
-                </>
-                :
-                <SkeletonSquare />
-            }
+            {state.isLoaded ? (
+              <>
+                <div className="iframeContainer">
+                  <iframe src={state.socialFrame!.link}></iframe>
+                </div>
+              </>
+            ) : (
+              <SkeletonSquare />
+            )}
           </section>
 
           {/* sezione storia  */}
           <section className="history" id="history">
             <Typography variant="h2">Storia...</Typography>
-            {
-              state.isLoaded ?
-                <>
-                  <Typography variant="body1" className="description">
-                    {state.homeData.story.text}
-                  </Typography>
-                  <div className="imageContainer">
-                    <img src={state.homeData.story.img} alt="story image" />
-                  </div>
-                </>
-                :
-                <SkeletonSquare />
-            }
+            {state.isLoaded ? (
+              <>
+                <Typography variant="body1" className="description">
+                  {state.homeData.story.text}
+                </Typography>
+                <div className="imageContainer">
+                  <img src={state.homeData.story.img} alt="story image" />
+                </div>
+              </>
+            ) : (
+              <SkeletonSquare />
+            )}
           </section>
         </div>
       </main>
