@@ -30,6 +30,7 @@ import { theme } from "./utils/muiTheme";
 
 import { StyledEngineProvider } from "@mui/material";
 import DataUsageSharpIcon from '@mui/icons-material/DataUsageSharp';
+import Loader from './assets/images/loader.jpg'
 
 
 // import style
@@ -67,7 +68,7 @@ const App: FC = () => {
     dispatch(setGeneral(generalData));
     setState({
       ...state,
-      isLoaded: true
+      isLoaded: false
     })
   }
 
@@ -96,7 +97,7 @@ const App: FC = () => {
             </div>
             :
             <div className="app loading-button">
-              <DataUsageSharpIcon/>
+              <img src={Loader} alt="loader image" />
             </div>
         }
       </ThemeProvider>
