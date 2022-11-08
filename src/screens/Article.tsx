@@ -6,6 +6,7 @@ import Header from "../components/hooks/Header/Header";
 import PreFooter from "../components/hooks/preFooter/PreFooter";
 import CorrelatedArticleCard from "../components/ui/correlatedArticleCard/CorrelatedArticleCard";
 import Hero from "../components/hooks/Hero/Hero";
+import SkeletonCorrelated from "../components/ui/skeleton/skeletonCorrelated/SkeletonCorrelated";
 
 //translation
 import { useTranslation } from "react-i18next";
@@ -23,7 +24,7 @@ import "../styles/article.scss";
 import { Helmet } from "react-helmet";
 import { Skeleton, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
-import SkeletonCorrelated from "../components/ui/skeleton/skeletonCorrelated/SkeletonCorrelated";
+
 
 const singleArticle = {
   id: 1,
