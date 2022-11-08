@@ -12,8 +12,8 @@ import {
   checkConfirmPassword,
 } from "../../../utils/checkForm";
 
-import "./myInfoSection.scss";
 import "../../../styles/signup.scss";
+import "./myInfoSection.scss";
 import { personalInfo } from "../../../utils/type";
 
 interface InfoProps {
@@ -81,8 +81,8 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
   ]);
 
   useEffect(() => {
-    console.log(state)
-  }, [state])
+    console.log(state);
+  }, [state]);
 
   function submit(): void {
     console.log("submitted");
@@ -144,10 +144,14 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
     });
   }
 
+  function disableAccount() {
+    console.log('disabled');
+  }
+
   return (
     <section className="myInfo-container">
       <form action="" className={"form"} onSubmit={submit}>
-        <div className={"input-box"}>
+        <div className={"input-box my-input-container"}>
           <InputBox
             label={t("login.name")}
             defaultValue={props.datas?.name}
@@ -165,7 +169,7 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
             notValid={state.errorSurname}
           />
         </div>
-        <div className={"input-box"}>
+        <div className={"input-box my-input-container"}>
           <InputBox
             defaultValue={props.datas?.email}
             label={t("login.email")}
@@ -183,7 +187,7 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
             notValid={state.errorPassword}
           />
         </div>
-        <div className={"input-box"}>
+        <div className={"input-box my-input-container"}>
           <InputBox
             defaultValue={props.datas?.phoneNumber}
             callbackChange={setPhoneNumber}
@@ -195,16 +199,27 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
             label={t("login.language")}
             items={lngs}
             callbackChange={setLanguage}
-            defaultValue={i18n.language === 'it' ? t('login.italian') : t('login.english')}
+            defaultValue={
+              i18n.language === "it" ? t("login.italian") : t("login.english")
+            }
           />
         </div>
-        <CustomButton
-          label={t("buttons.modifyButton")}
-          isDisable={state.buttonDisabled}
-          size={"big"}
-          colorType="primary"
-          callback={submit}
-        />
+        <div className={"input-box my-input-container buttons-container"}>
+          <CustomButton
+            label={t("buttons.disableAccount")}
+            isDisable={false}
+            size={"big"}
+            colorType="primary"
+            callback={disableAccount}
+          />
+          <CustomButton
+            label={t("buttons.modifyButton")}
+            isDisable={state.buttonDisabled}
+            size={"big"}
+            colorType="primary"
+            callback={submit}
+          />
+        </div>
       </form>
     </section>
   );
