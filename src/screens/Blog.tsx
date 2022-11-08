@@ -131,8 +131,7 @@ const Blog: FC = () => {
   };
 
   const pagesCalc = (): void => {
-    let pages = 1;
-    pages = Math.ceil(state.articles.length / ARTICLESXPAGES);
+    let pages = Math.ceil(state.articles.length / ARTICLESXPAGES);
     setState({
       ...state,
       numberOfPages: pages,

@@ -1,7 +1,7 @@
-import { FC, useState } from "react"
+import { FC } from "react"
 import FormControlLabel from "@mui/material/FormControlLabel"
 import Checkbox from "@mui/material/Checkbox"
-import { createTheme, ThemeProvider } from "@mui/material/styles"
+import { ThemeProvider } from "@mui/material/styles"
 // utils
 import { theme } from "../../../utils/muiTheme"
 
