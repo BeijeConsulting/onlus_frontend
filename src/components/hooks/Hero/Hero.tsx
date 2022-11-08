@@ -1,13 +1,11 @@
-import React, { FC, ReactElement, useState, useLayoutEffect } from "react";
+import React, { FC } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import CustomButton from "../../ui/buttons/CustomButton/CustomButton";
-import axios from "axios";
 
 import { Typography } from "@mui/material";
 
 import "./hero.scss";
-import { url } from "inspector";
 
 import SCREENS from "../../../route/router";
 
@@ -20,7 +18,6 @@ interface HeroProps {
 }
 
 const Hero: FC<HeroProps> = (props) => {
-  const { t }: any = useTranslation();
   const navigate: Function = useNavigate();
 
   function handleNavigate() {

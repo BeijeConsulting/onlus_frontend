@@ -49,7 +49,7 @@ const Faq: FC = () => {
 
   const mapFaq = (item: faq, key: number): JSX.Element => {
     return (
-      <div style={{minHeight:'70px'}}>
+      <div key={key} style={{minHeight:'70px'}}>
         <AccordionItem key={key} title={item.question} content={item.answer} />
       </div>
     );

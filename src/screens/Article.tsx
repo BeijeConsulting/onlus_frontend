@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import React, { FC, Fragment, useEffect, useState } from "react";
 
 //components
 import Footer from "../components/hooks/Footer/Footer";
@@ -26,7 +26,6 @@ import { Skeleton, Typography } from "@mui/material";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   getArticles,
-  getArticlesFromCategory,
   getSingleArticle,
 } from "../services/api/articleApi";
 import { HashLink } from "react-router-hash-link";
@@ -89,7 +88,7 @@ const Article: FC = () => {
     );
   };
 
-  const mappingCorrelated = (el: any, key: number): JSX.Element => {
+  const mappingCorrelated = (el: any, key: number): JSX.Element | undefined => {
     if (key < 3) {
       return (
         <div key={key}>
@@ -100,7 +99,7 @@ const Article: FC = () => {
         </div>
       );
     }
-    return <></>;
+    return;
   };
 
   return (

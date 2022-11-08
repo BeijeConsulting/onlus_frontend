@@ -2,12 +2,11 @@ import React, { FC, useState, useEffect } from "react"
 // utils
 import { theme } from "../../../utils/muiTheme"
 // mui components
-import Box from "@mui/material/Box"
 import InputLabel from "@mui/material/InputLabel"
 import MenuItem from "@mui/material/MenuItem"
 import FormControl from "@mui/material/FormControl"
 import Select, { SelectChangeEvent } from "@mui/material/Select"
-import { createTheme, ThemeProvider } from "@mui/material/styles"
+import { ThemeProvider } from "@mui/material/styles"
 
 interface SelectBoxProps {
   label: string
