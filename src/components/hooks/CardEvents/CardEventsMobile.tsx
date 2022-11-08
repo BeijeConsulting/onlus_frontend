@@ -15,7 +15,6 @@ import CustomButton from "../../ui/buttons/CustomButton/CustomButton";
 // translation
 import { useTranslation } from "react-i18next";
 // navigazione
-import { useNavigate } from "react-router-dom";
 
 // interfaccia
 interface ExpandMoreProps extends IconButtonProps {
