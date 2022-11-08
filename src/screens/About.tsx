@@ -2,7 +2,7 @@ import { useState, useEffect, FC } from "react";
 import { useTranslation } from "react-i18next";
 
 //axios
-import axios, { AxiosResponse } from "axios";
+import { getAbout } from "../services/api/aboutAPI";
 
 //helmet
 import { Helmet } from "react-helmet";
@@ -44,13 +44,13 @@ const About: FC = () => {
   }, []);
 
   async function fetchDatas() {
-    let result: AxiosResponse = await axios.get("mockAPI/about.jso");
-    console.log(result.data.about.hero.img);
+    let result: any = await getAbout();
+    console.log(result.data.data.attributes.about.hero.img);
     setState({
       pageIsLoaded: true,
-      imageHero: result.data.about.hero.img,
-      titleHero: result.data.about.hero.text,
-      content: result.data.about.content,
+      imageHero: result.data.data.attributes.about.hero.img,
+      titleHero: result.data.data.attributes.about.hero.text,
+      content: result.data.data.attributes.about.content,
     });
   }
 

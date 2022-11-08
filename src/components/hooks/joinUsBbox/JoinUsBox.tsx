@@ -2,7 +2,7 @@
 import { ReactElement, useState, useEffect } from "react"
 import { useNavigate, NavigateFunction } from "react-router-dom"
 import { useTranslation } from "react-i18next"
-import axios from "axios"
+import { getJoinUsData } from "../../../services/api/joinUsBoxAPI"
 import { Typography, Skeleton } from "@mui/material"
 //Components
 import CustomButton from "../../ui/buttons/CustomButton/CustomButton"
@@ -10,13 +10,14 @@ import CustomButton from "../../ui/buttons/CustomButton/CustomButton"
 import SCREENS from "../../../route/router"
 //Style
 import "./joinUsBox.scss"
+import axios from "axios"
 
 //ammessi valori "support" e "donate"
 interface Props {
   type: string
 }
 
-type Data ={
+type Data = {
   title: string
   donate: string
   text: string
@@ -56,9 +57,11 @@ function JoinUs(props: Props): ReactElement {
   }
 
   async function getData(): Promise<void> {
-    let mockData: any = await axios.get("mockAPI/joinUsBox.jso")
+    let result: any = await getJoinUsData();
+    //let result: any = await axios.get("mockAPI/joinUsBox.json");
+    console.log(result)
     setState({
-      data:mockData.data,
+      data:result.data,
       isLoaded:true
     })
   }

@@ -1,8 +1,9 @@
 import React, { useEffect, useState, ReactElement } from "react";
 
-//axios
-import axios from "axios";
 import { useTranslation } from "react-i18next";
+
+//fetch
+import { getSupportData } from "../services/api/supportAPI";
 
 //helmet
 import { Helmet } from "react-helmet";
@@ -40,23 +41,24 @@ function Support() {
   }, []);
 
   async function getData(): Promise<void> {
-    let result = await axios.get("mockAPI/support.jso");
+    let result:any = await getSupportData();
+    console.log(result.data.data.attributes.support)
     setState({
-      data:result.data,
+      data:result.data.data.attributes.support,
       isLoaded:true
     });
   }
 
   const mapping = (item: content, key: number) => {
     console.log("item è", item);
-    console.log(`../assets/images/${item.media}`);
+    console.log(`${item?.media?.content}`);
     return (
       <section className="content-support-container" key={key}>
         <Typography variant="body1">{item.paragraph}</Typography>
         <div className="media-container">
           <img
             className="content-support"
-            src={require(`../assets/images/${item.media}`)}
+            src={item?.media?.content}
             alt="hero-img"
           />
         </div>
