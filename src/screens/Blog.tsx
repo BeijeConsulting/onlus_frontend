@@ -27,22 +27,15 @@ import SkeletonCard from "../components/ui/skeleton/skeletonCard/SkeletonCard"
 interface State {
   categories: Array<category>
   articles: Array<article>
-<<<<<<< HEAD
   numberOfPages: number
-=======
   isLoaded: boolean
->>>>>>> develop
 }
 
 const initialState = {
   categories: [],
-<<<<<<< HEAD
-  articles: articles,
   numberOfPages: 1,
-=======
   articles: [],
-  isLoaded: false
->>>>>>> develop
+  isLoaded: false,
 }
 
 //React responsive const
@@ -65,19 +58,16 @@ const Blog: FC = () => {
 
   useEffect(() => {
     createCategories()
-<<<<<<< HEAD
     pagesCalc()
-=======
     getArticles()
->>>>>>> develop
   }, [])
 
-  const getArticles= async ()=>{
-    let result=await axios.get("/mockAPI/articles.jso")
+  const getArticles = async () => {
+    let result = await axios.get("/mockAPI/articles.jso")
     setState({
       ...state,
-      articles:result.data.articles,
-      isLoaded:true
+      articles: result.data.articles,
+      isLoaded: true,
     })
   }
 
@@ -169,7 +159,9 @@ const Blog: FC = () => {
           />
         </section>
         <section className="cardsContainer">
-          {state.isLoaded ? state.articles.map(mapping): (
+          {state.isLoaded ? (
+            state.articles.map(mapping)
+          ) : (
             <>
               <SkeletonCard />
               <SkeletonCard />
