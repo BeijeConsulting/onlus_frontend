@@ -17,7 +17,7 @@ import { BiDonateHeart } from "react-icons/bi"
 // styles
 import styles from "./buttons.module.scss"
 //i18n
-import { useTranslation, Trans } from "react-i18next"
+import { useTranslation } from "react-i18next"
 // router
 import SCREENS from "../../../route/router"
 
