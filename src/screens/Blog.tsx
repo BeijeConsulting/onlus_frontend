@@ -20,10 +20,8 @@ import CardArticle from "../components/ui/CardArticle/CardArticle";
 import { useMediaQuery } from "react-responsive";
 import { useNavigate } from "react-router-dom";
 import SCREENS from "../route/router";
-import axios, { AxiosResponse } from "axios";
 import SkeletonCard from "../components/ui/skeleton/skeletonCard/SkeletonCard";
 import { getArticles, getCategories } from "../services/api/articleApi";
-import { articles } from "../utils/data";
 
 interface State {
   categories: Array<category>;

@@ -1,5 +1,4 @@
 import { FC, useState, useEffect } from "react"
-import { Link } from "react-router-dom"
 import { HashLink } from "react-router-hash-link"
 import { Typography } from "@mui/material"
 

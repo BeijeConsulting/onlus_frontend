@@ -1,4 +1,4 @@
-import { createTheme, ThemeProvider } from "@mui/material/styles"
+import { createTheme } from "@mui/material/styles"
 // import NotoSansJP from "../assets/fonts/Noto_sans_jp"
 
 export const theme = createTheme({

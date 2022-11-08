@@ -1,7 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet";
-import axios from "axios";
 import { Typography } from "@mui/material";
 
 // componenti

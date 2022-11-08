@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 
 //components
 import Footer from "../components/hooks/Footer/Footer";

@@ -15,8 +15,7 @@ import SkeletonSquare from "../components/ui/skeleton/SkeletonSquare/SkeletonSqu
 import "../styles/home.scss";
 // redux
 import { useSelector } from "react-redux";
-// axios
-import axios, { AxiosResponse } from "axios";
+
 //icons
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { Typography, Skeleton } from "@mui/material";
@@ -142,7 +141,7 @@ const Home: FC = () => {
                 <figure>
                   <img
                     src={state.homeData.results.img}
-                    alt="illustrative image"
+                    alt="illustrative"
                   />
                 </figure>
                 <div className="caption">
