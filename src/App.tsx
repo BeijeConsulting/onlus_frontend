@@ -68,7 +68,7 @@ const App: FC = () => {
     dispatch(setGeneral(generalData));
     setState({
       ...state,
-      isLoaded: false
+      isLoaded: true
     })
   }
 
