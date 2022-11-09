@@ -2,12 +2,8 @@
 import { ReactElement, useState, useEffect } from "react";
 
 //navigation
-import { useNavigate, NavigateFunction } from "react-router-dom";
+import { useNavigate, NavigateFunction, Link } from "react-router-dom";
 import SCREENS from "../../../route/router";
-
-//i18n
-import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
 
 //mui
 import { Typography, Skeleton } from "@mui/material";
@@ -39,7 +35,7 @@ const initialState = {
 };
 
 function JoinUs(props: Props): ReactElement {
-  const { t }: any = useTranslation();
+
   const navigate: NavigateFunction = useNavigate();
   const [state, setState] = useState<State>(initialState);
 

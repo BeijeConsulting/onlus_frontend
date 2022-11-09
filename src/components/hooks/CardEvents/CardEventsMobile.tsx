@@ -8,8 +8,7 @@ import Collapse from "@mui/material/Collapse";
 import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-// mediaquery
-import { useMediaQuery } from "react-responsive";
+
 // components
 import CustomButton from "../../ui/buttons/CustomButton/CustomButton";
 // translation

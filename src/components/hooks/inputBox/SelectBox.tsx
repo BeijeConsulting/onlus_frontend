@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from "react";
+import { FC, useState } from "react";
 
 // mui
 import InputLabel from "@mui/material/InputLabel";
