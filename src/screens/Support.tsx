@@ -51,13 +51,13 @@ function Support() {
     return (
       <section
         className={
-          item?.media
+          !!item.media
             ? "content-about-container"
             : "content-about-container-only-text"
         }
         key={key}
       >
-        <Typography variant="body1">{item?.paragraph}</Typography>
+        <Typography variant="body1">{item.paragraph}</Typography>
         {!!item.media && (
           <div className="media-container">
             {item.media.type === "image" ? (
