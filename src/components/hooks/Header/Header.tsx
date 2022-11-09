@@ -16,8 +16,8 @@ import MenuList from "@mui/material/MenuList";
 import { Typography } from "@mui/material";
 
 //Components
-import TemporaryDrawer from "../TemporaryDrawer/TemporaryDrawer";
-import ExpandButton from "../../ui/buttons/ExpandButton";
+import TemporaryDrawer from "../TemporaryDrawer/TemporaryDrawer"
+import ExpandButton from "../../ui/buttons/ExpandButton"
 
 // Icons
 import { BiUser } from "react-icons/bi";
@@ -31,6 +31,9 @@ import { useTranslation } from "react-i18next";
 
 //responsive
 import useResponsive from "../../../utils/useResponsive";
+
+//redux
+import { useSelector } from "react-redux";
 
 interface HeaderProps {
   isHome?: boolean;
@@ -51,7 +54,8 @@ const initialState = {
 const Header: FC<HeaderProps> = (props) => {
   const [state, setState] = useState<State>(initialState);
 
-  const anchorRef = useRef<HTMLDivElement>(null);
+  const isLoggedIn:boolean = useSelector((state:any) => state.userDuck.isLoggedIn);
+  const anchorRef = useRef<HTMLDivElement>(null)
 
   const navigate: Function = useNavigate();
 
@@ -61,8 +65,13 @@ const Header: FC<HeaderProps> = (props) => {
   let [Mobile, Default] = useResponsive();
 
   // navigazione
-  const goTo = (params: string) => (): void => {
-    navigate(params);
+  const goTo = (params:string) => (): void => {
+    if(params === SCREENS.personalArea) {
+      if(isLoggedIn) navigate(params);
+      else navigate(SCREENS.login)
+    } else {
+      navigate(params);
+    }
   };
 
   // Changelanguage
@@ -203,7 +212,7 @@ const Header: FC<HeaderProps> = (props) => {
                           {t("metaTitles.personalArea")}
                         </MenuItem>
 
-                        <MenuItem onClick={logout}>{t("nav.logout")}</MenuItem>
+                        {isLoggedIn && <MenuItem onClick={logout}>{t("nav.logout")}</MenuItem>}
                       </MenuList>
                     </ClickAwayListener>
                   </Paper>
