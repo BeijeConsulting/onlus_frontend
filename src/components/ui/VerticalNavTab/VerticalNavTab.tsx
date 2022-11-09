@@ -1,4 +1,6 @@
-import * as React from "react";
+import { FC, useState } from "react";
+
+//mui
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
@@ -15,7 +17,7 @@ interface LocalProps {
   pages: string[];
 }
 
-function TabPanel(props: TabPanelProps) {
+const TabPanel: FC<TabPanelProps> = (props: TabPanelProps) => {
   const { children, value, index, ...other } = props;
 
   return (
@@ -40,7 +42,7 @@ function TabPanel(props: TabPanelProps) {
       )}
     </div>
   );
-}
+};
 
 function a11yProps(index: number) {
   return {
@@ -50,7 +52,7 @@ function a11yProps(index: number) {
 }
 
 export default function VerticalTabs(props: LocalProps) {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -61,12 +63,11 @@ export default function VerticalTabs(props: LocalProps) {
       sx={{
         flexGrow: 1,
         bgcolor: "background.paper",
-        display:"grid",
+        display: "grid",
         gridTemplateColumns: "1fr 5fr",
         height: "fit-content",
         minWidth: "100%",
         maxWidth: "100%",
-
       }}
     >
       <Tabs

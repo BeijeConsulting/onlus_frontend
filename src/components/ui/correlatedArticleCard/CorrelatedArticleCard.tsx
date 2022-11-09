@@ -1,12 +1,14 @@
-import { FC } from "react"
-import { Typography } from "@mui/material"
+import { FC } from "react";
+
+//mui
+import { Typography } from "@mui/material";
 
 //style
-import "./correlatedArticleCard.scss"
+import "./correlatedArticleCard.scss";
 
 interface CorrelatedArticleCardProps {
-  cover: string
-  title: string
+  cover: string;
+  title: string;
 }
 
 const CorrelatedArticleCard: FC<CorrelatedArticleCardProps> = (props) => {
@@ -20,7 +22,7 @@ const CorrelatedArticleCard: FC<CorrelatedArticleCardProps> = (props) => {
         </a>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CorrelatedArticleCard
+export default CorrelatedArticleCard;

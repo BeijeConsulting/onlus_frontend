@@ -1,68 +1,74 @@
-import React, { FC, ReactElement, useEffect, useState } from "react";
+import { FC, ReactElement, useEffect, useState } from "react";
+
+//components
 import CardEventsMobile from "../CardEvents/CardEventsMobile";
+
+//i18n
 import { useTranslation } from "react-i18next";
 
+//style
 import "./personalEvents.scss";
+
+//type
 import { events } from "../../../utils/type";
+
+//mui
 import { Typography } from "@mui/material";
 
 interface Props {
   events: events[] | null;
 }
 
-interface LocalState {
+interface State {
   futureEvents: events[] | null;
   pastEvents: events[] | null;
 }
 
+const initialState = {
+  futureEvents: null,
+  pastEvents: null,
+};
+
 const PersonalEvents: FC<Props> = (props) => {
   const { t }: any = useTranslation();
   const [today, setToday] = useState<Date>(new Date());
-  const [state, setState] = useState<LocalState>({
-    futureEvents: null,
-    pastEvents: null,
-  });
+  const [state, setState] = useState<State>(initialState);
 
-     useEffect(() => {
-       splitEvents()
-     }, []);
-
-     useEffect(() => {
-      console.log(state)
-    }, [state]);
+  useEffect(() => {
+    splitEvents();
+  }, []);
 
   function splitEvents(): void {
     let future: events[] = [];
-    let past: events[] = [];    
+    let past: events[] = [];
 
-      props.events!.forEach((event: events) => {
-        var dateTokens = event.date.split("-");
-        console.log(dateTokens);
-        let tempDate = new Date(
-          parseInt(dateTokens[0]),
-          parseInt(dateTokens[1]) - 1,
-          parseInt(dateTokens[2])
-        );
-        let eventDate = tempDate.getTime();
-        let todaySec: number = today!.getTime();
-        if(eventDate < todaySec) {
-          past.push(event);
-          console.log(event)
-        } else {
-          future.push(event);
-          console.log(event)
-        }
-      });
+    props.events!.forEach((event: events) => {
+      var dateTokens = event.date.split("-");
+      console.log(dateTokens);
+      let tempDate = new Date(
+        parseInt(dateTokens[0]),
+        parseInt(dateTokens[1]) - 1,
+        parseInt(dateTokens[2])
+      );
+      let eventDate: number = tempDate.getTime();
+      let todaySec: number = today!.getTime();
+      if (eventDate < todaySec) {
+        past.push(event);
+      } else {
+        future.push(event);
+      }
+    });
 
-      setState({
-        ...state,
-        futureEvents: future,
-        pastEvents: past,
-      })
+    setState({
+      ...state,
+      futureEvents: future,
+      pastEvents: past,
+    });
+  }
 
-    }
-
-  const mapEvents = (past:boolean) => (element: events, key: number): ReactElement => {
+  const mapEvents =
+    (past: boolean) =>
+    (element: events, key: number): ReactElement => {
       return (
         <div key={key} className="singleCardContainer">
           <CardEventsMobile
@@ -77,7 +83,7 @@ const PersonalEvents: FC<Props> = (props) => {
           />
         </div>
       );
-  }
+    };
 
   return (
     <article className="eventsSection">

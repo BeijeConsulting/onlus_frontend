@@ -106,13 +106,13 @@ h1 {
   }
 }
 
-.loading-button{
+.loading-button {
   height: 100vh;
   width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  img{
+  img {
     // font-size: 10rem;
     animation: rotate 1s ease-out infinite;
   }

@@ -1,6 +1,6 @@
-.myInfo-container{
-    display: flex;
-    justify-content: center;
+.myInfo-container {
+  display: flex;
+  justify-content: center;
 }
 
 .my-input-container {
@@ -17,12 +17,12 @@
 }
 
 @media only screen and (min-width: 992px) {
-    .myInfo-container {
-      padding: 76px;
-    }
-    .buttons-container {
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-    }
+  .myInfo-container {
+    padding: 76px;
   }
+  .buttons-container {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+}

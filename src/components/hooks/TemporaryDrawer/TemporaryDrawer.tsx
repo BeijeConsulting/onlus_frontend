@@ -1,7 +1,13 @@
 import { FC, useState } from "react";
+
+//navigation
 import { useNavigate } from "react-router-dom";
+import SCREENS from "../../../route/router";
+
+//i18n
 import { useTranslation } from "react-i18next";
-//MUI Components
+
+//mui
 import { Box } from "@mui/material";
 import { Drawer } from "@mui/material";
 import Button from "@mui/material/Button";
@@ -10,19 +16,24 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
+
 // Icons
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from "react-icons/md";
 import { TbHeartHandshake } from "react-icons/tb";
 import { BiDonateHeart } from "react-icons/bi";
-// router
-import SCREENS from "../../../route/router";
+
 // components
 import IconButton from "../../ui/buttons/IconButton";
+
 // style
 import styles from "./temporaryDrawer.module.scss";
+
 // redux
 import { useSelector } from "react-redux";
+
+//type
+import { social } from "../../../utils/type";
 
 interface State {
   right: any;
@@ -31,21 +42,12 @@ const InitialState = {
   right: false,
 };
 
-// type
-type social = {
-  name: string;
-  icon: any;
-  link: string;
-  footerOn: boolean;
-  homepageOn: boolean;
-};
-
 const TemporaryDrawer: FC = () => {
   // stati
   const [state, setState] = useState<State>(InitialState);
   // redux
-  const PALETTE = useSelector((state: any) => state.generalDuck.palette);
-  const SOCIAL = useSelector((state: any) => state.generalDuck.social);
+  const PALETTE: any = useSelector((state: any) => state.generalDuck.palette);
+  const SOCIAL: any = useSelector((state: any) => state.generalDuck.social);
 
   const navigate: Function = useNavigate();
 

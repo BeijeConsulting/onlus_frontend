@@ -1,38 +1,37 @@
-import { Button, ThemeProvider, Typography } from "@mui/material"
-import React, { FC, ReactElement } from "react"
+import { FC, ReactElement } from "react";
 
-import { theme } from "../../../../utils/muiTheme"
+//mui
+import { Button, Typography } from "@mui/material";
 
-import styles from "./customButton.module.scss"
+//style
+import styles from "./customButton.module.scss";
 
 interface Props {
-  colorType: "primary" | "secondary"
-  label: string
-  size: "big" | "small"
-  callback: Function
-  isDisable?: boolean
+  colorType: "primary" | "secondary";
+  label: string;
+  size: "big" | "small";
+  callback: Function;
+  isDisable?: boolean;
 }
 
 const CustomButton: FC<Props> = (props): ReactElement => {
   function handleClick(): void {
-    if (!!props.callback) props.callback()
+    if (!!props.callback) props.callback();
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <Button
-        sx={props.size === "big" ? { width: "100%" } : { width: "fit-content" }}
-        variant="contained"
-        disabled={props.isDisable}
-        disableElevation
-        color={props.colorType}
-        onClick={handleClick}
-        className={styles.btn}
-      >
-        <Typography variant="button">{props.label}</Typography>
-      </Button>
-    </ThemeProvider>
-  )
-}
+    <Button
+      sx={props.size === "big" ? { width: "100%" } : { width: "fit-content" }}
+      variant="contained"
+      disabled={props.isDisable}
+      disableElevation
+      color={props.colorType}
+      onClick={handleClick}
+      className={styles.btn}
+    >
+      <Typography variant="button">{props.label}</Typography>
+    </Button>
+  );
+};
 
-export default CustomButton
+export default CustomButton;

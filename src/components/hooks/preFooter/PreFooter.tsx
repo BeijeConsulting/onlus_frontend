@@ -1,9 +1,15 @@
-import React, { FC } from "react";
+import { FC } from "react";
+
 // style
 import "./prefooter.scss";
-// translation
+
+// i18n
 import { useTranslation } from "react-i18next";
+
+//mui
 import { Typography } from "@mui/material";
+
+//redux
 import { useSelector } from "react-redux";
 
 const PreFooter: FC = () => {

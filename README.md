@@ -1,17 +1,21 @@
 # Onlus frontend
+
 Onlus frontend is a project for the creation of a site dedicated to a non-profit organization, totally editable by the administrator.
 
 ## Installation
+
 ```shell
 $ npm i
 ```
 
 ## Run server
+
 ```shell
 $ npm start
 ```
 
 ## Libraries
+
 - **[Axios](https://axios-http.com/docs/intro)**
 - **[helmet](https://www.npmjs.com/package/react-helmet)**
 - **[i18n](https://www.i18next.com/)**
@@ -24,5 +28,6 @@ $ npm start
 - **[typescript](https://www.typescriptlang.org/)**
 
 ## Se non sovrascrive lo style in un tag
+
 esempio -> <NomeComponente title={ecc ecc} style=ecc />
 per modificarlo -> <NomeComponente title={ecc ecc} titleTypographyProps={{scssCamelCase}} />

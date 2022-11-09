@@ -1,37 +1,37 @@
 @import "../../../styles/common.scss";
 
-.iconButton{
-    display: flex;
-    flex-direction: column;
-    border-radius: 0;
+.iconButton {
+  display: flex;
+  flex-direction: column;
+  border-radius: 0;
+  background-color: $tertiary;
+  margin: 3px;
+  padding: 10px 20px;
+  width: calc((100vw / 2) - 20px);
+  height: 85px;
+  &:hover {
     background-color: $tertiary;
-    margin: 3px;
-    padding: 10px 20px;
-    width: calc((100vw / 2) - 20px);
-    height: 85px;
-    &:hover{
-        background-color: $tertiary;
-    }
-    .icon svg{
-        height: 24px;
-        width: auto;
-        color: $primary
-    }
-    p{
-        color: $primary;
-        line-height: 1.2;
-    }
-}
-.expandedButton{
-    width: 200px;
-    margin: 0 10px;
-}
-.expandedButtonItemContainer{
-    background-color: $tertiary;
-}
-.expandedButtonItem{
-    display: flex;
-    justify-content: space-between;
-    width: 200px;
+  }
+  .icon svg {
+    height: 24px;
+    width: auto;
     color: $primary;
+  }
+  p {
+    color: $primary;
+    line-height: 1.2;
+  }
+}
+.expandedButton {
+  width: 200px;
+  margin: 0 10px;
+}
+.expandedButtonItemContainer {
+  background-color: $tertiary;
+}
+.expandedButtonItem {
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+  color: $primary;
 }

@@ -1,4 +1,4 @@
-import { createTheme } from "@mui/material/styles"
+import { createTheme } from "@mui/material/styles";
 // import NotoSansJP from "../assets/fonts/Noto_sans_jp"
 
 export const theme = createTheme({
@@ -110,17 +110,17 @@ export const theme = createTheme({
       `,
     },
   },
-})
+});
 
 declare module "@mui/material/styles" {
   interface Palette {
-    info: Palette["info"]
-    secondary: Palette["secondary"]
-    primary: Palette["primary"]
+    info: Palette["info"];
+    secondary: Palette["secondary"];
+    primary: Palette["primary"];
   }
   interface PaletteOptions {
-    info?: PaletteOptions["info"]
-    secondary?: PaletteOptions["secondary"]
-    primary?: PaletteOptions["primary"]
+    info?: PaletteOptions["info"];
+    secondary?: PaletteOptions["secondary"];
+    primary?: PaletteOptions["primary"];
   }
 }
