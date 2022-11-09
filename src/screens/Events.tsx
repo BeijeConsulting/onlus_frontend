@@ -1,6 +1,12 @@
-import React, { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
+
+//i18n
 import { useTranslation } from "react-i18next";
+
+//helmet
 import { Helmet } from "react-helmet";
+
+//mui
 import { Typography } from "@mui/material";
 
 // componenti
@@ -13,10 +19,12 @@ import SkeletonCardDesktop from "../components/ui/skeleton/SkeletonCardDesktop/S
 import SkeletonCard from "../components/ui/skeleton/skeletonCard/SkeletonCard";
 
 // mediaquery
-import { useMediaQuery } from "react-responsive";
+import useResponsive from "../utils/useResponsive";
 
 // stile
 import "../styles/events.scss";
+
+//api
 import { getEvents } from "../services/api/eventApi";
 
 interface State {
@@ -29,20 +37,10 @@ const initialState = {
   events: [],
 };
 
-//React responsive const
-const Default = ({ children }: any) => {
-  const isNotMobile = useMediaQuery({ minWidth: 992 });
-  return isNotMobile ? children : null;
-};
-const Mobile = ({ children }: any) => {
-  const isMobile = useMediaQuery({ maxWidth: 991 });
-  return isMobile ? children : null;
-};
-
 const Events: FC = () => {
   const [state, setState] = useState<State>(initialState);
-  // translate
   const { t }: any = useTranslation();
+  let [Mobile, Default] = useResponsive();
 
   useEffect(() => {
     fetchDatas();
@@ -122,7 +120,7 @@ const Events: FC = () => {
       <Header />
 
       <main id={"events"} className="sectionContainer">
-        <Typography variant="h1">{t("titles.eventsTitle")}</Typography>{" "}
+        <Typography variant="h1">{t("titles.eventsTitle")}</Typography>
         {state.isLoaded ? (
           state.events.map(mapEvents)
         ) : (

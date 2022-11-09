@@ -1,5 +1,5 @@
 #about, #support {
-  .content-about-container {
+  .content-about-container, .content-about-container-only-text {
     display: grid;
     gap: 20px;
     padding: 10px 0;
@@ -35,6 +35,9 @@
           grid-area: 1 / 2 / 2 / 3;
         }
       }
+    }
+    .content-about-container-only-text{
+      padding: 30px 0;
     }
   }
 }

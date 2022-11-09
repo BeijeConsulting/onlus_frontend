@@ -20,7 +20,9 @@ const PreFooter: FC = () => {
       </div>
       <div className="infoContact">
         <Typography variant="body1">{t("preFooter.caption")}</Typography>
-        <Typography variant="subtitle1">{BANNER.email}</Typography>
+        {!!BANNER && (
+          <Typography variant="subtitle1">{BANNER.email}</Typography>
+        )}
       </div>
     </mark>
   );

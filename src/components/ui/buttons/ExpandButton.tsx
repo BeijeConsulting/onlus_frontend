@@ -36,7 +36,7 @@ const ExpandButton: FC = () => {
   const [state, setState] = useState<State>(initialState)
   const anchorRef = useRef<HTMLDivElement>(null)
 
-  const navigate: any = useNavigate()
+  const navigate: Function = useNavigate()
 
   const goToDonate = (): void => {
     navigate(SCREENS.donate)
@@ -68,7 +68,7 @@ const ExpandButton: FC = () => {
   }
 
   return (
-    <React.Fragment>
+    <>
       <ButtonGroup
         variant="contained"
         ref={anchorRef}
@@ -137,7 +137,7 @@ const ExpandButton: FC = () => {
           </Grow>
         )}
       </Popper>
-    </React.Fragment>
+    </>
   )
 }
 

@@ -1,10 +1,20 @@
-import { FC, useState, useEffect } from "react"
+import { FC, useState, useEffect, useRef } from "react"
 import { HashLink } from "react-router-hash-link"
 import { Typography } from "@mui/material"
 
 //Hooks
-import { useNavigate } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import { useMediaQuery } from "react-responsive"
+
+// mui
+import ButtonGroup from "@mui/material/ButtonGroup"
+import ClickAwayListener from "@mui/material/ClickAwayListener"
+import Grow from "@mui/material/Grow"
+import Paper from "@mui/material/Paper"
+import Popper from "@mui/material/Popper"
+import MenuItem from "@mui/material/MenuItem"
+import MenuList from "@mui/material/MenuList"
+
 //Components
 import TemporaryDrawer from "../TemporaryDrawer/TemporaryDrawer"
 import ExpandButton from "../../ui/buttons/ExpandButton"
@@ -24,6 +34,7 @@ import "./header.scss"
 
 //i18n
 import { useTranslation } from "react-i18next"
+import useResponsive from "../../../utils/useResponsive"
 
 interface HeaderProps {
   isHome?: boolean
@@ -31,33 +42,27 @@ interface HeaderProps {
 interface State {
   scroll: boolean
   lng: string
+  open: boolean
 }
 const initialState = {
   scroll: false,
   lng: "it",
+  open: false,
 }
 
 const Header: FC<HeaderProps> = (props) => {
   const [state, setState] = useState<State>(initialState)
 
-  const navigate: Function = useNavigate();
-
   const isLoggedIn:boolean = useSelector((state:any) => state.userDuck.isLoggedIn);
+  const anchorRef = useRef<HTMLDivElement>(null)
+
+  const navigate: Function = useNavigate();
 
   const { t, i18n }: any = useTranslation()
 
   // mediaquery
-  const Default = ({ children }: any) => {
-    const isNotMobile = useMediaQuery({ minWidth: 992 })
-    return isNotMobile ? children : null
-  }
+  let [Mobile, Default] = useResponsive()
 
-  const Mobile = ({ children }: any) => {
-    const isMobile = useMediaQuery({ maxWidth: 991 })
-    return isMobile ? children : null
-  }
-
-  //navigation functions
   // navigazione
   const goTo = (params:string) => (): void => {
     if(params === SCREENS.personalArea) {
@@ -74,7 +79,7 @@ const Header: FC<HeaderProps> = (props) => {
   }
 
   // Scroll
-  function handleScroll() {
+  const handleScroll = (): void => {
     let windowScroll: number = window.scrollY
     let scrolly: boolean = false
 
@@ -88,6 +93,12 @@ const Header: FC<HeaderProps> = (props) => {
     })
   }
 
+  const scrollWithOffset = (el: any): void => {
+    const yCoordinate = el.getBoundingClientRect().top + window.pageYOffset
+    const yOffset = -147.2
+    window.scrollTo({ top: yCoordinate + yOffset, behavior: "smooth" })
+  }
+
   useEffect(() => {
     window.addEventListener("scroll", handleScroll)
 
@@ -95,6 +106,29 @@ const Header: FC<HeaderProps> = (props) => {
       window.removeEventListener("scroll", handleScroll)
     }
   }, [state.scroll])
+
+  const handleToggle = (): void => {
+    setState({
+      ...state,
+      open: !state.open,
+    })
+  }
+
+  const handleClose = (event: Event): void => {
+    if (
+      anchorRef.current &&
+      anchorRef.current.contains(event.target as HTMLElement)
+    ) {
+      return
+    }
+
+    setState({
+      ...state,
+      open: false,
+    })
+  }
+
+  const logout = (): void => {}
 
   return (
     <header
@@ -104,24 +138,24 @@ const Header: FC<HeaderProps> = (props) => {
         <SiFoodpanda className="logo" onClick={goTo(SCREENS.home)} />
         <Default>
           <nav className={"nav-desktop"}>
-            <Typography variant="body1" onClick={goTo(SCREENS.home)}>
-              {t("nav.home")}
-            </Typography>
-            <Typography variant="body1" onClick={goTo(SCREENS.about)}>
-              {t("nav.about")}
-            </Typography>
-            <Typography variant="body1" onClick={goTo(SCREENS.events)}>
-              {t("nav.events")}
-            </Typography>
-            <Typography variant="body1" onClick={goTo(SCREENS.blog)}>
-              {t("nav.blog")}
-            </Typography>
-            <Typography variant="body1" onClick={goTo(SCREENS.support)}>
-              {t("nav.supportUs")}
-            </Typography>
-            <Typography variant="body1" onClick={goTo(SCREENS.faq)}>
-              {t("nav.info")}
-            </Typography>
+            <NavLink end to={SCREENS.home}>
+              <Typography variant="body1">{t("nav.home")}</Typography>
+            </NavLink>
+            <NavLink end to={SCREENS.about}>
+              <Typography variant="body1">{t("nav.about")}</Typography>
+            </NavLink>
+            <NavLink end to={SCREENS.events}>
+              <Typography variant="body1">{t("nav.events")}</Typography>
+            </NavLink>
+            <NavLink end to={SCREENS.blog}>
+              <Typography variant="body1">{t("nav.blog")}</Typography>
+            </NavLink>
+            <NavLink end to={SCREENS.support}>
+              <Typography variant="body1">{t("nav.supportUs")}</Typography>
+            </NavLink>
+            <NavLink end to={SCREENS.faq}>
+              <Typography variant="body1">{t("nav.info")}</Typography>
+            </NavLink>
           </nav>
           <ExpandButton />
         </Default>
@@ -149,7 +183,43 @@ const Header: FC<HeaderProps> = (props) => {
             </Typography>
           </div>
 
-          <BiUser onClick={goTo(SCREENS.personalArea)} className="profile-icon" />
+          <div>
+            <ButtonGroup onClick={handleToggle} ref={anchorRef}>
+              <BiUser className="profile-icon" />
+            </ButtonGroup>
+            <Popper
+              sx={{
+                zIndex: 1,
+              }}
+              open={state.open}
+              anchorEl={anchorRef.current}
+              role={undefined}
+              transition
+              disablePortal
+            >
+              {({ TransitionProps, placement }) => (
+                <Grow
+                  {...TransitionProps}
+                  style={{
+                    transformOrigin:
+                      placement === "bottom" ? "center top" : "center bottom",
+                  }}
+                >
+                  <Paper>
+                    <ClickAwayListener onClickAway={handleClose}>
+                      <MenuList id="split-button-menu">
+                        <MenuItem onClick={goTo(SCREENS.personalArea)}>
+                          {t("metaTitles.personalArea")}
+                        </MenuItem>
+
+                        <MenuItem onClick={logout}>{t("nav.logout")}</MenuItem>
+                      </MenuList>
+                    </ClickAwayListener>
+                  </Paper>
+                </Grow>
+              )}
+            </Popper>
+          </div>
 
           <Mobile>
             <div className="burger-menu">
@@ -159,13 +229,25 @@ const Header: FC<HeaderProps> = (props) => {
         </div>
       </div>
       <div className="bottom-header">
-        <HashLink to="#events" className="bottom-header-button">
+        <HashLink
+          to="#events"
+          className="bottom-header-button"
+          scroll={(el) => scrollWithOffset(el)}
+        >
           <Typography variant="body1">{t("nav.events")}</Typography>
         </HashLink>
-        <HashLink to="#blog" className="bottom-header-button">
+        <HashLink
+          to="#blog"
+          className="bottom-header-button"
+          scroll={(el) => scrollWithOffset(el)}
+        >
           <Typography variant="body1">{t("nav.blog")}</Typography>
         </HashLink>
-        <HashLink to="#history" className="bottom-header-button">
+        <HashLink
+          to="#history"
+          className="bottom-header-button"
+          scroll={(el) => scrollWithOffset(el)}
+        >
           <Typography variant="body1">{t("home.history")}</Typography>
         </HashLink>
       </div>

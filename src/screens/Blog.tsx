@@ -1,14 +1,20 @@
 import { FC, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+
+//mui
 import { Typography } from "@mui/material";
 
+//components
 import Footer from "../components/hooks/Footer/Footer";
 import Header from "../components/hooks/Header/Header";
 import InputBox from "../components/hooks/inputBox/InputBox";
 import SelectBox from "../components/hooks/inputBox/SelectBox";
 import PreFooter from "../components/hooks/preFooter/PreFooter";
 import CustomPagination from "../components/ui/CustomPagination/CustomPagination";
+import CardArticle from "../components/ui/CardArticle/CardArticle";
+import SkeletonCard from "../components/ui/skeleton/skeletonCard/SkeletonCard";
 
+//helmet
 import { Helmet } from "react-helmet";
 
 //utils
@@ -16,12 +22,16 @@ import { article, category } from "../utils/type";
 
 //style
 import "../styles/blog.scss";
-import CardArticle from "../components/ui/CardArticle/CardArticle";
-import { useMediaQuery } from "react-responsive";
+
+//navigation
 import { useNavigate } from "react-router-dom";
 import SCREENS from "../route/router";
-import SkeletonCard from "../components/ui/skeleton/skeletonCard/SkeletonCard";
+
+//api
 import { getArticles, getCategories } from "../services/api/articleApi";
+
+//responsive
+import useResponsive from "../utils/useResponsive";
 
 interface State {
   categories: Array<category>;
@@ -37,16 +47,7 @@ const initialState = {
   isLoaded: false,
 };
 
-//React responsive const
-const Default = ({ children }: any) => {
-  const isNotMobile = useMediaQuery({ minWidth: 992 });
-  return isNotMobile ? children : null;
-};
-const Mobile = ({ children }: any) => {
-  const isMobile = useMediaQuery({ maxWidth: 991 });
-  return isMobile ? children : null;
-};
-
+//localarray for search filter
 let localArticles: Array<any> = [];
 
 const Blog: FC = () => {
@@ -54,6 +55,7 @@ const Blog: FC = () => {
   const [state, setState] = useState<State>(initialState);
   const { t }: any = useTranslation();
   const ARTICLESXPAGES = 6;
+  let [Mobile, Default] = useResponsive();
 
   useEffect(() => {
     pagesCalc();
@@ -90,24 +92,28 @@ const Blog: FC = () => {
   const mapping = (el: any, key: number): JSX.Element => {
     return (
       <div key={key} onClick={goToArticle(el.id)}>
-        <Mobile>
-          <CardArticle
-            date={el.attributes.article.date}
-            image={el.attributes.article.cover}
-            title={el.attributes.article.title}
-            description={el.attributes.article.content[0].paragraph}
-            minWidth="250px"
-          />
-        </Mobile>
-        <Default>
-          <CardArticle
-            date={el.attributes.article.date}
-            image={el.attributes.article.cover}
-            title={el.attributes.article.title}
-            description={el.attributes.article.content[0].paragraph}
-            minWidth="300px"
-          />
-        </Default>
+        {el.attributes.article.status === "published" && (
+          <>
+            <Mobile>
+              <CardArticle
+                date={el.attributes.article.date}
+                image={el.attributes.article.cover}
+                title={el.attributes.article.title}
+                description={el.attributes.article.content[0].paragraph}
+                minWidth="250px"
+              />
+            </Mobile>
+            <Default>
+              <CardArticle
+                date={el.attributes.article.date}
+                image={el.attributes.article.cover}
+                title={el.attributes.article.title}
+                description={el.attributes.article.content[0].paragraph}
+                minWidth="300px"
+              />
+            </Default>
+          </>
+        )}
       </div>
     );
   };

@@ -1,6 +1,12 @@
 import { FC, useState } from "react"
+
+//i18n
 import { useTranslation } from "react-i18next"
+
+//helmet
 import { Helmet } from "react-helmet"
+
+//mui
 import { Typography } from "@mui/material"
 
 //components
@@ -37,6 +43,7 @@ const initialState = {
   errorDate: false,
 }
 
+//da fixare quando otteniamo api funzionanti
 type dataObject = {
   name: string
   surname: string
@@ -68,10 +75,6 @@ let data: dataObject = {
 const Donate: FC = () => {
   const [state, setState] = useState<State>(initialState)
   const { t }: any = useTranslation()
-
-  // const checkForm = (): void => {
-  //   console.log("check");
-  // };
 
   const setTerms = (e: boolean): void => {
     setState({

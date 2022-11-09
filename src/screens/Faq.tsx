@@ -19,6 +19,8 @@ import "../styles/faq.scss";
 
 //type
 import { faq, infoType } from "../utils/type";
+
+//mui
 import { Typography, Skeleton } from "@mui/material";
 
 interface State {
@@ -33,23 +35,22 @@ const Faq: FC = () => {
   const [state, setState] = useState<State>(initialState);
   const { t }: any = useTranslation();
 
-  async function fetchDatas(): Promise<void> {
-    let result:any = await getFAQs();
-    
-    setState({
-      ...state,
-      data: result.data.data.attributes.faq,
-    });
-    console.log("result", result);
-  }
-
   useEffect(() => {
     fetchDatas();
   }, []);
 
+  async function fetchDatas(): Promise<void> {
+    let result: any = await getFAQs();
+
+    setState({
+      ...state,
+      data: result.data.data.attributes.faq,
+    });
+  }
+
   const mapFaq = (item: faq, key: number): JSX.Element => {
     return (
-      <div key={key} style={{minHeight:'70px'}}>
+      <div key={key} style={{ minHeight: "70px" }}>
         <AccordionItem key={key} title={item.question} content={item.answer} />
       </div>
     );
@@ -74,28 +75,35 @@ const Faq: FC = () => {
             <div className="faq-container">{state.data.qna.map(mapFaq)}</div>
           </section>
         </main>
-      ):(
+      ) : (
         <main id={"faq"} className="sectionContainer">
           <section>
-            <Typography variant="h1"><Skeleton variant="text" animation="wave" width={300}/></Typography>
-            <Typography variant="body1"><Skeleton variant="text" animation="wave"/></Typography>
-            <Typography variant="body1"><Skeleton variant="text" animation="wave"/></Typography>
-            <Typography variant="body1"><Skeleton variant="text" animation="wave"/></Typography>
+            <Typography variant="h1">
+              <Skeleton variant="text" animation="wave" width={300} />
+            </Typography>
+            <Typography variant="body1">
+              <Skeleton variant="text" animation="wave" />
+            </Typography>
+            <Typography variant="body1">
+              <Skeleton variant="text" animation="wave" />
+            </Typography>
+            <Typography variant="body1">
+              <Skeleton variant="text" animation="wave" />
+            </Typography>
           </section>
 
           <section>
             <Typography variant="h1">Faq</Typography>
-            <div className="faq-container"  style={{minHeight:'70px'}}>
-              <Skeleton variant="rectangular" animation="wave"/>
+            <div className="faq-container" style={{ minHeight: "70px" }}>
+              <Skeleton variant="rectangular" animation="wave" />
             </div>
-            <div className="faq-container"  style={{minHeight:'70px'}}>
-              <Skeleton variant="rectangular" animation="wave"/>
+            <div className="faq-container" style={{ minHeight: "70px" }}>
+              <Skeleton variant="rectangular" animation="wave" />
             </div>
-            <div className="faq-container"  style={{minHeight:'70px'}}>
-              <Skeleton variant="rectangular" animation="wave"/>
+            <div className="faq-container" style={{ minHeight: "70px" }}>
+              <Skeleton variant="rectangular" animation="wave" />
             </div>
           </section>
-
         </main>
       )}
       <Footer />

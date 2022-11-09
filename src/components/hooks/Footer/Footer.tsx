@@ -19,16 +19,8 @@ import { social, contact, color } from "../../../utils/type";
 
 import SCREENS from "../../../route/router";
 
-
 //React responsive const
-const Default = ({ children }: any) => {
-  const isNotMobile = useMediaQuery({ minWidth: 992 });
-  return isNotMobile ? children : null;
-};
-const Mobile = ({ children }: any) => {
-  const isMobile = useMediaQuery({ maxWidth: 991 }); 
-  return isMobile ? children : null;
-};
+import useResponsive from "../../../utils/useResponsive";
 
 const Footer: FC = () => {
   // popolo contacts
@@ -39,12 +31,14 @@ const Footer: FC = () => {
   const SOCIAL: Array<social> = useSelector(
     (state: any) => state.generalDuck.social
   );
-  // POPOLO IL COLOR PALLETTE
-  const PALLETTE: Array<color> = useSelector(
-    (state: any) => state.generalDuck.pallette
+  // POPOLO IL COLOR PALETTE
+  const PALETTE: Array<color> = useSelector(
+    (state: any) => state.generalDuck.palette
   );
   // inizializzo navigazione
   let navigate = useNavigate();
+
+  let [Mobile, Default] = useResponsive();
 
   // navigazione
   const goToHome = (): void => {
@@ -89,7 +83,7 @@ const Footer: FC = () => {
     }
   };
   return (
-    <footer style={{ backgroundColor: PALLETTE[0].bgColor }} id="footer">
+    <footer style={{ backgroundColor: PALETTE[0].bgColor }} id="footer">
       <section className="contacts">
         <Typography variant="h4" className="titleContacts">
           {t("footer.contacts")}

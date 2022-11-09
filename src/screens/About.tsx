@@ -19,6 +19,8 @@ import { content } from "../utils/type";
 
 //Styles
 import "../styles/about.scss";
+
+//mui
 import { Typography, Skeleton } from "@mui/material";
 
 interface State {
@@ -56,11 +58,18 @@ const About: FC = () => {
 
   const mappingContent = (item: content, key: number) => {
     return (
-      <section className="content-about-container" key={key}>
+      <section
+        className={
+          !!item.media
+            ? "content-about-container"
+            : "content-about-container-only-text"
+        }
+        key={key}
+      >
         <Typography variant="body1">{item.paragraph}</Typography>
-        <div className="media-container">
-          {!!item.media &&
-            (item.media.type === "image" ? (
+        {!!item.media && (
+          <div className="media-container">
+            {item.media.type === "image" ? (
               <img
                 className="content-about"
                 src={item.media.content}
@@ -70,8 +79,9 @@ const About: FC = () => {
               <video controls className="content-about">
                 <source type="video/mp4" src={item.media.content} />
               </video>
-            ))}
-        </div>
+            )}
+          </div>
+        )}
       </section>
     );
   };
@@ -100,9 +110,7 @@ const About: FC = () => {
         //Skeleton
         <main id="about">
           <Skeleton variant="rectangular" animation="wave">
-            <Hero
-              type={"about"}
-            />
+            <Hero type={"about"} />
           </Skeleton>
           <section className="sectionContainer">
             <Typography variant="h1">{t("nav.about")}</Typography>

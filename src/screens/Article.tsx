@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 
 //components
 import Footer from "../components/hooks/Footer/Footer";
@@ -19,14 +19,17 @@ import "../styles/article.scss";
 
 //helmet
 import { Helmet } from "react-helmet";
+
+//mui
 import { Skeleton, Typography } from "@mui/material";
-import { Link, useParams } from "react-router-dom";
-import {
-  getArticles,
-  getSingleArticle,
-} from "../services/api/articleApi";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+
+//navigation
+import { Link, useParams } from "react-router-dom";
 import SCREENS from "../route/router";
+
+//api
+import { getArticles, getSingleArticle } from "../services/api/articleApi";
 
 interface State {
   article: article | null;
@@ -70,10 +73,9 @@ const Article: FC = () => {
     return (
       <div key={key} className="paragraph">
         <p className="paragraphText">{el.paragraph}</p>
-        {/* {!!el.media && <img className="image" src={el.media} />} */}
         {!!el.media &&
           (el.media.type === "image" ? (
-            <img className="media" src={el.media.content} alt='article-pic'/>
+            <img className="media" src={el.media.content} alt="article-pic" />
           ) : (
             <video controls className="video">
               <source type="video/webm" src={el.media.content} />

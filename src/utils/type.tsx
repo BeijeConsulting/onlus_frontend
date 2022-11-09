@@ -60,9 +60,9 @@ export type donation = {
 };
 
 export type donationData = {
-  totalAmount: number,
-  history: donation[]
-}
+  totalAmount: number;
+  history: donation[];
+};
 
 export type personalInfo = {
   email: string;
@@ -103,3 +103,17 @@ export type color = {
   bgColor: string;
   textColor: string;
 };
+
+export type joinUs = {
+  title: string;
+  subtitle: string;
+  btnText1: string;
+  btnText2: string;
+  link: string;
+};
+
+export type support={
+  hero: hero;
+  title: string;
+  content: Array<content>;
+}
