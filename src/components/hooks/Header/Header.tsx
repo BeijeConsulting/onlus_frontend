@@ -9,6 +9,8 @@ import { useMediaQuery } from "react-responsive"
 import TemporaryDrawer from "../TemporaryDrawer/TemporaryDrawer"
 import ExpandButton from "../../ui/buttons/ExpandButton"
 
+//redux
+import { useSelector } from "react-redux"
 
 // Route
 import SCREENS from "../../../route/router"
@@ -38,7 +40,9 @@ const initialState = {
 const Header: FC<HeaderProps> = (props) => {
   const [state, setState] = useState<State>(initialState)
 
-  const navigate: Function = useNavigate()
+  const navigate: Function = useNavigate();
+
+  const isLoggedIn:boolean = useSelector((state:any) => state.userDuck.isLoggedIn);
 
   const { t, i18n }: any = useTranslation()
 
@@ -56,7 +60,12 @@ const Header: FC<HeaderProps> = (props) => {
   //navigation functions
   // navigazione
   const goTo = (params:string) => (): void => {
-    navigate(params);
+    if(params === SCREENS.personalArea) {
+      if(isLoggedIn) navigate(params);
+      else navigate(SCREENS.login)
+    } else {
+      navigate(params);
+    }
   };
 
   // Changelanguage
