@@ -33,6 +33,7 @@ import Loader from "./assets/images/loader.jpg";
 
 // import style
 import "./App.scss";
+import ScrollToTop from "./utils/ScrollToTop";
 
 // state
 interface State {
@@ -75,6 +76,7 @@ const App: FC = () => {
       <ThemeProvider theme={theme}>
         {state.isLoaded ? (
           <div className="app">
+            <ScrollToTop />
             <Routes>
               <Route path={SCREENS.home} element={<Home />} />
               <Route path={SCREENS.about} element={<About />} />

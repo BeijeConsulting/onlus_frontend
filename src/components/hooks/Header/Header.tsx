@@ -1,91 +1,96 @@
-import { FC, useState, useEffect } from "react"
-import { HashLink } from "react-router-hash-link"
-import { Typography } from "@mui/material"
+import { FC, useState, useEffect } from "react";
+import { HashLink } from "react-router-hash-link";
+import { Typography } from "@mui/material";
 
 //Hooks
-import { useNavigate } from "react-router-dom"
-import { useMediaQuery } from "react-responsive"
+import { useNavigate } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 //Components
-import TemporaryDrawer from "../TemporaryDrawer/TemporaryDrawer"
-import ExpandButton from "../../ui/buttons/ExpandButton"
-
+import TemporaryDrawer from "../TemporaryDrawer/TemporaryDrawer";
+import ExpandButton from "../../ui/buttons/ExpandButton";
 
 // Route
-import SCREENS from "../../../route/router"
+import SCREENS from "../../../route/router";
 
 // Icons
-import { BiUser } from "react-icons/bi"
-import { SiFoodpanda } from "react-icons/si"
+import { BiUser } from "react-icons/bi";
+import { SiFoodpanda } from "react-icons/si";
 
 //Style
-import "./header.scss"
+import "./header.scss";
 
 //i18n
-import { useTranslation } from "react-i18next"
+import { useTranslation } from "react-i18next";
 
 interface HeaderProps {
-  isHome?: boolean
+  isHome?: boolean;
 }
 interface State {
-  scroll: boolean
-  lng: string
+  scroll: boolean;
+  lng: string;
 }
 const initialState = {
   scroll: false,
   lng: "it",
-}
+};
 
 const Header: FC<HeaderProps> = (props) => {
-  const [state, setState] = useState<State>(initialState)
+  const [state, setState] = useState<State>(initialState);
 
-  const navigate: Function = useNavigate()
+  const navigate: Function = useNavigate();
 
-  const { t, i18n }: any = useTranslation()
+  const { t, i18n }: any = useTranslation();
 
   // mediaquery
   const Default = ({ children }: any) => {
-    const isNotMobile = useMediaQuery({ minWidth: 992 })
-    return isNotMobile ? children : null
-  }
+    const isNotMobile = useMediaQuery({ minWidth: 992 });
+    return isNotMobile ? children : null;
+  };
 
   const Mobile = ({ children }: any) => {
-    const isMobile = useMediaQuery({ maxWidth: 991 })
-    return isMobile ? children : null
-  }
+    const isMobile = useMediaQuery({ maxWidth: 991 });
+    return isMobile ? children : null;
+  };
 
   //navigation functions
   // navigazione
-  const goTo = (params:string) => (): void => {
+  const goTo = (params: string) => (): void => {
     navigate(params);
   };
 
   // Changelanguage
   const changeLanguageClick = (lang: string) => (): void => {
-    i18n.changeLanguage(lang)
-  }
+    i18n.changeLanguage(lang);
+  };
 
   // Scroll
   function handleScroll() {
-    let windowScroll: number = window.scrollY
-    let scrolly: boolean = false
+    let windowScroll: number = window.scrollY;
+    let scrolly: boolean = false;
 
     if (windowScroll > 150) {
-      scrolly = true
-    } else scrolly = false
+      scrolly = true;
+    } else scrolly = false;
 
     setState({
       ...state,
       scroll: scrolly,
-    })
+    });
   }
 
+  const scrollWithOffset = (el: any) => {
+    const yCoordinate = el.getBoundingClientRect().top + window.pageYOffset;
+    const yOffset = -147.2;
+    window.scrollTo({ top: yCoordinate + yOffset, behavior: "smooth" });
+  };
+
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll)
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener("scroll", handleScroll)
-    }
-  }, [state.scroll])
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [state.scroll]);
 
   return (
     <header
@@ -140,7 +145,10 @@ const Header: FC<HeaderProps> = (props) => {
             </Typography>
           </div>
 
-          <BiUser onClick={goTo(SCREENS.personalArea)} className="profile-icon" />
+          <BiUser
+            onClick={goTo(SCREENS.personalArea)}
+            className="profile-icon"
+          />
 
           <Mobile>
             <div className="burger-menu">
@@ -150,18 +158,30 @@ const Header: FC<HeaderProps> = (props) => {
         </div>
       </div>
       <div className="bottom-header">
-        <HashLink to="#events" className="bottom-header-button">
+        <HashLink
+          to="#events"
+          className="bottom-header-button"
+          scroll={(el) => scrollWithOffset(el)}
+        >
           <Typography variant="body1">{t("nav.events")}</Typography>
         </HashLink>
-        <HashLink to="#blog" className="bottom-header-button">
+        <HashLink
+          to="#blog"
+          className="bottom-header-button"
+          scroll={(el) => scrollWithOffset(el)}
+        >
           <Typography variant="body1">{t("nav.blog")}</Typography>
         </HashLink>
-        <HashLink to="#history" className="bottom-header-button">
+        <HashLink
+          to="#history"
+          className="bottom-header-button"
+          scroll={(el) => scrollWithOffset(el)}
+        >
           <Typography variant="body1">{t("home.history")}</Typography>
         </HashLink>
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
