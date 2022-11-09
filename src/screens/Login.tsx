@@ -1,28 +1,32 @@
-import { Helmet } from "react-helmet"
-import { Typography } from "@mui/material"
+//helmet
+import { Helmet } from "react-helmet";
+
+//mui
+import { Typography } from "@mui/material";
 
 //Components
-import Footer from "../components/hooks/Footer/Footer"
-import Header from "../components/hooks/Header/Header"
-import CustomButton from "../components/ui/buttons/CustomButton/CustomButton"
-import InputBox from "../components/hooks/inputBox/InputBox"
+import Footer from "../components/hooks/Footer/Footer";
+import Header from "../components/hooks/Header/Header";
+import CustomButton from "../components/ui/buttons/CustomButton/CustomButton";
+import InputBox from "../components/hooks/inputBox/InputBox";
+import PreFooter from "../components/hooks/preFooter/PreFooter";
 
-//Router
-import SCREENS from "../route/router"
-import { Link } from "react-router-dom"
+//navigation
+import SCREENS from "../route/router";
+import { Link } from "react-router-dom";
 
 //i18n
-import { useTranslation } from "react-i18next"
+import { useTranslation } from "react-i18next";
 
 //Styles
-import "../styles/login.scss"
-import PreFooter from "../components/hooks/preFooter/PreFooter"
+import "../styles/login.scss";
 
 function Login() {
-  const { t }: any = useTranslation()
+  const { t }: any = useTranslation();
+
   const login = () => {
-    console.log("login")
-  }
+    console.log("login");
+  };
 
   return (
     <>
@@ -64,7 +68,7 @@ function Login() {
       <PreFooter />
       <Footer />
     </>
-  )
+  );
 }
 
-export default Login
+export default Login;

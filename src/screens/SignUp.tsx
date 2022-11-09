@@ -33,6 +33,8 @@ import "../styles/signup.scss";
 
 //type
 import { language } from "../utils/type";
+
+//mui
 import { Typography } from "@mui/material";
 
 interface State {
@@ -144,8 +146,8 @@ const SignUp: FC = () => {
         data.confirmPassword
       ),
     });
-    console.log("check password", checkPassword(data.password));
   };
+  
   return (
     <>
       <Helmet>

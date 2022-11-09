@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
+//i18n
 import { useTranslation } from "react-i18next";
 
 //fetch
@@ -12,15 +13,17 @@ import { Helmet } from "react-helmet";
 import PreFooter from "../components/hooks/preFooter/PreFooter";
 import Footer from "../components/hooks/Footer/Footer";
 import Hero from "../components/hooks/Hero/Hero";
+import Header from "../components/hooks/Header/Header";
+import JoinUs from "../components/hooks/joinUsBbox/JoinUsBox";
 
 //styles
 import "../styles/support.scss";
 
 //type
 import { content, support } from "../utils/type";
+
+//mui
 import { Typography, Skeleton } from "@mui/material";
-import Header from "../components/hooks/Header/Header";
-import JoinUs from "../components/hooks/joinUsBbox/JoinUsBox";
 
 interface State {
   data: support;
@@ -32,10 +35,10 @@ function Support() {
   const { t }: any = useTranslation();
 
   useEffect(() => {
-    getData();
+    fetchData();
   }, []);
 
-  async function getData(): Promise<void> {
+  async function fetchData(): Promise<void> {
     let result: any = await getSupportData();
     console.log(result.data.data.attributes.support);
     setState({
@@ -45,8 +48,6 @@ function Support() {
   }
 
   const mapping = (item: content, key: number) => {
-    console.log("item è", item);
-    console.log(`${item?.media?.content}`);
     return (
       <section
         className={

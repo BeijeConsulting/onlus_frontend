@@ -1,8 +1,12 @@
-// react import
+// react
 import { useState, useEffect, FC } from "react";
+
+//navigation
 import { HashLink } from "react-router-hash-link";
+
 // traduzioni
 import { useTranslation } from "react-i18next";
+
 // componenti
 import Hero from "../components/hooks/Hero/Hero";
 import Footer from "../components/hooks/Footer/Footer";
@@ -11,22 +15,30 @@ import CardEventsMobile from "../components/hooks/CardEvents/CardEventsMobile";
 import CardArticle from "../components/ui/CardArticle/CardArticle";
 import SkeletonCard from "../components/ui/skeleton/skeletonCard/SkeletonCard";
 import SkeletonSquare from "../components/ui/skeleton/SkeletonSquare/SkeletonSquare";
+import Header from "../components/hooks/Header/Header";
+
 // style
 import "../styles/home.scss";
+
 // redux
 import { useSelector } from "react-redux";
 
-//icons
+//mui
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { Typography, Skeleton } from "@mui/material";
-import Header from "../components/hooks/Header/Header";
+
+//type
 import { events, article, social } from "../utils/type";
+
+//api
 import { getHome } from "../services/api/homeApi";
 import { getEvents } from "../services/api/eventApi";
 import { getArticles } from "../services/api/articleApi";
+
+//helmet
 import { Helmet } from "react-helmet";
 
-// stati
+//stati
 interface State {
   articlesArray: Array<article> | null;
   homeData: any;
@@ -34,6 +46,7 @@ interface State {
   socialFrame: social | null;
   isLoaded: boolean;
 }
+
 // inizializzazione
 const initialState = {
   articlesArray: null,
@@ -44,7 +57,6 @@ const initialState = {
 };
 
 const Home: FC = () => {
-  // inizializzo traduzioni
   const { t }: any = useTranslation();
   const [state, setState] = useState<State>(initialState);
 
@@ -221,7 +233,7 @@ const Home: FC = () => {
 
           {/* sezione storia  */}
           <section className="history" id="history">
-            <Typography variant="h2">Storia...</Typography>
+            <Typography variant="h2">{t("home.history")}</Typography>
             {state.isLoaded ? (
               <>
                 <Typography variant="body1" className="description">

@@ -1,6 +1,7 @@
 import { FC, useEffect, useState } from "react";
+
+//i18n
 import { useTranslation } from "react-i18next";
-import { useMediaQuery } from "react-responsive";
 
 //helmet
 import { Helmet } from "react-helmet";
@@ -20,12 +21,18 @@ import "../styles/personalArea.scss";
 
 //type
 import { personalInfo, events, donationData } from "../utils/type";
+
+//mui
 import { Typography } from "@mui/material";
+
+//icons
 import { BiUser } from "react-icons/bi";
 
 //fetch
 import { getPersonalDatas } from "../services/api/personalAreaAPI";
 import axios from "axios";
+
+//reponsive
 import useResponsive from "../utils/useResponsive";
 
 interface State {
@@ -81,10 +88,6 @@ const PersonalArea: FC = () => {
     fetchDatas();
     tryfetch();
   }, []);
-
-  useEffect(() => {
-    console.log(state);
-  }, [state]);
 
   return (
     <>
