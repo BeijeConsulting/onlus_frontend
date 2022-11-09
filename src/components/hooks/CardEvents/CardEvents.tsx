@@ -1,13 +1,15 @@
 import { FC } from "react";
+
+//mui
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-// translation
+// i18n
 import { useTranslation } from "react-i18next";
 
-// componenti
+// components
 import CustomButton from "../../ui/buttons/CustomButton/CustomButton";
 
 //Style
@@ -25,7 +27,7 @@ interface CardProps {
 }
 
 const CardEvents: FC<CardProps> = (props) => {
-  // tranlation hook
+  
   const { t }: any = useTranslation();
 
   const goToBooking = (): void => {

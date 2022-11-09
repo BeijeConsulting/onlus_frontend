@@ -1,20 +1,29 @@
 //React
 import { ReactElement, useState, useEffect } from "react";
+
+//navigation
 import { useNavigate, NavigateFunction } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-//import { getJoinUsData } from "../../../services/api/joinUsBoxAPI"
-import { Typography, Skeleton } from "@mui/material";
-//Components
-import CustomButton from "../../ui/buttons/CustomButton/CustomButton";
-//Routes
 import SCREENS from "../../../route/router";
-//Style
-import "./joinUsBox.scss";
-import { joinUs } from "../../../utils/type";
-import { useSelector } from "react-redux";
+
+//i18n
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
-//ammessi valori "support" e "donate"
+//mui
+import { Typography, Skeleton } from "@mui/material";
+
+//Components
+import CustomButton from "../../ui/buttons/CustomButton/CustomButton";
+
+//Style
+import "./joinUsBox.scss";
+
+//type
+import { joinUs } from "../../../utils/type";
+
+//redux
+import { useSelector } from "react-redux";
+
 interface Props {
   type: string;
 }

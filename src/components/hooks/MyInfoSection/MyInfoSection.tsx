@@ -1,9 +1,14 @@
-import React, { FC, ReactElement, useState, useEffect } from "react";
+import { FC, ReactElement, useState, useEffect } from "react";
+
+//i18n
 import { useTranslation } from "react-i18next";
+
+//components
 import InputBox from "../inputBox/InputBox";
 import SelectBox from "../inputBox/SelectBox";
 import CustomButton from "../../ui/buttons/CustomButton/CustomButton";
 
+//check
 import {
   checkText,
   checkEmail,
@@ -11,53 +16,59 @@ import {
   checkPassword,
 } from "../../../utils/checkForm";
 
+//style
 import "../../../styles/signup.scss";
 import "./myInfoSection.scss";
+
+//type
 import { personalInfo } from "../../../utils/type";
 
 interface InfoProps {
-  datas: personalInfo | null;
+  datas: personalInfo;
 }
 
-/* interface State {
+interface State {
   buttonDisabled: boolean;
   errorName: boolean;
-  name: string | undefined;
+  name: string;
   errorSurname: boolean;
-  surname: string | undefined;
+  surname: string;
   errorPassword: boolean;
-  password: string | undefined;
+  language: string;
+  password: string;
   errorEmail: boolean;
-  email: string | undefined;
+  email: string;
   errorPhoneNumber: boolean;
-  phoneNumber: string | undefined;
-} */
+  phoneNumber: string;
+}
 
 const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
   const { t, i18n }: any = useTranslation();
 
-  const lngs = [
-    { label: t("login.italian"), value: t("login.italian") },
-    { label: t("login.english"), value: t("login.english") },
-  ];
-
-  const [state, setState] = useState<any>({
+  const initialState = {
     buttonDisabled: true,
-    name: props.datas?.name,
-    surname: props.datas?.surname,
-    email: props.datas?.email,
-    password: props.datas?.password,
-    phoneNumber: props.datas?.phoneNumber,
+    name: props.datas.name,
+    surname: props.datas.surname,
+    email: props.datas.email,
+    password: props.datas.password,
+    phoneNumber: props.datas.phoneNumber,
     language: i18n.language,
     errorName: false,
     errorSurname: false,
     errorEmail: false,
     errorPhoneNumber: false,
     errorPassword: false,
-  });
+  };
+
+  const lngs = [
+    { label: t("login.italian"), value: t("login.italian") },
+    { label: t("login.english"), value: t("login.english") },
+  ];
+
+  const [state, setState] = useState<State>(initialState);
 
   useEffect(() => {
-    let handleErrorButton = false;
+    let handleErrorButton: boolean = false;
     if (
       !state.errorName &&
       !state.errorEmail &&
@@ -83,8 +94,7 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
     console.log(state);
   }, [state]);
 
-  function submit(): void {
-    console.log("submitted");
+  const submit = (): void => {
     setState({
       ...state,
       errorName: !checkText(state.name),
@@ -94,37 +104,37 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
       errorPassword: !checkPassword(state.password),
     });
     i18n.changeLanguage(state.language);
-  }
+  };
 
-  function setName(val: any): void {
+  function setName(val: React.ChangeEvent<HTMLInputElement>): void {
     setState({
       ...state,
       name: val.target.value,
       buttonDisabled: false,
     });
   }
-  function setSurname(val: any): void {
+  function setSurname(val: React.ChangeEvent<HTMLInputElement>): void {
     setState({
       ...state,
       surname: val.target.value,
       buttonDisabled: false,
     });
   }
-  function setEmail(val: any): void {
+  function setEmail(val: React.ChangeEvent<HTMLInputElement>): void {
     setState({
       ...state,
       email: val.target.value,
       buttonDisabled: false,
     });
   }
-  function setPassword(val: any): void {
+  function setPassword(val: React.ChangeEvent<HTMLInputElement>): void {
     setState({
       ...state,
       password: val.target.value,
       buttonDisabled: false,
     });
   }
-  function setPhoneNumber(val: any): void {
+  function setPhoneNumber(val: React.ChangeEvent<HTMLInputElement>): void {
     setState({
       ...state,
       phoneNumber: val.target.value,
@@ -143,8 +153,8 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
     });
   }
 
-  function disableAccount() {
-    console.log('disabled');
+  function disableAccount(): void {
+    console.log("disabled");
   }
 
   return (

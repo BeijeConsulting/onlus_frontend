@@ -1,12 +1,17 @@
 import React, { FC } from "react";
+
+//navigation
 import { useNavigate } from "react-router-dom";
+import SCREENS from "../../../route/router";
+
+//components
 import CustomButton from "../../ui/buttons/CustomButton/CustomButton";
 
+//mui
 import { Typography } from "@mui/material";
 
+//style
 import "./hero.scss";
-
-import SCREENS from "../../../route/router";
 
 interface HeroProps {
   type: "home" | "article" | "about" | "support";
@@ -29,7 +34,7 @@ const Hero: FC<HeroProps> = (props) => {
         <section
           className="hero-container hero-container-home"
           style={{
-            backgroundImage:`url("${props.image}")`,
+            backgroundImage: `url("${props.image}")`,
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
             backgroundSize: "cover",
@@ -37,7 +42,6 @@ const Hero: FC<HeroProps> = (props) => {
         >
           <div className="hero-content">
             <Typography variant="h1">{props.title}</Typography>
-            {/* <h1 className="hero-title">{props.title}</h1> */}
             <div className="hero-linebr" />
             <Typography variant="h5" className="hero-subtitle">
               {props.subtitle}
@@ -67,7 +71,7 @@ const Hero: FC<HeroProps> = (props) => {
           <section
             className="hero-container hero-container-article"
             style={{
-              backgroundImage:`url("${props.image}")`,
+              backgroundImage: `url("${props.image}")`,
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center",
               backgroundSize: "cover",

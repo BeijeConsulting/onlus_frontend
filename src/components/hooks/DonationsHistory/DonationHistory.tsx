@@ -1,7 +1,15 @@
-import React, { ReactElement, useState, useEffect } from "react";
+import { ReactElement, useState, useEffect } from "react";
+
+//style
 import "./donationHistory.scss";
+
+//i18n
 import { useTranslation } from "react-i18next";
+
+//type
 import { donationData, donation } from "../../../utils/type";
+
+//mui
 import { Typography } from "@mui/material";
 
 interface Props {
