@@ -24,6 +24,7 @@ import { events, article, social } from "../utils/type";
 import { getHome } from "../services/api/homeApi";
 import { getEvents } from "../services/api/eventApi";
 import { getArticles } from "../services/api/articleApi";
+import { Helmet } from "react-helmet";
 
 // stati
 interface State {
@@ -62,8 +63,6 @@ const Home: FC = () => {
     let socialHome: Array<social> = SOCIAL.filter((social: social) => {
       return social.homepageOn == true;
     });
-
-    console.log(socialHome);
 
     setState({
       ...state,
@@ -110,9 +109,14 @@ const Home: FC = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Onlus - {t("nav.home")}</title>
+        <meta name="description" content={`${t("nav.home")} page`} />
+      </Helmet>
+
       <Header isHome={true} />
 
-      <HashLink to="#home" className="arrowButton scrollToTopButton">
+      <HashLink to="#home" className="arrowButton scrollToTopButton" smooth>
         <KeyboardArrowUpIcon sx={{ height: 40, width: 40 }} />
       </HashLink>
 
@@ -129,7 +133,6 @@ const Home: FC = () => {
             <Hero type={"about"} />
           </Skeleton>
         )}
-
         <div className="sectionContainer">
           <section className="results">
             {state.isLoaded ? (
@@ -139,10 +142,7 @@ const Home: FC = () => {
                 </Typography>
 
                 <figure>
-                  <img
-                    src={state.homeData.results.img}
-                    alt="illustrative"
-                  />
+                  <img src={state.homeData.results.img} alt="illustrative" />
                 </figure>
                 <div className="caption">
                   <Typography variant="body1">

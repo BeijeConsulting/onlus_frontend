@@ -1,8 +1,10 @@
-import { FC, useState, useEffect, useRef } from "react"
+import { FC, useState, useEffect } from "react"
 import { HashLink } from "react-router-hash-link"
 import { Typography } from "@mui/material"
 
 //Hooks
+import { useNavigate } from "react-router-dom"
+import { useMediaQuery } from "react-responsive"
 import { useNavigate } from "react-router-dom"
 import { useMediaQuery } from "react-responsive"
 
@@ -94,6 +96,12 @@ const Header: FC<HeaderProps> = (props) => {
     })
   }
 
+  const scrollWithOffset = (el: any) => {
+    const yCoordinate = el.getBoundingClientRect().top + window.pageYOffset
+    const yOffset = -147.2
+    window.scrollTo({ top: yCoordinate + yOffset, behavior: "smooth" })
+  }
+
   useEffect(() => {
     window.addEventListener("scroll", handleScroll)
 
@@ -101,6 +109,29 @@ const Header: FC<HeaderProps> = (props) => {
       window.removeEventListener("scroll", handleScroll)
     }
   }, [state.scroll])
+
+  const handleToggle = () => {
+    setState({
+      ...state,
+      open: !state.open,
+    })
+  }
+
+  const handleClose = (event: Event) => {
+    if (
+      anchorRef.current &&
+      anchorRef.current.contains(event.target as HTMLElement)
+    ) {
+      return
+    }
+
+    setState({
+      ...state,
+      open: false,
+    })
+  }
+
+  const logout = (): void => {}
 
   const handleToggle = () => {
     setState({
@@ -224,13 +255,25 @@ const Header: FC<HeaderProps> = (props) => {
         </div>
       </div>
       <div className="bottom-header">
-        <HashLink to="#events" className="bottom-header-button">
+        <HashLink
+          to="#events"
+          className="bottom-header-button"
+          scroll={(el) => scrollWithOffset(el)}
+        >
           <Typography variant="body1">{t("nav.events")}</Typography>
         </HashLink>
-        <HashLink to="#blog" className="bottom-header-button">
+        <HashLink
+          to="#blog"
+          className="bottom-header-button"
+          scroll={(el) => scrollWithOffset(el)}
+        >
           <Typography variant="body1">{t("nav.blog")}</Typography>
         </HashLink>
-        <HashLink to="#history" className="bottom-header-button">
+        <HashLink
+          to="#history"
+          className="bottom-header-button"
+          scroll={(el) => scrollWithOffset(el)}
+        >
           <Typography variant="body1">{t("home.history")}</Typography>
         </HashLink>
       </div>

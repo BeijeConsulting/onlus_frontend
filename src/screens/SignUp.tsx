@@ -42,6 +42,7 @@ interface State {
   errorPhone: boolean;
   errorPassword: boolean;
   errorConfirmPassword: boolean;
+  isChecked: boolean;
 }
 
 const initialState = {
@@ -51,6 +52,7 @@ const initialState = {
   errorPhone: false,
   errorPassword: false,
   errorConfirmPassword: false,
+  isChecked: false,
 };
 
 let data: any = {
@@ -122,6 +124,13 @@ const SignUp: FC = () => {
     });
   };
 
+  const setTerms = (e: boolean): void => {
+    setState({
+      ...state,
+      isChecked: e,
+    });
+  };
+
   const submit = (): void => {
     setState({
       ...state,
@@ -156,6 +165,7 @@ const SignUp: FC = () => {
               isRequired={true}
               callbackChange={setName}
               notValid={state.errorName}
+              errorLabel={t("form.errorName")}
             />
             <InputBox
               label={t("login.surname")}
@@ -163,6 +173,7 @@ const SignUp: FC = () => {
               isRequired={true}
               callbackChange={setSurname}
               notValid={state.errorSurname}
+              errorLabel={t("form.errorSurname")}
             />
           </div>
           <div className={"input-box"}>
@@ -172,12 +183,14 @@ const SignUp: FC = () => {
               isRequired={true}
               callbackChange={setEmail}
               notValid={state.errorEmail}
+              errorLabel={t("form.errorEmail")}
             />
             <InputBox
               label={t("login.phone")}
               type={"number"}
               callbackChange={setPhone}
               notValid={state.errorPhone}
+              errorLabel={t("form.errorPhone")}
             />
           </div>
           <div className={"input-box"}>
@@ -187,6 +200,7 @@ const SignUp: FC = () => {
               isRequired={true}
               callbackChange={setPassword}
               notValid={state.errorPassword}
+              errorLabel={t("form.errorPassword")}
             />
             <InputBox
               label={t("login.confirmPassword")}
@@ -194,17 +208,22 @@ const SignUp: FC = () => {
               isRequired={true}
               callbackChange={setConfirmPassword}
               notValid={state.errorConfirmPassword}
+              errorLabel={t("form.errorConfirmPassword")}
             />
           </div>
           <div className="input-box">
             <SelectBox label={t("login.language")} items={lngs} />
           </div>
-          <InputCheckbox label={t("login.acceptTerms")} />
+          <InputCheckbox
+            label={t("login.acceptTerms")}
+            callbackChange={setTerms}
+          />
           <CustomButton
             label={t("buttons.signupButton")}
             size={"big"}
             colorType="primary"
             callback={submit}
+            isDisable={!state.isChecked}
           />
         </form>
         <div className="aside-section">
