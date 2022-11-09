@@ -13,7 +13,7 @@ import SkeletonCardDesktop from "../components/ui/skeleton/SkeletonCardDesktop/S
 import SkeletonCard from "../components/ui/skeleton/skeletonCard/SkeletonCard";
 
 // mediaquery
-import { useMediaQuery } from "react-responsive";
+import useResponsive from "../utils/useResponsive";
 
 // stile
 import "../styles/events.scss";
@@ -30,20 +30,12 @@ const initialState = {
 };
 
 //React responsive const
-const Default = ({ children }: any) => {
-  const isNotMobile = useMediaQuery({ minWidth: 992 });
-  return isNotMobile ? children : null;
-};
-const Mobile = ({ children }: any) => {
-  const isMobile = useMediaQuery({ maxWidth: 991 });
-  return isMobile ? children : null;
-};
 
 const Events: FC = () => {
   const [state, setState] = useState<State>(initialState);
   // translate
   const { t }: any = useTranslation();
-
+  let [Mobile, Default] = useResponsive();
   useEffect(() => {
     fetchDatas();
   }, []);

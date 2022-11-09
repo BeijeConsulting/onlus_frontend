@@ -22,6 +22,7 @@ import { useNavigate } from "react-router-dom";
 import SCREENS from "../route/router";
 import SkeletonCard from "../components/ui/skeleton/skeletonCard/SkeletonCard";
 import { getArticles, getCategories } from "../services/api/articleApi";
+import useResponsive from "../utils/useResponsive";
 
 interface State {
   categories: Array<category>;
@@ -37,16 +38,6 @@ const initialState = {
   isLoaded: false,
 };
 
-//React responsive const
-const Default = ({ children }: any) => {
-  const isNotMobile = useMediaQuery({ minWidth: 992 });
-  return isNotMobile ? children : null;
-};
-const Mobile = ({ children }: any) => {
-  const isMobile = useMediaQuery({ maxWidth: 991 });
-  return isMobile ? children : null;
-};
-
 let localArticles: Array<any> = [];
 
 const Blog: FC = () => {
@@ -54,7 +45,8 @@ const Blog: FC = () => {
   const [state, setState] = useState<State>(initialState);
   const { t }: any = useTranslation();
   const ARTICLESXPAGES = 6;
-
+  //React responsive const
+  let [Mobile, Default] = useResponsive();
   useEffect(() => {
     pagesCalc();
     fetchData();

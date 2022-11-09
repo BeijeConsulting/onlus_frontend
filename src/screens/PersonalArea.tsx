@@ -24,8 +24,9 @@ import { Typography } from "@mui/material";
 import { BiUser } from "react-icons/bi";
 
 //fetch
-import {getPersonalDatas} from '../services/api/personalAreaAPI'
-import axios from 'axios'
+import { getPersonalDatas } from "../services/api/personalAreaAPI";
+import axios from "axios";
+import useResponsive from "../utils/useResponsive";
 
 interface State {
   isLoaded: boolean;
@@ -45,35 +46,27 @@ const PersonalArea: FC = () => {
   const { t }: any = useTranslation();
 
   const [state, setState] = useState<State>(initialState);
-  const isNotMobile = useMediaQuery({ minWidth: 992 });
-  const isMobile = useMediaQuery({ maxWidth: 991 });
+
+  let [Mobile, Default] = useResponsive();
 
   const tryfetch = async () => {
-    let result = await axios.post('http://52.58.94.27:8080/user/signup', {
-      "disableDate": "string",
-      "email": "string",
-      "id": 0,
-      "language": "string",
-      "name": "string",
-      "password": "string",
-      "phone": "string",
-      "publishedArticles": 0,
-      "role": 0,
-      "surname": "string"
+    let result = await axios.post("http://52.58.94.27:8080/user/signup", {
+      disableDate: "string",
+      email: "string",
+      id: 0,
+      language: "string",
+      name: "string",
+      password: "string",
+      phone: "string",
+      publishedArticles: 0,
+      role: 0,
+      surname: "string",
     });
     console.log(result);
-  }
-
-  const Default = ({ children }: any) => {
-    return isNotMobile ? children : null;
-  };
-
-  const Mobile = ({ children }: any) => {
-    return isMobile ? children : null;
   };
 
   async function fetchDatas(): Promise<void> {
-    let result:any = await getPersonalDatas();
+    let result: any = await getPersonalDatas();
     console.log(result.data.data.attributes.personalArea.Info);
     setState({
       ...state,
@@ -108,7 +101,12 @@ const PersonalArea: FC = () => {
       <main id="personalArea" className="sectionContainer">
         <section className="welcomeCard">
           <div className="icon-container">
-            <BiUser size={isMobile ? 30 : 50} />
+            <Mobile>
+              <BiUser size={30} />
+            </Mobile>
+            <Default>
+              <BiUser size={50} />
+            </Default>
           </div>
           <Typography variant="h1">{t("personalArea.welcome")}</Typography>
         </section>

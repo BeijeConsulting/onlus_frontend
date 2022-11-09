@@ -1,31 +1,31 @@
-import { useState, useEffect, FC } from "react"
-import { useTranslation } from "react-i18next"
+import { useState, useEffect, FC } from "react";
+import { useTranslation } from "react-i18next";
 
 //axios
-import { getAbout } from "../services/api/aboutAPI"
+import { getAbout } from "../services/api/aboutAPI";
 
 //helmet
-import { Helmet } from "react-helmet"
+import { Helmet } from "react-helmet";
 
 //Components
-import Footer from "../components/hooks/Footer/Footer"
-import Header from "../components/hooks/Header/Header"
-import Hero from "../components/hooks/Hero/Hero"
-import JoinUs from "../components/hooks/joinUsBbox/JoinUsBox"
-import PreFooter from "../components/hooks/preFooter/PreFooter"
+import Footer from "../components/hooks/Footer/Footer";
+import Header from "../components/hooks/Header/Header";
+import Hero from "../components/hooks/Hero/Hero";
+import JoinUs from "../components/hooks/joinUsBbox/JoinUsBox";
+import PreFooter from "../components/hooks/preFooter/PreFooter";
 
 //type
-import { content } from "../utils/type"
+import { content } from "../utils/type";
 
 //Styles
-import "../styles/about.scss"
-import { Typography, Skeleton } from "@mui/material"
+import "../styles/about.scss";
+import { Typography, Skeleton } from "@mui/material";
 
 interface State {
-  imageHero: string
-  titleHero: string
-  pageIsLoaded: boolean
-  content: Array<content>
+  imageHero: string;
+  titleHero: string;
+  pageIsLoaded: boolean;
+  content: Array<content>;
 }
 
 const initialState: State = {
@@ -33,54 +33,56 @@ const initialState: State = {
   titleHero: "",
   pageIsLoaded: false,
   content: [],
-}
+};
 
 const About: FC = () => {
-  const { t }: any = useTranslation()
-  const [state, setState] = useState<State>(initialState)
+  const { t }: any = useTranslation();
+  const [state, setState] = useState<State>(initialState);
 
   useEffect(() => {
-    fetchDatas()
-  }, [])
+    fetchDatas();
+  }, []);
 
   async function fetchDatas() {
-    let result: any = await getAbout()
-    console.log(result.data.data.attributes.about.hero.img)
+    let result: any = await getAbout();
+    console.log(result.data.data.attributes.about.hero.img);
     setState({
       pageIsLoaded: true,
       imageHero: result.data.data.attributes.about.hero.img,
       titleHero: result.data.data.attributes.about.hero.text,
       content: result.data.data.attributes.about.content,
-    })
+    });
   }
 
   const mappingContent = (item: content, key: number) => {
     return (
       <section
         className={
-          item.media
+          !!item.media
             ? "content-about-container"
             : "content-about-container-only-text"
         }
         key={key}
       >
         <Typography variant="body1">{item.paragraph}</Typography>
-        <div className="media-container">
-          {item.media!.type === "image" ? (
-            <img
-              className="content-about"
-              src={item.media!.content}
-              alt="hero-img"
-            />
-          ) : (
-            <video controls className="content-about">
-              <source type="video/mp4" src={item.media!.content} />
-            </video>
-          )}
-        </div>
+        {!!item.media && (
+          <div className="media-container">
+            {item.media.type === "image" ? (
+              <img
+                className="content-about"
+                src={item.media.content}
+                alt="hero-img"
+              />
+            ) : (
+              <video controls className="content-about">
+                <source type="video/mp4" src={item.media.content} />
+              </video>
+            )}
+          </div>
+        )}
       </section>
-    )
-  }
+    );
+  };
 
   return (
     <>
@@ -135,7 +137,7 @@ const About: FC = () => {
       <PreFooter />
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default About
+export default About;

@@ -55,12 +55,16 @@ const App: FC = () => {
   // funzione per recuperare i dati da chiamata api
   async function fetchDatas() {
     // estrapolo i dati dalle chiamate
-    let generalResult: any = await axios.get("mockAPI/general.json");
+    let generalResult: any = await axios.get(
+      "http://localhost:1337/api/general"
+    );
+    console.log(generalResult.data.data.attributes.general.response);
+
     let socialResult: any = await axios.get("mockAPI/social.json");
     const social: Array<Object> = socialResult.data.response;
     // compongo l'oggetto da mandare a redux
     const generalData: Object = {
-      ...generalResult.data.response,
+      ...generalResult.data.data.attributes.general.response,
       social,
     };
     // modifico gli stati su redux

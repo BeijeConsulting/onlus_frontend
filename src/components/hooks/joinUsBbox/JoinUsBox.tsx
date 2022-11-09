@@ -1,69 +1,58 @@
 //React
-import { ReactElement, useState, useEffect } from "react"
-import { useNavigate, NavigateFunction } from "react-router-dom"
-import { useTranslation } from "react-i18next"
+import { ReactElement, useState, useEffect } from "react";
+import { useNavigate, NavigateFunction } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 //import { getJoinUsData } from "../../../services/api/joinUsBoxAPI"
-import { Typography, Skeleton } from "@mui/material"
+import { Typography, Skeleton } from "@mui/material";
 //Components
-import CustomButton from "../../ui/buttons/CustomButton/CustomButton"
+import CustomButton from "../../ui/buttons/CustomButton/CustomButton";
 //Routes
-import SCREENS from "../../../route/router"
+import SCREENS from "../../../route/router";
 //Style
-import "./joinUsBox.scss"
-import axios from "axios"
+import "./joinUsBox.scss";
+import { joinUs } from "../../../utils/type";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 //ammessi valori "support" e "donate"
 interface Props {
-  type: string
-}
-
-type Data = {
-  title: string
-  donate: string
-  text: string
-  link: string
+  type: string;
 }
 
 interface State {
-  data: Data,
-  isLoaded: boolean
+  data: joinUs | null;
+  isLoaded: boolean;
 }
 
 const initialState = {
-  data:{
-    title:'',
-    donate:'',
-    text:'',
-    link:''
-  },
-  isLoaded: false
-}
+  data: null,
+  isLoaded: false,
+};
 
 function JoinUs(props: Props): ReactElement {
-  const { t }: any = useTranslation()
-  const navigate: NavigateFunction = useNavigate()
-  const [state, setState] = useState<State>(initialState)
+  const { t }: any = useTranslation();
+  const navigate: NavigateFunction = useNavigate();
+  const [state, setState] = useState<State>(initialState);
+
+  const BANNER: any = useSelector((state: any) => state.generalDuck.banner);
 
   useEffect(() => {
-    getData()
-  }, [])
+    getData();
+  }, []);
 
   function goToDonations(): void {
-    navigate(SCREENS.donate)
+    navigate(SCREENS.donate);
   }
 
   function goToJoin(): void {
-    navigate(SCREENS.signup)
+    navigate(SCREENS.signup);
   }
 
   async function getData(): Promise<void> {
-    //let result: any = await getJoinUsData();
-    let result: any = await axios.get("mockAPI/joinUsBox.json");
-    console.log(result)
     setState({
-      data:result.data,
-      isLoaded:true
-    })
+      data: BANNER,
+      isLoaded: true,
+    });
   }
 
   return (
@@ -71,20 +60,15 @@ function JoinUs(props: Props): ReactElement {
       {state.isLoaded ? (
         <>
           <section className="upperSection">
-            {props.type === "support" ? (
-              <Typography variant="h1"> {state.data.title}</Typography>
-            ) : (
-              <Typography variant="h1"> {state.data.donate}</Typography>
-            )}
-    
+            <Typography variant="h1"> {state.data!.title}</Typography>
             <hr className="separator" />
-            <Typography variant="h3">{state.data.text}</Typography>
+            <Typography variant="h4">{state.data!.subtitle}</Typography>
           </section>
           <div className="buttons">
             <div className="btn1">
               <CustomButton
                 colorType="primary"
-                label={t("buttons.donateButton")}
+                label={state.data!.btnText1}
                 size="big"
                 callback={goToDonations}
               />
@@ -93,7 +77,7 @@ function JoinUs(props: Props): ReactElement {
               <div className="btn2">
                 <CustomButton
                   colorType="secondary"
-                  label={t("buttons.volunteerButton")}
+                  label={state.data!.btnText2}
                   size="big"
                   callback={goToJoin}
                 />
@@ -102,19 +86,42 @@ function JoinUs(props: Props): ReactElement {
           </div>
           {props.type === "support" && (
             <section className="lowerSection">
-              <Typography variant="body1">{state.data.link}</Typography>
+              <Link to={SCREENS.support} className="supportLink">
+                <Typography variant="body1">{state.data!.link}</Typography>
+              </Link>
             </section>
-          )}        
+          )}
         </>
-      ):(
-        <div style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
-          <Skeleton variant="text" animation="wave" sx={{fontSize:70, width:'40%', backgroundColor: 'rgb(249 249 249 / 13%)'}}/>
-          <Skeleton variant="text" animation="wave" sx={{fontSize:40, width:'70%', backgroundColor: 'rgb(249 249 249 / 13%)'}}/>
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <Skeleton
+            variant="text"
+            animation="wave"
+            sx={{
+              fontSize: 70,
+              width: "40%",
+              backgroundColor: "rgb(249 249 249 / 13%)",
+            }}
+          />
+          <Skeleton
+            variant="text"
+            animation="wave"
+            sx={{
+              fontSize: 40,
+              width: "70%",
+              backgroundColor: "rgb(249 249 249 / 13%)",
+            }}
+          />
         </div>
       )}
-     
     </article>
-  )
+  );
 }
 
-export default JoinUs
+export default JoinUs;
