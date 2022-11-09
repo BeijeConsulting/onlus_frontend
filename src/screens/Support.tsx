@@ -17,19 +17,14 @@ import Hero from "../components/hooks/Hero/Hero";
 import "../styles/support.scss";
 
 //type
-import { content, hero } from "../utils/type";
+import { content, support } from "../utils/type";
 import { Typography, Skeleton } from "@mui/material";
 import Header from "../components/hooks/Header/Header";
 import JoinUs from "../components/hooks/joinUsBbox/JoinUsBox";
 
-type data={
-  hero: hero;
-  title: string;
-  content: Array<content>;
-}
 interface State {
-  data: data,
-  isLoaded: boolean|null
+  data: support;
+  isLoaded: boolean | null;
 }
 
 function Support() {
@@ -41,11 +36,11 @@ function Support() {
   }, []);
 
   async function getData(): Promise<void> {
-    let result:any = await getSupportData();
-    console.log(result.data.data.attributes.support)
+    let result: any = await getSupportData();
+    console.log(result.data.data.attributes.support);
     setState({
-      data:result.data.data.attributes.support,
-      isLoaded:true
+      data: result.data.data.attributes.support,
+      isLoaded: true,
     });
   }
 
@@ -53,15 +48,30 @@ function Support() {
     console.log("item è", item);
     console.log(`${item?.media?.content}`);
     return (
-      <section className="content-support-container" key={key}>
+      <section
+        className={
+          !!item.media
+            ? "content-about-container"
+            : "content-about-container-only-text"
+        }
+        key={key}
+      >
         <Typography variant="body1">{item?.paragraph}</Typography>
-        <div className="media-container">
-          <img
-            className="content-support"
-            src={item?.media?.content}
-            alt="hero-img"
-          />
-        </div>
+        {!!item.media && (
+          <div className="media-container">
+            {item.media.type === "image" ? (
+              <img
+                className="content-support"
+                src={item.media.content}
+                alt="hero-img"
+              />
+            ) : (
+              <video controls className="content-support">
+                <source type="video/mp4" src={item.media.content} />
+              </video>
+            )}
+          </div>
+        )}
       </section>
     );
   };
@@ -76,43 +86,45 @@ function Support() {
       <main id="support">
         <JoinUs type="donate" />
         <div className="sectionContainer">
-          
-          { state?.isLoaded ? 
-            (
-              <>
-                <Typography variant="h1">{state?.data?.title}</Typography>
-                {state?.data?.content.map(mapping)}
-              </>
-            ) : (
-              <>
-                <Typography variant="h1"><Skeleton variant="text" animation="wave" width={300}/></Typography>
-                <section className="content-support-container">
-                  <Typography variant="body1">
-                    <Skeleton variant="text" animation="wave"/>
-                    <Skeleton variant="text" animation="wave"/>
-                    <Skeleton variant="text" animation="wave"/>
-                    <Skeleton variant="text" animation="wave"/>
-                  </Typography>
-                  <div className="media-container">
-                    <Skeleton
-                      variant="rectangular"
-                      className="content-support"
-                      animation="wave"
-                    />
-                  </div>
-                </section>
-              </>
-            )
-          }
+          {state?.isLoaded ? (
+            <>
+              <Typography variant="h1">{state?.data?.title}</Typography>
+              {state?.data?.content.map(mapping)}
+            </>
+          ) : (
+            <>
+              <Typography variant="h1">
+                <Skeleton variant="text" animation="wave" width={300} />
+              </Typography>
+              <section className="content-support-container">
+                <Typography variant="body1">
+                  <Skeleton variant="text" animation="wave" />
+                  <Skeleton variant="text" animation="wave" />
+                  <Skeleton variant="text" animation="wave" />
+                  <Skeleton variant="text" animation="wave" />
+                </Typography>
+                <div className="media-container">
+                  <Skeleton
+                    variant="rectangular"
+                    className="content-support"
+                    animation="wave"
+                  />
+                </div>
+              </section>
+            </>
+          )}
         </div>
-         {
-          state?.isLoaded ? 
-            <Hero type="home" title={state?.data?.hero.text} image={"pandaImg.jpg"} />
-          :
-            <Skeleton variant="rectangular" animation="wave">
-              <Hero type="about" />
-            </Skeleton>
-         }
+        {state?.isLoaded ? (
+          <Hero
+            type="home"
+            title={state?.data?.hero.text}
+            image={state.data.hero.img}
+          />
+        ) : (
+          <Skeleton variant="rectangular" animation="wave">
+            <Hero type="about" />
+          </Skeleton>
+        )}
       </main>
       <PreFooter />
       <Footer />

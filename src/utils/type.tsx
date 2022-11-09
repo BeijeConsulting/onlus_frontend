@@ -111,3 +111,9 @@ export type joinUs = {
   btnText2: string;
   link: string;
 };
+
+export type support={
+  hero: hero;
+  title: string;
+  content: Array<content>;
+}

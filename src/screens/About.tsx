@@ -19,6 +19,8 @@ import { content } from "../utils/type";
 
 //Styles
 import "../styles/about.scss";
+
+//mui
 import { Typography, Skeleton } from "@mui/material";
 
 interface State {

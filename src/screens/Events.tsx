@@ -1,6 +1,12 @@
-import React, { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
+
+//i18n
 import { useTranslation } from "react-i18next";
+
+//helmet
 import { Helmet } from "react-helmet";
+
+//mui
 import { Typography } from "@mui/material";
 
 // componenti
@@ -17,6 +23,8 @@ import useResponsive from "../utils/useResponsive";
 
 // stile
 import "../styles/events.scss";
+
+//api
 import { getEvents } from "../services/api/eventApi";
 
 interface State {
@@ -29,13 +37,11 @@ const initialState = {
   events: [],
 };
 
-//React responsive const
-
 const Events: FC = () => {
   const [state, setState] = useState<State>(initialState);
-  // translate
   const { t }: any = useTranslation();
   let [Mobile, Default] = useResponsive();
+
   useEffect(() => {
     fetchDatas();
   }, []);
@@ -114,7 +120,7 @@ const Events: FC = () => {
       <Header />
 
       <main id={"events"} className="sectionContainer">
-        <Typography variant="h1">{t("titles.eventsTitle")}</Typography>{" "}
+        <Typography variant="h1">{t("titles.eventsTitle")}</Typography>
         {state.isLoaded ? (
           state.events.map(mapEvents)
         ) : (
