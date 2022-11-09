@@ -51,7 +51,7 @@ function Support() {
     return (
       <section
         className={
-          !!item.media
+          item?.media
             ? "content-about-container"
             : "content-about-container-only-text"
         }
@@ -119,7 +119,7 @@ function Support() {
           <Hero
             type="home"
             title={state?.data?.hero.text}
-            image={state.data.hero.img}
+            image={state?.data?.hero.img}
           />
         ) : (
           <Skeleton variant="rectangular" animation="wave">
