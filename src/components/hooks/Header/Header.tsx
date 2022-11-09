@@ -3,7 +3,7 @@ import { HashLink } from "react-router-hash-link";
 import { Typography } from "@mui/material";
 
 //Hooks
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 
 // mui
@@ -31,6 +31,7 @@ import "./header.scss";
 
 //i18n
 import { useTranslation } from "react-i18next";
+import useResponsive from "../../../utils/useResponsive";
 
 interface HeaderProps {
   isHome?: boolean;
@@ -56,17 +57,8 @@ const Header: FC<HeaderProps> = (props) => {
   const { t, i18n }: any = useTranslation();
 
   // mediaquery
-  const Default = ({ children }: any) => {
-    const isNotMobile = useMediaQuery({ minWidth: 992 });
-    return isNotMobile ? children : null;
-  };
+  let [Mobile, Default] = useResponsive();
 
-  const Mobile = ({ children }: any) => {
-    const isMobile = useMediaQuery({ maxWidth: 991 });
-    return isMobile ? children : null;
-  };
-
-  //navigation functions
   // navigazione
   const goTo = (params: string) => (): void => {
     navigate(params);
@@ -137,24 +129,24 @@ const Header: FC<HeaderProps> = (props) => {
         <SiFoodpanda className="logo" onClick={goTo(SCREENS.home)} />
         <Default>
           <nav className={"nav-desktop"}>
-            <Typography variant="body1" onClick={goTo(SCREENS.home)}>
-              {t("nav.home")}
-            </Typography>
-            <Typography variant="body1" onClick={goTo(SCREENS.about)}>
-              {t("nav.about")}
-            </Typography>
-            <Typography variant="body1" onClick={goTo(SCREENS.events)}>
-              {t("nav.events")}
-            </Typography>
-            <Typography variant="body1" onClick={goTo(SCREENS.blog)}>
-              {t("nav.blog")}
-            </Typography>
-            <Typography variant="body1" onClick={goTo(SCREENS.support)}>
-              {t("nav.supportUs")}
-            </Typography>
-            <Typography variant="body1" onClick={goTo(SCREENS.faq)}>
-              {t("nav.info")}
-            </Typography>
+            <NavLink to={SCREENS.home}>
+              <Typography variant="body1">{t("nav.home")}</Typography>
+            </NavLink>
+            <NavLink to={SCREENS.about}>
+              <Typography variant="body1">{t("nav.about")}</Typography>
+            </NavLink>
+            <NavLink to={SCREENS.events}>
+              <Typography variant="body1">{t("nav.events")}</Typography>
+            </NavLink>
+            <NavLink to={SCREENS.blog}>
+              <Typography variant="body1">{t("nav.blog")}</Typography>
+            </NavLink>
+            <NavLink to={SCREENS.support}>
+              <Typography variant="body1">{t("nav.supportUs")}</Typography>
+            </NavLink>
+            <NavLink to={SCREENS.faq}>
+              <Typography variant="body1">{t("nav.info")}</Typography>
+            </NavLink>
           </nav>
           <ExpandButton />
         </Default>

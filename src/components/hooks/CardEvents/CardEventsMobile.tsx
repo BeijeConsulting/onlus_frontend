@@ -14,6 +14,7 @@ import { useMediaQuery } from "react-responsive";
 import CustomButton from "../../ui/buttons/CustomButton/CustomButton";
 // translation
 import { useTranslation } from "react-i18next";
+import useResponsive from "../../../utils/useResponsive";
 // navigazione
 
 // interfaccia
@@ -34,16 +35,6 @@ interface CardProps {
   opaque: boolean;
 }
 
-const Default = ({ children }: any) => {
-  const isNotMobile = useMediaQuery({ minWidth: 601 });
-  return isNotMobile ? children : null;
-};
-
-const Mobile = ({ children }: any) => {
-  const isMobile = useMediaQuery({ maxWidth: 600 });
-  return isMobile ? children : null;
-};
-
 const ExpandMore = styled((props: ExpandMoreProps) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -58,6 +49,10 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 const CardEventsMobile: FC<CardProps> = (props) => {
   // tranlation hook
   const { t }: any = useTranslation();
+
+  //reponsive
+  let [Mobile, Default] = useResponsive();
+
   // stato
   const [expanded, setExpanded] = useState(false);
   // estende pannello
@@ -87,9 +82,7 @@ const CardEventsMobile: FC<CardProps> = (props) => {
           }}
         />
       )}
-      <Typography variant="h3">
-        {props.title}
-      </Typography>
+      <Typography variant="h3">{props.title}</Typography>
       {/* <CardHeader
         sx={{ padding: "0px" }}
         titleTypographyProps={{ fontWeight: 700, fontSize: "25px" }}
@@ -113,9 +106,15 @@ const CardEventsMobile: FC<CardProps> = (props) => {
       </Mobile>
       <div style={{ display: "flex", flexWrap: "wrap", width: "100%" }}>
         <div style={{ width: "60%" }}>
-          <Typography sx={{ padding: "0", marginY: "10px" }} variant="body2">{props.date}</Typography>
-          <Typography sx={{ padding: "0", marginY: "10px" }} variant="body2">{props.time}</Typography>
-          <Typography sx={{ padding: "0", marginY: "10px" }} variant="body2">{props.place}</Typography>
+          <Typography sx={{ padding: "0", marginY: "10px" }} variant="body2">
+            {props.date}
+          </Typography>
+          <Typography sx={{ padding: "0", marginY: "10px" }} variant="body2">
+            {props.time}
+          </Typography>
+          <Typography sx={{ padding: "0", marginY: "10px" }} variant="body2">
+            {props.place}
+          </Typography>
         </div>
         {!expanded && (
           <div
@@ -179,7 +178,6 @@ const CardEventsMobile: FC<CardProps> = (props) => {
           />
         </CardContent>
       </Collapse>
-      
     </Card>
   );
 };
