@@ -11,7 +11,7 @@ export const setLoggedState = (obj) => dispatch => {
 const userDuck = createSlice({
     name: 'userDuck',
     initialState: {
-        isLoggedIn: true,
+        isLoggedIn: false,
     },
     reducers: {
         setLoggedStateAction: (state, action) => {

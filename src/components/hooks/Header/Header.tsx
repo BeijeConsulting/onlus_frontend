@@ -212,7 +212,7 @@ const Header: FC<HeaderProps> = (props) => {
                           {t("metaTitles.personalArea")}
                         </MenuItem>
 
-                        <MenuItem onClick={logout}>{t("nav.logout")}</MenuItem>
+                        {isLoggedIn && <MenuItem onClick={logout}>{t("nav.logout")}</MenuItem>}
                       </MenuList>
                     </ClickAwayListener>
                   </Paper>
