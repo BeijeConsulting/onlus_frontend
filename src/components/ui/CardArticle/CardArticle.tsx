@@ -1,21 +1,18 @@
-import { FC } from "react";
+import { FC } from "react"
 
 //mui
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import { CardActionArea, CardHeader } from "@mui/material";
-
-//style
-import "./cardarticle.scss";
+import Card from "@mui/material/Card"
+import CardContent from "@mui/material/CardContent"
+import CardMedia from "@mui/material/CardMedia"
+import Typography from "@mui/material/Typography"
+import { CardActionArea, CardHeader } from "@mui/material"
 
 interface CardProps {
-  date: string;
-  image: string;
-  title: string;
-  description: string;
-  minWidth: string;
+  date: string
+  image: string
+  title: string
+  description: string
+  minWidth: string
 }
 
 const CardArticle: FC<CardProps> = (props) => {
@@ -48,7 +45,7 @@ const CardArticle: FC<CardProps> = (props) => {
         </CardContent>
       </CardActionArea>
     </Card>
-  );
-};
+  )
+}
 
-export default CardArticle;
+export default CardArticle

@@ -1,12 +1,12 @@
-import { FC, ReactElement, useState, useEffect } from "react";
+import { FC, ReactElement, useState, useEffect } from "react"
 
 //i18n
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next"
 
 //components
-import InputBox from "../inputBox/InputBox";
-import SelectBox from "../inputBox/SelectBox";
-import CustomButton from "../../ui/buttons/CustomButton/CustomButton";
+import InputBox from "../inputBox/InputBox"
+import SelectBox from "../inputBox/SelectBox"
+import CustomButton from "../../ui/buttons/CustomButton/CustomButton"
 
 //check
 import {
@@ -14,61 +14,61 @@ import {
   checkEmail,
   checkPhone,
   checkPassword,
-} from "../../../utils/checkForm";
+} from "../../../utils/checkForm"
 
 //style
-import "../../../styles/signup.scss";
-import "./myInfoSection.scss";
+import "../../../styles/signup.scss"
+import "./myInfoSection.scss"
 
 //type
-import { personalInfo } from "../../../utils/type";
+import { personalInfo } from "../../../utils/type"
 
 interface InfoProps {
-  datas: personalInfo;
+  datas: personalInfo | null
 }
 
 interface State {
-  buttonDisabled: boolean;
-  errorName: boolean;
-  name: string;
-  errorSurname: boolean;
-  surname: string;
-  errorPassword: boolean;
-  language: string;
-  password: string;
-  errorEmail: boolean;
-  email: string;
-  errorPhoneNumber: boolean;
-  phoneNumber: string;
+  buttonDisabled: boolean
+  errorName: boolean
+  name: string
+  errorSurname: boolean
+  surname: string
+  errorPassword: boolean
+  language: string
+  password: string
+  errorEmail: boolean
+  email: string
+  errorPhoneNumber: boolean
+  phoneNumber: string
 }
 
 const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
-  const { t, i18n }: any = useTranslation();
+  const { t, i18n }: any = useTranslation()
 
   const initialState = {
     buttonDisabled: true,
-    name: props.datas.name,
-    surname: props.datas.surname,
-    email: props.datas.email,
-    password: props.datas.password,
-    phoneNumber: props.datas.phoneNumber,
+    name: props.datas!.name,
+    surname: props.datas!.surname,
+    email: props.datas!.email,
+    password: props.datas!.password,
+    phoneNumber: props.datas!.phoneNumber,
     language: i18n.language,
     errorName: false,
     errorSurname: false,
     errorEmail: false,
     errorPhoneNumber: false,
     errorPassword: false,
-  };
+  }
 
   const lngs = [
     { label: t("login.italian"), value: t("login.italian") },
     { label: t("login.english"), value: t("login.english") },
-  ];
+  ]
 
-  const [state, setState] = useState<State>(initialState);
+  const [state, setState] = useState<State>(initialState)
 
   useEffect(() => {
-    let handleErrorButton: boolean = false;
+    let handleErrorButton: boolean = false
     if (
       !state.errorName &&
       !state.errorEmail &&
@@ -76,23 +76,23 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
       !state.errorPassword &&
       !state.errorPhoneNumber
     ) {
-      handleErrorButton = true;
+      handleErrorButton = true
     }
     setState({
       ...state,
       buttonDisabled: handleErrorButton,
-    });
+    })
   }, [
     state.errorEmail,
     state.errorName,
     state.errorPassword,
     state.errorPhoneNumber,
     state.errorSurname,
-  ]);
+  ])
 
   useEffect(() => {
-    console.log(state);
-  }, [state]);
+    console.log(state)
+  }, [state])
 
   const submit = (): void => {
     setState({
@@ -102,59 +102,59 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
       errorEmail: !checkEmail(state.email),
       errorPhoneNumber: !checkPhone(state.phoneNumber),
       errorPassword: !checkPassword(state.password),
-    });
-    i18n.changeLanguage(state.language);
-  };
+    })
+    i18n.changeLanguage(state.language)
+  }
 
   function setName(val: React.ChangeEvent<HTMLInputElement>): void {
     setState({
       ...state,
       name: val.target.value,
       buttonDisabled: false,
-    });
+    })
   }
   function setSurname(val: React.ChangeEvent<HTMLInputElement>): void {
     setState({
       ...state,
       surname: val.target.value,
       buttonDisabled: false,
-    });
+    })
   }
   function setEmail(val: React.ChangeEvent<HTMLInputElement>): void {
     setState({
       ...state,
       email: val.target.value,
       buttonDisabled: false,
-    });
+    })
   }
   function setPassword(val: React.ChangeEvent<HTMLInputElement>): void {
     setState({
       ...state,
       password: val.target.value,
       buttonDisabled: false,
-    });
+    })
   }
   function setPhoneNumber(val: React.ChangeEvent<HTMLInputElement>): void {
     setState({
       ...state,
       phoneNumber: val.target.value,
       buttonDisabled: false,
-    });
+    })
   }
 
   function setLanguage(val: string) {
-    let language: string = "";
-    if (val === t("login.italian")) language = "it";
-    if (val === t("login.english")) language = "en";
+    let language: string = ""
+    if (val === t("login.italian")) language = "it"
+    if (val === t("login.english")) language = "en"
     setState({
       ...state,
       language: language,
       buttonDisabled: false,
-    });
+    })
   }
 
   function disableAccount(): void {
-    console.log("disabled");
+    console.log("disabled")
   }
 
   return (
@@ -231,7 +231,7 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
         </div>
       </form>
     </section>
-  );
-};
+  )
+}
 
-export default MyInfoSection;
+export default MyInfoSection

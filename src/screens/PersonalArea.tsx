@@ -1,45 +1,45 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react"
 
 //i18n
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next"
 
 //helmet
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet"
 
 //components
-import Footer from "../components/hooks/Footer/Footer";
-import Header from "../components/hooks/Header/Header";
-import NavTab from "../components/ui/NavTab/NavTab";
-import VerticalNavTab from "../components/ui/VerticalNavTab/VerticalNavTab";
-import PreFooter from "../components/hooks/preFooter/PreFooter";
-import DonationHistory from "../components/hooks/DonationsHistory/DonationHistory";
-import PersonalEvents from "../components/hooks/PersonalEvents/PersonalEvents";
-import MyInfoSection from "../components/hooks/MyInfoSection/MyInfoSection";
+import Footer from "../components/hooks/Footer/Footer"
+import Header from "../components/hooks/Header/Header"
+import NavTab from "../components/ui/NavTab/NavTab"
+import VerticalNavTab from "../components/ui/VerticalNavTab/VerticalNavTab"
+import PreFooter from "../components/hooks/preFooter/PreFooter"
+import DonationHistory from "../components/hooks/DonationsHistory/DonationHistory"
+import PersonalEvents from "../components/hooks/PersonalEvents/PersonalEvents"
+import MyInfoSection from "../components/hooks/MyInfoSection/MyInfoSection"
 
 //style
-import "../styles/personalArea.scss";
+import "../styles/personalArea.scss"
 
 //type
-import { personalInfo, events, donationData } from "../utils/type";
+import { personalInfo, events, donationData } from "../utils/type"
 
 //mui
-import { Typography } from "@mui/material";
+import { Typography } from "@mui/material"
 
 //icons
-import { BiUser } from "react-icons/bi";
+import { BiUser } from "react-icons/bi"
 
 //fetch
-import { getPersonalDatas } from "../services/api/personalAreaAPI";
-import axios from "axios";
+import { getPersonalDatas } from "../services/api/personalAreaAPI"
+import axios from "axios"
 
 //reponsive
-import useResponsive from "../utils/useResponsive";
+import useResponsive from "../utils/useResponsive"
 
 interface State {
-  isLoaded: boolean;
-  data: personalInfo | null;
-  eventsData: events[] | null;
-  donationData: donationData | null;
+  isLoaded: boolean
+  data: personalInfo | null
+  eventsData: events[] | null
+  donationData: donationData | null
 }
 
 const initialState = {
@@ -47,14 +47,14 @@ const initialState = {
   data: null,
   eventsData: null,
   donationData: null,
-};
+}
 
 const PersonalArea: FC = () => {
-  const { t }: any = useTranslation();
+  const { t }: any = useTranslation()
 
-  const [state, setState] = useState<State>(initialState);
+  const [state, setState] = useState<State>(initialState)
 
-  let [Mobile, Default] = useResponsive();
+  let [Mobile, Default] = useResponsive()
 
   const tryfetch = async () => {
     let result = await axios.post("http://52.58.94.27:8080/user/signup", {
@@ -68,26 +68,26 @@ const PersonalArea: FC = () => {
       publishedArticles: 0,
       role: 0,
       surname: "string",
-    });
-    console.log(result);
-  };
+    })
+    console.log(result)
+  }
 
   async function fetchDatas(): Promise<void> {
-    let result: any = await getPersonalDatas();
-    console.log(result.data.data.attributes.personalArea.Info);
+    let result: any = await getPersonalDatas()
+    console.log(result.data.data.attributes.personalArea.Info)
     setState({
       ...state,
       isLoaded: true,
       data: result.data.data.attributes.personalArea.Info,
       eventsData: result.data.data.attributes.personalArea.events,
       donationData: result.data.data.attributes.personalArea.donations,
-    });
+    })
   }
 
   useEffect(() => {
-    fetchDatas();
-    tryfetch();
-  }, []);
+    fetchDatas()
+    tryfetch()
+  }, [])
 
   return (
     <>
@@ -153,7 +153,7 @@ const PersonalArea: FC = () => {
       <PreFooter />
       <Footer />
     </>
-  );
-};
+  )
+}
 
-export default PersonalArea;
+export default PersonalArea
