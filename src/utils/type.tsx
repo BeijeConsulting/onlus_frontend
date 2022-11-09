@@ -112,8 +112,8 @@ export type joinUs = {
   link: string;
 };
 
-export type support={
+export type support = {
   hero: hero;
   title: string;
   content: Array<content>;
-}
+};

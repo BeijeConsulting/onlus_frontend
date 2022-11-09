@@ -1,44 +1,44 @@
 .singleDonation {
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid #00000050
+  border-bottom: 1px solid #00000050;
 }
 
-.donationTotal{
-    text-align: center;
-    margin-bottom:20px
+.donationTotal {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-.donationsSection{
-    display:flex;
-    justify-content: center;
+.donationsSection {
+  display: flex;
+  justify-content: center;
 }
 
 .bigNumber {
-    font-size:20px;
-    font-weight: bold;
+  font-size: 20px;
+  font-weight: bold;
 }
 
-.titleHistory{
-    margin-top: 30px;
-    margin-bottom: 20px;
+.titleHistory {
+  margin-top: 30px;
+  margin-bottom: 20px;
 }
 
 @media only screen and (min-width: 768px) {
-    .windowBox{
-        width:350px;
-        display:flex;
-        flex-direction:column;
-    }
-    .titleHistory{
-        display: none;
-    }
-    .donationTotal{
-        margin-bottom: 40px
-    }
+  .windowBox {
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+  }
+  .titleHistory {
+    display: none;
+  }
+  .donationTotal {
+    margin-bottom: 40px;
+  }
 }
 @media only screen and (min-width: 992px) {
-    .donationsSection {
-      padding: 76px;
-    }
+  .donationsSection {
+    padding: 76px;
   }
+}

@@ -1,12 +1,11 @@
-import React, { FC, useState, useEffect } from "react";
-// utils
-import { theme } from "../../../utils/muiTheme";
-// mui components
+import { FC, useState, useEffect } from "react";
+
+// mui
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-import { ThemeProvider } from "@mui/material/styles";
+
 
 interface SelectBoxProps {
   label: string;
@@ -23,10 +22,6 @@ const SelectBox: FC<SelectBoxProps> = (props) => {
   const [state, setState] = useState<State>({
     value: props.defaultValue,
   });
-
-  useEffect(() => {
-    console.log(props.defaultValue);
-  }, []);
 
   const handleChange = (event: SelectChangeEvent) => {
     setState({

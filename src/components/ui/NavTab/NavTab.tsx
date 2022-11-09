@@ -1,4 +1,6 @@
 import React, { FC, ReactElement } from "react";
+
+//mui
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
@@ -11,7 +13,7 @@ interface TabPanelProps {
 }
 
 interface LocalProps {
-  children:React.ReactNode[];
+  children: React.ReactNode[];
   pages: string[];
 }
 
@@ -22,17 +24,13 @@ const TabPanel: FC<TabPanelProps> = (props): ReactElement => {
     <div
       role="tabpanel"
       hidden={value !== index}
-      id={
-          `simple-tabpanel-${index}`
-      }
-      aria-labelledby={
-           `simple-tab-${index}`
-      }
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
       {value === index && (
         <Box sx={{ p: 3 }}>
-          <Typography sx={{ width: '100%' }}>{children}</Typography>
+          <Typography sx={{ width: "100%" }}>{children}</Typography>
         </Box>
       )}
     </div>
@@ -40,11 +38,10 @@ const TabPanel: FC<TabPanelProps> = (props): ReactElement => {
 };
 
 function a11yProps(index: number) {
-  
-    return {
-      id: `simple-tab-${index}`,
-      "aria-controls": `simple-tabpanel-${index}`,
-    };
+  return {
+    id: `simple-tab-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
+  };
 }
 
 export default function BasicTabs(props: LocalProps) {

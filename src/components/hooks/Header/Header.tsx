@@ -1,125 +1,134 @@
-import { FC, useState, useEffect, useRef } from "react"
-import { HashLink } from "react-router-hash-link"
-import { Typography } from "@mui/material"
+import { FC, useState, useEffect, useRef } from "react";
 
-//Hooks
-import { NavLink, useNavigate } from "react-router-dom"
-import { useMediaQuery } from "react-responsive"
+//navigation
+import { NavLink, useNavigate } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
+import SCREENS from "../../../route/router";
 
 // mui
-import ButtonGroup from "@mui/material/ButtonGroup"
-import ClickAwayListener from "@mui/material/ClickAwayListener"
-import Grow from "@mui/material/Grow"
-import Paper from "@mui/material/Paper"
-import Popper from "@mui/material/Popper"
-import MenuItem from "@mui/material/MenuItem"
-import MenuList from "@mui/material/MenuList"
+import ButtonGroup from "@mui/material/ButtonGroup";
+import ClickAwayListener from "@mui/material/ClickAwayListener";
+import Grow from "@mui/material/Grow";
+import Paper from "@mui/material/Paper";
+import Popper from "@mui/material/Popper";
+import MenuItem from "@mui/material/MenuItem";
+import MenuList from "@mui/material/MenuList";
+import { Typography } from "@mui/material";
 
 //Components
 import TemporaryDrawer from "../TemporaryDrawer/TemporaryDrawer"
 import ExpandButton from "../../ui/buttons/ExpandButton"
 
-// Route
-import SCREENS from "../../../route/router"
-
 // Icons
-import { BiUser } from "react-icons/bi"
-import { SiFoodpanda } from "react-icons/si"
+import { BiUser } from "react-icons/bi";
+import { SiFoodpanda } from "react-icons/si";
 
 //Style
-import "./header.scss"
+import "./header.scss";
 
 //i18n
-import { useTranslation } from "react-i18next"
-import useResponsive from "../../../utils/useResponsive"
+import { useTranslation } from "react-i18next";
+
+//responsive
+import useResponsive from "../../../utils/useResponsive";
+
+//redux
+import { useSelector } from "react-redux";
 
 interface HeaderProps {
-  isHome?: boolean
+  isHome?: boolean;
 }
+
 interface State {
-  scroll: boolean
-  lng: string
-  open: boolean
+  scroll: boolean;
+  lng: string;
+  open: boolean;
 }
+
 const initialState = {
   scroll: false,
   lng: "it",
   open: false,
-}
+};
 
 const Header: FC<HeaderProps> = (props) => {
-  const [state, setState] = useState<State>(initialState)
+  const [state, setState] = useState<State>(initialState);
 
+  const isLoggedIn:boolean = useSelector((state:any) => state.userDuck.isLoggedIn);
   const anchorRef = useRef<HTMLDivElement>(null)
 
-  const navigate: Function = useNavigate()
+  const navigate: Function = useNavigate();
 
-  const { t, i18n }: any = useTranslation()
+  const { t, i18n }: any = useTranslation();
 
   // mediaquery
-  let [Mobile, Default] = useResponsive()
+  let [Mobile, Default] = useResponsive();
 
   // navigazione
-  const goTo = (params: string) => (): void => {
-    navigate(params)
-  }
+  const goTo = (params:string) => (): void => {
+    if(params === SCREENS.personalArea) {
+      if(isLoggedIn) navigate(params);
+      else navigate(SCREENS.login)
+    } else {
+      navigate(params);
+    }
+  };
 
   // Changelanguage
   const changeLanguageClick = (lang: string) => (): void => {
-    i18n.changeLanguage(lang)
-  }
+    i18n.changeLanguage(lang);
+  };
 
   // Scroll
   const handleScroll = (): void => {
-    let windowScroll: number = window.scrollY
-    let scrolly: boolean = false
+    let windowScroll: number = window.scrollY;
+    let scrolly: boolean = false;
 
     if (windowScroll > 150) {
-      scrolly = true
-    } else scrolly = false
+      scrolly = true;
+    } else scrolly = false;
 
     setState({
       ...state,
       scroll: scrolly,
-    })
-  }
+    });
+  };
 
   const scrollWithOffset = (el: any): void => {
-    const yCoordinate = el.getBoundingClientRect().top + window.pageYOffset
-    const yOffset = -147.2
-    window.scrollTo({ top: yCoordinate + yOffset, behavior: "smooth" })
-  }
+    const yCoordinate: number =
+      el.getBoundingClientRect().top + window.pageYOffset;
+    const yOffset: number = -147.2;
+    window.scrollTo({ top: yCoordinate + yOffset, behavior: "smooth" });
+  };
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll)
-
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener("scroll", handleScroll)
-    }
-  }, [state.scroll])
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [state.scroll]);
 
   const handleToggle = (): void => {
     setState({
       ...state,
       open: !state.open,
-    })
-  }
+    });
+  };
 
   const handleClose = (event: Event): void => {
     if (
       anchorRef.current &&
       anchorRef.current.contains(event.target as HTMLElement)
     ) {
-      return
+      return;
     }
-
     setState({
       ...state,
       open: false,
-    })
-  }
+    });
+  };
 
-  const logout = (): void => {}
+  const logout = (): void => {};
 
   return (
     <header
@@ -203,7 +212,7 @@ const Header: FC<HeaderProps> = (props) => {
                           {t("metaTitles.personalArea")}
                         </MenuItem>
 
-                        <MenuItem onClick={logout}>{t("nav.logout")}</MenuItem>
+                        {isLoggedIn && <MenuItem onClick={logout}>{t("nav.logout")}</MenuItem>}
                       </MenuList>
                     </ClickAwayListener>
                   </Paper>
@@ -243,7 +252,7 @@ const Header: FC<HeaderProps> = (props) => {
         </HashLink>
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

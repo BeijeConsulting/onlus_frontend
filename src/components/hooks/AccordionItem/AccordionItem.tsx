@@ -1,5 +1,6 @@
 import { FC, useState } from "react"
 
+//mui
 import Accordion from "@mui/material/Accordion"
 import AccordionSummary from "@mui/material/AccordionSummary"
 import AccordionDetails from "@mui/material/AccordionDetails"
@@ -7,6 +8,7 @@ import Typography from "@mui/material/Typography"
 import AddIcon from "@mui/icons-material/Add"
 import RemoveIcon from "@mui/icons-material/Remove"
 
+//style
 import styles from "./AccordionItem.module.scss"
 
 interface AccordionItemProps {

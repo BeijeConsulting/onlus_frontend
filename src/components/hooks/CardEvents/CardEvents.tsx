@@ -11,7 +11,7 @@ import { MutableRefObject } from "react"
 // translation
 import { useTranslation } from "react-i18next"
 
-// componenti
+// components
 import CustomButton from "../../ui/buttons/CustomButton/CustomButton"
 
 //Style

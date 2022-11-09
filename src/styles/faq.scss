@@ -1,25 +1,25 @@
-#faq{
-    section:nth-child(2){
-        padding-top: 40px;
-    }
+#faq {
+  section:nth-child(2) {
+    padding-top: 40px;
+  }
 }
 
-@media(min-width: 768px){
-    #faq{
-        .faq-container{
-            width: 65vw;
-            margin: 0 auto;
-        }
+@media (min-width: 768px) {
+  #faq {
+    .faq-container {
+      width: 65vw;
+      margin: 0 auto;
     }
+  }
 }
 
-@media(min-width: 992px){
-    #faq{
-        section:nth-child(2){
-            padding-top: 100px;
-        }
-        .faq-container{
-            width: 50vw;
-        }
+@media (min-width: 992px) {
+  #faq {
+    section:nth-child(2) {
+      padding-top: 100px;
     }
+    .faq-container {
+      width: 50vw;
+    }
+  }
 }

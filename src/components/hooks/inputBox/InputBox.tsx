@@ -1,6 +1,5 @@
 import React, { FC, useState } from "react";
-// utils
-import { theme } from "../../../utils/muiTheme";
+
 // mui components
 import OutlinedInput from "@mui/material/OutlinedInput";
 import TextField from "@mui/material/TextField";
@@ -11,7 +10,8 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import FormHelperText from "@mui/material/FormHelperText";
-import { ThemeProvider } from "@mui/material/styles";
+
+//style
 import "./inputBox.scss";
 
 interface InputBoxProps {
@@ -55,12 +55,12 @@ const InputBox: FC<InputBoxProps> = (props) => {
     event.preventDefault();
   };
 
-  const toInputUppercase = (e: any) => {
+  const toInputUppercase = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.target.value = ("" + e.target.value).toUpperCase();
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    <>
       {props.type === "password" ? (
         <div style={{ width: "100%" }}>
           <FormControl variant="outlined" sx={{ width: "100%" }}>
@@ -119,7 +119,7 @@ const InputBox: FC<InputBoxProps> = (props) => {
           />
         </div>
       )}
-    </ThemeProvider>
+    </>
   );
 };
 
