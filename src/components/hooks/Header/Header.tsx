@@ -1,14 +1,25 @@
-import { FC, useState, useEffect } from "react"
+import { FC, useState, useEffect, useRef } from "react"
 import { HashLink } from "react-router-hash-link"
 import { Typography } from "@mui/material"
 
 //Hooks
 import { useNavigate } from "react-router-dom"
 import { useMediaQuery } from "react-responsive"
+
+// mui
+import Button from "@mui/material/Button"
+import ButtonGroup from "@mui/material/ButtonGroup"
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown"
+import ClickAwayListener from "@mui/material/ClickAwayListener"
+import Grow from "@mui/material/Grow"
+import Paper from "@mui/material/Paper"
+import Popper from "@mui/material/Popper"
+import MenuItem from "@mui/material/MenuItem"
+import MenuList from "@mui/material/MenuList"
+
 //Components
 import TemporaryDrawer from "../TemporaryDrawer/TemporaryDrawer"
 import ExpandButton from "../../ui/buttons/ExpandButton"
-
 
 // Route
 import SCREENS from "../../../route/router"
@@ -29,14 +40,18 @@ interface HeaderProps {
 interface State {
   scroll: boolean
   lng: string
+  open: boolean
 }
 const initialState = {
   scroll: false,
   lng: "it",
+  open: false,
 }
 
 const Header: FC<HeaderProps> = (props) => {
   const [state, setState] = useState<State>(initialState)
+
+  const anchorRef = useRef<HTMLDivElement>(null)
 
   const navigate: Function = useNavigate()
 
@@ -55,9 +70,9 @@ const Header: FC<HeaderProps> = (props) => {
 
   //navigation functions
   // navigazione
-  const goTo = (params:string) => (): void => {
-    navigate(params);
-  };
+  const goTo = (params: string) => (): void => {
+    navigate(params)
+  }
 
   // Changelanguage
   const changeLanguageClick = (lang: string) => (): void => {
@@ -86,6 +101,29 @@ const Header: FC<HeaderProps> = (props) => {
       window.removeEventListener("scroll", handleScroll)
     }
   }, [state.scroll])
+
+  const handleToggle = () => {
+    setState({
+      ...state,
+      open: !state.open,
+    })
+  }
+
+  const handleClose = (event: Event) => {
+    if (
+      anchorRef.current &&
+      anchorRef.current.contains(event.target as HTMLElement)
+    ) {
+      return
+    }
+
+    setState({
+      ...state,
+      open: false,
+    })
+  }
+
+  const logout = (): void => {}
 
   return (
     <header
@@ -140,7 +178,43 @@ const Header: FC<HeaderProps> = (props) => {
             </Typography>
           </div>
 
-          <BiUser onClick={goTo(SCREENS.personalArea)} className="profile-icon" />
+          <div>
+            <ButtonGroup onClick={handleToggle} ref={anchorRef}>
+              <BiUser className="profile-icon" />
+            </ButtonGroup>
+            <Popper
+              sx={{
+                zIndex: 1,
+              }}
+              open={state.open}
+              anchorEl={anchorRef.current}
+              role={undefined}
+              transition
+              disablePortal
+            >
+              {({ TransitionProps, placement }) => (
+                <Grow
+                  {...TransitionProps}
+                  style={{
+                    transformOrigin:
+                      placement === "bottom" ? "center top" : "center bottom",
+                  }}
+                >
+                  <Paper>
+                    <ClickAwayListener onClickAway={handleClose}>
+                      <MenuList id="split-button-menu" autoFocusItem>
+                        <MenuItem onClick={goTo(SCREENS.personalArea)}>
+                          {t("metaTitles.personalArea")}
+                        </MenuItem>
+
+                        <MenuItem onClick={logout}>{t("nav.logout")}</MenuItem>
+                      </MenuList>
+                    </ClickAwayListener>
+                  </Paper>
+                </Grow>
+              )}
+            </Popper>
+          </div>
 
           <Mobile>
             <div className="burger-menu">

@@ -68,7 +68,7 @@ const ExpandButton: FC = () => {
   }
 
   return (
-    <React.Fragment>
+    <>
       <ButtonGroup
         variant="contained"
         ref={anchorRef}
@@ -137,7 +137,7 @@ const ExpandButton: FC = () => {
           </Grow>
         )}
       </Popper>
-    </React.Fragment>
+    </>
   )
 }
 
