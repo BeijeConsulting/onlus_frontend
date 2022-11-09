@@ -1,10 +1,8 @@
-import { FC, useState, useEffect } from "react"
+import { FC, useState, useEffect, useRef } from "react"
 import { HashLink } from "react-router-hash-link"
 import { Typography } from "@mui/material"
 
 //Hooks
-import { useNavigate } from "react-router-dom"
-import { useMediaQuery } from "react-responsive"
 import { useNavigate } from "react-router-dom"
 import { useMediaQuery } from "react-responsive"
 
@@ -82,7 +80,7 @@ const Header: FC<HeaderProps> = (props) => {
   }
 
   // Scroll
-  function handleScroll() {
+  const handleScroll = (): void => {
     let windowScroll: number = window.scrollY
     let scrolly: boolean = false
 
@@ -96,7 +94,7 @@ const Header: FC<HeaderProps> = (props) => {
     })
   }
 
-  const scrollWithOffset = (el: any) => {
+  const scrollWithOffset = (el: any): void => {
     const yCoordinate = el.getBoundingClientRect().top + window.pageYOffset
     const yOffset = -147.2
     window.scrollTo({ top: yCoordinate + yOffset, behavior: "smooth" })
@@ -110,37 +108,14 @@ const Header: FC<HeaderProps> = (props) => {
     }
   }, [state.scroll])
 
-  const handleToggle = () => {
+  const handleToggle = (): void => {
     setState({
       ...state,
       open: !state.open,
     })
   }
 
-  const handleClose = (event: Event) => {
-    if (
-      anchorRef.current &&
-      anchorRef.current.contains(event.target as HTMLElement)
-    ) {
-      return
-    }
-
-    setState({
-      ...state,
-      open: false,
-    })
-  }
-
-  const logout = (): void => {}
-
-  const handleToggle = () => {
-    setState({
-      ...state,
-      open: !state.open,
-    })
-  }
-
-  const handleClose = (event: Event) => {
+  const handleClose = (event: Event): void => {
     if (
       anchorRef.current &&
       anchorRef.current.contains(event.target as HTMLElement)
