@@ -33,7 +33,8 @@ import { useTranslation } from "react-i18next";
 import useResponsive from "../../../utils/useResponsive";
 
 //redux
-import { useSelector } from "react-redux";
+import { setLoggedState, saveUserData } from "../../../redux/duck/user";
+import { useSelector, useDispatch } from "react-redux";
 
 interface HeaderProps {
   isHome?: boolean;
@@ -53,6 +54,7 @@ const initialState = {
 
 const Header: FC<HeaderProps> = (props) => {
   const [state, setState] = useState<State>(initialState);
+  const dispatch: Function=useDispatch()
 
   const isLoggedIn:boolean = useSelector((state:any) => state.userDuck.isLoggedIn);
   const anchorRef = useRef<HTMLDivElement>(null)
@@ -128,7 +130,16 @@ const Header: FC<HeaderProps> = (props) => {
     });
   };
 
-  const logout = (): void => {};
+  const logout = (): void => {
+    dispatch(setLoggedState(false))
+    dispatch(saveUserData({}))
+
+    sessionStorage.removeItem("userOnlus")
+    localStorage.removeItem("onlusRefreshToken")
+    localStorage.removeItem("onlusToken")
+    
+    navigate(SCREENS.home)
+  };
 
   return (
     <header

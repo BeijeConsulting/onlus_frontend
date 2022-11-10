@@ -60,24 +60,24 @@ const About: FC = () => {
     return (
       <section
         className={
-          !!item.media
+          !!item.mediaContent
             ? "content-about-container"
             : "content-about-container-only-text"
         }
         key={key}
       >
         <Typography variant="body1">{item.paragraph}</Typography>
-        {!!item.media && (
+        {!!item.mediaContent && (
           <div className="media-container">
-            {item.media.type === "image" ? (
+            {item.mediaType === "image" ? (
               <img
                 className="content-about"
-                src={item.media.content}
+                src={item.mediaContent}
                 alt="hero-img"
               />
             ) : (
               <video controls className="content-about">
-                <source type="video/mp4" src={item.media.content} />
+                <source type="video/mp4" src={item.mediaContent} />
               </video>
             )}
           </div>

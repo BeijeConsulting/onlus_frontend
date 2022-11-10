@@ -73,12 +73,12 @@ const Article: FC = () => {
     return (
       <div key={key} className="paragraph">
         <p className="paragraphText">{el.paragraph}</p>
-        {!!el.media &&
-          (el.media.type === "image" ? (
-            <img className="media" src={el.media.content} alt="article-pic" />
+        {!!el.mediaContent &&
+          (el.mediaType === "image" ? (
+            <img className="media" src={el.mediaContent} alt="article-pic" />
           ) : (
             <video controls className="video">
-              <source type="video/webm" src={el.media.content} />
+              <source type="video/webm" src={el.mediaContent} />
             </video>
           ))}
       </div>

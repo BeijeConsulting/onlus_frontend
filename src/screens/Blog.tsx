@@ -66,8 +66,11 @@ const Blog: FC = () => {
     let articleResult: any = await getArticles();
     let categoryResult: any = await getCategories();
 
+    console.log("ARTICLE RESULT ",articleResult.data)
+
     let localCategories: Array<any> = [];
-    localArticles = articleResult.data.data;
+    localArticles = articleResult.data;
+  
 
     categoryResult.data.data.forEach((e: any) => {
       let singleCategory: category = {
@@ -80,7 +83,7 @@ const Blog: FC = () => {
     setState({
       ...state,
       categories: localCategories,
-      articles: articleResult.data.data,
+      articles: articleResult.data,
       isLoaded: true,
     });
   };

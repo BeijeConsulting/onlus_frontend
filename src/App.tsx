@@ -19,8 +19,10 @@ import NotFound from "./screens/NotFound";
 import PersonalArea from "./screens/PersonalArea";
 import SignUp from "./screens/SignUp";
 import Support from "./screens/Support";
+import ScrollToTop from "./utils/ScrollToTop";
+
 import axios from "axios";
-// import route
+
 // import mui
 import ResetPassword from "./screens/ResetPassword";
 import ConfirmDonation from "./screens/ConfirmDonation";
@@ -33,7 +35,9 @@ import Loader from "./assets/images/loader.jpg";
 
 // import style
 import "./App.scss";
-import ScrollToTop from "./utils/ScrollToTop";
+//Api
+import { getSocial } from "./services/api/socialApi";
+import { social } from "./utils/type";
 
 // state
 interface State {
@@ -53,18 +57,17 @@ const App: FC = () => {
     fetchDatas();
   }, []);
   // funzione per recuperare i dati da chiamata api
-  async function fetchDatas() {
+  const fetchDatas = async (): Promise<void> => {
     // estrapolo i dati dalle chiamate
-    let generalResult: any = await axios.get(
-      "http://localhost:1337/api/general"
-    );
-    console.log(generalResult.data.data.attributes.general.response);
+    // let generalResult: any = await axios.get(
+    //   "http://localhost:1337/api/general"
+    // );
 
-    let socialResult: any = await axios.get("mockAPI/social.json");
-    const social: Array<Object> = socialResult.data.response;
+    let socialResult: any = await getSocial();
+    const social: Array<social> = socialResult.data.social;
     // compongo l'oggetto da mandare a redux
     const generalData: Object = {
-      ...generalResult.data.data.attributes.general.response,
+      //...generalResult.data.data.attributes.general.response,
       social,
     };
     // modifico gli stati su redux
@@ -73,7 +76,7 @@ const App: FC = () => {
       ...state,
       isLoaded: true,
     });
-  }
+  };
 
   return (
     <StyledEngineProvider injectFirst>

@@ -63,6 +63,7 @@ function Login() {
         dispatch(saveUserData(result.data))
         sessionStorage.setItem("userOnlus", JSON.stringify({userId:result.data.id, isLoggedIn:true}))
         localStorage.setItem("onlusRefreshToken", result.data.refreshToken)
+        localStorage.setItem("onlusToken", result.data.token)
         navigate(SCREENS.personalArea)
         break;
       case 400:

@@ -41,10 +41,11 @@ const Faq: FC = () => {
 
   async function fetchDatas(): Promise<void> {
     let result: any = await getFAQs();
+    console.log(result.data)
 
     setState({
       ...state,
-      data: result.data.data.attributes.faq,
+      data: result.data,
     });
   }
 

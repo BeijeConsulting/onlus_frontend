@@ -13,10 +13,8 @@ export type article = {
 
 export type content = {
   paragraph: string;
-  media: {
-    content: string;
-    type: string;
-  } | null;
+  mediaContent: string | null,
+  mediaType: string | null
 };
 
 export type category = {
@@ -79,7 +77,7 @@ export type language = {
 };
 
 export type hero = {
-  img: string;
+  image: string;
   text: string;
 };
 export type social = {
@@ -114,6 +112,9 @@ export type joinUs = {
 
 export type support = {
   hero: hero;
-  title: string;
+  title: {
+    id:number,
+    title:string
+  };
   content: Array<content>;
 };

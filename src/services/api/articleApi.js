@@ -1,7 +1,7 @@
 import { getApi } from "../genericServices";
 
 export async function getArticles() {
-  return await getApi("articles");
+  return await getApi("article/");
 }
 
 export async function getCategories() {

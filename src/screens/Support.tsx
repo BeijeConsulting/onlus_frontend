@@ -40,9 +40,9 @@ function Support() {
 
   async function fetchData(): Promise<void> {
     let result: any = await getSupportData();
-    console.log(result.data.data.attributes.support);
+    console.log("Support result",result.data);
     setState({
-      data: result.data.data.attributes.support,
+      data: result.data,
       isLoaded: true,
     });
   }
@@ -51,24 +51,24 @@ function Support() {
     return (
       <section
         className={
-          !!item.media
+          !!item.mediaContent
             ? "content-about-container"
             : "content-about-container-only-text"
         }
         key={key}
       >
         <Typography variant="body1">{item.paragraph}</Typography>
-        {!!item.media && (
+        {!!item.mediaContent && (
           <div className="media-container">
-            {item.media.type === "image" ? (
+            {item.mediaType === "image" ? (
               <img
                 className="content-support"
-                src={item.media.content}
+                src={item.mediaContent}
                 alt="hero-img"
               />
             ) : (
               <video controls className="content-support">
-                <source type="video/mp4" src={item.media.content} />
+                <source type="video/mp4" src={item.mediaContent} />
               </video>
             )}
           </div>
@@ -89,7 +89,7 @@ function Support() {
         <div className="sectionContainer">
           {state?.isLoaded ? (
             <>
-              <Typography variant="h1">{state?.data?.title}</Typography>
+              <Typography variant="h1">{state?.data?.title.title}</Typography>
               {state?.data?.content.map(mapping)}
             </>
           ) : (
@@ -119,7 +119,7 @@ function Support() {
           <Hero
             type="home"
             title={state?.data?.hero.text}
-            image={state?.data?.hero.img}
+            image={state?.data?.hero.image}
           />
         ) : (
           <Skeleton variant="rectangular" animation="wave">
