@@ -2,7 +2,7 @@
 import { Helmet } from "react-helmet";
 
 //react
-import React, {BaseSyntheticEvent, useState} from 'react'
+import {BaseSyntheticEvent, useState, useEffect} from 'react'
 
 //mui
 import { Typography } from "@mui/material";
@@ -16,7 +16,7 @@ import PreFooter from "../components/hooks/preFooter/PreFooter";
 
 //navigation
 import SCREENS from "../route/router";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 //i18n
 import { useTranslation } from "react-i18next";
@@ -26,6 +26,8 @@ import "../styles/login.scss";
 
 //functions
 import { signInApi } from "../services/api/signInApi";
+import { setLoggedState, saveUserData } from '../redux/duck/user';
+import { useDispatch, useSelector } from "react-redux";
 
 interface State {
   email: string | null,
@@ -33,6 +35,9 @@ interface State {
 }
 
 function Login() {
+  const dispatch:Function = useDispatch()
+  const isLogged:boolean= useSelector((state:any)=>state.userDuck.isLoggedIn)
+  const navigate:Function= useNavigate()
   const { t }: any = useTranslation();
 
   const [state, setState] = useState<State>({
@@ -40,10 +45,35 @@ function Login() {
     password: null,
   })
 
-  const login = async (e: BaseSyntheticEvent):Promise<void> => {
+  const checkLog=():void=>{
+    if(isLogged) navigate(SCREENS.personalArea)
+  }
+
+  useEffect(()=>{
+    checkLog()
+  },[])
+
+  const login = async ():Promise<void> => {
     console.log(state);
-    let result = await signInApi(state.email, state.password);
-    console.log(result);
+    let result:any = await signInApi(state.email, state.password);
+
+    switch(result.status){
+      case 200:
+        dispatch(setLoggedState(true))
+        dispatch(saveUserData(result.data))
+        sessionStorage.setItem("userOnlus", JSON.stringify({userId:result.data.id, isLoggedIn:true}))
+        localStorage.setItem("onlusRefreshToken", result.data.refreshToken)
+        navigate(SCREENS.personalArea)
+        break;
+      case 400:
+        console.log("Utente disabilitato")
+        break;
+      case 401:
+        console.log("Email e/o Passwork invalidi")
+        break;
+      default:
+        console.log("Unkown error")
+    }
   };
 
   function getEmail(val:BaseSyntheticEvent) {

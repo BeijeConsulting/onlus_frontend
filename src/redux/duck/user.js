@@ -8,14 +8,26 @@ export const setLoggedState = (obj) => dispatch => {
     }
 }
 
+export const saveUserData = (userData) => dispatch => {
+    try {
+        return dispatch(saveUserDataAction(userData))
+    } catch (err) {
+        console.error(err)
+    }
+}
+
 const userDuck = createSlice({
     name: 'userDuck',
     initialState: {
-        isLoggedIn: false,
+        isLoggedIn: !!sessionStorage.getItem("userOnlus")? JSON.parse(sessionStorage.getItem("userOnlus")).userId:false,
+        userData:{}
     },
     reducers: {
         setLoggedStateAction: (state, action) => {
-            state.isLoggedIn = action.payload.bool
+            state.isLoggedIn = action.payload
+        },
+        saveUserDataAction: (state, action) => {
+            state.userData = action.payload
         },
     }
 });
@@ -23,5 +35,6 @@ const userDuck = createSlice({
 export default userDuck.reducer
 
 const {
-    setLoggedStateAction
+    setLoggedStateAction,
+    saveUserDataAction
 } = userDuck.actions

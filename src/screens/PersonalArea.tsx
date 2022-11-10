@@ -35,6 +35,13 @@ import axios from "axios"
 //reponsive
 import useResponsive from "../utils/useResponsive"
 
+//Router
+import { useNavigate } from "react-router-dom"
+import SCREENS from '../route/router'
+
+//Redux
+import { useSelector } from "react-redux";
+
 interface State {
   isLoaded: boolean
   data: personalInfo | null
@@ -50,26 +57,16 @@ const initialState = {
 }
 
 const PersonalArea: FC = () => {
-  const { t }: any = useTranslation()
-
   const [state, setState] = useState<State>(initialState)
 
+  const { t }: any = useTranslation()
   let [Mobile, Default] = useResponsive()
 
-  const tryfetch = async () => {
-    let result = await axios.post("http://52.58.94.27:8080/user/signup", {
-      disableDate: "string",
-      email: "string",
-      id: 0,
-      language: "string",
-      name: "string",
-      password: "string",
-      phone: "string",
-      publishedArticles: 0,
-      role: 0,
-      surname: "string",
-    })
-    console.log(result)
+  const isLogged:boolean= useSelector((state:any)=>state.userDuck.isLoggedIn)
+  const navigate:Function= useNavigate()
+
+  const checkLog=():void=>{
+    if(!isLogged) navigate(SCREENS.login)
   }
 
   async function fetchDatas(): Promise<void> {
@@ -85,8 +82,8 @@ const PersonalArea: FC = () => {
   }
 
   useEffect(() => {
+    checkLog()
     fetchDatas()
-    tryfetch()
   }, [])
 
   return (

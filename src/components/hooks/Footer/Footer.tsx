@@ -27,6 +27,9 @@ import { social, contact, color } from "../../../utils/type";
 import useResponsive from "../../../utils/useResponsive";
 
 const Footer: FC = () => {
+
+  const isLogged:boolean= useSelector((state:any)=>state.userDuck.isLoggedIn)
+
   // popolo contacts
   const CONTACTS: contact = useSelector(
     (state: any) => state.generalDuck.contacts
@@ -93,16 +96,19 @@ const Footer: FC = () => {
         </ul>
       </section>
       <section className="social">{SOCIAL.map(mapping)}</section>
-      <Mobile>
-        <div className="buttonContainer">
-          <CustomButton
-            colorType="primary"
-            callback={goTo(SCREENS.login)}
-            label={"LOGIN"}
-            size={"small"}
-          />
-        </div>
-      </Mobile>
+      {
+          !isLogged && 
+          <Mobile>
+            <div className="buttonContainer">
+              <CustomButton
+                colorType="primary"
+                callback={goTo(SCREENS.login)}
+                label={"LOGIN"}
+                size={"small"}
+              />
+            </div>
+          </Mobile>
+        }
       <Default>
         <section className="nav">
           <Typography variant="body1" onClick={goTo(SCREENS.home)}>
@@ -135,16 +141,19 @@ const Footer: FC = () => {
         <Link to="#">
           <Typography variant="body1">{t("footer.terms")} </Typography>
         </Link>
-        <Default>
-          <div className="buttonContainer">
-            <CustomButton
-              colorType="primary"
-              callback={goTo(SCREENS.login)}
-              label={"LOGIN"}
-              size={"small"}
-            />
-          </div>
-        </Default>
+        {
+          !isLogged && 
+          <Default>
+            <div className="buttonContainer">
+              <CustomButton
+                colorType="primary"
+                callback={goTo(SCREENS.login)}
+                label={"LOGIN"}
+                size={"small"}
+              />
+            </div>
+          </Default>
+        }
       </section>
 
       <Typography className="rightReserved">
