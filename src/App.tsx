@@ -59,15 +59,15 @@ const App: FC = () => {
   // funzione per recuperare i dati da chiamata api
   const fetchDatas = async (): Promise<void> => {
     // estrapolo i dati dalle chiamate
-    // let generalResult: any = await axios.get(
-    //   "http://localhost:1337/api/general"
-    // );
+     let generalResult: any = await axios.get(
+       "http://localhost:1337/api/general"
+     );
 
     let socialResult: any = await getSocial();
     const social: Array<social> = socialResult.data.social;
     // compongo l'oggetto da mandare a redux
     const generalData: Object = {
-      //...generalResult.data.data.attributes.general.response,
+      ...generalResult.data.data.attributes.general.response,
       social,
     };
     // modifico gli stati su redux
