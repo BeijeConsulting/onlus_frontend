@@ -1,5 +1,5 @@
 const PROPERTIES = {
-  BASEURL: "http://localhost:1337/api/",
+  BASEURL: "http://52.58.94.27:8080/",
   TIMEOUT: 1000,
 };
 

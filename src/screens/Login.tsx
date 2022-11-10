@@ -1,6 +1,9 @@
 //helmet
 import { Helmet } from "react-helmet";
 
+//react
+import React, {BaseSyntheticEvent, useState} from 'react'
+
 //mui
 import { Typography } from "@mui/material";
 
@@ -21,12 +24,41 @@ import { useTranslation } from "react-i18next";
 //Styles
 import "../styles/login.scss";
 
+//functions
+import { signInApi } from "../services/api/signInApi";
+
+interface State {
+  email: string | null,
+  password:string | null
+}
+
 function Login() {
   const { t }: any = useTranslation();
 
-  const login = () => {
-    console.log("login");
+  const [state, setState] = useState<State>({
+    email: null,
+    password: null,
+  })
+
+  const login = async (e: BaseSyntheticEvent):Promise<void> => {
+    console.log(state);
+    let result = await signInApi(state.email, state.password);
+    console.log(result);
   };
+
+  function getEmail(val:BaseSyntheticEvent) {
+    setState({
+      ...state,
+      email: val.target.value,
+    })
+  }
+
+  function getPsw(val:BaseSyntheticEvent) {
+    setState({
+      ...state,
+      password: val.target.value,
+    })
+  }
 
   return (
     <>
@@ -40,8 +72,8 @@ function Login() {
       <main id="login" className="sectionContainer">
         <Typography variant="h1">{t("titles.loginTitle")}</Typography>
         <form className="login-container" onSubmit={login}>
-          <InputBox label={t("login.email")} type={"mail"} />
-          <InputBox label={t("login.password")} type={"password"} />
+          <InputBox label={t("login.email")} type={"mail"} callbackChange={getEmail} />
+          <InputBox label={t("login.password")} type={"password"} callbackChange={getPsw} />
 
           <Link to={"/reset-password"} className="forgot-password">
             <Typography variant="caption">
