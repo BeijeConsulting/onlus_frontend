@@ -55,7 +55,7 @@ function Support() {
         }
         key={key}
       >
-        {/* <Typography variant="body1">{item.paragraph}</Typography> */}
+        <Typography variant="body1">{item.paragraph}</Typography>
         {!!item.mediaContent && (
           <div className="media-container">
             {item.mediaType === "image" ? (

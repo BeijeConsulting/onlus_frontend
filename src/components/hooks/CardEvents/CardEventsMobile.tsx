@@ -1,68 +1,68 @@
-import { useState, FC } from "react";
-import { styled } from "@mui/material/styles";
-import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
-import Collapse from "@mui/material/Collapse";
-import IconButton, { IconButtonProps } from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { useState, FC } from "react"
+import { styled } from "@mui/material/styles"
+import Card from "@mui/material/Card"
+import CardMedia from "@mui/material/CardMedia"
+import CardContent from "@mui/material/CardContent"
+import CardActions from "@mui/material/CardActions"
+import Collapse from "@mui/material/Collapse"
+import IconButton, { IconButtonProps } from "@mui/material/IconButton"
+import Typography from "@mui/material/Typography"
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
 
 // components
-import CustomButton from "../../ui/buttons/CustomButton/CustomButton";
+import CustomButton from "../../ui/buttons/CustomButton/CustomButton"
 // translation
-import { useTranslation } from "react-i18next";
-import useResponsive from "../../../utils/useResponsive";
+import { useTranslation } from "react-i18next"
+import useResponsive from "../../../utils/useResponsive"
 // navigazione
 
 // interfaccia
 interface ExpandMoreProps extends IconButtonProps {
-  expand: boolean;
+  expand: boolean
 }
 
 // props
 interface CardProps {
-  title: string;
-  image: string;
-  description: string;
-  requirement: string;
-  date: string;
-  time: string;
-  place: string;
-  minWidth?: string;
-  opaque: boolean;
+  title: string
+  image: string
+  description: string
+  requirement: string
+  date: string
+  time: string
+  place: string
+  minWidth?: string
+  opaque: boolean
 }
 
 const ExpandMore = styled((props: ExpandMoreProps) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
+  const { expand, ...other } = props
+  return <IconButton {...other} />
 })(({ theme, expand }) => ({
   transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
   marginLeft: "auto",
   transition: theme.transitions.create("transform", {
     duration: theme.transitions.duration.shortest,
   }),
-}));
+}))
 
 const CardEventsMobile: FC<CardProps> = (props) => {
   // tranlation hook
-  const { t }: any = useTranslation();
+  const { t }: any = useTranslation()
 
   //reponsive
-  let [Mobile, Default] = useResponsive();
+  let [Mobile, Default] = useResponsive()
 
   // stato
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(false)
   // estende pannello
   const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
+    setExpanded(!expanded)
+  }
   // naviga
   const goToBooking = (): void => {
     // navigate('/login')
-    console.log("book");
-  };
+    console.log("book")
+  }
 
   return (
     <Card
@@ -178,7 +178,7 @@ const CardEventsMobile: FC<CardProps> = (props) => {
         </CardContent>
       </Collapse>
     </Card>
-  );
-};
+  )
+}
 
-export default CardEventsMobile;
+export default CardEventsMobile

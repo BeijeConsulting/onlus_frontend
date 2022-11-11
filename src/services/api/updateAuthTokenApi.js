@@ -1,7 +1,7 @@
-import { postApi } from "../genericServices";
+import { postApiNoAuth } from "../genericServices";
 
 export async function updateAuthTokenApi(){
-    return await postApi('updateAuthToken', {
+    return await postApiNoAuth('updateAuthToken', {
         "refreshToken": localStorage.getItem('onlusRefreshToken')
     })
 }

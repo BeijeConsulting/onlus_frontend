@@ -1,20 +1,55 @@
-import { createTheme } from "@mui/material/styles";
+import { createTheme } from "@mui/material/styles"
 // import NotoSansJP from "../assets/fonts/Noto_sans_jp"
+
+import store from "../redux/store"
+
+import { color } from "./type"
+
+const PALETTE: Array<color> = store.getState().generalDuck.palette
+console.log("palette", PALETTE)
+
+declare module "@mui/material/styles" {
+  interface Palette {
+    primary: Palette["primary"]
+    secondary: Palette["secondary"]
+    success: Palette["success"]
+    // textPrimary: Palette["info"]
+    // textSecondary: Palette["secondary"]
+    // textTertiary: Palette["success"]
+  }
+  interface PaletteOptions {
+    primary?: PaletteOptions["primary"]
+    secondary?: PaletteOptions["secondary"]
+    success?: PaletteOptions["success"]
+    // textPrimary?: PaletteOptions["info"]
+    // textSecondary?: PaletteOptions["secondary"]
+    // textTertiary?: PaletteOptions["success"]
+  }
+}
 
 export const theme = createTheme({
   palette: {
-    info: {
-      main: "#000",
-      contrastText: "rgba(0,0,0,0.8)",
-    },
     primary: {
-      main: "#B12009",
-      contrastText: "#fff",
+      main: PALETTE[0].bgColor,
+      contrastText: PALETTE[0].textColor,
     },
     secondary: {
-      main: "#CFC36F",
-      contrastText: "#262E36",
+      main: PALETTE[1].bgColor,
+      contrastText: PALETTE[1].textColor,
     },
+    success: {
+      main: PALETTE[2].bgColor,
+      contrastText: PALETTE[2].textColor,
+    },
+    // textPrimary: {
+    //   main: PALETTE[0].textColor,
+    // },
+    // textSecondary: {
+    //   main: PALETTE[1].textColor,
+    // },
+    // textTertiary: {
+    //   main: PALETTE[2].textColor,
+    // },
   },
 
   typography: {
@@ -110,17 +145,4 @@ export const theme = createTheme({
       `,
     },
   },
-});
-
-declare module "@mui/material/styles" {
-  interface Palette {
-    info: Palette["info"];
-    secondary: Palette["secondary"];
-    primary: Palette["primary"];
-  }
-  interface PaletteOptions {
-    info?: PaletteOptions["info"];
-    secondary?: PaletteOptions["secondary"];
-    primary?: PaletteOptions["primary"];
-  }
-}
+})

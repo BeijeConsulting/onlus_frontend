@@ -35,6 +35,9 @@ import useResponsive from "../../../utils/useResponsive"
 import { setLoggedState, saveUserData } from "../../../redux/duck/user"
 import { useSelector, useDispatch } from "react-redux"
 
+// type
+import { color } from "../../../utils/type"
+
 interface HeaderProps {
   isHome?: boolean
 }
@@ -56,6 +59,9 @@ const Header: FC<HeaderProps> = (props) => {
   const dispatch: Function = useDispatch()
 
   const LOGO: any = useSelector((state: any) => state.generalDuck.logo)
+  const PALETTE: Array<color> = useSelector(
+    (state: any) => state.generalDuck.palette
+  )
   const isLoggedIn: boolean = useSelector(
     (state: any) => state.userDuck.isLoggedIn
   )
@@ -146,28 +152,41 @@ const Header: FC<HeaderProps> = (props) => {
   return (
     <header
       className={(state.scroll ? "active " : "") + (props.isHome && "home")}
+      style={{ background: state.scroll ? PALETTE[0].bgColor : "transparent" }}
     >
       <div className={"top-header"}>
         <img src={LOGO} alt="" className="logo" onClick={goTo(SCREENS.home)} />
         <Default>
           <nav className={"nav-desktop"}>
             <NavLink end to={SCREENS.home}>
-              <Typography variant="body1">{t("nav.home")}</Typography>
+              <Typography color={PALETTE[0].textColor} variant="body1">
+                {t("nav.home")}
+              </Typography>
             </NavLink>
             <NavLink end to={SCREENS.about}>
-              <Typography variant="body1">{t("nav.about")}</Typography>
+              <Typography color={PALETTE[0].textColor} variant="body1">
+                {t("nav.about")}
+              </Typography>
             </NavLink>
             <NavLink end to={SCREENS.events}>
-              <Typography variant="body1">{t("nav.events")}</Typography>
+              <Typography color={PALETTE[0].textColor} variant="body1">
+                {t("nav.events")}
+              </Typography>
             </NavLink>
             <NavLink end to={SCREENS.blog}>
-              <Typography variant="body1">{t("nav.blog")}</Typography>
+              <Typography color={PALETTE[0].textColor} variant="body1">
+                {t("nav.blog")}
+              </Typography>
             </NavLink>
             <NavLink end to={SCREENS.support}>
-              <Typography variant="body1">{t("nav.supportUs")}</Typography>
+              <Typography color={PALETTE[0].textColor} variant="body1">
+                {t("nav.supportUs")}
+              </Typography>
             </NavLink>
             <NavLink end to={SCREENS.faq}>
-              <Typography variant="body1">{t("nav.info")}</Typography>
+              <Typography color={PALETTE[0].textColor} variant="body1">
+                {t("nav.info")}
+              </Typography>
             </NavLink>
           </nav>
           <ExpandButton />
@@ -176,6 +195,7 @@ const Header: FC<HeaderProps> = (props) => {
         <div className="header-right">
           <div className="lng-buttons">
             <Typography
+              color={PALETTE[0].textColor}
               variant="body1"
               onClick={changeLanguageClick("en")}
               className={
@@ -184,8 +204,9 @@ const Header: FC<HeaderProps> = (props) => {
             >
               EN
             </Typography>
-            <p style={{ padding: "0 10px" }}>•</p>
+            <p style={{ padding: "0 10px", color: PALETTE[0].textColor }}>•</p>
             <Typography
+              color={PALETTE[0].textColor}
               variant="body1"
               onClick={changeLanguageClick("it")}
               className={
@@ -198,7 +219,7 @@ const Header: FC<HeaderProps> = (props) => {
 
           <div>
             <ButtonGroup onClick={handleToggle} ref={anchorRef}>
-              <BiUser className="profile-icon" />
+              <BiUser color={PALETTE[0].textColor} className="profile-icon" />
             </ButtonGroup>
             <Popper
               sx={{
@@ -251,21 +272,27 @@ const Header: FC<HeaderProps> = (props) => {
           className="bottom-header-button"
           scroll={(el) => scrollWithOffset(el)}
         >
-          <Typography variant="body1">{t("nav.events")}</Typography>
+          <Typography color={PALETTE[0].textColor} variant="body1">
+            {t("nav.events")}
+          </Typography>
         </HashLink>
         <HashLink
           to="#blog"
           className="bottom-header-button"
           scroll={(el) => scrollWithOffset(el)}
         >
-          <Typography variant="body1">{t("nav.blog")}</Typography>
+          <Typography color={PALETTE[0].textColor} variant="body1">
+            {t("nav.blog")}
+          </Typography>
         </HashLink>
         <HashLink
           to="#history"
           className="bottom-header-button"
           scroll={(el) => scrollWithOffset(el)}
         >
-          <Typography variant="body1">{t("home.history")}</Typography>
+          <Typography color={PALETTE[0].textColor} variant="body1">
+            {t("home.history")}
+          </Typography>
         </HashLink>
       </div>
     </header>

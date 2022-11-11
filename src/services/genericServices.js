@@ -2,116 +2,141 @@ import axios from "axios";
 import PROPERTIES from "../utils/properties";
 import { updateAuthTokenApi } from "./api/updateAuthTokenApi";
 
+//instanza axios per chiamate non autenticate
 const axiosInstance = axios.create({
   baseURL: PROPERTIES.BASEURL,
   timeout: PROPERTIES.TIMEOUT,
 });
 
-axios.interceptors.request.use(
+//instanza axios per chiamate con richiesta di autenticazione
+const axiosInstanceToken = axios.create({
+  baseURL: PROPERTIES.BASEURL,
+  timeout: PROPERTIES.TIMEOUT,
+});
+
+//intercetta le richieste con autenticazione, controlla nello storage se esiste il token e lo inserisce nell'header,
+axiosInstanceToken.interceptors.request.use(
   (config) => {
+    //si puo usare qualsisi storage
     const token = localStorage.getItem("onlusToken");
     if (token) {
-      config.headers["Authorization"] = "Bearer " + token;
+      config.headers = {
+        Authorization: `Bearer ${token}`,
+        Accept: "application/json",
+        "Content-Type": "application/x-www-form-urlencoded",
+      };
     }
     return config;
   },
   (error) => {
-    Promise.reject(error);
-  }
-);
-
-axiosInstance.interceptors.response.use(
-    
-  function (response) {
-    return response;
-  },
-  function (error) {
-    const originalRequest = error.config;
-    console.log(originalRequest)
-    if (
-      error.response.status === 401 &&
-      originalRequest.url === `${PROPERTIES.BASEURL}/updateAuthToken`
-    ) {
-      return Promise.reject(error);
-    }
-    if (error.response.status === 401 && !originalRequest._retry) {
-      originalRequest._retry = true;
-      if (localStorage.getItem("onlusRefreshToken") !== null) {
-        updateAuthTokenApi().then((res) => {
-          const { token, refreshToken } = res.data;
-          localStorage.setItem("onlusToken", token);
-          localStorage.setItem("onlusRefreshToken", refreshToken);
-          axios.defaults.headers.common["Authorization"] =
-            "Bearer " + localStorage.getItem("onlusToken");
-        });
-      }
-    }
-
     return Promise.reject(error);
   }
 );
 
-export function responseApi(response) {
+//intercetta la risposta
+axiosInstanceToken.interceptors.response.use(
+  //se positiva invia la risposta
+  function (response) {
+    return response;
+  },
+  //se con errore
+  async function (error) {
+    console.log("responseError", error);
+    const originalRequest = error.config;
+    //se l'errore è 401 usa il refresh Token per ricevere il nuovo token
+    if (error.response.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
+      const updateToken = await updateAuthTokenApi();
+      console.log(updateToken);
+      if (updateToken.status === 200) {
+        const { token, refreshToken } = updateToken.data;
+        localStorage.setItem("onlusToken", token);
+        localStorage.setItem("onlusRefreshToken", refreshToken);
+        //riprova a fare la chiamata avendo il token aggiornato nello storage
+        return axiosInstanceToken(originalRequest);
+      }
+    }
+    //qui gestire altri errori 403, 404, 500
+    return Promise.reject(error);
+  }
+);
+
+export async function responseApi(response) {
   return {
     data: response?.data,
     status: response?.status,
   };
 }
-export function responseApiError(error) {
+
+export async function responseError(error) {
   return {
     message: error?.message,
     status: error?.status,
   };
 }
 
-export async function getApi(resource, header = null) {
-  return axiosInstance
-    .get(resource, {
-      headers: header !== null ? { Authorization: `Bearer ${header}` } : "",
-    })
+export async function getApi(resource) {
+  return axiosInstanceToken
+    .get(resource)
     .then((response) => {
       return responseApi(response);
     })
     .catch((error) => {
-      return responseApiError(error);
+      return responseError(error);
     });
 }
 
-export async function postApi(resource, obj, header = null) {
+export async function getApiNoAuth(resource) {
   return axiosInstance
-    .post(resource, obj, {
-      headers: header !== null ? { Authorization: `Bearer ${header}` } : "",
-    })
+    .get(resource)
     .then((response) => {
       return responseApi(response);
     })
     .catch((error) => {
-      return responseApiError(error);
+      return responseError(error);
     });
 }
 
-export async function putApi(resource, obj, header = null) {
-  return axiosInstance
-    .put(resource, obj, {
-      headers: header !== null ? { Authorization: `Bearer ${header}` } : "",
-    })
+export async function postApi(resource, obj) {
+  return axiosInstanceToken
+    .post(resource, obj)
     .then((response) => {
       return responseApi(response);
     })
     .catch((error) => {
-      return responseApiError(error);
+      return responseError(error);
     });
 }
 
-export async function deleteApi(resource, header = null) {
+export async function postApiNoAuth(resource, obj) {
   return axiosInstance
-    .delete(resource, {
-      headers: header !== null ? { Authorization: `Bearer ${header}` } : "",
-    })
+    .post(resource, obj)
     .then((response) => {
       return responseApi(response);
     })
     .catch((error) => {
-      return responseApiError(error);
+      return responseError(error);
+    });
+}
+
+export async function putApi(resource, obj) {
+  return axiosInstanceToken
+    .put(resource, obj)
+    .then((response) => {
+      return responseApi(response);
+    })
+    .catch((error) => {
+      return responseError(error);
+    });
+}
+
+export async function deleteApi(resource) {
+  return axiosInstanceToken
+    .delete(resource)
+    .then((response) => {
+      return responseApi(response);
+    })
+    .catch((error) => {
+      return responseError(error);
     });
 }

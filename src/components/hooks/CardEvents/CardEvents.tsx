@@ -96,7 +96,7 @@ const CardEvents: FC<CardProps> = (props) => {
             <Typography variant="body2">{props.place}</Typography>
           </div>
           <CustomButton
-            colorType="secondary"
+            colorType={"success"}
             callback={goToBooking}
             label={t("buttons.bookButton")}
             size={"small"}

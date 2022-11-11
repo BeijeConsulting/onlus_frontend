@@ -1,5 +1,5 @@
-import { getApi } from "../genericServices";
+import { getApiNoAuth } from "../genericServices";
 
 export async function getAbout() {
-    return await getApi('about')
+    return await getApiNoAuth('about')
 }

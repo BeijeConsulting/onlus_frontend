@@ -1,104 +1,104 @@
-import { FC, useState } from "react";
+import { FC, useState } from "react"
 
 //navigation
-import { useNavigate } from "react-router-dom";
-import SCREENS from "../../../route/router";
+import { useNavigate } from "react-router-dom"
+import SCREENS from "../../../route/router"
 
 //i18n
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next"
 
 //mui
-import { Box } from "@mui/material";
-import { Drawer } from "@mui/material";
-import Button from "@mui/material/Button";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
+import { Box } from "@mui/material"
+import { Drawer } from "@mui/material"
+import Button from "@mui/material/Button"
+import List from "@mui/material/List"
+import ListItem from "@mui/material/ListItem"
+import ListItemButton from "@mui/material/ListItemButton"
+import ListItemIcon from "@mui/material/ListItemIcon"
+import ListItemText from "@mui/material/ListItemText"
 
 // Icons
-import { GiHamburgerMenu } from "react-icons/gi";
-import { MdClose } from "react-icons/md";
-import { TbHeartHandshake } from "react-icons/tb";
-import { BiDonateHeart } from "react-icons/bi";
+import { GiHamburgerMenu } from "react-icons/gi"
+import { MdClose } from "react-icons/md"
+import { TbHeartHandshake } from "react-icons/tb"
+import { BiDonateHeart } from "react-icons/bi"
 
 // components
-import IconButton from "../../ui/buttons/IconButton";
+import IconButton from "../../ui/buttons/IconButton"
 
 // style
-import styles from "./temporaryDrawer.module.scss";
+import styles from "./temporaryDrawer.module.scss"
 
 // redux
-import { useSelector } from "react-redux";
+import { useSelector } from "react-redux"
 
 //type
-import { social } from "../../../utils/type";
+import { social } from "../../../utils/type"
 
 interface State {
-  right: any;
+  right: any
 }
 const InitialState = {
   right: false,
-};
+}
 
 const TemporaryDrawer: FC = () => {
   // stati
-  const [state, setState] = useState<State>(InitialState);
+  const [state, setState] = useState<State>(InitialState)
   // redux
-  const PALETTE: any = useSelector((state: any) => state.generalDuck.palette);
-  const SOCIAL: any = useSelector((state: any) => state.generalDuck.social);
+  const PALETTE: any = useSelector((state: any) => state.generalDuck.palette)
+  const SOCIAL: any = useSelector((state: any) => state.generalDuck.social)
 
-  const navigate: Function = useNavigate();
+  const navigate: Function = useNavigate()
 
   //i18n
-  const { t }: any = useTranslation();
+  const { t }: any = useTranslation()
 
   const toggleDrawer = (open: any) => (event: any) => {
     if (
       event.type === "keydown" &&
       (event.key === "Tab" || event.key === "Shift")
     ) {
-      return;
+      return
     }
 
-    setState({ ...state, right: open });
-  };
+    setState({ ...state, right: open })
+  }
 
   const goToDonate = (): void => {
-    navigate(SCREENS.donate);
-  };
+    navigate(SCREENS.donate)
+  }
 
   const goToSignup = (): void => {
-    navigate(SCREENS.signup);
-  };
+    navigate(SCREENS.signup)
+  }
 
   //Navigation from sidebar
   const navigationFromSidebar = (text: string) => (): any => {
     switch (text) {
       case t("nav.home"):
-        navigate(SCREENS.home);
-        break;
+        navigate(SCREENS.home)
+        break
       case t("nav.about"):
-        navigate(SCREENS.about);
-        break;
+        navigate(SCREENS.about)
+        break
       case t("nav.events"):
-        navigate(SCREENS.events);
-        break;
+        navigate(SCREENS.events)
+        break
       case t("nav.blog"):
-        navigate(SCREENS.blog);
-        break;
+        navigate(SCREENS.blog)
+        break
       case t("nav.supportUs"):
-        navigate(SCREENS.support);
-        break;
+        navigate(SCREENS.support)
+        break
       case t("nav.info"):
-        navigate(SCREENS.faq);
-        break;
+        navigate(SCREENS.faq)
+        break
 
       default:
-        break;
+        break
     }
-  };
+  }
 
   const list = () => (
     <Box
@@ -109,7 +109,7 @@ const TemporaryDrawer: FC = () => {
       onKeyDown={toggleDrawer(false)}
     >
       <Button className={styles.closeButton} onClick={toggleDrawer(false)}>
-        <MdClose className={styles.burgerIcons} />
+        <MdClose className={styles.burgerIcons} color={PALETTE[0].textColor} />
       </Button>
 
       <List className={styles.navContainer}>
@@ -128,6 +128,7 @@ const TemporaryDrawer: FC = () => {
           >
             <ListItemButton>
               <ListItemText
+                style={{ color: PALETTE[0].textColor }}
                 className={styles.navItem}
                 primary={text}
                 onClick={navigationFromSidebar(text)}
@@ -172,17 +173,18 @@ const TemporaryDrawer: FC = () => {
                   alt="social-icon"
                 />
               </ListItemIcon>
-            );
+            )
           })}
         </div>
       </div>
     </Box>
-  );
+  )
 
   return (
     <>
       <Button className={styles.burgerIcons}>
         <GiHamburgerMenu
+          color={PALETTE[0].textColor}
           className={styles.burgerIcons}
           onClick={toggleDrawer(true)}
         />
@@ -191,7 +193,7 @@ const TemporaryDrawer: FC = () => {
         {list()}
       </Drawer>
     </>
-  );
-};
+  )
+}
 
-export default TemporaryDrawer;
+export default TemporaryDrawer

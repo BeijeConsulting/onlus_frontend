@@ -13,6 +13,7 @@
   },
 
   "metaTitles": {
+    "home": "Home",
     "about": "About us",
     "blog": "Blog",
     "donate": "Donate",
@@ -28,7 +29,7 @@
   },
 
   "titles": {
-    "eventsTitle": "Cooming soon",
+    "eventsTitle": "Coming soon",
     "blogTitle": "News",
     "faqTitle": "Faq",
     "loginTitle": "Login",

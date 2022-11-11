@@ -1,22 +1,23 @@
-import { FC, ReactElement } from "react";
+import { FC, ReactElement } from "react"
 
 //mui
-import { Button, Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material"
 
 //style
-import styles from "./customButton.module.scss";
+import styles from "./customButton.module.scss"
 
 interface Props {
-  colorType: "primary" | "secondary";
-  label: string;
-  size: "big" | "small";
-  callback: Function;
-  isDisable?: boolean;
+  colorType: "inherit" | "primary" | "secondary" | "success" | undefined
+  textColor?: string
+  label: string
+  size: "big" | "small"
+  callback: Function
+  isDisable?: boolean
 }
 
 const CustomButton: FC<Props> = (props): ReactElement => {
   function handleClick(): void {
-    if (!!props.callback) props.callback();
+    if (!!props.callback) props.callback()
   }
 
   return (
@@ -29,9 +30,11 @@ const CustomButton: FC<Props> = (props): ReactElement => {
       onClick={handleClick}
       className={styles.btn}
     >
-      <Typography variant="button">{props.label}</Typography>
+      <Typography variant="button" color={props.textColor}>
+        {props.label}
+      </Typography>
     </Button>
-  );
-};
+  )
+}
 
-export default CustomButton;
+export default CustomButton

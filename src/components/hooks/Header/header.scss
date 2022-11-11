@@ -2,7 +2,6 @@
 
 header {
   padding: 20px;
-  background-color: $primary;
   position: fixed;
   top: 0;
   left: 0;
@@ -22,7 +21,6 @@ header {
       .bottom-header-button {
         font-size: 16px;
         font-weight: 400;
-        color: $white;
         padding: 0 10px;
         cursor: pointer;
       }
@@ -41,7 +39,6 @@ header {
       p {
         cursor: pointer;
         padding: 0 10px;
-        color: $white;
       }
       .active {
         p:after {
@@ -60,10 +57,8 @@ header {
 .lng-buttons {
   display: flex;
   align-items: center;
-  color: $white;
   .langButton {
     cursor: pointer;
-    color: $white;
     font-weight: 300;
     &.active-lng {
       font-weight: 700;
@@ -74,12 +69,10 @@ header {
 .logo {
   width: 50px;
   height: 50px;
-  color: $white;
   cursor: pointer;
 }
 
 .profile-icon {
-  color: $white;
   height: 24px;
   width: auto;
   margin: 20px;
@@ -111,7 +104,6 @@ header {
         height: 2px;
         border-radius: 5px;
         width: 0%;
-        background-color: white;
         transition: width 0.3s ease-in-out;
       }
       &:hover:after {

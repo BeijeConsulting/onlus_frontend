@@ -70,7 +70,7 @@ const App: FC = () => {
     const social: Array<social> = socialResult.data.social
     // compongo l'oggetto da mandare a redux
     const generalData: Object = {
-      ...generalResult.data.generals,
+      ...generalResult.data,
       social,
     }
     // modifico gli stati su redux

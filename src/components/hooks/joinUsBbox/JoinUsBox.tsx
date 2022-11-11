@@ -1,63 +1,62 @@
 //React
-import { ReactElement, useState, useEffect } from "react";
+import { ReactElement, useState, useEffect } from "react"
 
 //navigation
-import { useNavigate, NavigateFunction, Link } from "react-router-dom";
-import SCREENS from "../../../route/router";
+import { useNavigate, NavigateFunction, Link } from "react-router-dom"
+import SCREENS from "../../../route/router"
 
 //mui
-import { Typography, Skeleton } from "@mui/material";
+import { Typography, Skeleton } from "@mui/material"
 
 //Components
-import CustomButton from "../../ui/buttons/CustomButton/CustomButton";
+import CustomButton from "../../ui/buttons/CustomButton/CustomButton"
 
 //Style
-import "./joinUsBox.scss";
+import "./joinUsBox.scss"
 
 //type
-import { joinUs } from "../../../utils/type";
+import { joinUs } from "../../../utils/type"
 
 //redux
-import { useSelector } from "react-redux";
+import { useSelector } from "react-redux"
 
 interface Props {
-  type: string;
+  type: string
 }
 
 interface State {
-  data: joinUs | null;
-  isLoaded: boolean;
+  data: joinUs | null
+  isLoaded: boolean
 }
 
 const initialState = {
   data: null,
   isLoaded: false,
-};
+}
 
 function JoinUs(props: Props): ReactElement {
+  const navigate: NavigateFunction = useNavigate()
+  const [state, setState] = useState<State>(initialState)
 
-  const navigate: NavigateFunction = useNavigate();
-  const [state, setState] = useState<State>(initialState);
-
-  const BANNER: any = useSelector((state: any) => state.generalDuck.banner);
+  const BANNER: any = useSelector((state: any) => state.generalDuck.banner)
 
   useEffect(() => {
-    getData();
-  }, []);
+    getData()
+  }, [])
 
   function goToDonations(): void {
-    navigate(SCREENS.donate);
+    navigate(SCREENS.donate)
   }
 
   function goToJoin(): void {
-    navigate(SCREENS.signup);
+    navigate(SCREENS.signup)
   }
 
   async function getData(): Promise<void> {
     setState({
       data: BANNER,
       isLoaded: true,
-    });
+    })
   }
 
   return (
@@ -72,7 +71,7 @@ function JoinUs(props: Props): ReactElement {
           <div className="buttons">
             <div className="btn1">
               <CustomButton
-                colorType="primary"
+                colorType="secondary"
                 label={state.data!.btnText1}
                 size="big"
                 callback={goToDonations}
@@ -81,7 +80,7 @@ function JoinUs(props: Props): ReactElement {
             {props.type === "support" && (
               <div className="btn2">
                 <CustomButton
-                  colorType="secondary"
+                  colorType="success"
                   label={state.data!.btnText2}
                   size="big"
                   callback={goToJoin}
@@ -126,7 +125,7 @@ function JoinUs(props: Props): ReactElement {
         </div>
       )}
     </article>
-  );
+  )
 }
 
-export default JoinUs;
+export default JoinUs

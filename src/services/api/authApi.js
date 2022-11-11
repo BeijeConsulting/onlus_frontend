@@ -1,4 +1,4 @@
-import { postApi } from "../genericServices";
+import { postApi, postApiNoAuth } from "../genericServices";
 
 export async function signInApi(email, password) {
     return await postApi('/signin', {
@@ -8,5 +8,5 @@ export async function signInApi(email, password) {
 }
 
 export async function signUpApi(obj) {
-    return await postApi('/user/signup', obj)
+    return await postApiNoAuth('/user/signup', obj)
 }

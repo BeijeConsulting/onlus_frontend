@@ -97,6 +97,7 @@ export type contact = {
 }
 
 export type color = {
+  id: number
   name: string
   bgColor: string
   textColor: string
