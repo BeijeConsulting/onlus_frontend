@@ -5,13 +5,13 @@ export async function getArticles() {
 }
 
 export async function getCategories() {
-  return await getApi("categories");
+  return await getApi("category");
 }
 
 export async function getArticlesFromCategory(category) {
-  return await getApi("articles/" + category);
+  return await getApi("article/articles_category/" + category);
 }
 
 export async function getSingleArticle(id) {
-  return await getApi("articles/" + id);
+  return await getApi("article/" + id);
 }

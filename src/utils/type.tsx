@@ -19,7 +19,7 @@ export type content = {
 
 export type category = {
   label: string;
-  value: string;
+  value: number;
 };
 
 export type infoType = {

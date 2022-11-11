@@ -28,7 +28,7 @@ import { useNavigate } from "react-router-dom";
 import SCREENS from "../route/router";
 
 //api
-import { getArticles, getCategories } from "../services/api/articleApi";
+import { getArticles, getCategories, getArticlesFromCategory } from "../services/api/articleApi";
 
 //responsive
 import useResponsive from "../utils/useResponsive";
@@ -48,7 +48,7 @@ const initialState = {
 };
 
 //localarray for search filter
-let localArticles: Array<any> = [];
+let localArticles: Array<article> = [];
 
 const Blog: FC = () => {
   const navigate: Function = useNavigate();
@@ -62,20 +62,26 @@ const Blog: FC = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    console.log(state)
+  }, [state])
+
   const fetchData = async () => {
     let articleResult: any = await getArticles();
     let categoryResult: any = await getCategories();
 
-    console.log("ARTICLE RESULT ",articleResult.data)
+    console.log("ARTICLE RESULT ",articleResult.data);
+    console.log("CATEGORY RESULT ",categoryResult.data)
+
 
     let localCategories: Array<any> = [];
     localArticles = articleResult.data;
   
 
-    categoryResult.data.data.forEach((e: any) => {
+    categoryResult.data.forEach((e: any) => {
       let singleCategory: category = {
-        label: e.attributes.categories.name,
-        value: e.attributes.categories.name,
+        label: e.name,
+        value: e.id,
       };
       localCategories.push(singleCategory);
     });
@@ -95,23 +101,23 @@ const Blog: FC = () => {
   const mapping = (el: any, key: number): JSX.Element => {
     return (
       <div key={key} onClick={goToArticle(el.id)}>
-        {el.attributes.article.status === "published" && (
+        {el.status === "published" && (
           <>
             <Mobile>
               <CardArticle
-                date={el.attributes.article.date}
-                image={el.attributes.article.cover}
-                title={el.attributes.article.title}
-                description={el.attributes.article.content[0].paragraph}
+                date={el.date}
+                image={el.cover}
+                title={el.title}
+                description={el.content[0].paragraph}
                 minWidth="250px"
               />
             </Mobile>
             <Default>
               <CardArticle
-                date={el.attributes.article.date}
-                image={el.attributes.article.cover}
-                title={el.attributes.article.title}
-                description={el.attributes.article.content[0].paragraph}
+                date={el.date}
+                image={el.cover}
+                title={el.title}
+                description={el.content[0].paragraph}
                 minWidth="300px"
               />
             </Default>
@@ -124,7 +130,7 @@ const Blog: FC = () => {
   const search = (e: React.ChangeEvent<HTMLInputElement>): void => {
     let textInputValue: string = e.target.value;
     let filteredArticles: Array<any> = localArticles.filter((obj) => {
-      return obj.attributes.article.title
+      return obj.title
         .toLowerCase()
         .includes(textInputValue.toLowerCase());
     });
@@ -135,8 +141,17 @@ const Blog: FC = () => {
     });
   };
 
-  const handleCategory = (): void => {
-    //chiamata api
+  const handleCategory = async (e:any):Promise<void> => {
+    let newArticles:article[];
+    if(e === 0) newArticles = localArticles;
+    else {
+      let result:any = await getArticlesFromCategory(e);
+      newArticles = result.data;
+    }
+    setState({
+      ...state, 
+      articles: newArticles,
+    })
   };
 
   const pagesCalc = (): void => {
@@ -153,6 +168,7 @@ const Blog: FC = () => {
         <title>Onlus - {t("metaTitles.blog")}</title>
         <meta name="description" content={`${t("metaTitles.blog")} page`} />
       </Helmet>
+
       <Header />
       <main id="blog" className="sectionContainer">
         <Typography variant="h1">{t("titles.blogTitle")}</Typography>
@@ -160,7 +176,7 @@ const Blog: FC = () => {
           <InputBox label={t("search")} type="text" callbackChange={search} />
           <SelectBox
             label={t("selectCategory")}
-            items={state.categories}
+            items={[{label: 'Tutti', value: 0}, ...state.categories]}
             callbackChange={handleCategory}
           />
         </section>

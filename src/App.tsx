@@ -50,24 +50,27 @@ const initialState = {
 
 const App: FC = () => {
   const [state, setState] = useState<State>(initialState);
+
   // hook redux x inviare dati di general
   const dispatch: Function = useDispatch();
+
   // useeffect per inviare dati all'avvio
   useEffect(() => {
     fetchDatas();
   }, []);
+  
   // funzione per recuperare i dati da chiamata api
   const fetchDatas = async (): Promise<void> => {
     // estrapolo i dati dalle chiamate
      let generalResult: any = await axios.get(
-       "http://localhost:1337/api/general"
+       "/mockAPI/general.json"
      );
 
     let socialResult: any = await getSocial();
     const social: Array<social> = socialResult.data.social;
     // compongo l'oggetto da mandare a redux
     const generalData: Object = {
-      ...generalResult.data.data.attributes.general.response,
+      ...generalResult.data.response,
       social,
     };
     // modifico gli stati su redux

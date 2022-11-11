@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 
 //mui
 import { Typography } from "@mui/material";
@@ -28,7 +28,7 @@ import useResponsive from "../../../utils/useResponsive";
 
 const Footer: FC = () => {
 
-  const isLogged:boolean= useSelector((state:any)=>state.userDuck.isLoggedIn)
+  const isLogged:boolean= useSelector((state:any)=>state.userDuck.isLoggedIn);
 
   // popolo contacts
   const CONTACTS: contact = useSelector(
@@ -42,6 +42,15 @@ const Footer: FC = () => {
   const PALETTE: Array<color> = useSelector(
     (state: any) => state.generalDuck.palette
   );
+
+  useEffect(() => {
+    console.log(PALETTE);
+  
+    return () => {
+      
+    }
+  }, [])
+  
   // inizializzo navigazione
   let navigate = useNavigate();
 
