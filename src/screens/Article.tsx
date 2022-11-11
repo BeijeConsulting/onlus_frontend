@@ -1,76 +1,82 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react"
 
 //components
-import Footer from "../components/hooks/Footer/Footer";
-import Header from "../components/hooks/Header/Header";
-import PreFooter from "../components/hooks/preFooter/PreFooter";
-import CorrelatedArticleCard from "../components/ui/correlatedArticleCard/CorrelatedArticleCard";
-import Hero from "../components/hooks/Hero/Hero";
-import SkeletonCorrelated from "../components/ui/skeleton/skeletonCorrelated/SkeletonCorrelated";
+import Footer from "../components/hooks/Footer/Footer"
+import Header from "../components/hooks/Header/Header"
+import PreFooter from "../components/hooks/preFooter/PreFooter"
+import CorrelatedArticleCard from "../components/ui/correlatedArticleCard/CorrelatedArticleCard"
+import Hero from "../components/hooks/Hero/Hero"
+import SkeletonCorrelated from "../components/ui/skeleton/skeletonCorrelated/SkeletonCorrelated"
 
 //translation
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next"
 
 //type
-import { article, category, content } from "../utils/type";
+import { article, category, content } from "../utils/type"
 
 //style
-import "../styles/article.scss";
+import "../styles/article.scss"
 
 //helmet
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet"
 
 //mui
-import { Skeleton, Typography } from "@mui/material";
-import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+import { Skeleton, Typography } from "@mui/material"
+import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft"
 
 //navigation
-import { Link, useParams, useLocation } from "react-router-dom";
-import SCREENS from "../route/router";
+import { Link, useParams, useLocation } from "react-router-dom"
+import SCREENS from "../route/router"
 
 //api
-import { getArticlesFromCategory, getSingleArticle } from "../services/api/articleApi";
+import {
+  getArticlesFromCategory,
+  getSingleArticle,
+} from "../services/api/articleApi"
 
 interface State {
-  article: article | null;
-  localArray: Array<article>;
-  isLoaded: boolean;
+  article: article | null
+  localArray: Array<article>
+  isLoaded: boolean
   categories: category[]
 }
 const initialState = {
   article: null,
   localArray: [],
   isLoaded: false,
-  categories: []
-};
+  categories: [],
+}
 
 const Article: FC = () => {
-  const [state, setState] = useState<State>(initialState);
-  const location = useLocation();
+  const [state, setState] = useState<State>(initialState)
+  const location = useLocation()
 
   //id dell articolo corrispondente
-  let params = useParams();
+  let params = useParams()
 
-  const { t }: any = useTranslation();
+  const { t }: any = useTranslation()
 
   useEffect(() => {
-    fetchDatas();
-  }, []);
+    fetchDatas()
+  }, [])
 
   async function fetchDatas() {
-
-    let singleArticleResult: any = await getSingleArticle(params.id);
+    let singleArticleResult: any = await getSingleArticle(params.id)
     // let correlatedResult: any = await getArticlesFromCategory(
     //   singleArticleResult.data.data.attributes.article.categories[0]
     // );
-    let correlatedResult: any = await getArticlesFromCategory(location.state.cat_id);
+    let correlatedResult: any = await getArticlesFromCategory(
+      location.state.cat_id
+    )
+
+    console.log(singleArticleResult.data)
 
     setState({
       ...state,
       article: singleArticleResult.data,
       localArray: correlatedResult.data,
       isLoaded: true,
-    });
+    })
   }
 
   const mappingParagraph = (el: content, key: number): JSX.Element => {
@@ -86,22 +92,27 @@ const Article: FC = () => {
             </video>
           ))}
       </div>
-    );
-  };
+    )
+  }
 
   const mappingCorrelated = (el: any, key: number): JSX.Element | undefined => {
     if (key < 3) {
       return (
         <div key={key}>
-          <CorrelatedArticleCard
-            cover={el.cover}
-            title={el.title}
-          />
+          <CorrelatedArticleCard cover={el.cover} title={el.title} />
         </div>
-      );
+      )
     }
-    return;
-  };
+    return
+  }
+
+  const mappingCategories = (el: any, key: number): JSX.Element => {
+    return (
+      <Typography key={key} variant="h5" className="hero-category">
+        {el.name}
+      </Typography>
+    )
+  }
 
   return (
     <>
@@ -125,6 +136,7 @@ const Article: FC = () => {
           <Hero
             image={state.article!.cover}
             title={state.article!.title}
+            category={state.article!.category.map(mappingCategories)}
             type="article"
           />
           <section className="sectionContainer">
@@ -174,7 +186,7 @@ const Article: FC = () => {
       <PreFooter />
       <Footer />
     </>
-  );
-};
+  )
+}
 
-export default Article;
+export default Article
