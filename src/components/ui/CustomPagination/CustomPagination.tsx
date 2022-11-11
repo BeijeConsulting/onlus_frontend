@@ -38,7 +38,6 @@ const CustomPagination: FC<CustomPaginationProps> = (props) => {
         page={state.page}
         onChange={handleChange}
       />
-      <div>{props.numberOfPages}</div>
     </Stack>
   );
 };
