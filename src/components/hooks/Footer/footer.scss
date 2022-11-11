@@ -31,7 +31,7 @@ footer {
     gap: 34px;
 
     img {
-      height: 30px;
+      width: 30px;
     }
 
     p {
@@ -147,7 +147,7 @@ footer {
       .iconContainer {
         display: flex;
         flex-direction: row;
-        align-items: flex-start;
+        align-items: center;
         width: 60%;
         gap: 20px;
       }
