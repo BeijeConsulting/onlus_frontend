@@ -25,7 +25,7 @@ import { useTranslation } from "react-i18next";
 import "../styles/login.scss";
 
 //functions
-import { signInApi } from "../services/api/signInApi";
+import { signInApi } from "../services/api/authApi";
 import { setLoggedState, saveUserData } from '../redux/duck/user';
 import { useDispatch, useSelector } from "react-redux";
 

@@ -6,3 +6,7 @@ export async function signInApi(email, password) {
         "password": password
     })
 }
+
+export async function signUpApi(obj) {
+    return await postApi('/user/signup', obj)
+}

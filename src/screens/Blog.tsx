@@ -94,13 +94,13 @@ const Blog: FC = () => {
     });
   };
 
-  const goToArticle = (id: number) => (): void => {
-    navigate(SCREENS.article + `/${id}`);
+  const goToArticle = (id: number, cat_id:number) => (): void => {
+    navigate(SCREENS.article + `/${id}`, {state: {cat_id: cat_id}});
   };
 
   const mapping = (el: any, key: number): JSX.Element => {
     return (
-      <div key={key} onClick={goToArticle(el.id)}>
+      <div key={key} onClick={goToArticle(el.id, el.category[0].id)}>
         {el.status === "published" && (
           <>
             <Mobile>

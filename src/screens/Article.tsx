@@ -12,7 +12,7 @@ import SkeletonCorrelated from "../components/ui/skeleton/skeletonCorrelated/Ske
 import { useTranslation } from "react-i18next";
 
 //type
-import { article, content } from "../utils/type";
+import { article, category, content } from "../utils/type";
 
 //style
 import "../styles/article.scss";
@@ -25,25 +25,28 @@ import { Skeleton, Typography } from "@mui/material";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 
 //navigation
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 import SCREENS from "../route/router";
 
 //api
-import { getArticles, getSingleArticle } from "../services/api/articleApi";
+import { getArticlesFromCategory, getSingleArticle } from "../services/api/articleApi";
 
 interface State {
   article: article | null;
   localArray: Array<article>;
   isLoaded: boolean;
+  categories: category[]
 }
 const initialState = {
   article: null,
   localArray: [],
   isLoaded: false,
+  categories: []
 };
 
 const Article: FC = () => {
   const [state, setState] = useState<State>(initialState);
+  const location = useLocation();
 
   //id dell articolo corrispondente
   let params = useParams();
@@ -55,16 +58,17 @@ const Article: FC = () => {
   }, []);
 
   async function fetchDatas() {
+
     let singleArticleResult: any = await getSingleArticle(params.id);
     // let correlatedResult: any = await getArticlesFromCategory(
     //   singleArticleResult.data.data.attributes.article.categories[0]
     // );
-    let correlatedResult: any = await getArticles();
+    let correlatedResult: any = await getArticlesFromCategory(location.state.cat_id);
 
     setState({
       ...state,
-      article: singleArticleResult.data.data.attributes.article,
-      localArray: correlatedResult.data.data,
+      article: singleArticleResult.data,
+      localArray: correlatedResult.data,
       isLoaded: true,
     });
   }
@@ -90,8 +94,8 @@ const Article: FC = () => {
       return (
         <div key={key}>
           <CorrelatedArticleCard
-            cover={el.attributes.article.cover}
-            title={el.attributes.article.title}
+            cover={el.cover}
+            title={el.title}
           />
         </div>
       );

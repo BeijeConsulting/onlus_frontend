@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 
 //translation
 import { useTranslation } from "react-i18next";
@@ -17,7 +17,10 @@ import CustomButton from "../components/ui/buttons/CustomButton/CustomButton";
 
 //navigation
 import SCREENS from "../route/router";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+//api
+import { signUpApi } from "../services/api/authApi";
 
 //type
 import {
@@ -45,6 +48,7 @@ interface State {
   errorPassword: boolean;
   errorConfirmPassword: boolean;
   isChecked: boolean;
+  isClicked: boolean;
 }
 
 const initialState = {
@@ -55,6 +59,7 @@ const initialState = {
   errorPassword: false,
   errorConfirmPassword: false,
   isChecked: false,
+  isClicked: false
 };
 
 let data: any = {
@@ -64,17 +69,67 @@ let data: any = {
   phone: "",
   password: "",
   confirmPassword: "",
-  lng: "",
+  lng: "IT",
 };
+
+let handleErrorSubmit:boolean = true;
 
 const SignUp: FC = () => {
   const [state, setState] = useState<State>(initialState);
   const { t }: any = useTranslation();
+  const navigate:any = useNavigate();
 
   const lngs: Array<language> = [
     { label: t("login.italian"), value: t("login.italian") },
     { label: t("login.english"), value: t("login.english") },
   ];
+
+  async function handleSignUp(obj:any):Promise<void> {
+    let result = await signUpApi(obj);
+    console.log(result);
+    switch(result.status){
+      case 200:
+        navigate('/login');
+        break;
+      default:
+        console.log('something went wrong');
+        return;
+    }
+  }
+
+  useEffect(() => {    
+    if(
+      !state.errorName &&
+      !state.errorEmail &&
+      !state.errorSurname &&
+      !state.errorPassword &&
+      !state.errorConfirmPassword &&
+      !state.errorPhone &&
+      state.isChecked
+    ) {
+      handleErrorSubmit = false
+    };
+    
+  }, [
+    state.errorEmail,
+    state.errorName,
+    state.errorPassword,
+    state.errorPhone,
+    state.errorSurname,
+  ])
+
+  useEffect(() => {
+    console.log(handleErrorSubmit);
+    if(handleErrorSubmit === false) handleSignUp({
+      name: data.name,
+      surname: data.surname,
+      email: data.email,
+      phone: data.phone,
+      password: data.password,
+      language: data.lng,    
+    })
+
+  }, [state.isClicked])
 
   const setName = (name: React.ChangeEvent<HTMLInputElement>): void => {
     data.name = name.target.value;
@@ -133,6 +188,12 @@ const SignUp: FC = () => {
     });
   };
 
+  const setLanguage = (e:any):void => {
+    console.log(e);
+    data.lng = e.target.value === `${t('login.italian')}` ? 'IT' : 'EN';
+  }
+
+
   const submit = (): void => {
     setState({
       ...state,
@@ -145,6 +206,7 @@ const SignUp: FC = () => {
         data.password,
         data.confirmPassword
       ),
+      isClicked: !state.isClicked
     });
   };
   
@@ -214,7 +276,7 @@ const SignUp: FC = () => {
             />
           </div>
           <div className="input-box">
-            <SelectBox label={t("login.language")} items={lngs} />
+            <SelectBox label={t("login.language")} items={lngs} callbackChange={setLanguage}/>
           </div>
           <InputCheckbox
             label={t("login.acceptTerms")}
