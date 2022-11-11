@@ -1,50 +1,48 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
 
 //i18n
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next"
 
 //fetch
-import { getSupportData } from "../services/api/supportAPI";
-
-//helmet
-import { Helmet } from "react-helmet";
+import { getSupportData } from "../services/api/supportAPI"
 
 //components
-import PreFooter from "../components/hooks/preFooter/PreFooter";
-import Footer from "../components/hooks/Footer/Footer";
-import Hero from "../components/hooks/Hero/Hero";
-import Header from "../components/hooks/Header/Header";
-import JoinUs from "../components/hooks/joinUsBbox/JoinUsBox";
+import PreFooter from "../components/hooks/preFooter/PreFooter"
+import Footer from "../components/hooks/Footer/Footer"
+import Hero from "../components/hooks/Hero/Hero"
+import Header from "../components/hooks/Header/Header"
+import JoinUs from "../components/hooks/joinUsBbox/JoinUsBox"
+import HelmetComponent from "../components/ui/HelmetComponent/HelmetComponent"
 
 //styles
-import "../styles/support.scss";
+import "../styles/support.scss"
 
 //type
-import { content, support } from "../utils/type";
+import { content, support } from "../utils/type"
 
 //mui
-import { Typography, Skeleton } from "@mui/material";
+import { Typography, Skeleton } from "@mui/material"
 
 interface State {
-  data: support;
-  isLoaded: boolean | null;
+  data: support
+  isLoaded: boolean | null
 }
 
 function Support() {
-  const [state, setState] = useState<State>();
-  const { t }: any = useTranslation();
+  const [state, setState] = useState<State>()
+  const { t }: any = useTranslation()
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    fetchData()
+  }, [])
 
   async function fetchData(): Promise<void> {
-    let result: any = await getSupportData();
-    console.log("Support result",result.data);
+    let result: any = await getSupportData()
+    console.log("Support result", result.data)
     setState({
       data: result.data,
       isLoaded: true,
-    });
+    })
   }
 
   const mapping = (item: content, key: number) => {
@@ -74,16 +72,15 @@ function Support() {
           </div>
         )}
       </section>
-    );
-  };
+    )
+  }
 
   return (
     <>
-      <Helmet>
-        <title>Onlus - {t("metaTitles.support")}</title>
-        <meta name="description" content={`${t("metaTitles.support")} page`} />
-      </Helmet>
+      <HelmetComponent metatitleOn={true} title="support" />
+
       <Header />
+
       <main id="support">
         <JoinUs type="donate" />
         <div className="sectionContainer">
@@ -130,7 +127,7 @@ function Support() {
       <PreFooter />
       <Footer />
     </>
-  );
+  )
 }
 
-export default Support;
+export default Support

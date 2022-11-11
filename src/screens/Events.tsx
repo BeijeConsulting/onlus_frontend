@@ -1,50 +1,48 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react"
 
 //i18n
-import { useTranslation } from "react-i18next";
-
-//helmet
-import { Helmet } from "react-helmet";
+import { useTranslation } from "react-i18next"
 
 //mui
-import { Typography } from "@mui/material";
+import { Typography } from "@mui/material"
 
 // componenti
-import Footer from "../components/hooks/Footer/Footer";
-import PreFooter from "../components/hooks/preFooter/PreFooter";
-import CardEvents from "../components/hooks/CardEvents/CardEvents";
-import CardEventsMobile from "../components/hooks/CardEvents/CardEventsMobile";
-import Header from "../components/hooks/Header/Header";
-import SkeletonCardDesktop from "../components/ui/skeleton/SkeletonCardDesktop/SkeletonCardDesktop";
-import SkeletonCard from "../components/ui/skeleton/skeletonCard/SkeletonCard";
+import Footer from "../components/hooks/Footer/Footer"
+import PreFooter from "../components/hooks/preFooter/PreFooter"
+import CardEvents from "../components/hooks/CardEvents/CardEvents"
+import CardEventsMobile from "../components/hooks/CardEvents/CardEventsMobile"
+import Header from "../components/hooks/Header/Header"
+import SkeletonCardDesktop from "../components/ui/skeleton/SkeletonCardDesktop/SkeletonCardDesktop"
+import SkeletonCard from "../components/ui/skeleton/skeletonCard/SkeletonCard"
+import HelmetComponent from "../components/ui/HelmetComponent/HelmetComponent"
 
 // mediaquery
-import useResponsive from "../utils/useResponsive";
+import useResponsive from "../utils/useResponsive"
 
 // stile
-import "../styles/events.scss";
+import "../styles/events.scss"
 
 //api
-import { getEvents } from "../services/api/eventApi";
+import { getEvents } from "../services/api/eventApi"
 
 interface State {
-  isLoaded: boolean;
-  events: Array<any>;
+  isLoaded: boolean
+  events: Array<any>
 }
 
 const initialState = {
   isLoaded: false,
   events: [],
-};
+}
 
 const Events: FC = () => {
-  const [state, setState] = useState<State>(initialState);
-  const { t }: any = useTranslation();
-  let [Mobile, Default] = useResponsive();
+  const [state, setState] = useState<State>(initialState)
+  const { t }: any = useTranslation()
+  let [Mobile, Default] = useResponsive()
 
   useEffect(() => {
-    fetchDatas();
-  }, []);
+    fetchDatas()
+  }, [])
 
   //funzione traduzione data Simone
   // axios.get("mockAPI/events.jso").then((response) => {
@@ -71,13 +69,13 @@ const Events: FC = () => {
   // });
 
   const fetchDatas = async (): Promise<void> => {
-    let result: any = await getEvents();
+    let result: any = await getEvents()
     setState({
       ...state,
       isLoaded: true,
       events: result.data.data,
-    });
-  };
+    })
+  }
 
   // map
   const mapEvents = (event: any, key: number): JSX.Element => {
@@ -107,15 +105,12 @@ const Events: FC = () => {
           />
         </Mobile>
       </article>
-    );
-  };
+    )
+  }
 
   return (
     <>
-      <Helmet>
-        <title>Onlus - {t("metaTitles.events")}</title>
-        <meta name="description" content={`${t("metaTitles.events")} page`} />
-      </Helmet>
+      <HelmetComponent metatitleOn={true} title="events" />
 
       <Header />
 
@@ -149,7 +144,7 @@ const Events: FC = () => {
       <PreFooter />
       <Footer />
     </>
-  );
-};
+  )
+}
 
-export default Events;
+export default Events

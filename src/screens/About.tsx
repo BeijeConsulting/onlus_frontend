@@ -1,33 +1,31 @@
-import { useState, useEffect, FC } from "react";
-import { useTranslation } from "react-i18next";
+import { useState, useEffect, FC } from "react"
+import { useTranslation } from "react-i18next"
 
 //axios
-import { getAbout } from "../services/api/aboutAPI";
-
-//helmet
-import { Helmet } from "react-helmet";
+import { getAbout } from "../services/api/aboutAPI"
 
 //Components
-import Footer from "../components/hooks/Footer/Footer";
-import Header from "../components/hooks/Header/Header";
-import Hero from "../components/hooks/Hero/Hero";
-import JoinUs from "../components/hooks/joinUsBbox/JoinUsBox";
-import PreFooter from "../components/hooks/preFooter/PreFooter";
+import Footer from "../components/hooks/Footer/Footer"
+import Header from "../components/hooks/Header/Header"
+import Hero from "../components/hooks/Hero/Hero"
+import JoinUs from "../components/hooks/joinUsBbox/JoinUsBox"
+import PreFooter from "../components/hooks/preFooter/PreFooter"
+import HelmetComponent from "../components/ui/HelmetComponent/HelmetComponent"
 
 //type
-import { content } from "../utils/type";
+import { content } from "../utils/type"
 
 //Styles
-import "../styles/about.scss";
+import "../styles/about.scss"
 
 //mui
-import { Typography, Skeleton } from "@mui/material";
+import { Typography, Skeleton } from "@mui/material"
 
 interface State {
-  imageHero: string;
-  titleHero: string;
-  pageIsLoaded: boolean;
-  content: Array<content>;
+  imageHero: string
+  titleHero: string
+  pageIsLoaded: boolean
+  content: Array<content>
 }
 
 const initialState: State = {
@@ -35,25 +33,25 @@ const initialState: State = {
   titleHero: "",
   pageIsLoaded: false,
   content: [],
-};
+}
 
 const About: FC = () => {
-  const { t }: any = useTranslation();
-  const [state, setState] = useState<State>(initialState);
+  const { t }: any = useTranslation()
+  const [state, setState] = useState<State>(initialState)
 
   useEffect(() => {
-    fetchDatas();
-  }, []);
+    fetchDatas()
+  }, [])
 
   async function fetchDatas() {
-    let result: any = await getAbout();
-    console.log(result.data.data.attributes.about.hero.img);
+    let result: any = await getAbout()
+    console.log(result.data.data.attributes.about.hero.img)
     setState({
       pageIsLoaded: true,
       imageHero: result.data.data.attributes.about.hero.img,
       titleHero: result.data.data.attributes.about.hero.text,
       content: result.data.data.attributes.about.content,
-    });
+    })
   }
 
   const mappingContent = (item: content, key: number) => {
@@ -83,15 +81,12 @@ const About: FC = () => {
           </div>
         )}
       </section>
-    );
-  };
+    )
+  }
 
   return (
     <>
-      <Helmet>
-        <title>Onlus - {t("metaTitles.about")}</title>
-        <meta name="description" content={`${t("metaTitles.about")} page`} />
-      </Helmet>
+      <HelmetComponent metatitleOn={true} title="about" />
 
       <Header />
       {state.pageIsLoaded ? (
@@ -139,7 +134,7 @@ const About: FC = () => {
       <PreFooter />
       <Footer />
     </>
-  );
-};
+  )
+}
 
-export default About;
+export default About

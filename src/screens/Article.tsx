@@ -17,9 +17,6 @@ import { article, category, content } from "../utils/type"
 //style
 import "../styles/article.scss"
 
-//helmet
-import { Helmet } from "react-helmet"
-
 //mui
 import { Skeleton, Typography } from "@mui/material"
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft"
@@ -33,6 +30,7 @@ import {
   getArticlesFromCategory,
   getSingleArticle,
 } from "../services/api/articleApi"
+import HelmetComponent from "../components/ui/HelmetComponent/HelmetComponent"
 
 interface State {
   article: article | null
@@ -117,17 +115,13 @@ const Article: FC = () => {
   return (
     <>
       {state.isLoaded ? (
-        <Helmet>
-          <title>Onlus - {state.article?.title}</title>
-          <meta name="description" content={`${t("metaTitles.about")} page`} />
-        </Helmet>
+        <HelmetComponent metatitleOn={false} title={state.article?.title} />
       ) : (
-        <Helmet>
-          <title>Onlus - </title>
-          <meta name="description" content={`${t("metaTitles.about")} page`} />
-        </Helmet>
+        <HelmetComponent metatitleOn={false} title="" />
       )}
+
       <Header />
+
       <Link to={SCREENS.blog} className="arrowButton goBackButton">
         <KeyboardArrowLeftIcon sx={{ height: 40, width: 40 }} />
       </Link>

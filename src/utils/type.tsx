@@ -89,11 +89,11 @@ export type social = {
 }
 
 export type contact = {
-  phone: string
+  site: string
   email: string
   address: string
-  PIva: string
-  CF: string
+  vatNumber: string
+  fiscalCode: string
 }
 
 export type color = {

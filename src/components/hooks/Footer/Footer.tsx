@@ -1,68 +1,67 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect } from "react"
 
 //mui
-import { Typography } from "@mui/material";
+import { Typography } from "@mui/material"
 
 // translation
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next"
 
 // navigation
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-import SCREENS from "../../../route/router";
+import { useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
+import SCREENS from "../../../route/router"
 
 // redux
-import { useSelector } from "react-redux";
+import { useSelector } from "react-redux"
 
 // components
-import CustomButton from "../../ui/buttons/CustomButton/CustomButton";
+import CustomButton from "../../ui/buttons/CustomButton/CustomButton"
 
 // style
-import "./footer.scss";
+import "./footer.scss"
 
 //type
-import { social, contact, color } from "../../../utils/type";
+import { social, contact, color } from "../../../utils/type"
 
 //responsive
-import useResponsive from "../../../utils/useResponsive";
+import useResponsive from "../../../utils/useResponsive"
 
 const Footer: FC = () => {
-
-  const isLogged:boolean= useSelector((state:any)=>state.userDuck.isLoggedIn);
+  const isLogged: boolean = useSelector(
+    (state: any) => state.userDuck.isLoggedIn
+  )
 
   // popolo contacts
   const CONTACTS: contact = useSelector(
     (state: any) => state.generalDuck.contacts
-  );
+  )
   // popolo social
   const SOCIAL: Array<social> = useSelector(
     (state: any) => state.generalDuck.social
-  );
+  )
   // POPOLO IL COLOR PALETTE
   const PALETTE: Array<color> = useSelector(
     (state: any) => state.generalDuck.palette
-  );
+  )
 
   useEffect(() => {
-    console.log(PALETTE);
-  
-    return () => {
-      
-    }
-  }, [])
-  
-  // inizializzo navigazione
-  let navigate = useNavigate();
+    console.log(PALETTE)
 
-  let [Mobile, Default] = useResponsive();
+    return () => {}
+  }, [])
+
+  // inizializzo navigazione
+  let navigate = useNavigate()
+
+  let [Mobile, Default] = useResponsive()
 
   // navigazione
   const goTo = (params: string) => (): void => {
-    navigate(params);
-  };
+    navigate(params)
+  }
 
   // tranlation hook
-  const { t }: any = useTranslation();
+  const { t }: any = useTranslation()
 
   const mapping = (el: social, key: number): JSX.Element | boolean => {
     if (el.footerOn) {
@@ -75,11 +74,11 @@ const Footer: FC = () => {
             </div>
           </Default>
         </div>
-      );
+      )
     } else {
-      return false;
+      return false
     }
-  };
+  }
   return (
     <footer style={{ backgroundColor: PALETTE[0].bgColor }} id="footer">
       <section className="contacts">
@@ -88,7 +87,7 @@ const Footer: FC = () => {
         </Typography>
         <ul className="contactsList">
           <li>
-            <Typography variant="body1">{CONTACTS.phone}</Typography>
+            <Typography variant="body1">{CONTACTS.site}</Typography>
           </li>
           <li>
             <Typography variant="body1">{CONTACTS.email}</Typography>
@@ -97,27 +96,26 @@ const Footer: FC = () => {
             <Typography variant="body1">{CONTACTS.address}</Typography>
           </li>
           <li>
-            <Typography variant="body1">P.Iva: {CONTACTS.PIva}</Typography>
+            <Typography variant="body1">P.Iva: {CONTACTS.vatNumber}</Typography>
           </li>
           <li>
-            <Typography variant="body1">C.F: {CONTACTS.CF}</Typography>
+            <Typography variant="body1">C.F: {CONTACTS.fiscalCode}</Typography>
           </li>
         </ul>
       </section>
       <section className="social">{SOCIAL.map(mapping)}</section>
-      {
-          !isLogged && 
-          <Mobile>
-            <div className="buttonContainer">
-              <CustomButton
-                colorType="primary"
-                callback={goTo(SCREENS.login)}
-                label={"LOGIN"}
-                size={"small"}
-              />
-            </div>
-          </Mobile>
-        }
+      {!isLogged && (
+        <Mobile>
+          <div className="buttonContainer">
+            <CustomButton
+              colorType="primary"
+              callback={goTo(SCREENS.login)}
+              label={"LOGIN"}
+              size={"small"}
+            />
+          </div>
+        </Mobile>
+      )}
       <Default>
         <section className="nav">
           <Typography variant="body1" onClick={goTo(SCREENS.home)}>
@@ -150,8 +148,7 @@ const Footer: FC = () => {
         <Link to="#">
           <Typography variant="body1">{t("footer.terms")} </Typography>
         </Link>
-        {
-          !isLogged && 
+        {!isLogged && (
           <Default>
             <div className="buttonContainer">
               <CustomButton
@@ -162,14 +159,14 @@ const Footer: FC = () => {
               />
             </div>
           </Default>
-        }
+        )}
       </section>
 
       <Typography className="rightReserved">
         {t("footer.rightReserved")}
       </Typography>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

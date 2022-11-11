@@ -13,9 +13,7 @@ import PreFooter from "../components/hooks/preFooter/PreFooter"
 import CustomPagination from "../components/ui/CustomPagination/CustomPagination"
 import CardArticle from "../components/ui/CardArticle/CardArticle"
 import SkeletonCard from "../components/ui/skeleton/skeletonCard/SkeletonCard"
-
-//helmet
-import { Helmet } from "react-helmet"
+import HelmetComponent from "../components/ui/HelmetComponent/HelmetComponent"
 
 //utils
 import { article, category } from "../utils/type"
@@ -164,10 +162,7 @@ const Blog: FC = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Onlus - {t("metaTitles.blog")}</title>
-        <meta name="description" content={`${t("metaTitles.blog")} page`} />
-      </Helmet>
+      <HelmetComponent metatitleOn={true} title="blog" />
 
       <Header />
       <main id="blog" className="sectionContainer">

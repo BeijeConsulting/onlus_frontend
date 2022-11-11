@@ -3,9 +3,6 @@ import { FC, useEffect, useState } from "react"
 //i18n
 import { useTranslation } from "react-i18next"
 
-//helmet
-import { Helmet } from "react-helmet"
-
 //components
 import Footer from "../components/hooks/Footer/Footer"
 import Header from "../components/hooks/Header/Header"
@@ -15,6 +12,7 @@ import PreFooter from "../components/hooks/preFooter/PreFooter"
 import DonationHistory from "../components/hooks/DonationsHistory/DonationHistory"
 import PersonalEvents from "../components/hooks/PersonalEvents/PersonalEvents"
 import MyInfoSection from "../components/hooks/MyInfoSection/MyInfoSection"
+import HelmetComponent from "../components/ui/HelmetComponent/HelmetComponent"
 
 //style
 import "../styles/personalArea.scss"
@@ -37,10 +35,10 @@ import useResponsive from "../utils/useResponsive"
 
 //Router
 import { useNavigate } from "react-router-dom"
-import SCREENS from '../route/router'
+import SCREENS from "../route/router"
 
 //Redux
-import { useSelector } from "react-redux";
+import { useSelector } from "react-redux"
 
 interface State {
   isLoaded: boolean
@@ -62,16 +60,21 @@ const PersonalArea: FC = () => {
   const { t }: any = useTranslation()
   let [Mobile, Default] = useResponsive()
 
-  const isLogged:boolean= useSelector((state:any)=>state.userDuck.isLoggedIn)
-  const navigate:Function= useNavigate()
+  const isLogged: boolean = useSelector(
+    (state: any) => state.userDuck.isLoggedIn
+  )
+  const userId: number =
+    sessionStorage.getItem("userOnlus") &&
+    JSON.parse(sessionStorage.getItem("userOnlus")!).userId
+  const navigate: Function = useNavigate()
 
-  const checkLog=():void=>{
-    if(!isLogged) navigate(SCREENS.login)
+  const checkLog = (): void => {
+    if (!isLogged) navigate(SCREENS.login)
   }
 
   async function fetchDatas(): Promise<void> {
-    let result: any = await getPersonalDatas()
-    console.log(result.data.data.attributes.personalArea.Info)
+    let result: any = await getPersonalDatas(userId)
+    console.log(result.data)
     setState({
       ...state,
       isLoaded: true,
@@ -88,13 +91,7 @@ const PersonalArea: FC = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Onlus - {t("metaTitles.personalArea")}</title>
-        <meta
-          name="description"
-          content={`${t("metaTitles.personalArea")} page`}
-        />
-      </Helmet>
+      <HelmetComponent metatitleOn={true} title="personalArea" />
 
       <Header />
 

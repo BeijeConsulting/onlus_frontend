@@ -3,9 +3,6 @@ import { FC, useState } from "react"
 //i18n
 import { useTranslation } from "react-i18next"
 
-//helmet
-import { Helmet } from "react-helmet"
-
 //mui
 import { Typography } from "@mui/material"
 
@@ -16,6 +13,7 @@ import PreFooter from "../components/hooks/preFooter/PreFooter"
 import CustomButton from "../components/ui/buttons/CustomButton/CustomButton"
 import InputBox from "../components/hooks/inputBox/InputBox"
 import InputCheckbox from "../components/hooks/inputBox/InputCheckbox"
+import HelmetComponent from "../components/ui/HelmetComponent/HelmetComponent"
 
 //check functions
 import { checkText, checkEmail, checkPhone, checkCF } from "../utils/checkForm"
@@ -142,10 +140,7 @@ const Donate: FC = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Onlus - {t("metaTitles.donate")}</title>
-        <meta name="description" content={`${t("metaTitles.donate")} page`} />
-      </Helmet>
+      <HelmetComponent metatitleOn={true} title="donate" />
 
       <Header />
 

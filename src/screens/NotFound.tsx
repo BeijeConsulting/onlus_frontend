@@ -1,28 +1,23 @@
 //Components
-import Header from "../components/hooks/Header/Header";
+import Header from "../components/hooks/Header/Header"
+import HelmetComponent from "../components/ui/HelmetComponent/HelmetComponent"
 
 //Styles
-import "../styles/notFound.scss";
+import "../styles/notFound.scss"
 
 //mui
-import SdCardAlertIcon from "@mui/icons-material/SdCardAlert";
-import { Typography } from "@mui/material";
+import SdCardAlertIcon from "@mui/icons-material/SdCardAlert"
+import { Typography } from "@mui/material"
 
 //i18n
-import { useTranslation } from "react-i18next";
-
-//helmet
-import { Helmet } from "react-helmet";
+import { useTranslation } from "react-i18next"
 
 function NotFound() {
-  const { t }: any = useTranslation();
+  const { t }: any = useTranslation()
 
   return (
     <>
-      <Helmet>
-        <title>Onlus - {t("metaTitles.notFound")}</title>
-        <meta name="description" content={`${t("metaTitles.notFound")} page`} />
-      </Helmet>
+      <HelmetComponent metatitleOn={true} title="notFound" />
 
       <main id="notFound" className="sectionContainer">
         <Header />
@@ -35,7 +30,7 @@ function NotFound() {
         </section>
       </main>
     </>
-  );
+  )
 }
 
-export default NotFound;
+export default NotFound

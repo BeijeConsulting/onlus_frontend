@@ -1,85 +1,85 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react"
 // import router
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom"
 // import redux
-import { setGeneral } from "./redux/duck/general";
-import { useDispatch } from "react-redux";
-import { ThemeProvider } from "@mui/material/styles";
+import { setGeneral } from "./redux/duck/general"
+import { useDispatch } from "react-redux"
+import { ThemeProvider } from "@mui/material/styles"
 
 // Screens
-import About from "./screens/About";
-import Article from "./screens/Article";
-import Blog from "./screens/Blog";
-import Donate from "./screens/Donate";
-import Events from "./screens/Events";
-import Faq from "./screens/Faq";
-import Home from "./screens/Home";
-import Login from "./screens/Login";
-import NotFound from "./screens/NotFound";
-import PersonalArea from "./screens/PersonalArea";
-import SignUp from "./screens/SignUp";
-import Support from "./screens/Support";
-import ScrollToTop from "./utils/ScrollToTop";
+import About from "./screens/About"
+import Article from "./screens/Article"
+import Blog from "./screens/Blog"
+import Donate from "./screens/Donate"
+import Events from "./screens/Events"
+import Faq from "./screens/Faq"
+import Home from "./screens/Home"
+import Login from "./screens/Login"
+import NotFound from "./screens/NotFound"
+import PersonalArea from "./screens/PersonalArea"
+import SignUp from "./screens/SignUp"
+import Support from "./screens/Support"
+import ScrollToTop from "./utils/ScrollToTop"
 
-import axios from "axios";
+import axios from "axios"
 
 // import mui
-import ResetPassword from "./screens/ResetPassword";
-import ConfirmDonation from "./screens/ConfirmDonation";
+import ResetPassword from "./screens/ResetPassword"
+import ConfirmDonation from "./screens/ConfirmDonation"
 
-import SCREENS from "./route/router";
-import { theme } from "./utils/muiTheme";
+import SCREENS from "./route/router"
+import { theme } from "./utils/muiTheme"
 
-import { StyledEngineProvider } from "@mui/material";
-import Loader from "./assets/images/loader.jpg";
+import { StyledEngineProvider } from "@mui/material"
+import Loader from "./assets/images/loader.jpg"
 
 // import style
-import "./App.scss";
+import "./App.scss"
 //Api
-import { getSocial } from "./services/api/socialApi";
-import { social } from "./utils/type";
+import { getSocial } from "./services/api/socialApi"
+import { getCustomization } from "./services/api/customizationApi"
+import { social } from "./utils/type"
 
 // state
 interface State {
-  isLoaded: boolean;
+  isLoaded: boolean
 }
 // inizializzazione
 const initialState = {
   isLoaded: false,
-};
+}
 
 const App: FC = () => {
-  const [state, setState] = useState<State>(initialState);
+  const [state, setState] = useState<State>(initialState)
 
   // hook redux x inviare dati di general
-  const dispatch: Function = useDispatch();
+  const dispatch: Function = useDispatch()
 
   // useeffect per inviare dati all'avvio
   useEffect(() => {
-    fetchDatas();
-  }, []);
-  
+    fetchDatas()
+  }, [])
+
   // funzione per recuperare i dati da chiamata api
   const fetchDatas = async (): Promise<void> => {
     // estrapolo i dati dalle chiamate
-     let generalResult: any = await axios.get(
-       "/mockAPI/general.json"
-     );
+    let generalResult: any = await getCustomization()
+    console.log("general data", generalResult)
 
-    let socialResult: any = await getSocial();
-    const social: Array<social> = socialResult.data.social;
+    let socialResult: any = await getSocial()
+    const social: Array<social> = socialResult.data.social
     // compongo l'oggetto da mandare a redux
     const generalData: Object = {
-      ...generalResult.data.response,
+      ...generalResult.data.generals,
       social,
-    };
+    }
     // modifico gli stati su redux
-    dispatch(setGeneral(generalData));
+    dispatch(setGeneral(generalData))
     setState({
       ...state,
       isLoaded: true,
-    });
-  };
+    })
+  }
 
   return (
     <StyledEngineProvider injectFirst>
@@ -114,7 +114,7 @@ const App: FC = () => {
         )}
       </ThemeProvider>
     </StyledEngineProvider>
-  );
-};
+  )
+}
 
-export default App;
+export default App

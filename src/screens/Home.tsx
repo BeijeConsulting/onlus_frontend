@@ -1,50 +1,48 @@
 // react
-import { useState, useEffect, FC } from "react";
+import { useState, useEffect, FC } from "react"
 
 //navigation
-import { HashLink } from "react-router-hash-link";
+import { HashLink } from "react-router-hash-link"
 
 // traduzioni
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next"
 
 // componenti
-import Hero from "../components/hooks/Hero/Hero";
-import Footer from "../components/hooks/Footer/Footer";
-import PreFooter from "../components/hooks/preFooter/PreFooter";
-import CardEventsMobile from "../components/hooks/CardEvents/CardEventsMobile";
-import CardArticle from "../components/ui/CardArticle/CardArticle";
-import SkeletonCard from "../components/ui/skeleton/skeletonCard/SkeletonCard";
-import SkeletonSquare from "../components/ui/skeleton/SkeletonSquare/SkeletonSquare";
-import Header from "../components/hooks/Header/Header";
+import Hero from "../components/hooks/Hero/Hero"
+import Footer from "../components/hooks/Footer/Footer"
+import PreFooter from "../components/hooks/preFooter/PreFooter"
+import CardEventsMobile from "../components/hooks/CardEvents/CardEventsMobile"
+import CardArticle from "../components/ui/CardArticle/CardArticle"
+import SkeletonCard from "../components/ui/skeleton/skeletonCard/SkeletonCard"
+import SkeletonSquare from "../components/ui/skeleton/SkeletonSquare/SkeletonSquare"
+import Header from "../components/hooks/Header/Header"
+import HelmetComponent from "../components/ui/HelmetComponent/HelmetComponent"
 
 // style
-import "../styles/home.scss";
+import "../styles/home.scss"
 
 // redux
-import { useSelector } from "react-redux";
+import { useSelector } from "react-redux"
 
 //mui
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import { Typography, Skeleton } from "@mui/material";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp"
+import { Typography, Skeleton } from "@mui/material"
 
 //type
-import { events, article, social } from "../utils/type";
+import { events, article, social } from "../utils/type"
 
 //api
-import { getHome } from "../services/api/homeApi";
-import { getEvents } from "../services/api/eventApi";
-import { getArticles } from "../services/api/articleApi";
-
-//helmet
-import { Helmet } from "react-helmet";
+import { getHome } from "../services/api/homeApi"
+import { getEvents } from "../services/api/eventApi"
+import { getArticles } from "../services/api/articleApi"
 
 //stati
 interface State {
-  articlesArray: Array<article> | null;
-  homeData: any;
-  eventArray: Array<events> | null;
-  socialFrame: social | null;
-  isLoaded: boolean;
+  articlesArray: Array<article> | null
+  homeData: any
+  eventArray: Array<events> | null
+  socialFrame: social | null
+  isLoaded: boolean
 }
 
 // inizializzazione
@@ -54,27 +52,27 @@ const initialState = {
   homeData: null,
   socialFrame: null,
   isLoaded: false,
-};
+}
 
 const Home: FC = () => {
-  const { t }: any = useTranslation();
-  const [state, setState] = useState<State>(initialState);
+  const { t }: any = useTranslation()
+  const [state, setState] = useState<State>(initialState)
 
   const SOCIAL: Array<any> = useSelector(
     (state: any) => state.generalDuck.social
-  );
+  )
 
   useEffect(() => {
-    fetchDatas();
-  }, []);
+    fetchDatas()
+  }, [])
 
   const fetchDatas = async (): Promise<void> => {
-    let homeResponse: any = await getHome();
-    let eventResponse: any = await getEvents();
-    let articleResponse: any = await getArticles();
+    let homeResponse: any = await getHome()
+    let eventResponse: any = await getEvents()
+    let articleResponse: any = await getArticles()
     let socialHome: Array<social> = SOCIAL.filter((social: social) => {
-      return social.homepageOn == true;
-    });
+      return social.homepageOn == true
+    })
 
     setState({
       ...state,
@@ -83,8 +81,8 @@ const Home: FC = () => {
       articlesArray: articleResponse.data.data,
       socialFrame: socialHome[0],
       isLoaded: true,
-    });
-  };
+    })
+  }
 
   const mapArticles = (item: any, key: number) => {
     return (
@@ -96,8 +94,8 @@ const Home: FC = () => {
         date={item.attributes.article.date}
         image={item.attributes.article.cover}
       />
-    );
-  };
+    )
+  }
 
   // map degli eventi
   const mapEvents = (event: any, key: number): JSX.Element => {
@@ -116,15 +114,12 @@ const Home: FC = () => {
           // isLoaded={false} //da camabiare
         />
       </article>
-    );
-  };
+    )
+  }
 
   return (
     <>
-      <Helmet>
-        <title>Onlus - {t("nav.home")}</title>
-        <meta name="description" content={`${t("nav.home")} page`} />
-      </Helmet>
+      <HelmetComponent metatitleOn={true} title="home" />
 
       <Header isHome={true} />
 
@@ -254,7 +249,7 @@ const Home: FC = () => {
       <PreFooter />
       <Footer />
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

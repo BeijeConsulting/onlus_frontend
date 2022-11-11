@@ -1,26 +1,24 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react"
 
 //translation
-import { useTranslation } from "react-i18next";
-
-//helmet
-import { Helmet } from "react-helmet";
+import { useTranslation } from "react-i18next"
 
 //components
-import Footer from "../components/hooks/Footer/Footer";
-import PreFooter from "../components/hooks/preFooter/PreFooter";
-import Header from "../components/hooks/Header/Header";
-import InputBox from "../components/hooks/inputBox/InputBox";
-import SelectBox from "../components/hooks/inputBox/SelectBox";
-import InputCheckbox from "../components/hooks/inputBox/InputCheckbox";
-import CustomButton from "../components/ui/buttons/CustomButton/CustomButton";
+import Footer from "../components/hooks/Footer/Footer"
+import PreFooter from "../components/hooks/preFooter/PreFooter"
+import Header from "../components/hooks/Header/Header"
+import InputBox from "../components/hooks/inputBox/InputBox"
+import SelectBox from "../components/hooks/inputBox/SelectBox"
+import InputCheckbox from "../components/hooks/inputBox/InputCheckbox"
+import CustomButton from "../components/ui/buttons/CustomButton/CustomButton"
+import HelmetComponent from "../components/ui/HelmetComponent/HelmetComponent"
 
 //navigation
-import SCREENS from "../route/router";
-import { Link, useNavigate } from "react-router-dom";
+import SCREENS from "../route/router"
+import { Link, useNavigate } from "react-router-dom"
 
 //api
-import { signUpApi } from "../services/api/authApi";
+import { signUpApi } from "../services/api/authApi"
 
 //type
 import {
@@ -29,26 +27,26 @@ import {
   checkPhone,
   checkPassword,
   checkConfirmPassword,
-} from "../utils/checkForm";
+} from "../utils/checkForm"
 
 //style
-import "../styles/signup.scss";
+import "../styles/signup.scss"
 
 //type
-import { language } from "../utils/type";
+import { language } from "../utils/type"
 
 //mui
-import { Typography } from "@mui/material";
+import { Typography } from "@mui/material"
 
 interface State {
-  errorName: boolean;
-  errorSurname: boolean;
-  errorEmail: boolean;
-  errorPhone: boolean;
-  errorPassword: boolean;
-  errorConfirmPassword: boolean;
-  isChecked: boolean;
-  isClicked: boolean;
+  errorName: boolean
+  errorSurname: boolean
+  errorEmail: boolean
+  errorPhone: boolean
+  errorPassword: boolean
+  errorConfirmPassword: boolean
+  isChecked: boolean
+  isClicked: boolean
 }
 
 const initialState = {
@@ -59,8 +57,8 @@ const initialState = {
   errorPassword: false,
   errorConfirmPassword: false,
   isChecked: false,
-  isClicked: false
-};
+  isClicked: false,
+}
 
 let data: any = {
   name: "",
@@ -70,35 +68,35 @@ let data: any = {
   password: "",
   confirmPassword: "",
   lng: "IT",
-};
+}
 
-let handleErrorSubmit:boolean = true;
+let handleErrorSubmit: boolean = true
 
 const SignUp: FC = () => {
-  const [state, setState] = useState<State>(initialState);
-  const { t }: any = useTranslation();
-  const navigate:any = useNavigate();
+  const [state, setState] = useState<State>(initialState)
+  const { t }: any = useTranslation()
+  const navigate: any = useNavigate()
 
   const lngs: Array<language> = [
     { label: t("login.italian"), value: t("login.italian") },
     { label: t("login.english"), value: t("login.english") },
-  ];
+  ]
 
-  async function handleSignUp(obj:any):Promise<void> {
-    let result = await signUpApi(obj);
-    console.log(result);
-    switch(result.status){
+  async function handleSignUp(obj: any): Promise<void> {
+    let result = await signUpApi(obj)
+    console.log(result)
+    switch (result.status) {
       case 200:
-        navigate('/login');
-        break;
+        navigate("/login")
+        break
       default:
-        console.log('something went wrong');
-        return;
+        console.log("something went wrong")
+        return
     }
   }
 
-  useEffect(() => {    
-    if(
+  useEffect(() => {
+    if (
       !state.errorName &&
       !state.errorEmail &&
       !state.errorSurname &&
@@ -108,8 +106,7 @@ const SignUp: FC = () => {
       state.isChecked
     ) {
       handleErrorSubmit = false
-    };
-    
+    }
   }, [
     state.errorEmail,
     state.errorName,
@@ -119,80 +116,79 @@ const SignUp: FC = () => {
   ])
 
   useEffect(() => {
-    console.log(handleErrorSubmit);
-    if(handleErrorSubmit === false) handleSignUp({
-      name: data.name,
-      surname: data.surname,
-      email: data.email,
-      phone: data.phone,
-      password: data.password,
-      language: data.lng,    
-    })
-
+    console.log(handleErrorSubmit)
+    if (handleErrorSubmit === false)
+      handleSignUp({
+        name: data.name,
+        surname: data.surname,
+        email: data.email,
+        phone: data.phone,
+        password: data.password,
+        language: data.lng,
+      })
   }, [state.isClicked])
 
   const setName = (name: React.ChangeEvent<HTMLInputElement>): void => {
-    data.name = name.target.value;
+    data.name = name.target.value
     setState({
       ...state,
       errorName: false,
-    });
-  };
+    })
+  }
 
   const setSurname = (surname: React.ChangeEvent<HTMLInputElement>): void => {
-    data.surname = surname.target.value;
+    data.surname = surname.target.value
     setState({
       ...state,
       errorSurname: false,
-    });
-  };
+    })
+  }
 
   const setEmail = (email: React.ChangeEvent<HTMLInputElement>): void => {
-    data.email = email.target.value;
+    data.email = email.target.value
     setState({
       ...state,
       errorEmail: false,
-    });
-  };
+    })
+  }
 
   const setPhone = (phone: React.ChangeEvent<HTMLInputElement>): void => {
-    data.phone = phone.target.value;
+    data.phone = phone.target.value
     setState({
       ...state,
       errorPhone: false,
-    });
-  };
+    })
+  }
 
   const setPassword = (password: React.ChangeEvent<HTMLInputElement>): void => {
-    data.password = password.target.value;
+    data.password = password.target.value
     setState({
       ...state,
       errorPassword: false,
-    });
-  };
+    })
+  }
 
   const setConfirmPassword = (
     confirmPassword: React.ChangeEvent<HTMLInputElement>
   ): void => {
-    data.confirmPassword = confirmPassword.target.value;
+    data.confirmPassword = confirmPassword.target.value
     setState({
       ...state,
       errorConfirmPassword: false,
-    });
-  };
+    })
+  }
 
   const setTerms = (e: boolean): void => {
     setState({
       ...state,
       isChecked: e,
-    });
-  };
-
-  const setLanguage = (e:any):void => {
-    console.log(e);
-    data.lng = e.target.value === `${t('login.italian')}` ? 'IT' : 'EN';
+    })
   }
 
+  const setLanguage = (e: any): void => {
+    console.log(e)
+    data.lng = e.target.value === `${t("login.italian")}` ? "IT" : "EN"
+  }
 
   const submit = (): void => {
     setState({
@@ -206,16 +202,13 @@ const SignUp: FC = () => {
         data.password,
         data.confirmPassword
       ),
-      isClicked: !state.isClicked
-    });
-  };
-  
+      isClicked: !state.isClicked,
+    })
+  }
+
   return (
     <>
-      <Helmet>
-        <title>Onlus - {t("metaTitles.signup")}</title>
-        <meta name="description" content={`${t("metaTitles.signup")} page`} />
-      </Helmet>
+      <HelmetComponent metatitleOn={true} title="signup" />
 
       <Header />
 
@@ -276,7 +269,11 @@ const SignUp: FC = () => {
             />
           </div>
           <div className="input-box">
-            <SelectBox label={t("login.language")} items={lngs} callbackChange={setLanguage}/>
+            <SelectBox
+              label={t("login.language")}
+              items={lngs}
+              callbackChange={setLanguage}
+            />
           </div>
           <InputCheckbox
             label={t("login.acceptTerms")}
@@ -303,7 +300,7 @@ const SignUp: FC = () => {
       <PreFooter />
       <Footer />
     </>
-  );
-};
+  )
+}
 
-export default SignUp;
+export default SignUp
