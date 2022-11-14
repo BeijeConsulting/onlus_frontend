@@ -60,14 +60,9 @@ const Article: FC = () => {
 
   async function fetchDatas() {
     let singleArticleResult: any = await getSingleArticle(params.id)
-    // let correlatedResult: any = await getArticlesFromCategory(
-    //   singleArticleResult.data.data.attributes.article.categories[0]
-    // );
     let correlatedResult: any = await getArticlesFromCategory(
       location.state.cat_id
     )
-
-    console.log(singleArticleResult.data)
 
     setState({
       ...state,
@@ -93,7 +88,7 @@ const Article: FC = () => {
     )
   }
 
-  const mappingCorrelated = (el: any, key: number): JSX.Element | undefined => {
+  const mappingCorrelated = (el: article, key: number): JSX.Element | undefined => {
     if (key < 3) {
       return (
         <div key={key}>

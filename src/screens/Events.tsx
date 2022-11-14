@@ -27,9 +27,12 @@ import { getEvents } from "../services/api/eventApi"
 // convertDate
 import { convertDate } from "../utils/convertDate"
 
+//type
+import { events } from "../utils/type"
+
 interface State {
   isLoaded: boolean
-  events: Array<any>
+  events: Array<events>
 }
 
 const initialState = {
@@ -58,7 +61,7 @@ const Events: FC = () => {
   }
 
   // map
-  const mapEvents = (event: any, key: number): JSX.Element => {
+  const mapEvents = (event: events, key: number): JSX.Element => {
     return (
       <article key={key}>
         <Default>

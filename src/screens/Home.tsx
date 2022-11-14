@@ -60,7 +60,7 @@ const Home: FC = () => {
   const { t }: any = useTranslation()
   const [state, setState] = useState<State>(initialState)
 
-  const SOCIAL: Array<any> = useSelector(
+  const SOCIAL: Array<social> = useSelector(
     (state: any) => state.generalDuck.social
   )
 
@@ -76,49 +76,55 @@ const Home: FC = () => {
       return social.homepageOn == true
     })
 
-    console.log(eventResponse);
+    console.log(homeResponse.data);
     
-
+  
     setState({
       ...state,
-      homeData: homeResponse.data.data.attributes.home,
-      eventArray: eventResponse.data.data,
-      articlesArray: articleResponse.data.data,
+      homeData: homeResponse.data,
+      eventArray: eventResponse.data,
+      articlesArray: articleResponse.data,
       socialFrame: socialHome[0],
       isLoaded: true,
     })
   }
 
-  const mapArticles = (item: any, key: number) => {
-    return (
-      <CardArticle
-        key={key}
-        minWidth="350px"
-        title={item.attributes.article.title}
-        description={item.attributes.article.content[0].paragraph}
-        date={item.attributes.article.date}
-        image={item.attributes.article.cover}
-      />
-    )
+  const mapArticles = (item: article, key: number):JSX.Element | undefined  => {
+    if(key<5){
+      return (
+        <CardArticle
+          key={key}
+          minWidth="350px"
+          title={item.title}
+          description={item.content[0].paragraph}
+          date={item.date}
+          image={item.cover}
+        />
+      )
+    }
+    return;
   }
 
   // map degli eventi
-  const mapEvents = (event: any, key: number): JSX.Element => {
-    return (
-      <article key={key}>
-        <CardEventsMobile
-          title={event.title}
-          description={event.description}
-          image={event.cover}
-          requirement={event.requirements}
-          date={convertDate(event.eventDate,t("dateFormat"))}
-          place={event.place}
-          minWidth={"330px"}
-          opaque={false}
-          // isLoaded={false} //da camabiare
-        />
-      </article>
-    )
+  const mapEvents = (event: events, key: number): JSX.Element | undefined  => {
+    if(key<5){
+      return (
+        <article key={key}>
+          <CardEventsMobile
+            title={event.title}
+            description={event.description}
+            image={event.cover}
+            requirement={event.requirements}
+            date={convertDate(event.eventDate,t("dateFormat"))}
+            place={event.place}
+            minWidth={"330px"}
+            opaque={false}
+            // isLoaded={false} //da camabiare
+          />
+        </article>
+      )
+    }
+    return;
   }
 
   return (
@@ -135,9 +141,9 @@ const Home: FC = () => {
         {state.isLoaded ? (
           <Hero
             type={"home"}
-            title={state.homeData.hero.title}
-            subtitle={state.homeData.hero.title}
-            image={state.homeData.hero.img}
+            title={state.homeData.hero.text}
+            subtitle={state.homeData.hero.subtitle}
+            image={state.homeData.hero.image}
           />
         ) : (
           <Skeleton variant="rectangular" animation="wave">
@@ -149,15 +155,15 @@ const Home: FC = () => {
             {state.isLoaded ? (
               <>
                 <Typography variant="h2">
-                  {state.homeData.results.title}
+                  {state.homeData.result.title}
                 </Typography>
 
                 <figure>
-                  <img src={state.homeData.results.img} alt="illustrative" />
+                  <img src={state.homeData.result.image} alt="illustrative" />
                 </figure>
                 <div className="caption">
                   <Typography variant="body1">
-                    {state.homeData.results.text}
+                    {state.homeData.result.text}
                   </Typography>
                 </div>
               </>
@@ -239,7 +245,7 @@ const Home: FC = () => {
                   {state.homeData.story.text}
                 </Typography>
                 <div className="imageContainer">
-                  <img src={state.homeData.story.img} alt="story image" />
+                  <img src={state.homeData.story.image} alt="story image" />
                 </div>
               </>
             ) : (
