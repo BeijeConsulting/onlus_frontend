@@ -38,9 +38,7 @@ const CardArticle: FC<CardProps> = (props) => {
             {props.description}
           </Typography>
           <div className="continueContainer">
-            <a href="#" className="continue">
-              <Typography variant="caption">Continua a leggere</Typography>
-            </a>
+            <Typography variant="caption">Continua a leggere</Typography>
           </div>
         </CardContent>
       </CardActionArea>
