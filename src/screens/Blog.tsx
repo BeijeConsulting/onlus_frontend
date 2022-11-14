@@ -52,6 +52,7 @@ const initialState = {
 
 //localarray for search filter
 let localArticles: Array<article> = [];
+let localArticlesCategory: Array<article> = [];
 
 const Blog: FC = () => {
   const navigate: Function = useNavigate();
@@ -87,6 +88,7 @@ const Blog: FC = () => {
     });
 
     localArticles = articleResult.data;
+    localArticlesCategory = articleResult.data;
 
     let pageObj: any = generatePagination(localArticles);
     console.log(pageObj);
@@ -104,7 +106,7 @@ const Blog: FC = () => {
     let pages = Math.ceil(array.length / ARTICLESXPAGES);
     console.log("array nella pagination", array);
 
-    let tempArticle: Array<article> = array;
+    let tempArticle: Array<article> = [...array];
     let paginationArticle: Array<Array<article>> = [];
 
     while (tempArticle.length > 0) {
@@ -152,10 +154,11 @@ const Blog: FC = () => {
 
   const search = (e: React.ChangeEvent<HTMLInputElement>): void => {
     let textInputValue: string = e.target.value;
-    console.log(localArticles);
-    let filteredArticles: Array<article> = localArticles.filter((obj) => {
-      return obj.title.toLowerCase().includes(textInputValue.toLowerCase());
-    });
+    let filteredArticles: Array<article> = localArticlesCategory.filter(
+      (obj) => {
+        return obj.title.toLowerCase().includes(textInputValue.toLowerCase());
+      }
+    );
     console.log(filteredArticles);
     let pageObj: any = generatePagination(filteredArticles);
     setState({
@@ -170,9 +173,11 @@ const Blog: FC = () => {
     let pageObj: any;
     if (e === 0) {
       pageObj = generatePagination(localArticles);
+      localArticlesCategory = localArticles;
     } else {
       let result: any = await getArticlesFromCategory(e);
-      pageObj = generatePagination(result.data);
+      localArticlesCategory = result.data;
+      pageObj = generatePagination(localArticlesCategory);
     }
     setState({
       ...state,
@@ -205,6 +210,7 @@ const Blog: FC = () => {
         </section>
         <section className="cardsContainer">
           {state.isLoaded ? (
+            state.articles.length > 0 &&
             state.articles[state.page - 1].map(mapping)
           ) : (
             <>
@@ -215,13 +221,20 @@ const Blog: FC = () => {
             </>
           )}
         </section>
-        <div className="pagination">
-          <Pagination
-            count={state.numberOfPages}
-            page={state.page}
-            onChange={changePage}
-          />
-        </div>
+        {state.articles.length <= 0 && (
+          <div className="notFoundArticle">
+            <Typography variant="body1">Nessun elemento trovato</Typography>
+          </div>
+        )}
+        {state.numberOfPages > 1 && (
+          <div className="pagination">
+            <Pagination
+              count={state.numberOfPages}
+              page={state.page}
+              onChange={changePage}
+            />
+          </div>
+        )}
       </main>
       <PreFooter />
       <Footer />

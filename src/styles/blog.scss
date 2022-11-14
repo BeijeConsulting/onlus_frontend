@@ -12,6 +12,15 @@
     gap: 20px;
     padding-top: 20px;
   }
+  .notFoundArticle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30vh;
+    p {
+      text-align: center;
+    }
+  }
 }
 .pagination {
   padding-top: 50px;
