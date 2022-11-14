@@ -6,7 +6,6 @@ import store from "../redux/store"
 import { color } from "./type"
 
 const PALETTE: Array<color> = store.getState().generalDuck.palette
-console.log("palette", PALETTE)
 
 declare module "@mui/material/styles" {
   interface Palette {
