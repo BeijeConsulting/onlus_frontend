@@ -100,7 +100,7 @@ const Blog: FC = () => {
 
   const mapping = (el: any, key: number): JSX.Element => {
     return (
-      <div key={key} onClick={goToArticle(el.id, el.category[0].id)}>
+      <div key={key} onClick={goToArticle(el.id, el.category[0]?.id)}>
         {el.status === "published" && (
           <>
             <Mobile>

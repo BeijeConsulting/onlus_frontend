@@ -45,12 +45,11 @@ const About: FC = () => {
 
   async function fetchDatas() {
     let result: any = await getAbout()
-    console.log(result.data.data.attributes.about.hero.img)
     setState({
       pageIsLoaded: true,
-      imageHero: result.data.data.attributes.about.hero.img,
-      titleHero: result.data.data.attributes.about.hero.text,
-      content: result.data.data.attributes.about.content,
+      imageHero: result.data.hero.image,
+      titleHero: result.data.hero.text,
+      content: result.data.content,
     })
   }
 
