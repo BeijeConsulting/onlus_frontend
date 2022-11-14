@@ -28,7 +28,6 @@ interface CardProps {
   description: string
   requirement: string
   date: string
-  time: string
   place: string
   minWidth?: string
   opaque: boolean
@@ -82,11 +81,6 @@ const CardEventsMobile: FC<CardProps> = (props) => {
         />
       )}
       <Typography variant="h3">{props.title}</Typography>
-      {/* <CardHeader
-        sx={{ padding: "0px" }}
-        titleTypographyProps={{ fontWeight: 700, fontSize: "25px" }}
-        title={props.title}
-      /> */}
       <Default>
         <CardMedia
           component="img"
@@ -109,9 +103,6 @@ const CardEventsMobile: FC<CardProps> = (props) => {
             {props.date}
           </Typography>
           <Typography sx={{ padding: "0", marginY: "10px" }} variant="body2">
-            {props.time}
-          </Typography>
-          <Typography sx={{ padding: "0", marginY: "10px" }} variant="body2">
             {props.place}
           </Typography>
         </div>
@@ -125,7 +116,7 @@ const CardEventsMobile: FC<CardProps> = (props) => {
             }}
           >
             <CustomButton
-              colorType="secondary"
+              colorType="success"
               callback={goToBooking}
               label={t("buttons.bookButton")}
               size={"small"}
@@ -170,7 +161,7 @@ const CardEventsMobile: FC<CardProps> = (props) => {
             {props.requirement}
           </Typography>
           <CustomButton
-            colorType="secondary"
+            colorType="success"
             callback={goToBooking}
             label={t("buttons.bookButton")}
             size={"small"}

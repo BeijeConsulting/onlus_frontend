@@ -1,6 +1,7 @@
 {
   "search": "Cerca per titolo",
   "selectCategory": "Seleziona categoria",
+  "dateFormat":"it-IT",
 
   "nav": {
     "home": "Home",

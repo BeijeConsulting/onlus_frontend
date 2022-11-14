@@ -14,6 +14,8 @@ import { events } from "../../../utils/type";
 
 //mui
 import { Typography } from "@mui/material";
+// import date
+import { convertDate } from "../../../utils/convertDate";
 
 interface Props {
   events: events[] | null;
@@ -43,7 +45,7 @@ const PersonalEvents: FC<Props> = (props) => {
     let past: events[] = [];
 
     props.events!.forEach((event: events) => {
-      var dateTokens = event.date.split("-");
+      var dateTokens = event.eventDate.split("-");
       console.log(dateTokens);
       let tempDate = new Date(
         parseInt(dateTokens[0]),
@@ -73,11 +75,10 @@ const PersonalEvents: FC<Props> = (props) => {
         <div key={key} className="singleCardContainer">
           <CardEventsMobile
             title={element.title}
-            image={element.image}
-            requirement={element.requirement}
+            image={element.cover}
+            requirement={element.requirements}
             description={element.description}
-            date={element.date}
-            time={element.time}
+            date={convertDate(element.eventDate,t("dateFormat"))}
             place={element.place}
             opaque={past}
           />

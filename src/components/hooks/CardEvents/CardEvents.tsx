@@ -24,7 +24,6 @@ interface CardProps {
   description: string
   requirement: string
   date: string
-  time: string
   place: string
 }
 
@@ -92,7 +91,6 @@ const CardEvents: FC<CardProps> = (props) => {
         <div className="cardContentSection cardContentSectionRight">
           <div className="cardInfo">
             <Typography variant="body2">{props.date}</Typography>
-            <Typography variant="body2">{props.time}</Typography>
             <Typography variant="body2">{props.place}</Typography>
           </div>
           <CustomButton

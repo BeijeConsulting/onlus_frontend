@@ -36,12 +36,13 @@ export type faq = {
 }
 
 export type events = {
+  id:number
+  attendants:Array<any>
   title: string
-  image: string
+  cover: string
   description: string
-  requirement: string
-  date: string
-  time: string
+  requirements: string
+  eventDate: string
   place: string
 }
 

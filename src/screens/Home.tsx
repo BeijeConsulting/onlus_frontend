@@ -35,6 +35,8 @@ import { events, article, social } from "../utils/type"
 import { getHome } from "../services/api/homeApi"
 import { getEvents } from "../services/api/eventApi"
 import { getArticles } from "../services/api/articleApi"
+// convertDate
+import { convertDate } from "../utils/convertDate"
 
 //stati
 interface State {
@@ -105,13 +107,12 @@ const Home: FC = () => {
     return (
       <article key={key}>
         <CardEventsMobile
-          title={event.attributes.events.title}
-          description={event.attributes.events.description}
-          image={event.attributes.events.cover}
-          requirement={event.attributes.events.requirement}
-          time={event.attributes.events.time}
-          date={event.attributes.events.date}
-          place={event.attributes.events.place}
+          title={event.title}
+          description={event.description}
+          image={event.cover}
+          requirement={event.requirements}
+          date={convertDate(event.eventDate,t("dateFormat"))}
+          place={event.place}
           minWidth={"330px"}
           opaque={false}
           // isLoaded={false} //da camabiare

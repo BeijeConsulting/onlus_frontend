@@ -1,6 +1,7 @@
 {
   "search": "Search by title",
   "selectCategory": "Select category",
+  "dateFormat":"en-EN",
 
   "nav": {
     "home": "Home",

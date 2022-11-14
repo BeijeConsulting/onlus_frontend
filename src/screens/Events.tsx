@@ -24,6 +24,8 @@ import "../styles/events.scss"
 
 //api
 import { getEvents } from "../services/api/eventApi"
+// convertDate
+import { convertDate } from "../utils/convertDate"
 
 interface State {
   isLoaded: boolean
@@ -44,36 +46,14 @@ const Events: FC = () => {
     fetchDatas()
   }, [])
 
-  //funzione traduzione data Simone
-  // axios.get("mockAPI/events.jso").then((response) => {
-  //   let tempEvents: Event[] = [];
-  //   response.data.events!.forEach((event: Event) => {
-  //     var dateTokens = event.date.split("-");
-  //     console.log(dateTokens);
-  //     let tempDate = new Date(
-  //       parseInt(dateTokens[0]),
-  //       parseInt(dateTokens[1]) - 1,
-  //       parseInt(dateTokens[2])
-  //     );
-  //     let eventDate = tempDate.getTime();
-  //     let todaySec: number = new Date().getTime();
-  //     if (eventDate < todaySec) {
-  //       return <></>;
-  //     } else {
-  //       tempEvents!.push(event);
-  //       console.log(event);
-  //     }
-  //   });
-  //   setEvents(tempEvents);
-  //   setIsReady(true);
-  // });
-
   const fetchDatas = async (): Promise<void> => {
     let result: any = await getEvents()
+    console.log(result);
+    
     setState({
       ...state,
       isLoaded: true,
-      events: result.data.data,
+      events: result.data,
     })
   }
 
@@ -83,24 +63,22 @@ const Events: FC = () => {
       <article key={key}>
         <Default>
           <CardEvents
-            title={event.attributes.events.title}
-            description={event.attributes.events.description}
-            image={event.attributes.events.cover}
-            requirement={event.attributes.events.requirement}
-            time={event.attributes.events.time}
-            date={event.attributes.events.date}
-            place={event.attributes.events.place}
+            title={event.title}
+            description={event.description}
+            image={event.cover}
+            requirement={event.requirements}
+            date={convertDate(event.eventDate,t("dateFormat"))}
+            place={event.place}
           />
         </Default>
         <Mobile>
           <CardEventsMobile
-            title={event.attributes.events.title}
-            description={event.attributes.events.description}
-            image={event.attributes.events.cover}
-            requirement={event.attributes.events.requirement}
-            time={event.attributes.events.time}
-            date={event.attributes.events.date}
-            place={event.attributes.events.place}
+            title={event.title}
+            description={event.description}
+            image={event.cover}
+            requirement={event.requirements}
+            date={convertDate(event.eventDate,t("dateFormat"))}
+            place={event.place}
             opaque={false}
           />
         </Mobile>
