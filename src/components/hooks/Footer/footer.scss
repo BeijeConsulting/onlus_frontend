@@ -1,186 +1,161 @@
 footer {
-  position: relative;
   color: white;
   font-size: 16px;
-  height: 545px;
   display: flex;
   flex-direction: column;
-  padding: 1rem;
+  gap: 30px;
+  padding: 50px 20px 20px 20px;
 
-  .contacts {
-    margin-bottom: 40px;
+  .top-footer{
+    display: grid;
+    gap: 30px;
 
-    .titleContacts {
-      margin-bottom: 20px;
-      text-transform: uppercase;
-      font-weight: 500;
-      text-align: start;
-    }
-
-    .contactsList {
-      font-weight: 200;
-      line-height: 30px;
-    }
-  }
-
-  .social {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 34px;
-
-    img {
-      width: 30px;
-    }
-
-    p {
-      cursor: pointer;
-    }
-  }
-
-  .buttonContainer {
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
-  }
-
-  .nav {
-    p {
-      cursor: pointer;
-      &:hover {
-        text-decoration: underline;
+    .contacts {
+      .titleContacts {
+        padding-bottom: 15px;
+        text-transform: uppercase;
+      }
+      ul li{
+        padding-bottom: 5px;
+        p{
+          font-weight: 300;
+        }
       }
     }
-  }
+    
+    .social {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      .social-container{
+        display: flex;
+        gap: 30px;
+      }
 
-  .privacy {
-    display: flex;
-    flex-direction: column;
-    margin-top: 40px;
-    gap: 5px;
-
-    a {
-      color: white;
-      text-decoration: none;
+      img {
+        height: 30px;
+      }
     }
+
+    .privacy {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+      a {
+        color: white;
+        text-decoration: none;
+      }
+    }
+
   }
 
-  .rightReserved {
-    font-weight: 100;
+  .rightReserved{
     font-size: 14px;
-    position: absolute;
-    bottom: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    right: 0;
+    font-weight: 200;
     text-align: center;
-  }
-
-  .btn {
-    cursor: pointer;
   }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   footer {
+    padding: 50px 50px 30px 50px;
     align-items: center;
-    .contacts {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      width: fit-content;
 
-      .titleContacts {
-        width: 100%;
+    .top-footer{
+      align-items: center;
+
+      .contacts{
         text-align: center;
       }
-    }
-    .contactsList {
-      text-align: center;
-    }
-    .privacy {
-      text-align: center;
+
+      .privacy {
+        text-align: center;
+      }
     }
   }
 }
 
 @media only screen and (min-width: 992px) {
   footer {
-    height: 459px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
     font-size: 18px;
-    font-weight: 300;
-    padding-left: 90px;
-    padding-right: 90px;
-
-    section {
-      width: 25%;
-      flex-wrap: wrap;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      border: 0px 2px 0px 2px solid white;
-      height: 80%;
-    }
-
-    .contacts {
-      padding-right: 0px;
-
-      .contactsList {
-        font-size: 16px;
-        line-height: 33px;
-        text-align: left;
+    padding: 100px 100px 30px 100px;
+    gap: 50px;
+    .top-footer{
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      section{
+        border-right: 1px solid rgba(255, 255, 255, 0.254);
+        &:last-child{
+          border-right: none;
+        }
       }
-    }
 
-    .social {
-      gap: 30px;
-      flex-direction: column;
-      border-right: 1px solid rgba(255, 255, 255, 0.254);
-      border-left: 1px solid rgba(255, 255, 255, 0.254);
+      .social{
+        .social-container{
+          flex-direction: column;
+          align-items: center;
+          .iconContainer {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 20px;
+          }
+        }
+      }
 
-      .iconContainer {
+      .nav{
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
+        justify-content: space-between;
         align-items: center;
-        width: 60%;
-        gap: 20px;
+        height: 100%;
+        p{
+          transition: all .2s ease;
+          &:hover{
+            cursor: pointer;
+            font-weight: 600;
+          }
+        }
       }
-    }
 
-    .nav {
-      gap: 18px;
-
-      p {
-        text-align: center;
+      .privacy{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-end;
+        .privacy-container{
+          p{
+            padding-bottom: 15px;
+            text-align: right;
+          }
+        }
       }
-    }
 
-    .privacy {
-      border-left: 1px solid rgba(255, 255, 255, 0.254);
-      gap: 35px;
-      text-align: end;
-      margin-top: 0;
-
-      a {
-        text-decoration: underline;
-      }
-    }
-
-    .buttonContainer {
-      display: flex;
-      margin-top: 0;
-      justify-content: flex-end;
-    }
-
-    .rightReserved {
-      font-size: 14px;
-      bottom: 10px;
     }
   }
+
+  //   .privacy {
+  //     gap: 35px;
+  //     text-align: end;
+  //     margin-top: 0;
+
+  //     a {
+  //       text-decoration: underline;
+  //     }
+  //   }
+
+  //   .buttonContainer {
+  //     display: flex;
+  //     margin-top: 0;
+  //     justify-content: flex-end;
+  //   }
+
+  //   .rightReserved {
+  //     font-size: 14px;
+  //     bottom: 10px;
+  //   }
+  // }
 }
