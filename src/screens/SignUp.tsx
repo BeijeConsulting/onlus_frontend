@@ -75,7 +75,7 @@ let handleErrorSubmit: boolean = true
 const SignUp: FC = () => {
   const [state, setState] = useState<State>(initialState)
   const { t }: any = useTranslation()
-  const navigate: any = useNavigate()
+  const navigate: Function = useNavigate()
 
   const lngs: Array<language> = [
     { label: t("login.italian"), value: t("login.italian") },
@@ -185,7 +185,7 @@ const SignUp: FC = () => {
     })
   }
 
-  const setLanguage = (e: any): void => {
+  const setLanguage = (e: React.ChangeEvent<HTMLInputElement>): void => {
     console.log(e)
     data.lng = e.target.value === `${t("login.italian")}` ? "IT" : "EN"
   }

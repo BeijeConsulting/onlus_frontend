@@ -15,7 +15,7 @@ import SkeletonCard from "../components/ui/skeleton/skeletonCard/SkeletonCard";
 import HelmetComponent from "../components/ui/HelmetComponent/HelmetComponent";
 
 //utils
-import { article, category } from "../utils/type";
+import { article, articlePage, category } from "../utils/type";
 
 //style
 import "../styles/blog.scss";
@@ -77,7 +77,7 @@ const Blog: FC = () => {
     console.log("ARTICLE RESULT ", articleResult.data);
     console.log("CATEGORY RESULT ", categoryResult.data);
 
-    let localCategories: Array<any> = [];
+    let localCategories: Array<category> = [];
 
     categoryResult.data.forEach((e: any) => {
       let singleCategory: category = {
@@ -90,7 +90,7 @@ const Blog: FC = () => {
     localArticles = articleResult.data;
     localArticlesCategory = articleResult.data;
 
-    let pageObj: any = generatePagination(localArticles);
+    let pageObj: articlePage = generatePagination(localArticles);
     console.log(pageObj);
 
     setState({
@@ -102,7 +102,7 @@ const Blog: FC = () => {
     });
   };
 
-  const generatePagination = (array: Array<article>): any => {
+  const generatePagination = (array: Array<article>): articlePage => {
     let pages = Math.ceil(array.length / ARTICLESXPAGES);
     console.log("array nella pagination", array);
 
@@ -123,7 +123,7 @@ const Blog: FC = () => {
     navigate(SCREENS.article + `/${id}`, { state: { cat_id: cat_id } });
   };
 
-  const mapping = (el: any, key: number): JSX.Element => {
+  const mapping = (el: article, key: number): JSX.Element => {
     return (
       <div key={key} onClick={goToArticle(el.id, el.category[0]?.id)}>
         {el.status === "published" && (
@@ -160,7 +160,7 @@ const Blog: FC = () => {
       }
     );
     console.log(filteredArticles);
-    let pageObj: any = generatePagination(filteredArticles);
+    let pageObj: articlePage = generatePagination(filteredArticles);
     setState({
       ...state,
       numberOfPages: pageObj.pages,
@@ -169,8 +169,8 @@ const Blog: FC = () => {
     });
   };
 
-  const handleCategory = async (e: any): Promise<void> => {
-    let pageObj: any;
+  const handleCategory = async (e: number): Promise<void> => {
+    let pageObj: articlePage;
     if (e === 0) {
       pageObj = generatePagination(localArticles);
       localArticlesCategory = localArticles;

@@ -1,122 +1,127 @@
 export type article = {
-  id: number
-  name: string
-  surname: string
-  email: string
-  date: string //dovrá essere date
-  title: string
-  status: string
-  cover: string
-  category: Array<string>
-  content: Array<content>
-}
+  id: number;
+  name: string;
+  surname: string;
+  email: string;
+  date: string; //dovrá essere date
+  title: string;
+  status: string;
+  cover: string;
+  category: Array<any>;
+  content: Array<content>;
+};
+
+export type articlePage = {
+  paginationArticle: Array<Array<article>>;
+  pages: number;
+};
 
 export type content = {
-  paragraph: string
-  mediaContent: string | null
-  mediaType: string | null
-}
+  paragraph: string;
+  mediaContent: string | null;
+  mediaType: string | null;
+};
 
 export type category = {
-  label: string
-  value: number
-}
+  label: string;
+  value: number;
+};
 
 export type infoType = {
   info: {
-    title: string
-    text: string
-  }
-  qna: Array<faq>
-} | null
+    title: string;
+    text: string;
+  };
+  qna: Array<faq>;
+} | null;
 
 export type faq = {
-  question: string
-  answer: string
-}
+  question: string;
+  answer: string;
+};
 
 export type events = {
-  id:number
-  attendants:Array<any>
-  title: string
-  cover: string
-  description: string
-  requirements: string
-  eventDate: string
-  place: string
-}
+  id: number;
+  attendants: Array<any>;
+  title: string;
+  cover: string;
+  description: string;
+  requirements: string;
+  eventDate: string;
+  place: string;
+};
 
 export type personalData = {
-  info: personalInfo
-  donations: donationData
-  events: Array<events>
-} | null
+  info: personalInfo;
+  donations: donationData;
+  events: Array<events>;
+} | null;
 
 export type donation = {
-  id: string
-  date: string
-  amount: number
-}
+  id: string;
+  date: string;
+  amount: number;
+};
 
 export type donationData = {
-  totalAmount: number
-  history: donation[]
-}
+  totalAmount: number;
+  history: donation[];
+};
 
 export type personalInfo = {
-  email: string
-  language: string
-  name: string
-  password: string
-  phoneNumber: string
-  surname: string
-}
+  email: string;
+  language: string;
+  name: string;
+  password: string;
+  phoneNumber: string;
+  surname: string;
+};
 
 export type language = {
-  label: string
-  value: string
-}
+  label: string;
+  value: string;
+};
 
 export type hero = {
-  image: string
-  text: string
-}
+  image: string;
+  text: string;
+};
 export type social = {
-  name: string
-  icon: string
-  link: string
-  footerOn: boolean
-  homepageOn: boolean
-}
+  name: string;
+  icon: string;
+  link: string;
+  footerOn: boolean;
+  homepageOn: boolean;
+};
 
 export type contact = {
-  site: string
-  email: string
-  address: string
-  vatNumber: string
-  fiscalCode: string
-}
+  site: string;
+  email: string;
+  address: string;
+  vatNumber: string;
+  fiscalCode: string;
+};
 
 export type color = {
-  id: number
-  name: string
-  bgColor: string
-  textColor: string
-}
+  id: number;
+  name: string;
+  bgColor: string;
+  textColor: string;
+};
 
 export type joinUs = {
-  title: string
-  subtitle: string
-  btnText1: string
-  btnText2: string
-  link: string
-}
+  title: string;
+  subtitle: string;
+  btnText1: string;
+  btnText2: string;
+  link: string;
+};
 
 export type support = {
-  hero: hero
+  hero: hero;
   title: {
-    id: number
-    title: string
-  }
-  content: Array<content>
-}
+    id: number;
+    title: string;
+  };
+  content: Array<content>;
+};

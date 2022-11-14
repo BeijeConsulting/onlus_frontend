@@ -60,7 +60,7 @@ const Home: FC = () => {
   const { t }: any = useTranslation()
   const [state, setState] = useState<State>(initialState)
 
-  const SOCIAL: Array<any> = useSelector(
+  const SOCIAL: Array<social> = useSelector(
     (state: any) => state.generalDuck.social
   )
 
@@ -89,21 +89,21 @@ const Home: FC = () => {
     })
   }
 
-  const mapArticles = (item: any, key: number) => {
+  const mapArticles = (item: article, key: number) => {
     return (
       <CardArticle
         key={key}
         minWidth="350px"
-        title={item.attributes.article.title}
-        description={item.attributes.article.content[0].paragraph}
-        date={item.attributes.article.date}
-        image={item.attributes.article.cover}
+        title={item.title}
+        description={item.content[0].paragraph}
+        date={item.date}
+        image={item.cover}
       />
     )
   }
 
   // map degli eventi
-  const mapEvents = (event: any, key: number): JSX.Element => {
+  const mapEvents = (event: events, key: number): JSX.Element => {
     return (
       <article key={key}>
         <CardEventsMobile
