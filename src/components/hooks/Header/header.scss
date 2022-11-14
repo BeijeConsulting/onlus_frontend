@@ -102,6 +102,7 @@ header {
     p {
       &:after {
         display: block;
+        background-color: white;
         content: "";
         height: 2px;
         border-radius: 5px;
