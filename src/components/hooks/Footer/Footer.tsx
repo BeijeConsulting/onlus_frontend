@@ -81,86 +81,99 @@ const Footer: FC = () => {
   }
   return (
     <footer style={{ backgroundColor: PALETTE[0].bgColor }} id="footer">
-      <section className="contacts">
-        <Typography variant="h4" className="titleContacts">
-          {t("footer.contacts")}
-        </Typography>
-        <ul className="contactsList">
-          <li>
-            <Typography variant="body1">{CONTACTS.site}</Typography>
-          </li>
-          <li>
-            <Typography variant="body1">{CONTACTS.email}</Typography>
-          </li>
-          <li>
-            <Typography variant="body1">{CONTACTS.address}</Typography>
-          </li>
-          <li>
-            <Typography variant="body1">P.Iva: {CONTACTS.vatNumber}</Typography>
-          </li>
-          <li>
-            <Typography variant="body1">C.F: {CONTACTS.fiscalCode}</Typography>
-          </li>
-        </ul>
-      </section>
-      <section className="social">{SOCIAL.map(mapping)}</section>
-      {!isLogged && (
-        <Mobile>
-          <div className="buttonContainer">
-            <CustomButton
-              colorType="primary"
-              callback={goTo(SCREENS.login)}
-              label={"LOGIN"}
-              size={"small"}
-            />
-          </div>
-        </Mobile>
-      )}
-      <Default>
-        <section className="nav">
-          <Typography variant="body1" onClick={goTo(SCREENS.home)}>
-            {t("nav.home")}
+      <div className="top-footer">
+        <section className="contacts">
+          <Typography variant="h4" className="titleContacts">
+            {t("footer.contacts")}
           </Typography>
-          <Typography variant="body1" onClick={goTo(SCREENS.about)}>
-            {t("nav.about")}
-          </Typography>
-          <Typography variant="body1" onClick={goTo(SCREENS.events)}>
-            {t("nav.events")}
-          </Typography>
-          <Typography variant="body1" onClick={goTo(SCREENS.blog)}>
-            {t("nav.blog")}
-          </Typography>
-          <Typography variant="body1" onClick={goTo(SCREENS.support)}>
-            {t("nav.supportUs")}
-          </Typography>
-          <Typography variant="body1" onClick={goTo(SCREENS.faq)}>
-            {t("nav.info")}
-          </Typography>
+          <ul>
+            <li>
+              <Typography variant="body1">{CONTACTS.site}</Typography>
+            </li>
+            <li>
+              <Typography variant="body1">{CONTACTS.email}</Typography>
+            </li>
+            <li>
+              <Typography variant="body1">{CONTACTS.address}</Typography>
+            </li>
+            <li>
+              <Typography variant="body1">
+                P.Iva: {CONTACTS.vatNumber}
+              </Typography>
+            </li>
+            <li>
+              <Typography variant="body1">
+                C.F: {CONTACTS.fiscalCode}
+              </Typography>
+            </li>
+          </ul>
         </section>
-      </Default>
-      <section className="privacy">
-        <Link to="#">
-          <Typography variant="body1">{t("footer.privacyPolicy")} </Typography>
-        </Link>
-        <Link to="#">
-          <Typography variant="body1">{t("footer.cookiePolicy")} </Typography>
-        </Link>
-        <Link to="#">
-          <Typography variant="body1">{t("footer.terms")} </Typography>
-        </Link>
-        {!isLogged && (
-          <Default>
-            <div className="buttonContainer">
+
+        <section className="social">
+          <div className="social-container">{SOCIAL.map(mapping)}</div>
+          {!isLogged && (
+            <Mobile>
               <CustomButton
-                colorType="primary"
+                colorType="secondary"
                 callback={goTo(SCREENS.login)}
                 label={"LOGIN"}
                 size={"small"}
               />
-            </div>
-          </Default>
-        )}
-      </section>
+            </Mobile>
+          )}
+        </section>
+
+        <Default>
+          <section className="nav">
+            <Typography variant="body1" onClick={goTo(SCREENS.home)}>
+              {t("nav.home")}
+            </Typography>
+            <Typography variant="body1" onClick={goTo(SCREENS.about)}>
+              {t("nav.about")}
+            </Typography>
+            <Typography variant="body1" onClick={goTo(SCREENS.events)}>
+              {t("nav.events")}
+            </Typography>
+            <Typography variant="body1" onClick={goTo(SCREENS.blog)}>
+              {t("nav.blog")}
+            </Typography>
+            <Typography variant="body1" onClick={goTo(SCREENS.support)}>
+              {t("nav.supportUs")}
+            </Typography>
+            <Typography variant="body1" onClick={goTo(SCREENS.faq)}>
+              {t("nav.info")}
+            </Typography>
+          </section>
+        </Default>
+
+        <section className="privacy">
+          <div className="privacy-container">
+            <Link to="#">
+              <Typography variant="body1">
+                {t("footer.privacyPolicy")}{" "}
+              </Typography>
+            </Link>
+            <Link to="#">
+              <Typography variant="body1">
+                {t("footer.cookiePolicy")}{" "}
+              </Typography>
+            </Link>
+            <Link to="#">
+              <Typography variant="body1">{t("footer.terms")} </Typography>
+            </Link>
+          </div>
+          {!isLogged && (
+            <Default>
+              <CustomButton
+                colorType="secondary"
+                callback={goTo(SCREENS.login)}
+                label={"LOGIN"}
+                size={"small"}
+              />
+            </Default>
+          )}
+        </section>
+      </div>
 
       <Typography className="rightReserved">
         {t("footer.rightReserved")}
