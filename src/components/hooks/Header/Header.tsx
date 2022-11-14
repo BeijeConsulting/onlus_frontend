@@ -152,7 +152,11 @@ const Header: FC<HeaderProps> = (props) => {
   return (
     <header
       className={(state.scroll ? "active " : "") + (props.isHome && "home")}
-      style={{ background: state.scroll ? PALETTE[0].bgColor : "transparent" }}
+      style={
+        props.isHome
+          ? { background: state.scroll ? PALETTE[0].bgColor : "transparent" }
+          : { background: PALETTE[0].bgColor }
+      }
     >
       <div className={"top-header"}>
         <img src={LOGO} alt="" className="logo" onClick={goTo(SCREENS.home)} />
