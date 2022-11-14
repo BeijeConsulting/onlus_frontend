@@ -50,7 +50,7 @@ const Hero: FC<HeroProps> = (props) => {
               <CustomButton
                 size="small"
                 label="DONA ORA"
-                colorType="primary"
+                colorType="success"
                 callback={handleNavigate}
               />
             ) : (
