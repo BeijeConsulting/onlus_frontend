@@ -245,17 +245,23 @@ const Header: FC<HeaderProps> = (props) => {
                 >
                   <Paper>
                     <ClickAwayListener onClickAway={handleClose}>
+                        {isLoggedIn ?
                       <MenuList id="split-button-menu">
                         <MenuItem onClick={goTo(SCREENS.personalArea)}>
                           {t("metaTitles.personalArea")}
                         </MenuItem>
 
-                        {isLoggedIn && (
                           <MenuItem onClick={logout}>
                             {t("nav.logout")}
                           </MenuItem>
-                        )}
                       </MenuList>
+                      :
+                      <MenuList id="split-button-menu">
+                        <MenuItem onClick={goTo(SCREENS.login)}>
+                          {t("buttons.loginButton")}
+                        </MenuItem>
+                      </MenuList>
+                        }
                     </ClickAwayListener>
                   </Paper>
                 </Grow>
