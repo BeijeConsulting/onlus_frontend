@@ -74,6 +74,9 @@ const Home: FC = () => {
       return social.homepageOn == true
     })
 
+    console.log(eventResponse);
+    
+
     setState({
       ...state,
       homeData: homeResponse.data.data.attributes.home,
