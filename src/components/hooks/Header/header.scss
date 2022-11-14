@@ -41,12 +41,10 @@ header {
         padding: 0 10px;
       }
       .active {
-        p:after {
+        p.underline {
           display: block;
-          content: "";
           height: 2px;
           border-radius: 5px;
-          background-color: white;
           transition: width 0.3s ease-in-out;
           width: 100%;
         }
@@ -99,22 +97,42 @@ header {
 
   .nav-desktop,
   .bottom-header-button {
-    p {
-      &:after {
+    a{
+      position: relative;
+    }
+    // p {
+    //   &:after {
+    //     display: block;
+    //     content: "";
+    //     height: 2px;
+    //     border-radius: 5px;
+    //     width: 0%;
+    //     transition: width 0.3s ease-in-out;
+    //   }
+    //   &:hover:after {
+    //     width: 100%;
+    //   }
+    //   &:hover {
+    //     opacity: 100%;
+    //   }
+    // }
+    p{
+      .underline{
         display: block;
-        background-color: white;
-        content: "";
         height: 2px;
         border-radius: 5px;
         width: 0%;
         transition: width 0.3s ease-in-out;
+        
       }
-      &:hover:after {
+    &:hover {
+      .underline{
         width: 100%;
-      }
-      &:hover {
         opacity: 100%;
       }
     }
+  }
+    
+    
   }
 }

@@ -163,33 +163,58 @@ const Header: FC<HeaderProps> = (props) => {
         <Default>
           <nav className={"nav-desktop"}>
             <NavLink end to={SCREENS.home}>
+              {/* <p style={{ background: "inherit" }}>prova</p> */}
               <Typography color={PALETTE[0].textColor} variant="body1">
                 {t("nav.home")}
+                <div
+                  className="underline"
+                  style={{ background: PALETTE[0].textColor }}
+                ></div>
               </Typography>
             </NavLink>
             <NavLink end to={SCREENS.about}>
               <Typography color={PALETTE[0].textColor} variant="body1">
                 {t("nav.about")}
+                <div
+                  className="underline"
+                  style={{ background: PALETTE[0].textColor }}
+                ></div>
               </Typography>
             </NavLink>
             <NavLink end to={SCREENS.events}>
               <Typography color={PALETTE[0].textColor} variant="body1">
                 {t("nav.events")}
+                <div
+                  className="underline"
+                  style={{ background: PALETTE[0].textColor }}
+                ></div>
               </Typography>
             </NavLink>
             <NavLink end to={SCREENS.blog}>
               <Typography color={PALETTE[0].textColor} variant="body1">
                 {t("nav.blog")}
+                <div
+                  className="underline"
+                  style={{ background: PALETTE[0].textColor }}
+                ></div>
               </Typography>
             </NavLink>
             <NavLink end to={SCREENS.support}>
               <Typography color={PALETTE[0].textColor} variant="body1">
                 {t("nav.supportUs")}
+                <div
+                  className="underline"
+                  style={{ background: PALETTE[0].textColor }}
+                ></div>
               </Typography>
             </NavLink>
             <NavLink end to={SCREENS.faq}>
               <Typography color={PALETTE[0].textColor} variant="body1">
                 {t("nav.info")}
+                <div
+                  className="underline"
+                  style={{ background: PALETTE[0].textColor }}
+                ></div>
               </Typography>
             </NavLink>
           </nav>
@@ -245,23 +270,23 @@ const Header: FC<HeaderProps> = (props) => {
                 >
                   <Paper>
                     <ClickAwayListener onClickAway={handleClose}>
-                        {isLoggedIn ?
-                      <MenuList id="split-button-menu">
-                        <MenuItem onClick={goTo(SCREENS.personalArea)}>
-                          {t("metaTitles.personalArea")}
-                        </MenuItem>
+                      {isLoggedIn ? (
+                        <MenuList id="split-button-menu">
+                          <MenuItem onClick={goTo(SCREENS.personalArea)}>
+                            {t("metaTitles.personalArea")}
+                          </MenuItem>
 
                           <MenuItem onClick={logout}>
                             {t("nav.logout")}
                           </MenuItem>
-                      </MenuList>
-                      :
-                      <MenuList id="split-button-menu">
-                        <MenuItem onClick={goTo(SCREENS.login)}>
-                          {t("buttons.loginButton")}
-                        </MenuItem>
-                      </MenuList>
-                        }
+                        </MenuList>
+                      ) : (
+                        <MenuList id="split-button-menu">
+                          <MenuItem onClick={goTo(SCREENS.login)}>
+                            {t("buttons.loginButton")}
+                          </MenuItem>
+                        </MenuList>
+                      )}
                     </ClickAwayListener>
                   </Paper>
                 </Grow>
@@ -284,6 +309,10 @@ const Header: FC<HeaderProps> = (props) => {
         >
           <Typography color={PALETTE[0].textColor} variant="body1">
             {t("nav.events")}
+            <div
+              className="underline"
+              style={{ background: PALETTE[0].textColor }}
+            ></div>
           </Typography>
         </HashLink>
         <HashLink
@@ -293,6 +322,10 @@ const Header: FC<HeaderProps> = (props) => {
         >
           <Typography color={PALETTE[0].textColor} variant="body1">
             {t("nav.blog")}
+            <div
+              className="underline"
+              style={{ background: PALETTE[0].textColor }}
+            ></div>
           </Typography>
         </HashLink>
         <HashLink
@@ -302,6 +335,10 @@ const Header: FC<HeaderProps> = (props) => {
         >
           <Typography color={PALETTE[0].textColor} variant="body1">
             {t("home.history")}
+            <div
+              className="underline"
+              style={{ background: PALETTE[0].textColor }}
+            ></div>
           </Typography>
         </HashLink>
       </div>
