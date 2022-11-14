@@ -24,6 +24,7 @@ import { Typography, Skeleton } from "@mui/material"
 interface State {
   imageHero: string
   titleHero: string
+  titleScreen: string
   pageIsLoaded: boolean
   content: Array<content>
 }
@@ -31,6 +32,7 @@ interface State {
 const initialState: State = {
   imageHero: "",
   titleHero: "",
+  titleScreen: "",
   pageIsLoaded: false,
   content: [],
 }
@@ -50,6 +52,7 @@ const About: FC = () => {
       imageHero: result.data.hero.image,
       titleHero: result.data.hero.text,
       content: result.data.content,
+      titleScreen: result.data.title.title
     })
   }
 
@@ -96,7 +99,7 @@ const About: FC = () => {
             image={state.imageHero}
           />
           <section className="sectionContainer">
-            <Typography variant="h1">{t("nav.about")}</Typography>
+            <Typography variant="h1">{state.titleScreen}</Typography>
             {state.content.map(mappingContent)}
           </section>
         </main>
