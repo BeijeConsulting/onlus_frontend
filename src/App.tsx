@@ -108,9 +108,9 @@ const App: FC = () => {
             </Routes>
           </div>
         ) : (
-          <div className="loading-button">
-            <img src={Loader} alt="loader" />
-          </div>
+          <main>
+            <img src={Loader} alt="loader" className="loader" />
+          </main>
         )}
       </ThemeProvider>
     </StyledEngineProvider>
