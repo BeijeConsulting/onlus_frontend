@@ -18,7 +18,7 @@ import HelmetComponent from "../components/ui/HelmetComponent/HelmetComponent"
 import "../styles/personalArea.scss"
 
 //type
-import { personalInfo, events, donationData } from "../utils/type"
+import { personalInfo, events, donation} from "../utils/type"
 
 //mui
 import { Typography } from "@mui/material"
@@ -28,7 +28,7 @@ import { BiUser } from "react-icons/bi"
 
 //fetch
 import { getPersonalDatas } from "../services/api/personalAreaAPI"
-import axios from "axios"
+import { getAllDonation } from "../services/api/donationApi"
 
 //reponsive
 import useResponsive from "../utils/useResponsive"
@@ -40,18 +40,19 @@ import SCREENS from "../route/router"
 //Redux
 import { useSelector } from "react-redux"
 
+
 interface State {
   isLoaded: boolean
   data: personalInfo | null
   eventsData: events[] | null
-  donationData: donationData | null
+  donationData: Array<donation>
 }
 
 const initialState = {
   isLoaded: false,
   data: null,
   eventsData: null,
-  donationData: null,
+  donationData: [],
 }
 
 const PersonalArea: FC = () => {
@@ -73,14 +74,16 @@ const PersonalArea: FC = () => {
   }
 
   async function fetchDatas(): Promise<void> {
-    let result: any = await getPersonalDatas(userId)
-    console.log(result.data)
+    let resultPersonalData: any = await getPersonalDatas(userId)
+    let resultOwnDonation: any = await getAllDonation()
+    console.log('utente',resultPersonalData.data)
+    console.log('donation',resultOwnDonation.data)
     setState({
       ...state,
       isLoaded: true,
-      data: result.data.data.attributes.personalArea.Info,
-      eventsData: result.data.data.attributes.personalArea.events,
-      donationData: result.data.data.attributes.personalArea.donations,
+      data: resultPersonalData.data,
+      // eventsData: result.data.data.attributes.personalArea.events,
+      donationData: resultOwnDonation.data,
     })
   }
 

@@ -58,8 +58,10 @@ export type personalData = {
 } | null;
 
 export type donation = {
-  id: string;
-  date: string;
+  userId: string;
+  name:string
+  surname:string
+  donationDate: string;
   amount: number;
 };
 
@@ -73,7 +75,7 @@ export type personalInfo = {
   language: string;
   name: string;
   password: string;
-  phoneNumber: string;
+  phone: string;
   surname: string;
 };
 

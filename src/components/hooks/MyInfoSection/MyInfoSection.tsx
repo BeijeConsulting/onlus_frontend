@@ -51,7 +51,7 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
     surname: props.datas!.surname,
     email: props.datas!.email,
     password: props.datas!.password,
-    phoneNumber: props.datas!.phoneNumber,
+    phoneNumber: props.datas!.phone,
     language: i18n.language,
     errorName: false,
     errorSurname: false,
@@ -198,7 +198,7 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
         </div>
         <div className={"input-box my-input-container"}>
           <InputBox
-            defaultValue={props.datas?.phoneNumber}
+            defaultValue={props.datas?.phone}
             callbackChange={setPhoneNumber}
             label={t("login.phone")}
             type={"text"}

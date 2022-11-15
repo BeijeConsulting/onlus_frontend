@@ -7,13 +7,14 @@ import "./donationHistory.scss";
 import { useTranslation } from "react-i18next";
 
 //type
-import { donationData, donation } from "../../../utils/type";
-
+import { donation } from "../../../utils/type";
+// convertdate
+import { convertDate } from "../../../utils/convertDate";
 //mui
 import { Typography } from "@mui/material";
 
 interface Props {
-  datas: donationData | null;
+  datas: Array<donation>;
 }
 
 function DonationHistory(props: Props): ReactElement {
@@ -27,16 +28,16 @@ function DonationHistory(props: Props): ReactElement {
 
   function sumDonations(): void {
     let sum: number = 0;
-    props.datas?.history?.forEach((elem: donation) => {
+    props.datas?.forEach((elem: donation) => {
       sum = sum + elem.amount;
     });
     setState(sum);
   }
 
-  function mapping(element: donation): ReactElement {
+  function mapping(element: donation,key:number): ReactElement {
     return (
-      <div key={element.id} className="singleDonation">
-        <span>{`${element.date}`}</span>
+      <div key={key} className="singleDonation">
+        <span>{`${convertDate(element.donationDate,t("dateFormat"))}`}</span>
         <span>{`${element.amount}€`}</span>
       </div>
     );
@@ -58,7 +59,7 @@ function DonationHistory(props: Props): ReactElement {
           </Typography>
         </div>
         <section className="donations">
-          <Typography variant="body1">{props.datas?.history?.map(mapping)}</Typography>
+          <Typography variant="body1">{props.datas?.map(mapping)}</Typography>
         </section>
       </section>
     </article>
