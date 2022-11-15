@@ -122,9 +122,9 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
   const updateDatas = async (): Promise<void> => {
     let sendObj:sendObj = {
       id: props.datas!.id,
-      //language: `${state.language.toUpperCase()}`,
-      //name: `${state.name}`,
-      //password: `${state.password}`,
+      language: `${state.language.toUpperCase()}`,
+      name: `${state.name}`,
+      password: `${state.password}`,
       surname: `${state.surname}`,
     };
 
@@ -137,7 +137,8 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
     setState({
       ...state,
       buttonDisabled: true,
-      passwordDisabled:true
+      passwordDisabled:true,
+      somethingChanged:false
     })
   };
 
@@ -235,6 +236,7 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
             type={"text"}
             isRequired={true}
             notValid={state.errorName}
+            errorLabel={t("form.errorName")}
           />
           <InputBox
             defaultValue={state.surname}
@@ -243,6 +245,7 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
             type={"text"}
             isRequired={true}
             notValid={state.errorSurname}
+            errorLabel={t("form.errorSurname")}
           />
         </div>
         <div className={"input-box my-input-container"}>
@@ -262,6 +265,7 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
             type={"password"}
             isRequired={true}
             notValid={state.errorPassword}
+            errorLabel={t("form.errorPassword")}
           />
           {state.passwordDisabled === false && (
             <InputBox
@@ -271,6 +275,7 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
               type={"password"}
               isRequired={true}
               notValid={state.errorPassword}
+              errorLabel={t("form.errorConfirmPassword")}
             />
           )}
         </div>
@@ -281,6 +286,7 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
             label={t("login.phone")}
             type={"text"}
             notValid={state.errorPhoneNumber}
+            errorLabel={t("form.errorPhone")}
           />
           <SelectBox
             label={t("login.language")}
