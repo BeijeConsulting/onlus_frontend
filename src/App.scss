@@ -30,6 +30,7 @@ img {
 }
 
 main {
+  min-height: 100vh;
   &#blog,
   &#donate,
   &#events,
@@ -57,16 +58,14 @@ h1 {
   padding-bottom: 10px;
 }
 
-.loading-button {
-  height: 100vh;
-  width: calc(100vw - 40px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  img {
-    // font-size: 10rem;
-    animation: rotate 1s ease-out infinite;
-  }
+.loader {
+  position: absolute;
+  left:0;
+  right:0;
+  top: 0;
+  bottom: 0;
+  margin:auto;
+  animation: rotate 1s ease-out infinite;
 }
 
 @media (min-width: 768px) {
@@ -90,12 +89,9 @@ h1 {
   .sectionContainer {
     padding: 50px;
   }
-  .loading-button {
-    width: calc(100vw - 100px);
-    img {
-      height: 100px;
-      width: 100px;
-    }
+  .loader {
+    height: 100px;
+    width: 100px;
   }
 }
 
@@ -116,9 +112,6 @@ h1 {
   }
   .sectionContainer {
     padding: 100px;
-  }
-  .loading-button{
-    width: calc(100vw - 200px)
   }
 }
 
