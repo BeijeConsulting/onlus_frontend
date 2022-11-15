@@ -118,13 +118,13 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
     console.log(state);
   }, [state]);
 
-  const updateDatas = async (): Promise<void> => {
 
+  const updateDatas = async (): Promise<void> => {
     let sendObj:sendObj = {
       id: props.datas!.id,
-      language: `${state.language.toUpperCase()}`,
-      name: `${state.name}`,
-      password: `${state.password}`,
+      //language: `${state.language.toUpperCase()}`,
+      //name: `${state.name}`,
+      //password: `${state.password}`,
       surname: `${state.surname}`,
     };
 
@@ -132,8 +132,8 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
 
     console.log(JSON.stringify(sendObj));
 
-    let result:any = await updateUserApi(props.datas!.id, JSON.stringify(sendObj));
-    console.log(result.data);
+    let result:any = await updateUserApi(props.datas!.id, sendObj);
+    console.log(result);
     setState({
       ...state,
       buttonDisabled: true,
@@ -163,6 +163,7 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
       ...state,
       name: val.target.value,
       buttonDisabled: false,
+      passwordDisabled: false,
     });
   }
   function setSurname(val: React.ChangeEvent<HTMLInputElement>): void {
@@ -170,6 +171,7 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
       ...state,
       surname: val.target.value,
       buttonDisabled: false,
+      passwordDisabled: false,
     });
   }
   function setEmail(val: React.ChangeEvent<HTMLInputElement>): void {
@@ -177,6 +179,7 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
       ...state,
       email: val.target.value,
       buttonDisabled: false,
+      passwordDisabled: false,
     });
   }
   function setPassword(val: React.ChangeEvent<HTMLInputElement>): void {
@@ -201,6 +204,7 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
       ...state,
       phoneNumber: val.target.value,
       buttonDisabled: false,
+      passwordDisabled: false,
     });
   }
 
@@ -212,6 +216,7 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
       ...state,
       language: language,
       buttonDisabled: false,
+      passwordDisabled: false,
     });
   }
 

@@ -86,11 +86,11 @@ export type language = {
 };
 
 export type sendObj = {
-  id: number | undefined,
-  language: string,
-  name: string,
-  password: string,
-  surname: string,
+  id?: number | undefined,
+  language?: string,
+  name?: string,
+  password?: string,
+  surname?: string,
   phone?: string,
 };
 
