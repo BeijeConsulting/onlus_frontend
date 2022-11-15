@@ -77,11 +77,21 @@ export type personalInfo = {
   password: string;
   phone: string;
   surname: string;
+  id?: number;
 };
 
 export type language = {
   label: string;
   value: string;
+};
+
+export type sendObj = {
+  id: number | undefined,
+  language: string,
+  name: string,
+  password: string,
+  surname: string,
+  phone?: string,
 };
 
 export type hero = {

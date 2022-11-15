@@ -58,7 +58,7 @@ const initialState = {
 const PersonalArea: FC = () => {
   const [state, setState] = useState<State>(initialState)
 
-  const { t }: any = useTranslation()
+  const { t, i18n }: any = useTranslation()
   let [Mobile, Default] = useResponsive()
 
   const isLogged: boolean = useSelector(
@@ -90,7 +90,7 @@ const PersonalArea: FC = () => {
   useEffect(() => {
     checkLog()
     fetchDatas()
-  }, [])
+  }, [i18n.language])
 
   return (
     <>

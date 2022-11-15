@@ -23,6 +23,7 @@ interface InputBoxProps {
   notValid?: boolean;
   upperCase?: boolean;
   errorLabel?: string;
+  disabled?: boolean;
 }
 
 interface State {
@@ -103,7 +104,7 @@ const InputBox: FC<InputBoxProps> = (props) => {
         </div>
       ) : (
         <div style={{ width: "100%" }}>
-          <TextField
+          <TextField disabled={props.disabled}
             sx={{ width: "100%" }}
             label={props.label}
             type={props.type}
