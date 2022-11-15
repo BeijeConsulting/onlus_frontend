@@ -1,12 +1,18 @@
-import { FC, ReactElement, useState, useEffect } from "react";
+import { FC, ReactElement, useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
+import { useDispatch } from "react-redux"
 
 //i18n
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next"
+
+// redux
+import { setLoggedState, saveUserData } from "../../../redux/duck/user"
 
 //components
-import InputBox from "../inputBox/InputBox";
-import SelectBox from "../inputBox/SelectBox";
-import CustomButton from "../../ui/buttons/CustomButton/CustomButton";
+import InputBox from "../inputBox/InputBox"
+import SelectBox from "../inputBox/SelectBox"
+import CustomButton from "../../ui/buttons/CustomButton/CustomButton"
+import GenericModal from "../GenericModal/GenericModal"
 
 //check
 import {
@@ -15,44 +21,52 @@ import {
   checkPhone,
   checkPassword,
   checkConfirmPassword,
-} from "../../../utils/checkForm";
+} from "../../../utils/checkForm"
 
 //api
-import { updateUserApi } from "../../../services/api/authApi";
+import { updateUserApi, deleteUserApi } from "../../../services/api/authApi"
 
 //style
-import "../../../styles/signup.scss";
-import "./myInfoSection.scss";
+import "../../../styles/signup.scss"
+import "./myInfoSection.scss"
 
 //type
-import { personalInfo, sendObj } from "../../../utils/type";
-import { send } from "process";
+import { personalInfo, sendObj } from "../../../utils/type"
+import { send } from "process"
+import SCREENS from "../../../route/router"
+
+// mui
+import { Typography } from "@mui/material"
 
 interface InfoProps {
-  datas: personalInfo | null;
+  datas: personalInfo | null
 }
 
 interface State {
-  buttonDisabled: boolean;
-  passwordDisabled: boolean;
-  somethingChanged: boolean;
-  errorName: boolean;
-  name: string;
-  errorSurname: boolean;
-  surname: string;
-  errorPassword: boolean;
-  language: string;
-  password: string;
-  confirmPassword: string;
-  errorConfirmPassword: boolean;
-  errorEmail: boolean;
-  email: string;
-  errorPhoneNumber: boolean;
-  phoneNumber: string;
+  buttonDisabled: boolean
+  passwordDisabled: boolean
+  somethingChanged: boolean
+  errorName: boolean
+  name: string
+  errorSurname: boolean
+  surname: string
+  errorPassword: boolean
+  language: string
+  password: string
+  confirmPassword: string
+  errorConfirmPassword: boolean
+  errorEmail: boolean
+  email: string
+  errorPhoneNumber: boolean
+  phoneNumber: string
+  isOpen: boolean
 }
 
 const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
-  const { t, i18n }: any = useTranslation();
+  const { t, i18n }: any = useTranslation()
+
+  const navigate: Function = useNavigate()
+  const dispatch: Function = useDispatch()
 
   const initialState = {
     buttonDisabled: true,
@@ -71,28 +85,29 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
     errorEmail: false,
     errorPhoneNumber: false,
     errorPassword: false,
-  };
+    isOpen: false,
+  }
 
   const lngs = [
     { label: t("login.italian"), value: t("login.italian") },
     { label: t("login.english"), value: t("login.english") },
-  ];
+  ]
 
-  const oldPhoneNumber: string | undefined = props.datas?.phone;
+  const oldPhoneNumber: string | undefined = props.datas?.phone
 
-  const [state, setState] = useState<State>(initialState);
+  const [state, setState] = useState<State>(initialState)
 
   useEffect(() => {
-    console.log( 
+    console.log(
       state.somethingChanged &&
-      !state.errorName &&
-      !state.errorEmail &&
-      !state.errorSurname &&
-      !state.errorPassword &&
-      !state.errorConfirmPassword &&
-      !state.errorPhoneNumber
+        !state.errorName &&
+        !state.errorEmail &&
+        !state.errorSurname &&
+        !state.errorPassword &&
+        !state.errorConfirmPassword &&
+        !state.errorPhoneNumber
     )
-    if ( 
+    if (
       state.somethingChanged &&
       !state.errorName &&
       !state.errorEmail &&
@@ -101,8 +116,8 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
       !state.errorConfirmPassword &&
       !state.errorPhoneNumber
     ) {
-      console.log('funziona')
-      updateDatas();
+      console.log("funziona")
+      updateDatas()
     }
   }, [
     state.somethingChanged,
@@ -112,38 +127,38 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
     state.errorPhoneNumber,
     state.errorSurname,
     state.errorConfirmPassword,
-  ]);
+  ])
 
   useEffect(() => {
-    console.log(state);
-  }, [state]);
-
+    console.log(state)
+  }, [state])
 
   const updateDatas = async (): Promise<void> => {
-    let sendObj:sendObj = {
+    let sendObj: sendObj = {
       id: props.datas!.id,
       language: `${state.language.toUpperCase()}`,
       name: `${state.name}`,
       password: `${state.password}`,
       surname: `${state.surname}`,
-    };
+    }
 
-    if(oldPhoneNumber !== state.phoneNumber) sendObj = {...sendObj, phone: state.phoneNumber}
+    if (oldPhoneNumber !== state.phoneNumber)
+      sendObj = { ...sendObj, phone: state.phoneNumber }
 
-    console.log(JSON.stringify(sendObj));
+    console.log(JSON.stringify(sendObj))
 
-    let result:any = await updateUserApi(props.datas!.id, sendObj);
-    console.log(result);
+    let result: any = await updateUserApi(props.datas!.id, sendObj)
+    console.log(result)
     setState({
       ...state,
       buttonDisabled: true,
-      passwordDisabled:true,
-      somethingChanged:false
+      passwordDisabled: true,
+      somethingChanged: false,
     })
-  };
+  }
 
   const submit = (): any => {
-    console.log(!checkConfirmPassword(state.password, state.confirmPassword));
+    console.log(!checkConfirmPassword(state.password, state.confirmPassword))
     setState({
       ...state,
       errorName: !checkText(state.name),
@@ -156,8 +171,8 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
         state.confirmPassword
       ),
       somethingChanged: true,
-    });
-  };
+    })
+  }
 
   function setName(val: React.ChangeEvent<HTMLInputElement>): void {
     setState({
@@ -165,7 +180,7 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
       name: val.target.value,
       buttonDisabled: false,
       passwordDisabled: false,
-    });
+    })
   }
   function setSurname(val: React.ChangeEvent<HTMLInputElement>): void {
     setState({
@@ -173,7 +188,7 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
       surname: val.target.value,
       buttonDisabled: false,
       passwordDisabled: false,
-    });
+    })
   }
   function setEmail(val: React.ChangeEvent<HTMLInputElement>): void {
     setState({
@@ -181,7 +196,7 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
       email: val.target.value,
       buttonDisabled: false,
       passwordDisabled: false,
-    });
+    })
   }
   function setPassword(val: React.ChangeEvent<HTMLInputElement>): void {
     setState({
@@ -189,7 +204,7 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
       password: val.target.value,
       buttonDisabled: false,
       passwordDisabled: false,
-    });
+    })
   }
   function setConfirmPassword(val: React.ChangeEvent<HTMLInputElement>): void {
     setState({
@@ -197,7 +212,7 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
       confirmPassword: val.target.value,
       buttonDisabled: false,
       passwordDisabled: false,
-    });
+    })
   }
 
   function setPhoneNumber(val: React.ChangeEvent<HTMLInputElement>): void {
@@ -206,23 +221,44 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
       phoneNumber: val.target.value,
       buttonDisabled: false,
       passwordDisabled: false,
-    });
+    })
   }
 
   function setLanguage(val: string) {
-    let language: string = "";
-    if (val === t("login.italian")) language = "it";
-    if (val === t("login.english")) language = "en";
+    let language: string = ""
+    if (val === t("login.italian")) language = "it"
+    if (val === t("login.english")) language = "en"
     setState({
       ...state,
       language: language,
       buttonDisabled: false,
       passwordDisabled: false,
-    });
+    })
   }
 
-  function disableAccount(): void {
-    console.log("disabled");
+  const disableAccount = async (): Promise<void> => {
+    await deleteUserApi(props.datas!.id)
+
+    dispatch(setLoggedState(false))
+    dispatch(saveUserData({}))
+
+    sessionStorage.removeItem("userOnlus")
+    localStorage.removeItem("onlusRefreshToken")
+    localStorage.removeItem("onlusToken")
+
+    setState({
+      ...state,
+      isOpen: false,
+    })
+
+    navigate(SCREENS.home)
+  }
+
+  const openModal = (): void => {
+    setState({
+      ...state,
+      isOpen: true,
+    })
   }
 
   return (
@@ -303,7 +339,7 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
             isDisable={false}
             size={"big"}
             colorType="primary"
-            callback={disableAccount}
+            callback={openModal}
           />
           <CustomButton
             label={t("buttons.modifyButton")}
@@ -312,10 +348,22 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
             colorType="primary"
             callback={submit}
           />
+          <GenericModal open={state.isOpen}>
+            <>
+              <Typography variant="body1">Sei sicuro?</Typography>
+              <CustomButton
+                label={"conferma"}
+                isDisable={false}
+                size={"big"}
+                colorType="primary"
+                callback={disableAccount}
+              />
+            </>
+          </GenericModal>
         </div>
       </form>
     </section>
-  );
-};
+  )
+}
 
-export default MyInfoSection;
+export default MyInfoSection
