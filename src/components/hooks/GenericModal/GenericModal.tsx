@@ -15,7 +15,7 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: 400,
   bgcolor: "background.paper",
-  border: "2px solid #000",
+  borderRadius: 3,
   boxShadow: 24,
   p: 4,
 }
@@ -23,15 +23,23 @@ const style = {
 interface GenericModalProps {
   open: boolean
   children: JSX.Element
+  callback: Function
 }
 
 const GenericModal: FC<GenericModalProps> = (props) => {
+  const handleClose = (): void => {
+    if (!!props.callback) {
+      props.callback()
+    }
+  }
+
   return (
     <div>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         open={props.open}
+        onClose={handleClose}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{

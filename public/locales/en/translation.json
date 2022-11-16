@@ -113,7 +113,9 @@
     "donationsHistory": "Donations history",
     "personalData": "Personal data",
     "paymentOption": "Payment options",
-    "donate": "Donate"
+    "donate": "Donate",
+    "confirm": "Confirm",
+    "disableSentence": "Do you want to deactivate your account?"
   },
 
   "donate": {

@@ -257,7 +257,7 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
   const openModal = (): void => {
     setState({
       ...state,
-      isOpen: true,
+      isOpen: !state.isOpen,
     })
   }
 
@@ -348,17 +348,19 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
             colorType="primary"
             callback={submit}
           />
-          <GenericModal open={state.isOpen}>
-            <>
-              <Typography variant="body1">Sei sicuro?</Typography>
+          <GenericModal open={state.isOpen} callback={openModal}>
+            <div className="disable-account-modal">
+              <Typography variant="body1">
+                {t("personalArea.disableSentence")}
+              </Typography>
               <CustomButton
-                label={"conferma"}
+                label={t("personalArea.confirm")}
                 isDisable={false}
                 size={"big"}
-                colorType="primary"
+                colorType="secondary"
                 callback={disableAccount}
               />
-            </>
+            </div>
           </GenericModal>
         </div>
       </form>

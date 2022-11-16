@@ -113,7 +113,9 @@
     "donationsHistory": "Storico donazioni",
     "donate": "Dona",
     "personalData": "Dati anagrafici",
-    "paymentOption": "Modalità di pagamento"
+    "paymentOption": "Modalità di pagamento",
+    "confirm": "Conferma",
+    "disableSentence": "Vuoi disabilitare l'account?"
   },
 
   "donate": {
