@@ -40,6 +40,8 @@ import "./App.scss"
 import { getSocial } from "./services/api/socialApi"
 import { getCustomization } from "./services/api/customizationApi"
 import { social } from "./utils/type"
+import { getUserApi } from "./services/api/authApi"
+import { saveUserData } from "./redux/duck/user"
 
 // state
 interface State {
@@ -74,6 +76,17 @@ const App: FC = () => {
       ...generalResult.data,
       social,
     }
+    //controllo sessionstorage
+    let result: any = !!sessionStorage.getItem("userOnlus")
+      ? JSON.parse(sessionStorage.getItem("userOnlus")!).userId
+      : undefined
+
+    if (!!result) {
+      let response: any = await getUserApi(result)
+      console.log("informazioni dell user:", response)
+      dispatch(saveUserData(response.data))
+    }
+
     // modifico gli stati su redux
     dispatch(setGeneral(generalData))
     setState({

@@ -1,7 +1,7 @@
 {
   "search": "Search by title",
   "selectCategory": "Select category",
-  "dateFormat":"en-EN",
+  "dateFormat": "en-EN",
   "confirm": "Confirm",
 
   "nav": {
@@ -28,7 +28,7 @@
     "personalArea": "Personal area",
     "signup": "Sign up",
     "support": "Support us",
-    "resetPassword":"Reset Password"
+    "resetPassword": "Reset Password"
   },
 
   "titles": {
@@ -49,7 +49,9 @@
     "supportNavButton": "Support onlus",
     "bookButton": "Book",
     "modifyButton": "Apply Changes",
-    "disableAccount": "Disable Account"
+    "disableAccount": "Disable Account",
+    "cancelBooking": "Cancel",
+    "cancelSuccess": "Booking cancelled successfully"
   },
 
   "footer": {
@@ -75,7 +77,9 @@
 
   "events": {
     "description": "Description",
-    "requirements": "Requirements"
+    "requirements": "Requirements",
+    "bookingSuccess": "The booking was successful",
+    "bookingError": "Error during the booking"
   },
 
   "login": {
@@ -99,9 +103,9 @@
   },
 
   "forgotPassword": {
-    "resetPassword":"Reset your password",
-    "labelReset":"Enter a valid email",
-    "clickReset":"Reset password"
+    "resetPassword": "Reset your password",
+    "labelReset": "Enter a valid email",
+    "clickReset": "Reset password"
   },
 
   "personalArea": {
@@ -126,11 +130,11 @@
     "cvc": "CVC",
     "amount": "Amount €"
   },
-  
-  "confirmDonate":{
-    "congrats":"Congratulations!",
-    "report":"You have donated",
-    "backToHome":"Back to Home"
+
+  "confirmDonate": {
+    "congrats": "Congratulations!",
+    "report": "You have donated",
+    "backToHome": "Back to Home"
   },
 
   "form": {

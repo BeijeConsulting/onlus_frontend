@@ -16,25 +16,40 @@ import { events } from "../../../utils/type";
 import { Typography } from "@mui/material";
 // import date
 import { convertDate } from "../../../utils/convertDate";
+import { useSelector } from "react-redux";
+import { deleteAttendantApi } from "../../../services/api/eventApi";
+import GenericModal from "../GenericModal/GenericModal";
+import CustomButton from "../../ui/buttons/CustomButton/CustomButton";
 
 interface Props {
   events: events[] | null;
+  callbackCancel: Function;
 }
 
 interface State {
   futureEvents: events[] | null;
   pastEvents: events[] | null;
+  modal: {
+    isOpen: boolean,
+    message: string,
+  },
 }
 
 const initialState = {
   futureEvents: null,
   pastEvents: null,
+  modal: {
+    isOpen: false,
+    message: '',
+  },
 };
 
 const PersonalEvents: FC<Props> = (props) => {
   const { t }: any = useTranslation();
   const [today, setToday] = useState<Date>(new Date());
   const [state, setState] = useState<State>(initialState);
+  const userEmail:string = useSelector((state:any) => state.userDuck.userData.email);
+
 
   useEffect(() => {
     splitEvents();
@@ -68,19 +83,58 @@ const PersonalEvents: FC<Props> = (props) => {
     });
   }
 
+  const cancelBook = async (id: number): Promise<void> => {
+    console.log('ciaso')
+    let response: any = await deleteAttendantApi(id);
+    console.log(response);
+    let open: boolean = false;
+    let message: string = "";
+    switch (response.status) {
+      case 200:
+        open = true;
+        message = t("events.cancelSuccess");
+        break;
+      default:
+        open = true;
+        message = t("events.bookingError");
+        break;
+    }
+    setState({
+      ...state,
+      modal: {
+        isOpen: open,
+        message: message,
+      },
+    });
+  };
+
+  const openModal = (): void => {
+    setState({
+      ...state,
+      modal: {
+        isOpen: !state.modal.isOpen,
+        message: "",
+      },
+    });
+    if(!!props.callbackCancel) props.callbackCancel();
+  };
+
   const mapEvents =
     (past: boolean) =>
     (element: events, key: number): ReactElement => {
       return (
         <div key={key} className="singleCardContainer">
           <CardEventsMobile
+            id={element.id}
             title={element.title}
             image={element.cover}
             requirement={element.requirements}
             description={element.description}
-            date={convertDate(element.eventDate,t("dateFormat"))}
+            date={convertDate(element.eventDate, t("dateFormat"))}
             place={element.place}
             opaque={past}
+            attendants={[userEmail]}
+            callbackCancel={cancelBook}
           />
         </div>
       );
@@ -102,6 +156,19 @@ const PersonalEvents: FC<Props> = (props) => {
           {state.pastEvents?.map(mapEvents(true))}
         </section>
       </section>
+      <GenericModal open={state.modal.isOpen} callback={openModal}>
+          <div className="children-modal">
+            <Typography variant="body1">{state.modal.message}</Typography>
+            <CustomButton
+              label={t("confirm")}
+              isDisable={false}
+              size={"big"}
+              colorType="secondary"
+              callback={openModal}
+            />
+          </div>
+      </GenericModal>
+
     </article>
   );
 };
