@@ -349,12 +349,12 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
             callback={submit}
           />
           <GenericModal open={state.isOpen} callback={openModal}>
-            <div className="disable-account-modal">
+            <div className="children-modal">
               <Typography variant="body1">
                 {t("personalArea.disableSentence")}
               </Typography>
               <CustomButton
-                label={t("personalArea.confirm")}
+                label={t("confirm")}
                 isDisable={false}
                 size={"big"}
                 colorType="secondary"

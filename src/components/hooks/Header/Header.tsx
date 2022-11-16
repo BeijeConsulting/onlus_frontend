@@ -18,6 +18,8 @@ import { Typography } from "@mui/material"
 //Components
 import TemporaryDrawer from "../TemporaryDrawer/TemporaryDrawer"
 import ExpandButton from "../../ui/buttons/ExpandButton"
+import GenericModal from "../GenericModal/GenericModal"
+import CustomButton from "../../ui/buttons/CustomButton/CustomButton"
 
 // Icons
 import { BiUser } from "react-icons/bi"
@@ -46,12 +48,14 @@ interface State {
   scroll: boolean
   lng: string
   open: boolean
+  isOpenModal: boolean
 }
 
 const initialState = {
   scroll: false,
   lng: "it",
   open: false,
+  isOpenModal: false,
 }
 
 const Header: FC<HeaderProps> = (props) => {
@@ -147,6 +151,13 @@ const Header: FC<HeaderProps> = (props) => {
     localStorage.removeItem("onlusToken")
 
     navigate(SCREENS.home)
+  }
+
+  const openModal = (): void => {
+    setState({
+      ...state,
+      isOpenModal: !state.isOpenModal,
+    })
   }
 
   return (
@@ -276,7 +287,7 @@ const Header: FC<HeaderProps> = (props) => {
                             {t("metaTitles.personalArea")}
                           </MenuItem>
 
-                          <MenuItem onClick={logout}>
+                          <MenuItem onClick={openModal}>
                             {t("nav.logout")}
                           </MenuItem>
                         </MenuList>
@@ -301,6 +312,7 @@ const Header: FC<HeaderProps> = (props) => {
           </Mobile>
         </div>
       </div>
+
       <div className="bottom-header">
         <HashLink
           to="#events"
@@ -342,6 +354,19 @@ const Header: FC<HeaderProps> = (props) => {
           </Typography>
         </HashLink>
       </div>
+
+      <GenericModal open={state.isOpenModal} callback={openModal}>
+        <div className="children-modal">
+          <Typography variant="body1">{t("nav.logoutSentence")}</Typography>
+          <CustomButton
+            label={t("confirm")}
+            isDisable={false}
+            size={"big"}
+            colorType="secondary"
+            callback={logout}
+          />
+        </div>
+      </GenericModal>
     </header>
   )
 }

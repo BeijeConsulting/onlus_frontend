@@ -2,6 +2,7 @@
   "search": "Search by title",
   "selectCategory": "Select category",
   "dateFormat":"en-EN",
+  "confirm": "Confirm",
 
   "nav": {
     "home": "Home",
@@ -10,7 +11,8 @@
     "blog": "Blog",
     "supportUs": "Support us",
     "info": "Info",
-    "logout": "Logout"
+    "logout": "Logout",
+    "logoutSentence": "Are you sure you want to logout of your account?"
   },
 
   "metaTitles": {
@@ -114,7 +116,6 @@
     "personalData": "Personal data",
     "paymentOption": "Payment options",
     "donate": "Donate",
-    "confirm": "Confirm",
     "disableSentence": "Do you want to deactivate your account?"
   },
 

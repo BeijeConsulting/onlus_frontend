@@ -2,6 +2,7 @@
   "search": "Cerca per titolo",
   "selectCategory": "Seleziona categoria",
   "dateFormat":"it-IT",
+  "confirm": "Conferma",
 
   "nav": {
     "home": "Home",
@@ -10,7 +11,8 @@
     "blog": "Blog",
     "supportUs": "Supportaci",
     "info": "Informazioni",
-    "logout": "Esci"
+    "logout": "Esci",
+    "logoutSentence": "Sei sicuro di voler uscire dal tuo account?"
   },
 
   "metaTitles": {
@@ -114,7 +116,6 @@
     "donate": "Dona",
     "personalData": "Dati anagrafici",
     "paymentOption": "Modalità di pagamento",
-    "confirm": "Conferma",
     "disableSentence": "Vuoi disabilitare l'account?"
   },
 
