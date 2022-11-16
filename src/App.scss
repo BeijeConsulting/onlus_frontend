@@ -103,6 +103,18 @@ h1 {
   gap: 20px;
 }
 
+.text-ellipsis{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.text-ellipsis-event{
+  width: 290px;
+}
+.text-ellipsis-article{
+  width: 310px;
+}
+
 @media (min-width: 992px) {
   main {
     &#blog,

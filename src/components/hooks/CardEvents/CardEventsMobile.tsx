@@ -80,7 +80,11 @@ const CardEventsMobile: FC<CardProps> = (props) => {
           }}
         />
       )}
-      <Typography variant="h3">{props.title}</Typography>
+
+      <Typography variant="h3" className="text-ellipsis text-ellipsis-event">
+        {props.title}
+      </Typography>
+
       <Default>
         <CardMedia
           component="img"

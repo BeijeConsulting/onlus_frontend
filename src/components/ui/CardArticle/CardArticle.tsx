@@ -27,7 +27,12 @@ const CardArticle: FC<CardProps> = (props) => {
             alt="green iguana"
             sx={{ height: 250, objectFit: "cover" }}
           />
-          <Typography gutterBottom variant="h4" sx={{ paddingTop: 5 }}>
+          <Typography
+            gutterBottom
+            variant="h4"
+            sx={{ paddingTop: 5 }}
+            className="text-ellipsis text-ellipsis-article"
+          >
             {props.title}
           </Typography>
           <Typography
