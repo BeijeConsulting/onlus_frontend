@@ -81,7 +81,11 @@ const CardEventsMobile: FC<CardProps> = (props) => {
         />
       )}
 
-      <Typography variant="h3" className="text-ellipsis text-ellipsis-event">
+      <Typography
+        variant="h3"
+        className={expanded ? " " : "text-ellipsis text-ellipsis-event"}
+        // className="text-ellipsis text-ellipsis-event"
+      >
         {props.title}
       </Typography>
 
