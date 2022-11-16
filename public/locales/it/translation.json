@@ -149,5 +149,11 @@
   "error":{
     "notFound":"Errore",
     "description":"Pagina non trovata! Ci scusiamo per il disagio."
+  },
+
+  "cookieBanner": {
+    "accept": "Accetto",
+    "decline": "Rifiuta",
+    "cookieSentence": "Questo sito utilizza i cookie per migliorare l'esperienza dell'utente"
   }
 }

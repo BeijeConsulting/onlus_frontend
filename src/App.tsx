@@ -20,6 +20,7 @@ import PersonalArea from "./screens/PersonalArea"
 import SignUp from "./screens/SignUp"
 import Support from "./screens/Support"
 import ScrollToTop from "./utils/ScrollToTop"
+import CookieBanner from "./components/hooks/CookieBanner/CookieBanner"
 
 import axios from "axios"
 
@@ -106,6 +107,7 @@ const App: FC = () => {
               <Route path={SCREENS.support} element={<Support />} />
               <Route path={SCREENS.notFound} element={<NotFound />} />
             </Routes>
+            <CookieBanner />
           </div>
         ) : (
           <main>
