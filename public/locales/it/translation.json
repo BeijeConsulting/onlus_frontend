@@ -1,7 +1,7 @@
 {
   "search": "Cerca per titolo",
   "selectCategory": "Seleziona categoria",
-  "dateFormat":"it-IT",
+  "dateFormat": "it-IT",
   "confirm": "Conferma",
 
   "nav": {
@@ -28,7 +28,7 @@
     "personalArea": "Area personale",
     "signup": "Registrati",
     "support": "Supportaci",
-    "resetPassword":"Reset Password"
+    "resetPassword": "Reset Password"
   },
 
   "titles": {
@@ -49,7 +49,9 @@
     "supportNavButton": "Sostieni onlus",
     "bookButton": "Prenota",
     "modifyButton": "Salva modifiche",
-    "disableAccount": "Disattiva Account"
+    "disableAccount": "Disattiva Account",
+    "cancelBooking": "Disdici prenotazione",
+    "cancelSuccess": "Prenotazione cancellata"
   },
 
   "footer": {
@@ -75,7 +77,9 @@
 
   "events": {
     "description": "Descrizione",
-    "requirements": "Requisiti"
+    "requirements": "Requisiti",
+    "bookingSuccess": "La prenotazione é avvenuta con successo",
+    "bookingError": "Errore durante la prenotazione"
   },
 
   "login": {
@@ -99,9 +103,9 @@
   },
 
   "forgotPassword": {
-    "resetPassword":"Reimposta la tua password",
-    "labelReset":"Inserisci la tua mail",
-    "clickReset":"Reset password"
+    "resetPassword": "Reimposta la tua password",
+    "labelReset": "Inserisci la tua mail",
+    "clickReset": "Reset password"
   },
 
   "personalArea": {
@@ -127,10 +131,10 @@
     "amount": "Importo €"
   },
 
-  "confirmDonate":{
-    "congrats":"Congratulazioni!",
-    "report":"Hai donato",
-    "backToHome":"Torna alla Home"
+  "confirmDonate": {
+    "congrats": "Congratulazioni!",
+    "report": "Hai donato",
+    "backToHome": "Torna alla Home"
   },
 
   "form": {
@@ -143,11 +147,10 @@
     "errorPassword": "Inserire una password lunga almeno 8 caratteri, contenente almeno una lettera maiuscola, minuscola, numero e carattere speciale",
     "errorConfirmPassword": "Le due password non coincidono",
     "errorLogin": "Email o password errati"
-
   },
 
-  "error":{
-    "notFound":"Errore",
-    "description":"Pagina non trovata! Ci scusiamo per il disagio."
+  "error": {
+    "notFound": "Errore",
+    "description": "Pagina non trovata! Ci scusiamo per il disagio."
   }
 }

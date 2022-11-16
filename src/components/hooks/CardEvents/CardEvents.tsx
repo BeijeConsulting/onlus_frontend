@@ -1,59 +1,67 @@
-import { FC, useEffect, useRef, useState } from "react"
+import { FC, useEffect, useRef, useState } from "react";
 
 // mui
-import Card from "@mui/material/Card"
-import CardContent from "@mui/material/CardContent"
-import CardMedia from "@mui/material/CardMedia"
-import Typography from "@mui/material/Typography"
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
 
-import { MutableRefObject } from "react"
+import { MutableRefObject } from "react";
 
 // translation
-import { useTranslation } from "react-i18next"
+import { useTranslation } from "react-i18next";
 
 // components
-import CustomButton from "../../ui/buttons/CustomButton/CustomButton"
+import CustomButton from "../../ui/buttons/CustomButton/CustomButton";
 
 //Style
-import "./cardEvents.scss"
+import "./cardEvents.scss";
+import { useSelector } from "react-redux";
 
 // props
 interface CardProps {
-  title: string
-  image: string
-  description: string
-  requirement: string
-  date: string
-  place: string
+  title: string;
+  image: string;
+  description: string;
+  requirement: string;
+  date: string;
+  place: string;
+  callbackBook: Function;
+  callbackCancel: Function;
+  attendants: Array<string>;
 }
 
 interface State {
-  height: number
+  height: number;
 }
-
 const initialState = {
   height: 0,
-}
-
+};
 const CardEvents: FC<CardProps> = (props) => {
-  const [state, setState] = useState<State>(initialState)
+  const USER: any = useSelector((state: any) => state.userDuck.userData);
+
+  const [state, setState] = useState<State>(initialState);
 
   // tranlation hook
-  const { t }: any = useTranslation()
+  const { t }: any = useTranslation();
 
-  const headerRef: MutableRefObject<any> = useRef(0)
+  const headerRef: MutableRefObject<any> = useRef(0);
 
   const goToBooking = (): void => {
-    // navigate('/login')
-    console.log("book")
-  }
+    if (!!props.callbackBook) props.callbackBook();
+  };
+
+  const cancelBooking = (): void => {
+    if (!!props.callbackCancel) props.callbackCancel();
+  };
 
   useEffect(() => {
     setState({
       ...state,
       height: headerRef.current.clientHeight,
-    })
-  }, [])
+    });
+    console.log("re render", props.attendants);
+  }, []);
 
   return (
     <Card className="eventsCard">
@@ -93,16 +101,25 @@ const CardEvents: FC<CardProps> = (props) => {
             <Typography variant="body2">{props.date}</Typography>
             <Typography variant="body2">{props.place}</Typography>
           </div>
-          <CustomButton
-            colorType={"success"}
-            callback={goToBooking}
-            label={t("buttons.bookButton")}
-            size={"small"}
-          />
+          {props.attendants.some((e) => e === USER.email) ? (
+            <CustomButton
+              colorType={"secondary"}
+              callback={cancelBooking}
+              label={t("buttons.cancelBooking")}
+              size={"small"}
+            />
+          ) : (
+            <CustomButton
+              colorType={"success"}
+              callback={goToBooking}
+              label={t("buttons.bookButton")}
+              size={"small"}
+            />
+          )}
         </div>
       </CardContent>
     </Card>
-  )
-}
+  );
+};
 
-export default CardEvents
+export default CardEvents;

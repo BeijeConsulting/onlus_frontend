@@ -68,6 +68,8 @@ const PersonalEvents: FC<Props> = (props) => {
     });
   }
 
+  const handle = (): void => {};
+
   const mapEvents =
     (past: boolean) =>
     (element: events, key: number): ReactElement => {
@@ -78,9 +80,12 @@ const PersonalEvents: FC<Props> = (props) => {
             image={element.cover}
             requirement={element.requirements}
             description={element.description}
-            date={convertDate(element.eventDate,t("dateFormat"))}
+            date={convertDate(element.eventDate, t("dateFormat"))}
             place={element.place}
             opaque={past}
+            attendants={element.attendants}
+            callbackBook={handle}
+            callbackCancel={handle}
           />
         </div>
       );

@@ -119,7 +119,6 @@ const Home: FC = () => {
             place={event.place}
             minWidth={"330px"}
             opaque={false}
-            // isLoaded={false} //da camabiare
           />
         </article>
       )
