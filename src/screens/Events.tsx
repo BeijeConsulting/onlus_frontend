@@ -28,6 +28,11 @@ import {
   deleteAttendantApi,
   getEvents,
 } from "../services/api/eventApi";
+
+// routing
+import { useNavigate } from "react-router-dom";
+import SCREENS from "../route/router";
+
 // convertDate
 import { convertDate } from "../utils/convertDate";
 
@@ -58,6 +63,7 @@ const Events: FC = () => {
   const [state, setState] = useState<State>(initialState);
   const { t }: any = useTranslation();
   let [Mobile, Default] = useResponsive();
+  const navigate:Function = useNavigate();
 
   useEffect(() => {
     fetchDatas();
@@ -85,6 +91,10 @@ const Events: FC = () => {
   };
 
   const bookEvent = (id: number) => async (): Promise<void> => {
+    if(!sessionStorage.getItem('userOnlus')) {
+      navigate(SCREENS.login);
+      return;
+    }
     let response: any = await bookEventApi(id);
     let open: boolean = false;
     let message: string = "";

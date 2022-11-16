@@ -1,4 +1,4 @@
-import { deleteApi, getApiNoAuth, postApi } from "../genericServices";
+import { deleteApi, getApi, getApiNoAuth, postApi } from "../genericServices";
 
 export async function getEvents() {
   return await getApiNoAuth("/event/list-events");
@@ -9,5 +9,9 @@ export async function bookEventApi(id) {
 }
 
 export async function deleteAttendantApi(id) {
-  return await deleteApi(`/event/delete-attendant/${id}`);
+  return await deleteApi(`/event/delete-self-attendant/${id}`);
+}
+
+export async function getUserEventsApi() {
+  return await getApi(`/event/attendant-events`)
 }

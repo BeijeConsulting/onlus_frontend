@@ -39,6 +39,7 @@ import SCREENS from "../route/router"
 
 //Redux
 import { useSelector } from "react-redux"
+import { getUserEventsApi } from "../services/api/eventApi"
 
 
 interface State {
@@ -76,14 +77,25 @@ const PersonalArea: FC = () => {
   async function fetchDatas(): Promise<void> {
     let resultPersonalData: any = await getPersonalDatas(userId)
     let resultOwnDonation: any = await getAllDonation()
+    let resultOwnEvents: any = await getUserEventsApi();
     console.log('utente',resultPersonalData.data)
     console.log('donation',resultOwnDonation.data)
+    console.log('eventi',resultOwnEvents.data)
     setState({
       ...state,
       isLoaded: true,
       data: resultPersonalData.data,
-      // eventsData: result.data.data.attributes.personalArea.events,
+      eventsData: resultOwnEvents.data,
       donationData: resultOwnDonation.data,
+    })
+  }
+
+  const handleCancel = async():Promise<void> => {
+    let newOwnEvents: any = await getUserEventsApi();
+    setState({
+      ...state,
+      isLoaded: true,
+      eventsData: newOwnEvents.data,
     })
   }
 
@@ -121,7 +133,7 @@ const PersonalArea: FC = () => {
                 ]}
                 children={[
                   <MyInfoSection datas={state!.data} />,
-                  <PersonalEvents events={state!.eventsData} />,
+                  <PersonalEvents events={state!.eventsData} callbackCancel={handleCancel} />,
                   <DonationHistory datas={state!.donationData} />,
                 ]}
               />
@@ -135,7 +147,7 @@ const PersonalArea: FC = () => {
                 ]}
                 children={[
                   <MyInfoSection datas={state!.data} />,
-                  <PersonalEvents events={state!.eventsData} />,
+                  <PersonalEvents events={state!.eventsData} callbackCancel={handleCancel} />,
                   <DonationHistory datas={state!.donationData} />,
                 ]}
               />

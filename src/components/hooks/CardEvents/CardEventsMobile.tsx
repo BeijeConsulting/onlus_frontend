@@ -24,6 +24,7 @@ interface ExpandMoreProps extends IconButtonProps {
 
 // props
 interface CardProps {
+  id?:number;
   title: string;
   image: string;
   description: string;
@@ -33,7 +34,7 @@ interface CardProps {
   minWidth?: string;
   opaque: boolean;
   callbackBook?: Function;
-  attendants?: Array<string>;
+  attendants?: Array<string> | undefined;
   callbackCancel?: Function;
 }
 
@@ -68,7 +69,7 @@ const CardEventsMobile: FC<CardProps> = (props) => {
     if (!!props.callbackBook) props.callbackBook();
   };
   const cancelBooking = (): void => {
-    if (!!props.callbackCancel) props.callbackCancel();
+    if (!!props.callbackCancel) props.callbackCancel(props.id);
   };
 
   useEffect(() => {
@@ -127,7 +128,7 @@ const CardEventsMobile: FC<CardProps> = (props) => {
               justifyContent: "flex-end",
             }}
           >
-            {props.attendants!.some((e) => e === USER.email) ? (
+            {(!!props.attendants && props?.attendants?.some((e) => e === USER.email)) ? (
               <CustomButton
                 colorType={"secondary"}
                 callback={cancelBooking}
@@ -181,21 +182,21 @@ const CardEventsMobile: FC<CardProps> = (props) => {
           <Typography paragraph variant="body1">
             {props.requirement}
           </Typography>
-          {props.attendants!.some((e) => e === USER.email) ? (
-            <CustomButton
-              colorType={"secondary"}
-              callback={cancelBooking}
-              label={t("buttons.cancelBooking")}
-              size={"small"}
-            />
-          ) : (
-            <CustomButton
-              colorType={"success"}
-              callback={goToBooking}
-              label={t("buttons.bookButton")}
-              size={"small"}
-            />
-          )}
+          {(!!props.attendants && props?.attendants?.some((e) => e === USER.email)) ? (
+              <CustomButton
+                colorType={"secondary"}
+                callback={cancelBooking}
+                label={t("buttons.cancelBooking")}
+                size={"small"}
+              />
+            ) : (
+              <CustomButton
+                colorType={"success"}
+                callback={goToBooking}
+                label={t("buttons.bookButton")}
+                size={"small"}
+              />
+            )}
         </CardContent>
       </Collapse>
     </Card>

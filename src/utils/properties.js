@@ -1,5 +1,5 @@
 const PROPERTIES = {
-  BASEURL: "http://52.58.94.27:8080/",
+  BASEURL: "http://api.onlus.beije.it/",
   TIMEOUT: 5000,
 };
 
