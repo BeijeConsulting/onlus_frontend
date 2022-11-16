@@ -141,7 +141,9 @@
     "errorCf": "Inserire un codice fiscale valido",
     "errorDateOfBirth": "Inserire una data valida",
     "errorPassword": "Inserire una password lunga almeno 8 caratteri, contenente almeno una lettera maiuscola, minuscola, numero e carattere speciale",
-    "errorConfirmPassword": "Le due password non coincidono"
+    "errorConfirmPassword": "Le due password non coincidono",
+    "errorLogin": "Email o password errati"
+
   },
 
   "error":{

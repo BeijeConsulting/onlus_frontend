@@ -30,6 +30,7 @@ import { useDispatch, useSelector } from "react-redux"
 interface State {
   email: string | null
   password: string | null
+  errorLogin: boolean
 }
 
 function Login() {
@@ -43,6 +44,7 @@ function Login() {
   const [state, setState] = useState<State>({
     email: null,
     password: null,
+    errorLogin: false,
   })
 
   const checkLog = (): void => {
@@ -73,6 +75,10 @@ function Login() {
         console.log("Utente disabilitato")
         break
       case 401:
+        setState({
+          ...state,
+          errorLogin: true,
+        })
         console.log("Email e/o Passwork invalidi")
         break
       default:
@@ -84,6 +90,7 @@ function Login() {
     setState({
       ...state,
       email: val.target.value,
+      errorLogin: false,
     })
   }
 
@@ -91,6 +98,7 @@ function Login() {
     setState({
       ...state,
       password: val.target.value,
+      errorLogin: false,
     })
   }
 
@@ -107,11 +115,14 @@ function Login() {
             label={t("login.email")}
             type={"mail"}
             callbackChange={getEmail}
+            notValid={state.errorLogin}
           />
           <InputBox
             label={t("login.password")}
             type={"password"}
             callbackChange={getPsw}
+            notValid={state.errorLogin}
+            errorLabel={t("form.errorLogin")}
           />
 
           <Link to={"/reset-password"} className="forgot-password">

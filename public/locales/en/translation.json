@@ -141,7 +141,8 @@
     "errorCf": "Enter a valid tax code",
     "errorDateOfBirth": "Enter a valid date",
     "errorPassword": "Enter a password at least 8 characters long, containing at least one capital letter, lowercase, number and special character",
-    "errorConfirmPassword": "The two passwords do not coincide"
+    "errorConfirmPassword": "The two passwords do not coincide",
+    "errorLogin": "Email or password wrong"
   },
 
   "error":{
