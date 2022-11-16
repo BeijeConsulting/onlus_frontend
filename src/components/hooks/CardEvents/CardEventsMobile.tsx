@@ -1,80 +1,80 @@
-import { useState, FC, useEffect } from "react";
-import { styled } from "@mui/material/styles";
-import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
-import Collapse from "@mui/material/Collapse";
-import IconButton, { IconButtonProps } from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { useState, FC, useEffect } from "react"
+import { styled } from "@mui/material/styles"
+import Card from "@mui/material/Card"
+import CardMedia from "@mui/material/CardMedia"
+import CardContent from "@mui/material/CardContent"
+import CardActions from "@mui/material/CardActions"
+import Collapse from "@mui/material/Collapse"
+import IconButton, { IconButtonProps } from "@mui/material/IconButton"
+import Typography from "@mui/material/Typography"
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
 
 // components
-import CustomButton from "../../ui/buttons/CustomButton/CustomButton";
+import CustomButton from "../../ui/buttons/CustomButton/CustomButton"
 // translation
-import { useTranslation } from "react-i18next";
-import useResponsive from "../../../utils/useResponsive";
-import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next"
+import useResponsive from "../../../utils/useResponsive"
+import { useSelector } from "react-redux"
 // navigazione
 
 // interfaccia
 interface ExpandMoreProps extends IconButtonProps {
-  expand: boolean;
+  expand: boolean
 }
 
 // props
 interface CardProps {
-  id?:number;
-  title: string;
-  image: string;
-  description: string;
-  requirement: string;
-  date: string;
-  place: string;
-  minWidth?: string;
-  opaque: boolean;
-  callbackBook?: Function;
-  attendants?: Array<string> | undefined;
-  callbackCancel?: Function;
+  id?: number
+  title: string
+  image: string
+  description: string
+  requirement: string
+  date: string
+  place: string
+  minWidth?: string
+  opaque: boolean
+  callbackBook?: Function
+  attendants?: Array<string> | undefined
+  callbackCancel?: Function
 }
 
 const ExpandMore = styled((props: ExpandMoreProps) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
+  const { expand, ...other } = props
+  return <IconButton {...other} />
 })(({ theme, expand }) => ({
   transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
   marginLeft: "auto",
   transition: theme.transitions.create("transform", {
     duration: theme.transitions.duration.shortest,
   }),
-}));
+}))
 
 const CardEventsMobile: FC<CardProps> = (props) => {
   // tranlation hook
-  const { t }: any = useTranslation();
+  const { t }: any = useTranslation()
 
   //reponsive
-  let [Mobile, Default] = useResponsive();
+  let [Mobile, Default] = useResponsive()
 
-  const USER: any = useSelector((state: any) => state.userDuck.userData);
+  const USER: any = useSelector((state: any) => state.userDuck.userData)
 
   // stato
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(false)
   // estende pannello
   const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
+    setExpanded(!expanded)
+  }
   // naviga
   const goToBooking = (): void => {
-    if (!!props.callbackBook) props.callbackBook();
-  };
+    if (!!props.callbackBook) props.callbackBook()
+  }
   const cancelBooking = (): void => {
-    if (!!props.callbackCancel) props.callbackCancel(props.id);
-  };
+    if (!!props.callbackCancel) props.callbackCancel(props.id)
+  }
 
   useEffect(() => {
-    console.log(props);
-  }, []);
+    console.log(props)
+  }, [])
 
   return (
     <Card
@@ -136,7 +136,8 @@ const CardEventsMobile: FC<CardProps> = (props) => {
               justifyContent: "flex-end",
             }}
           >
-            {(!!props.attendants && props?.attendants?.some((e) => e === USER.email)) ? (
+            {!!props.attendants &&
+            props.attendants.some((e) => e === USER.email) ? (
               <CustomButton
                 colorType={"secondary"}
                 callback={cancelBooking}
@@ -190,25 +191,26 @@ const CardEventsMobile: FC<CardProps> = (props) => {
           <Typography paragraph variant="body1">
             {props.requirement}
           </Typography>
-          {(!!props.attendants && props?.attendants?.some((e) => e === USER.email)) ? (
-              <CustomButton
-                colorType={"secondary"}
-                callback={cancelBooking}
-                label={t("buttons.cancelBooking")}
-                size={"small"}
-              />
-            ) : (
-              <CustomButton
-                colorType={"success"}
-                callback={goToBooking}
-                label={t("buttons.bookButton")}
-                size={"small"}
-              />
-            )}
+          {!!props.attendants &&
+          props.attendants.some((e) => e === USER.email) ? (
+            <CustomButton
+              colorType={"secondary"}
+              callback={cancelBooking}
+              label={t("buttons.cancelBooking")}
+              size={"small"}
+            />
+          ) : (
+            <CustomButton
+              colorType={"success"}
+              callback={goToBooking}
+              label={t("buttons.bookButton")}
+              size={"small"}
+            />
+          )}
         </CardContent>
       </Collapse>
     </Card>
-  );
-};
+  )
+}
 
-export default CardEventsMobile;
+export default CardEventsMobile

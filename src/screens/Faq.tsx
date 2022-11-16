@@ -1,8 +1,5 @@
 import { FC, useState, useEffect } from "react"
 
-//translation
-import { useTranslation } from "react-i18next"
-
 //fetch
 import { getFAQs } from "../services/api/faqAPI"
 
@@ -31,7 +28,6 @@ const initialState = {
 
 const Faq: FC = () => {
   const [state, setState] = useState<State>(initialState)
-  const { t }: any = useTranslation()
 
   useEffect(() => {
     fetchDatas()

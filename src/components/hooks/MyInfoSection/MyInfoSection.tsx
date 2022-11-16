@@ -32,7 +32,6 @@ import "./myInfoSection.scss"
 
 //type
 import { personalInfo, sendObj } from "../../../utils/type"
-import { send } from "process"
 import SCREENS from "../../../route/router"
 
 // mui

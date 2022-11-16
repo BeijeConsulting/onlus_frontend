@@ -22,8 +22,6 @@ import Support from "./screens/Support"
 import ScrollToTop from "./utils/ScrollToTop"
 import CookieBanner from "./components/hooks/CookieBanner/CookieBanner"
 
-import axios from "axios"
-
 // import mui
 import ResetPassword from "./screens/ResetPassword"
 import ConfirmDonation from "./screens/ConfirmDonation"

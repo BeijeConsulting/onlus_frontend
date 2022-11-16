@@ -1,8 +1,5 @@
 import { useEffect, useState } from "react"
 
-//i18n
-import { useTranslation } from "react-i18next"
-
 //fetch
 import { getSupportData } from "../services/api/supportAPI"
 
@@ -30,7 +27,6 @@ interface State {
 
 function Support() {
   const [state, setState] = useState<State>()
-  const { t }: any = useTranslation()
 
   useEffect(() => {
     fetchData()

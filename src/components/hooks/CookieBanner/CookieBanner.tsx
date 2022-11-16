@@ -1,6 +1,6 @@
 import { FC } from "react"
 // import cookie library
-import CookieConsent, { Cookies } from "react-cookie-consent"
+import CookieConsent from "react-cookie-consent"
 // import redux
 import { useSelector } from "react-redux"
 // translation
