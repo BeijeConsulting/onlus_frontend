@@ -48,6 +48,7 @@ interface State {
     isOpen: boolean;
     message: string;
   };
+  today: Date;
 }
 
 const initialState = {
@@ -57,13 +58,15 @@ const initialState = {
     isOpen: false,
     message: "",
   },
+  today: new Date(),
 };
 
 const Events: FC = () => {
   const [state, setState] = useState<State>(initialState);
+
   const { t }: any = useTranslation();
   let [Mobile, Default] = useResponsive();
-  const navigate:Function = useNavigate();
+  const navigate: Function = useNavigate();
 
   useEffect(() => {
     fetchDatas();
@@ -73,10 +76,26 @@ const Events: FC = () => {
     let result: any = await getEvents();
     console.log(result);
 
+    let future: events[] = [];
+
+    result.data.forEach((event: events) => {
+      var dateTokens = event.eventDate.split("-");
+      let tempDate = new Date(
+        parseInt(dateTokens[0]),
+        parseInt(dateTokens[1]) - 1,
+        parseInt(dateTokens[2])
+      );
+      let eventDate: number = tempDate.getTime();
+      let todaySec: number = state.today.getTime();
+      if (eventDate >= todaySec) {
+        future.push(event);
+      }
+    });
+
     setState({
       ...state,
       isLoaded: true,
-      events: result.data,
+      events: future,
     });
   };
 
@@ -91,7 +110,7 @@ const Events: FC = () => {
   };
 
   const bookEvent = (id: number) => async (): Promise<void> => {
-    if(!sessionStorage.getItem('userOnlus')) {
+    if (!sessionStorage.getItem("userOnlus")) {
       navigate(SCREENS.login);
       return;
     }
