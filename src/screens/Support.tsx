@@ -112,7 +112,7 @@ function Support() {
           <Hero
             type="home"
             title={state?.data?.hero.text}
-            image={state?.data?.hero.image}
+            image={state?.data?.hero.mediaContent}
           />
         ) : (
           <Skeleton variant="rectangular" animation="wave">

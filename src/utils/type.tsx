@@ -8,7 +8,7 @@ export type article = {
   status: string;
   cover: string;
   category: Array<any>;
-  content: Array<content>;
+  content: Array<contentArticle>;
 };
 
 export type articlePage = {
@@ -20,6 +20,13 @@ export type content = {
   paragraph: string;
   mediaContent: string | null;
   mediaType: string | null;
+};
+export type contentArticle = {
+  paragraph: string;
+  media: {
+    content: string;
+    type: string;
+  }[];
 };
 
 export type category = {
@@ -59,8 +66,8 @@ export type personalData = {
 
 export type donation = {
   userId: string;
-  name:string
-  surname:string
+  name: string;
+  surname: string;
   donationDate: string;
   amount: number;
 };
@@ -86,18 +93,19 @@ export type language = {
 };
 
 export type sendObj = {
-  id?: number | undefined,
-  language?: string,
-  name?: string,
-  password?: string,
-  surname?: string,
-  phone?: string,
+  id?: number | undefined;
+  language?: string;
+  name?: string;
+  password?: string;
+  surname?: string;
+  phone?: string;
 };
 
 export type hero = {
-  image: string;
+  mediaContent: string;
   text: string;
 };
+
 export type social = {
   name: string;
   icon: string;

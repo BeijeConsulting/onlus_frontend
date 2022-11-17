@@ -49,7 +49,7 @@ const About: FC = () => {
     let result: any = await getAbout()
     setState({
       pageIsLoaded: true,
-      imageHero: result.data.hero.image,
+      imageHero: result.data.hero.mediaContent,
       titleHero: result.data.hero.text,
       content: result.data.content,
       titleScreen: result.data.title.title

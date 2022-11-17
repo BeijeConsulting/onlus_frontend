@@ -122,7 +122,7 @@ const Home: FC = () => {
       )
     }
     return;
-  }
+  } 
 
   return (
     <>
@@ -140,7 +140,7 @@ const Home: FC = () => {
             type={"home"}
             title={state.homeData.hero.text}
             subtitle={state.homeData.hero.subtitle}
-            image={state.homeData.hero.image}
+            image={state.homeData.hero.mediaContent}
           />
         ) : (
           <Skeleton variant="rectangular" animation="wave">
