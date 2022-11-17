@@ -39,6 +39,7 @@ header {
       p {
         cursor: pointer;
         padding: 0 10px;
+        white-space: nowrap;
       }
       .active {
         p .underline {
@@ -91,9 +92,6 @@ header {
       padding-left: 0;
     }
   }
-  .logo {
-    margin-right: 74.66px;
-  }
 
   .nav-desktop,
   .bottom-header-button {
@@ -134,5 +132,11 @@ header {
   }
     
     
+  }
+}
+
+@media(min-width: 1050px){
+  .logo {
+    margin-right: 74.66px;
   }
 }
