@@ -79,17 +79,14 @@ function Login() {
       case 400:
         errorLogin = true;
         message = t("form.accountDisabled");
-        console.log("Utente disabilitato");
         break;
       case 401:
         errorLogin = true;
         message = t("form.errorLogin");
-        console.log("Email e/o Passwork invalidi");
         break;
       default:
         errorLogin = true;
         message = t("form.serverError");
-        console.log("Unkown error");
     }
     setState({
       ...state,

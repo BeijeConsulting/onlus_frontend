@@ -73,19 +73,11 @@ const Article: FC = () => {
   }
 
   const mappingParagraph = (el: contentArticle, key: number): JSX.Element => {
-    console.log(el);
 
     return (
       <div key={key} className="paragraph">
         <p className="paragraphText">{el.paragraph}</p>
-        {!!el.media[0].type &&
-          (el.media[0].type === "image" ? (
-            <img className="media" src={el.media[0].content} alt="article-pic" />
-          ) : (
-            <video controls className="video">
-              <source type="video/webm" src={el.media[0].content} />
-            </video>
-          ))}
+        <img className="media" src={el.media[0].content} alt="article-pic"/>
       </div>
     );
   };

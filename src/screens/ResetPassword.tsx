@@ -37,7 +37,6 @@ function ResetPassword() {
   const { t }: any = useTranslation()
 
   const resetPassword = () => {
-    console.log("Reset Password")
     setState({
       ...state,
       errorEmail: !checkEmail(data.email),

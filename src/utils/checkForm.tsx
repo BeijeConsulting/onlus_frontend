@@ -27,8 +27,6 @@ export const checkConfirmPassword = (
   password: string,
   confirmPassword: string
 ): boolean => {
-  console.log(password, confirmPassword);
-  console.log("uguale?", password === confirmPassword);
   return password === confirmPassword;
 };
 

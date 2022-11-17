@@ -93,7 +93,6 @@ const SignUp: FC = () => {
 
   async function handleSignUp(obj: any): Promise<void> {
     let result = await signUpApi(obj);
-    console.log(result);
 
     let open: boolean = false;
     let message: string = "";
@@ -110,7 +109,6 @@ const SignUp: FC = () => {
       default:
         open = true;
         message = t("form.serverError");
-        console.log("something went wrong");
         return;
     }
     setState({
@@ -145,13 +143,6 @@ const SignUp: FC = () => {
   };
 
   useEffect(() => {    
-    console.log(!state.errorName,
-      !state.errorEmail,
-      !state.errorSurname,
-      !state.errorPassword,
-      !state.errorConfirmPassword,
-      !state.errorPhone,
-      state.isChecked);
     
     if (
       !state.errorName &&
@@ -173,7 +164,6 @@ const SignUp: FC = () => {
   ]);
 
   useEffect(() => {
-    console.log(handleErrorSubmit);
     if (handleErrorSubmit === false)
       handleSignUp({
         name: data.name,
@@ -243,7 +233,6 @@ const SignUp: FC = () => {
   };
 
   const setLanguage = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    console.log(e);
     data.lng = e.target.value === `${t("login.italian")}` ? "IT" : "EN";
   };
 

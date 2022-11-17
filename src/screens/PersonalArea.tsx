@@ -78,9 +78,6 @@ const PersonalArea: FC = () => {
     let resultPersonalData: any = await getPersonalDatas(userId)
     let resultOwnDonation: any = await getAllDonation()
     let resultOwnEvents: any = await getUserEventsApi();
-    console.log('utente',resultPersonalData.data)
-    console.log('donation',resultOwnDonation.data)
-    console.log('eventi',resultOwnEvents.data)
     setState({
       ...state,
       isLoaded: true,
