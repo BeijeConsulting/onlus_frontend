@@ -20,6 +20,7 @@ $ npm start
 - **[helmet](https://www.npmjs.com/package/react-helmet)**
 - **[i18n](https://www.i18next.com/)**
 - **[material-ui](https://mui.com/material-ui/getting-started/overview/)**
+- **[react-cookie-consent](https://www.npmjs.com/package/react-cookie-consent)**
 - **[react-redux](https://redux.js.org/)**
 - **[react-responsive](https://www.npmjs.com/package/react-responsive)**
 - **[react-router-dom](https://reactrouter.com/en/main)**
