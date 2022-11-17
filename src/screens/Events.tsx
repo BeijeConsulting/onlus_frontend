@@ -72,13 +72,10 @@ const Events: FC = () => {
     fetchDatas();
   }, []);
 
-  const fetchDatas = async (): Promise<void> => {
-    let result: any = await getEvents();
-    console.log(result);
-
+  const checkEventDate = (data: Array<events>): Array<events> => {
     let future: events[] = [];
 
-    result.data.forEach((event: events) => {
+    data.forEach((event: events) => {
       var dateTokens = event.eventDate.split("-");
       let tempDate = new Date(
         parseInt(dateTokens[0]),
@@ -91,6 +88,13 @@ const Events: FC = () => {
         future.push(event);
       }
     });
+    return future;
+  };
+
+  const fetchDatas = async (): Promise<void> => {
+    let result: any = await getEvents();
+
+    let future: Array<events> = checkEventDate(result.data);
 
     setState({
       ...state,
@@ -128,10 +132,10 @@ const Events: FC = () => {
         break;
     }
     let result: any = await getEvents();
-    console.log(result);
+    let future: Array<events> = checkEventDate(result.data);
     setState({
       ...state,
-      events: result.data,
+      events: future,
       modal: {
         isOpen: open,
         message: message,
@@ -141,7 +145,6 @@ const Events: FC = () => {
 
   const cancelBook = (id: number) => async (): Promise<void> => {
     let response: any = await deleteAttendantApi(id);
-    console.log(response);
     let open: boolean = false;
     let message: string = "";
     switch (response.status) {
@@ -155,10 +158,11 @@ const Events: FC = () => {
         break;
     }
     let result: any = await getEvents();
-    console.log(result);
+    let future: Array<events> = checkEventDate(result.data);
+
     setState({
       ...state,
-      events: result.data,
+      events: future,
       modal: {
         isOpen: open,
         message: message,

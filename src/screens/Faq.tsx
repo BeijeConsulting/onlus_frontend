@@ -35,7 +35,6 @@ const Faq: FC = () => {
 
   async function fetchDatas(): Promise<void> {
     let result: any = await getFAQs()
-    console.log(result.data)
 
     setState({
       ...state,

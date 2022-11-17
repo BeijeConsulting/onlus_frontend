@@ -50,8 +50,7 @@
     "bookButton": "Prenota",
     "modifyButton": "Salva modifiche",
     "disableAccount": "Disattiva Account",
-    "cancelBooking": "Disdici",
-    "cancelSuccess": "Prenotazione cancellata"
+    "cancelBooking": "Disdici"
   },
 
   "footer": {
@@ -79,7 +78,8 @@
     "description": "Descrizione",
     "requirements": "Requisiti",
     "bookingSuccess": "La prenotazione é avvenuta con successo",
-    "bookingError": "Errore durante la prenotazione"
+    "bookingError": "Errore durante la prenotazione",
+    "cancelSuccess": "Prenotazione cancellata"
   },
 
   "login": {
@@ -99,7 +99,10 @@
 
     "forgottenPassword": "Password dimenticata?",
     "notRegistered": "Non hai un account?",
-    "alreadyRegistered": "Hai già un account?"
+    "alreadyRegistered": "Hai già un account?",
+
+    "alreadyExist": "Utente già registrato",
+    "signupSuccess": "Utente registrato con successo"
   },
 
   "forgotPassword": {
@@ -146,12 +149,14 @@
     "errorDateOfBirth": "Inserire una data valida",
     "errorPassword": "Inserire una password lunga almeno 8 caratteri, contenente almeno una lettera maiuscola, minuscola, numero e carattere speciale",
     "errorConfirmPassword": "Le due password non coincidono",
-    "errorLogin": "Email o password errati"
+    "errorLogin": "Email o password errati",
+    "accountDisabled": "Account disabilitato",
+    "serverError": "Errore del server, riprovare tra alcuni minuti"
   },
 
-  "error":{
-    "notFound":"Errore",
-    "description":"Pagina non trovata! Ci scusiamo per il disagio."
+  "error": {
+    "notFound": "Errore",
+    "description": "Pagina non trovata! Ci scusiamo per il disagio."
   },
 
   "cookieBanner": {

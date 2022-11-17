@@ -97,15 +97,6 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
   const [state, setState] = useState<State>(initialState)
 
   useEffect(() => {
-    console.log(
-      state.somethingChanged &&
-        !state.errorName &&
-        !state.errorEmail &&
-        !state.errorSurname &&
-        !state.errorPassword &&
-        !state.errorConfirmPassword &&
-        !state.errorPhoneNumber
-    )
     if (
       state.somethingChanged &&
       !state.errorName &&
@@ -115,7 +106,6 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
       !state.errorConfirmPassword &&
       !state.errorPhoneNumber
     ) {
-      console.log("funziona")
       updateDatas()
     }
   }, [
@@ -127,10 +117,6 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
     state.errorSurname,
     state.errorConfirmPassword,
   ])
-
-  useEffect(() => {
-    console.log(state)
-  }, [state])
 
   const updateDatas = async (): Promise<void> => {
     let sendObj: sendObj = {
@@ -144,10 +130,7 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
     if (oldPhoneNumber !== state.phoneNumber)
       sendObj = { ...sendObj, phone: state.phoneNumber }
 
-    console.log(JSON.stringify(sendObj))
-
     let result: any = await updateUserApi(props.datas!.id, sendObj)
-    console.log(result)
     setState({
       ...state,
       buttonDisabled: true,
@@ -157,7 +140,6 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
   }
 
   const submit = (): any => {
-    console.log(!checkConfirmPassword(state.password, state.confirmPassword))
     setState({
       ...state,
       errorName: !checkText(state.name),

@@ -23,7 +23,6 @@ function DonationHistory(props: Props): ReactElement {
 
   useEffect(() => {
     sumDonations();
-    console.log(props.datas)
   }, []);
 
   function sumDonations(): void {

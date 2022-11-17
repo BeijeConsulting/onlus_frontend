@@ -65,7 +65,6 @@ const App: FC = () => {
   const fetchDatas = async (): Promise<void> => {
     // estrapolo i dati dalle chiamate
     let generalResult: any = await getCustomization()
-    console.log("general data", generalResult)
 
     let socialResult: any = await getSocial()
     const social: Array<social> = socialResult.data.social
@@ -81,7 +80,6 @@ const App: FC = () => {
 
     if (!!result) {
       let response: any = await getUserApi(result)
-      console.log("informazioni dell user:", response)
       dispatch(saveUserData(response.data))
     }
 

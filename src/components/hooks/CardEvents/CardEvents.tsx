@@ -60,7 +60,6 @@ const CardEvents: FC<CardProps> = (props) => {
       ...state,
       height: headerRef.current.clientHeight,
     });
-    console.log("re render", props.attendants);
   }, []);
 
   return (

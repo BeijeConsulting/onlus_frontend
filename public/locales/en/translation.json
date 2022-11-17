@@ -50,8 +50,7 @@
     "bookButton": "Book",
     "modifyButton": "Apply Changes",
     "disableAccount": "Disable Account",
-    "cancelBooking": "Cancel",
-    "cancelSuccess": "Booking cancelled successfully"
+    "cancelBooking": "Cancel"
   },
 
   "footer": {
@@ -79,7 +78,8 @@
     "description": "Description",
     "requirements": "Requirements",
     "bookingSuccess": "The booking was successful",
-    "bookingError": "Error during the booking"
+    "bookingError": "Error during the booking",
+    "cancelSuccess": "Booking cancelled successfully"
   },
 
   "login": {
@@ -99,7 +99,10 @@
 
     "forgottenPassword": "Forgot password?",
     "notRegistered": "Not yet registered?",
-    "alreadyRegistered": "Already registered?"
+    "alreadyRegistered": "Already registered?",
+
+    "alreadyExist": "User already registered",
+    "signupSuccess": "User registered successfully"
   },
 
   "forgotPassword": {
@@ -146,14 +149,16 @@
     "errorDateOfBirth": "Enter a valid date",
     "errorPassword": "Enter a password at least 8 characters long, containing at least one capital letter, lowercase, number and special character",
     "errorConfirmPassword": "The two passwords do not coincide",
-    "errorLogin": "Email or password wrong"
+    "errorLogin": "Email or password wrong",
+    "accountDisabled": "Disabled account",
+    "serverError": "Server error, try again in a few minutes"
   },
 
-  "error":{
-    "notFound":"Error",
-    "description":"We are sorry, the page you requested was not found!"
+  "error": {
+    "notFound": "Error",
+    "description": "We are sorry, the page you requested was not found!"
   },
-  
+
   "cookieBanner": {
     "accept": "Accept",
     "decline": "Decline",

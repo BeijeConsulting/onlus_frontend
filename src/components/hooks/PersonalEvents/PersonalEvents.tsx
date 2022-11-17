@@ -30,9 +30,10 @@ interface State {
   futureEvents: events[] | null;
   pastEvents: events[] | null;
   modal: {
-    isOpen: boolean,
-    message: string,
-  },
+    isOpen: boolean;
+    message: string;
+  };
+  today: Date;
 }
 
 const initialState = {
@@ -40,16 +41,17 @@ const initialState = {
   pastEvents: null,
   modal: {
     isOpen: false,
-    message: '',
+    message: "",
   },
+  today: new Date(),
 };
 
 const PersonalEvents: FC<Props> = (props) => {
   const { t }: any = useTranslation();
-  const [today, setToday] = useState<Date>(new Date());
   const [state, setState] = useState<State>(initialState);
-  const userEmail:string = useSelector((state:any) => state.userDuck.userData.email);
-
+  const userEmail: string = useSelector(
+    (state: any) => state.userDuck.userData.email
+  );
 
   useEffect(() => {
     splitEvents();
@@ -61,14 +63,13 @@ const PersonalEvents: FC<Props> = (props) => {
 
     props.events!.forEach((event: events) => {
       var dateTokens = event.eventDate.split("-");
-      console.log(dateTokens);
       let tempDate = new Date(
         parseInt(dateTokens[0]),
         parseInt(dateTokens[1]) - 1,
         parseInt(dateTokens[2])
       );
       let eventDate: number = tempDate.getTime();
-      let todaySec: number = today!.getTime();
+      let todaySec: number = state.today.getTime();
       if (eventDate < todaySec) {
         past.push(event);
       } else {
@@ -84,9 +85,7 @@ const PersonalEvents: FC<Props> = (props) => {
   }
 
   const cancelBook = async (id: number): Promise<void> => {
-    console.log('ciaso')
     let response: any = await deleteAttendantApi(id);
-    console.log(response);
     let open: boolean = false;
     let message: string = "";
     switch (response.status) {
@@ -116,7 +115,7 @@ const PersonalEvents: FC<Props> = (props) => {
         message: "",
       },
     });
-    if(!!props.callbackCancel) props.callbackCancel();
+    if (!!props.callbackCancel) props.callbackCancel();
   };
 
   const mapEvents =
@@ -157,18 +156,17 @@ const PersonalEvents: FC<Props> = (props) => {
         </section>
       </section>
       <GenericModal open={state.modal.isOpen} callback={openModal}>
-          <div className="children-modal">
-            <Typography variant="body1">{state.modal.message}</Typography>
-            <CustomButton
-              label={t("confirm")}
-              isDisable={false}
-              size={"big"}
-              colorType="secondary"
-              callback={openModal}
-            />
-          </div>
+        <div className="children-modal">
+          <Typography variant="body1">{state.modal.message}</Typography>
+          <CustomButton
+            label={t("confirm")}
+            isDisable={false}
+            size={"big"}
+            colorType="secondary"
+            callback={openModal}
+          />
+        </div>
       </GenericModal>
-
     </article>
   );
 };

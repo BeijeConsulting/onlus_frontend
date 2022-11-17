@@ -65,17 +65,9 @@ const Blog: FC = () => {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    console.log(state);
-    console.log("localArticles:", localArticles);
-  }, [state]);
-
   const fetchData = async () => {
     let articleResult: any = await getArticles();
     let categoryResult: any = await getCategories();
-
-    console.log("ARTICLE RESULT ", articleResult.data);
-    console.log("CATEGORY RESULT ", categoryResult.data);
 
     let localCategories: Array<category> = [];
 
@@ -91,7 +83,6 @@ const Blog: FC = () => {
     localArticlesCategory = articleResult.data;
 
     let pageObj: articlePage = generatePagination(localArticles);
-    console.log(pageObj);
 
     setState({
       ...state,
@@ -104,7 +95,6 @@ const Blog: FC = () => {
 
   const generatePagination = (array: Array<article>): articlePage => {
     let pages = Math.ceil(array.length / ARTICLESXPAGES);
-    console.log("array nella pagination", array);
 
     let tempArticle: Array<article> = [...array];
     let paginationArticle: Array<Array<article>> = [];
@@ -159,7 +149,6 @@ const Blog: FC = () => {
         return obj.title.toLowerCase().includes(textInputValue.toLowerCase());
       }
     );
-    console.log(filteredArticles);
     let pageObj: articlePage = generatePagination(filteredArticles);
     setState({
       ...state,

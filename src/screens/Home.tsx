@@ -75,8 +75,6 @@ const Home: FC = () => {
     let socialHome: Array<social> = SOCIAL.filter((social: social) => {
       return social.homepageOn == true
     })
-
-    console.log(homeResponse.data);
     
   
     setState({

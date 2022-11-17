@@ -44,12 +44,6 @@ const Footer: FC = () => {
     (state: any) => state.generalDuck.palette
   )
 
-  useEffect(() => {
-    console.log(PALETTE)
-
-    return () => {}
-  }, [])
-
   // inizializzo navigazione
   let navigate = useNavigate()
 

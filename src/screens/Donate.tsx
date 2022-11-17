@@ -91,7 +91,6 @@ const Donate: FC = () => {
       errorCf: !checkCF(data.cf),
       errorDate: data.dateOfBirth === "",
     })
-    console.log(data)
   }
 
   //setData
