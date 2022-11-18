@@ -165,6 +165,8 @@ const TemporaryDrawer: FC = () => {
           style={{
             display: "flex",
             justifyContent: "center",
+            alignItems: "center",
+            flexWrap: "wrap",
             marginTop: "25px",
           }}
         >

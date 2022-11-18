@@ -4,6 +4,9 @@ import { FC, useRef, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import SCREENS from "../../../route/router"
 
+// redux
+import { useSelector } from "react-redux"
+
 //mui
 import Button from "@mui/material/Button"
 import ButtonGroup from "@mui/material/ButtonGroup"
@@ -26,6 +29,9 @@ import styles from "./buttons.module.scss"
 //i18n
 import { useTranslation } from "react-i18next"
 
+//type
+import { color } from "../../../utils/type"
+
 interface State {
   open: boolean
   selectedIndex: number
@@ -43,6 +49,10 @@ const ExpandButton: FC = () => {
   const anchorRef = useRef<HTMLDivElement>(null)
 
   const navigate: Function = useNavigate()
+
+  const PALETTE: Array<color> = useSelector(
+    (state: any) => state.generalDuck.palette
+  )
 
   const goToDonate = (): void => {
     navigate(SCREENS.donate)
@@ -86,10 +96,10 @@ const ExpandButton: FC = () => {
           color="success"
           className={styles.expandedButtonItem}
         >
-          <Typography variant="button">
+          <Typography variant="button" color="primary">
             {t("buttons.supportNavButton")}
           </Typography>
-          <ArrowDropDownIcon />
+          <ArrowDropDownIcon color="primary" />
         </Button>
       </ButtonGroup>
       <Popper
@@ -116,10 +126,12 @@ const ExpandButton: FC = () => {
                   id="split-button-menu"
                   autoFocusItem
                   className={styles.expandedButtonItemContainer}
+                  sx={{ background: PALETTE[2].bgColor }}
                 >
                   <MenuItem
                     className={styles.expandedButtonItem}
                     onClick={goToDonate}
+                    sx={{ color: PALETTE[2].textColor }}
                   >
                     {t("buttons.donateButton")}
                     <TbHeartHandshake />
@@ -128,6 +140,7 @@ const ExpandButton: FC = () => {
                   <MenuItem
                     className={styles.expandedButtonItem}
                     onClick={goToSignup}
+                    sx={{ color: PALETTE[2].textColor }}
                   >
                     {t("buttons.volunteerButton")}
                     <BiDonateHeart />

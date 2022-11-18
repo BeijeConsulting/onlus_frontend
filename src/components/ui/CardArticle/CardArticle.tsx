@@ -1,18 +1,20 @@
-import { FC } from "react";
+import { FC } from "react"
 
 //mui
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import { CardActionArea, CardHeader } from "@mui/material";
+import Card from "@mui/material/Card"
+import CardContent from "@mui/material/CardContent"
+import CardMedia from "@mui/material/CardMedia"
+import Typography from "@mui/material/Typography"
+import { CardActionArea, CardHeader } from "@mui/material"
+
+import noImage from "../../../assets/images/no-image.jpg"
 
 interface CardProps {
-  date: string;
-  image: string;
-  title: string;
-  description: string;
-  minWidth: string;
+  date: string
+  image: string
+  title: string
+  description: string
+  minWidth: string
 }
 
 const CardArticle: FC<CardProps> = (props) => {
@@ -23,7 +25,7 @@ const CardArticle: FC<CardProps> = (props) => {
         <CardContent>
           <CardMedia
             component="img"
-            image={props.image}
+            image={props.image ? props.image : noImage}
             alt="green iguana"
             sx={{ height: 250, objectFit: "cover" }}
           />
@@ -37,18 +39,17 @@ const CardArticle: FC<CardProps> = (props) => {
           </Typography>
           <Typography
             variant="body1"
-            color="text.secondary"
             sx={{ paddingBottom: "20px", height: 120, overflowY: "hidden" }}
           >
             {props.description}
           </Typography>
           <div className="continueContainer">
-            <Typography variant="caption">Continua a leggere</Typography>
+            <Typography variant="overline">Continua a leggere</Typography>
           </div>
         </CardContent>
       </CardActionArea>
     </Card>
-  );
-};
+  )
+}
 
-export default CardArticle;
+export default CardArticle

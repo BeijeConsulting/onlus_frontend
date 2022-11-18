@@ -137,6 +137,7 @@ export const theme = createTheme({
     overline: {
       fontSize: "14px",
       textDecoration: "underline",
+      textTransform: "lowercase",
       // color: hexToRGB(PALETTE[2].textColor, 0.6),
       color: "red",
     },
