@@ -1,65 +1,65 @@
-import { FC } from "react";
+import { FC } from "react"
 
 //mui
-import { Typography } from "@mui/material";
+import { Typography } from "@mui/material"
 
 // translation
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next"
 
 // navigation
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-import SCREENS from "../../../route/router";
+import { useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
+import SCREENS from "../../../route/router"
 
 // redux
-import { useSelector } from "react-redux";
+import { useSelector } from "react-redux"
 
 // components
-import CustomButton from "../../ui/buttons/CustomButton/CustomButton";
+import CustomButton from "../../ui/buttons/CustomButton/CustomButton"
 
 // style
-import "./footer.scss";
+import "./footer.scss"
 
 //type
-import { social, contact, color } from "../../../utils/type";
+import { social, contact, color } from "../../../utils/type"
 
 //responsive
-import useResponsive from "../../../utils/useResponsive";
+import useResponsive from "../../../utils/useResponsive"
 
 // convert to RGB
-import { hexToRGB } from "../../../utils/hexToRGB";
+import { hexToRGB } from "../../../utils/hexToRGB"
 
 const Footer: FC = () => {
   const isLogged: boolean = useSelector(
     (state: any) => state.userDuck.isLoggedIn
-  );
+  )
 
   // popolo contacts
   const CONTACTS: contact = useSelector(
     (state: any) => state.generalDuck.contacts
-  );
+  )
   // popolo social
   const SOCIAL: Array<social> = useSelector(
     (state: any) => state.generalDuck.social
-  );
+  )
 
   // POPOLO IL COLOR PALETTE
   const PALETTE: Array<color> = useSelector(
     (state: any) => state.generalDuck.palette
-  );
+  )
 
   // inizializzo navigazione
-  let navigate = useNavigate();
+  let navigate = useNavigate()
 
-  let [Mobile, Default] = useResponsive();
+  let [Mobile, Default] = useResponsive()
 
   // navigazione
   const goTo = (params: string) => (): void => {
-    navigate(params);
-  };
+    navigate(params)
+  }
 
   // tranlation hook
-  const { t }: any = useTranslation();
+  const { t }: any = useTranslation()
 
   const mapping = (el: social, key: number): JSX.Element | boolean => {
     if (el.footerOn) {
@@ -72,11 +72,11 @@ const Footer: FC = () => {
             </div>
           </Default>
         </div>
-      );
+      )
     } else {
-      return false;
+      return false
     }
-  };
+  }
   return (
     <footer style={{ backgroundColor: PALETTE[0].bgColor }} id="footer">
       <div className="top-footer">
@@ -188,7 +188,7 @@ const Footer: FC = () => {
         {t("footer.rightReserved")}
       </Typography>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

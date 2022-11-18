@@ -1,5 +1,8 @@
 import { FC, useEffect, useState } from "react"
 
+// redux
+import { useSelector } from "react-redux"
+
 //translation
 import { useTranslation } from "react-i18next"
 
@@ -33,7 +36,7 @@ import {
 import "../styles/signup.scss"
 
 //type
-import { language } from "../utils/type"
+import { language, color } from "../utils/type"
 
 //mui
 import { Typography } from "@mui/material"
@@ -85,6 +88,10 @@ const SignUp: FC = () => {
   const [state, setState] = useState<State>(initialState)
   const { t }: any = useTranslation()
   const navigate: Function = useNavigate()
+
+  const PALETTE: Array<color> = useSelector(
+    (state: any) => state.generalDuck.palette
+  )
 
   const lngs: Array<language> = [
     { label: t("login.italian"), value: t("login.italian") },
@@ -336,7 +343,7 @@ const SignUp: FC = () => {
           <Typography variant="caption">
             {t("login.alreadyRegistered")}
           </Typography>
-          <Link to={SCREENS.login}>
+          <Link to={SCREENS.login} style={{ color: PALETTE[2].textColor }}>
             <Typography variant="caption">
               {t("buttons.loginButton")}
             </Typography>

@@ -1,5 +1,8 @@
 import { FC, useEffect, useState } from "react"
 
+// redux
+import { useSelector } from "react-redux"
+
 //components
 import Footer from "../components/hooks/Footer/Footer"
 import Header from "../components/hooks/Header/Header"
@@ -12,7 +15,7 @@ import SkeletonCorrelated from "../components/ui/skeleton/skeletonCorrelated/Ske
 import { useTranslation } from "react-i18next"
 
 //type
-import { article, category, contentArticle } from "../utils/type"
+import { article, category, contentArticle, color } from "../utils/type"
 
 //style
 import "../styles/article.scss"
@@ -22,8 +25,8 @@ import { Skeleton, Typography } from "@mui/material"
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft"
 
 //navigation
-import { Link, useParams, useLocation, useNavigate  } from "react-router-dom";
-import SCREENS from "../route/router";
+import { Link, useParams, useLocation, useNavigate } from "react-router-dom"
+import SCREENS from "../route/router"
 
 //api
 import {
@@ -31,6 +34,8 @@ import {
   getSingleArticle,
 } from "../services/api/articleApi"
 import HelmetComponent from "../components/ui/HelmetComponent/HelmetComponent"
+
+import { hexToRGB } from "../utils/hexToRGB"
 
 interface State {
   article: article | null
@@ -50,10 +55,14 @@ const Article: FC = () => {
   const location = useLocation()
 
   //id dell articolo corrispondente
-  let params = useParams();
-  const navigate: Function = useNavigate();
+  let params = useParams()
+  const navigate: Function = useNavigate()
 
   const { t }: any = useTranslation()
+
+  const PALETTE: Array<color> = useSelector(
+    (state: any) => state.generalDuck.palette
+  )
 
   useEffect(() => {
     fetchDatas()
@@ -74,8 +83,8 @@ const Article: FC = () => {
   }
 
   const goToArticle = (id: number, cat_id: number) => (): void => {
-    navigate(SCREENS.article + `/${id}`, { state: { cat_id: cat_id } });
-  };
+    navigate(SCREENS.article + `/${id}`, { state: { cat_id: cat_id } })
+  }
 
   const mappingParagraph = (el: contentArticle, key: number): JSX.Element => {
     return (
@@ -118,7 +127,14 @@ const Article: FC = () => {
 
       <Header />
 
-      <Link to={SCREENS.blog} className="arrowButton goBackButton">
+      <Link
+        style={{
+          background: hexToRGB(PALETTE[2].textColor, 0.6),
+          color: PALETTE[0].textColor,
+        }}
+        to={SCREENS.blog}
+        className="arrowButton goBackButton"
+      >
         <KeyboardArrowLeftIcon sx={{ height: 40, width: 40 }} />
       </Link>
       {state.isLoaded ? (

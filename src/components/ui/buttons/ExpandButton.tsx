@@ -94,7 +94,10 @@ const ExpandButton: FC = () => {
         <Button
           onClick={handleToggle}
           color="success"
-          className={styles.expandedButtonItem}
+          className={`
+            ${styles.expandedButtonItem} 
+            ${state.open && styles.expandOpen}
+          `}
         >
           <Typography variant="button" color="primary">
             {t("buttons.supportNavButton")}

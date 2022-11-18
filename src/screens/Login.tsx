@@ -27,6 +27,8 @@ import { signInApi } from "../services/api/authApi"
 import { setLoggedState, saveUserData } from "../redux/duck/user"
 import { useDispatch, useSelector } from "react-redux"
 
+// type
+import { color } from "../utils/type"
 interface State {
   email: string | null
   password: string | null
@@ -48,6 +50,10 @@ function Login() {
   )
   const navigate: Function = useNavigate()
   const { t }: any = useTranslation()
+
+  const PALETTE: Array<color> = useSelector(
+    (state: any) => state.generalDuck.palette
+  )
 
   const [state, setState] = useState<State>(initialState)
 
@@ -134,7 +140,11 @@ function Login() {
             errorLabel={state.errorMessage}
           />
 
-          <Link to={"/reset-password"} className="forgot-password">
+          <Link
+            to={"/reset-password"}
+            className="forgot-password"
+            style={{ color: PALETTE[2].textColor }}
+          >
             <Typography variant="caption">
               {t("login.forgottenPassword")}
             </Typography>
@@ -150,7 +160,7 @@ function Login() {
 
         <div className="aside-section">
           <Typography variant="caption">{t("login.notRegistered")}</Typography>
-          <Link to={SCREENS.signup}>
+          <Link to={SCREENS.signup} style={{ color: PALETTE[2].textColor }}>
             <Typography variant="caption">
               {t("buttons.signupButton")}
             </Typography>

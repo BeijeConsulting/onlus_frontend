@@ -27,4 +27,8 @@
   display: flex;
   justify-content: space-between;
   width: 200px;
+  &.expandOpen{
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
 }
