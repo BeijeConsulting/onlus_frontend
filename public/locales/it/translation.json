@@ -156,7 +156,7 @@
 
   "error": {
     "notFound": "Errore",
-    "description": "Pagina non trovata! Ci scusiamo per il disagio."
+    "description": "Il server non risponde. Ci scusiamo per il disagio"
   },
 
   "cookieBanner": {

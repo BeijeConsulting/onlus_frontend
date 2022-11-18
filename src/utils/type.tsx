@@ -51,7 +51,7 @@ export type events = {
   id: number;
   attendants: Array<any>;
   title: string;
-  cover: string;
+  coverContent: string;
   description: string;
   requirements: string;
   eventDate: string;

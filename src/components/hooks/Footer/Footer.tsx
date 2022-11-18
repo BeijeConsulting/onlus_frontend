@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react"
+import { FC } from "react"
 
 //mui
 import { Typography } from "@mui/material"
@@ -42,6 +42,7 @@ const Footer: FC = () => {
   const SOCIAL: Array<social> = useSelector(
     (state: any) => state.generalDuck.social
   )
+
   // POPOLO IL COLOR PALETTE
   const PALETTE: Array<color> = useSelector(
     (state: any) => state.generalDuck.palette
@@ -113,7 +114,9 @@ const Footer: FC = () => {
           style={{ borderRightColor: hexToRGB(PALETTE[0].textColor, 0.3) }}
           className="social"
         >
-          <div className="social-container">{SOCIAL.map(mapping)}</div>
+          <div className="social-container">
+            {!!SOCIAL && SOCIAL.map(mapping)}
+          </div>
           {!isLogged && (
             <Mobile>
               <CustomButton

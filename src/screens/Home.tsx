@@ -1,50 +1,57 @@
 // react
-import { useState, useEffect, FC } from "react"
+import { useState, useEffect, FC } from "react";
 
 //navigation
-import { HashLink } from "react-router-hash-link"
+import { HashLink } from "react-router-hash-link";
 
 // traduzioni
-import { useTranslation } from "react-i18next"
+import { useTranslation } from "react-i18next";
 
 // componenti
-import Hero from "../components/hooks/Hero/Hero"
-import Footer from "../components/hooks/Footer/Footer"
-import PreFooter from "../components/hooks/preFooter/PreFooter"
-import CardEventsMobile from "../components/hooks/CardEvents/CardEventsMobile"
-import CardArticle from "../components/ui/CardArticle/CardArticle"
-import SkeletonCard from "../components/ui/skeleton/skeletonCard/SkeletonCard"
-import SkeletonSquare from "../components/ui/skeleton/SkeletonSquare/SkeletonSquare"
-import Header from "../components/hooks/Header/Header"
-import HelmetComponent from "../components/ui/HelmetComponent/HelmetComponent"
+import Hero from "../components/hooks/Hero/Hero";
+import Footer from "../components/hooks/Footer/Footer";
+import PreFooter from "../components/hooks/preFooter/PreFooter";
+import CardEventsMobile from "../components/hooks/CardEvents/CardEventsMobile";
+import CardArticle from "../components/ui/CardArticle/CardArticle";
+import SkeletonCard from "../components/ui/skeleton/skeletonCard/SkeletonCard";
+import SkeletonSquare from "../components/ui/skeleton/SkeletonSquare/SkeletonSquare";
+import Header from "../components/hooks/Header/Header";
+import HelmetComponent from "../components/ui/HelmetComponent/HelmetComponent";
 
 // style
-import "../styles/home.scss"
+import "../styles/home.scss";
 
 // redux
-import { useSelector } from "react-redux"
+import { useSelector } from "react-redux";
 
 //mui
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp"
-import { Typography, Skeleton } from "@mui/material"
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import { Typography, Skeleton } from "@mui/material";
 
 //type
-import { events, article, social } from "../utils/type"
+import { events, article, social } from "../utils/type";
 
 //api
-import { getHome } from "../services/api/homeApi"
-import { getEvents } from "../services/api/eventApi"
-import { getArticles } from "../services/api/articleApi"
+import { getHome } from "../services/api/homeApi";
+import { getEvents } from "../services/api/eventApi";
+import { getArticles } from "../services/api/articleApi";
 // convertDate
-import { convertDate } from "../utils/convertDate"
+import { convertDate } from "../utils/convertDate";
+import { useNavigate } from "react-router-dom";
+import SCREENS from "../route/router";
 
 //stati
 interface State {
-  articlesArray: Array<article> | null
-  homeData: any
-  eventArray: Array<events> | null
-  socialFrame: social | null
-  isLoaded: boolean
+  articlesArray: Array<article> | null;
+  homeData: any;
+  eventArray: Array<events> | null;
+  socialFrame: social | null;
+  isLoaded: {
+    homeLoaded: boolean;
+    eventLoaded: boolean;
+    articleLoaded: boolean;
+    socialLoaded: boolean;
+  };
 }
 
 // inizializzazione
@@ -53,76 +60,101 @@ const initialState = {
   eventArray: null,
   homeData: null,
   socialFrame: null,
-  isLoaded: false,
-}
+  isLoaded: {
+    homeLoaded: false,
+    eventLoaded: false,
+    articleLoaded: false,
+    socialLoaded: false,
+  },
+};
 
 const Home: FC = () => {
-  const { t }: any = useTranslation()
-  const [state, setState] = useState<State>(initialState)
+  const { t }: any = useTranslation();
+  const [state, setState] = useState<State>(initialState);
+
+  const navigate: Function = useNavigate();
 
   const SOCIAL: Array<social> = useSelector(
     (state: any) => state.generalDuck.social
-  )
+  );
 
   useEffect(() => {
-    fetchDatas()
-  }, [])
+    fetchDatas();
+  }, []);
 
   const fetchDatas = async (): Promise<void> => {
-    let homeResponse: any = await getHome()
-    let eventResponse: any = await getEvents()
-    let articleResponse: any = await getArticles()
+    let home: boolean = false,
+      event: boolean = false,
+      article: boolean = false,
+      social: boolean = false;
+    let homeResponse: any = await getHome();
+    if (homeResponse.status === 200) home = true;
+    let eventResponse: any = await getEvents();
+    if (eventResponse.status === 200) event = true;
+    let articleResponse: any = await getArticles();
+    if (articleResponse.status === 200) article = true;
+    if (SOCIAL.length > 0) social = true;
+
     let socialHome: Array<social> = SOCIAL.filter((social: social) => {
-      return social.homepageOn == true
-    })
-    
-  
+      return social.homepageOn == true;
+    });
+
     setState({
       ...state,
       homeData: homeResponse.data,
       eventArray: eventResponse.data,
       articlesArray: articleResponse.data,
       socialFrame: socialHome[0],
-      isLoaded: true,
-    })
-  }
+      isLoaded: {
+        homeLoaded: home,
+        eventLoaded: event,
+        articleLoaded: article,
+        socialLoaded: social,
+      },
+    });
+  };
 
-  const mapArticles = (item: article, key: number):JSX.Element | undefined  => {
-    if(key<5){
+  const goToArticle = (id: number, cat_id: number) => (): void => {
+    navigate(SCREENS.article + `/${id}`, { state: { cat_id: cat_id } });
+  };
+
+  const mapArticles = (item: article, key: number): JSX.Element | undefined => {
+    if (key < 5) {
       return (
-        <CardArticle
-          key={key}
-          minWidth="350px"
-          title={item.title}
-          description={item.content[0].paragraph}
-          date={item.date}
-          image={item.cover}
-        />
-      )
+        <div key={key} onClick={goToArticle(item.id, item.category[0]?.id)}>
+          <CardArticle
+            minWidth="350px"
+            title={item.title}
+            description={item.content[0].paragraph}
+            date={item.date}
+            image={item.cover}
+          />
+        </div>
+      );
     }
     return;
-  }
+  };
 
   // map degli eventi
-  const mapEvents = (event: events, key: number): JSX.Element | undefined  => {
-    if(key<5){
+  const mapEvents = (event: events, key: number): JSX.Element | undefined => {
+    if (key < 5) {
       return (
         <article key={key}>
           <CardEventsMobile
             title={event.title}
             description={event.description}
-            image={event.cover}
+            image={event.coverContent}
             requirement={event.requirements}
-            date={convertDate(event.eventDate,t("dateFormat"))}
+            date={convertDate(event.eventDate, t("dateFormat"))}
             place={event.place}
             minWidth={"330px"}
             opaque={false}
           />
         </article>
-      )
+      );
     }
     return;
-  } 
+  };
 
   return (
     <>
@@ -135,7 +167,7 @@ const Home: FC = () => {
       </HashLink>
 
       <main id="home">
-        {state.isLoaded ? (
+        {state.isLoaded.homeLoaded ? (
           <Hero
             type={"home"}
             title={state.homeData.hero.text}
@@ -149,14 +181,17 @@ const Home: FC = () => {
         )}
         <div className="sectionContainer">
           <section className="results">
-            {state.isLoaded ? (
+            {state.isLoaded.homeLoaded ? (
               <>
                 <Typography variant="h2">
                   {state.homeData.result.title}
                 </Typography>
 
                 <figure>
-                  <img src={state.homeData.result.image} alt="illustrative" />
+                  <img
+                    src={state.homeData.result.mediaContent}
+                    alt="illustrative"
+                  />
                 </figure>
                 <div className="caption">
                   <Typography variant="body1">
@@ -172,7 +207,7 @@ const Home: FC = () => {
           {/* sezione eventi */}
           <section className="events" id="events">
             <Typography variant="h2">{t("titles.eventsTitle")}</Typography>
-            {state.isLoaded ? (
+            {state.isLoaded.eventLoaded ? (
               <div className="articleContainer">
                 {state.eventArray!.map(mapEvents)}
               </div>
@@ -195,7 +230,7 @@ const Home: FC = () => {
           <section className="articles" id="blog">
             <Typography variant="h2">{t("home.latestNews")}</Typography>
             <div className="articleContainer">
-              {state.isLoaded ? (
+              {state.isLoaded.articleLoaded ? (
                 state.articlesArray!.map(mapArticles)
               ) : (
                 <div className="articleContainer">
@@ -222,7 +257,7 @@ const Home: FC = () => {
           {/* sezione rimani aggiornato sui social */}
           <section className="stayUpToDate">
             <Typography variant="h2">{t("home.stayUpToDate")}</Typography>
-            {state.isLoaded ? (
+            {state.isLoaded.socialLoaded ? (
               <>
                 <div className="iframeContainer">
                   <iframe src={state.socialFrame!.link}></iframe>
@@ -236,13 +271,16 @@ const Home: FC = () => {
           {/* sezione storia  */}
           <section className="history" id="history">
             <Typography variant="h2">{t("home.history")}</Typography>
-            {state.isLoaded ? (
+            {state.isLoaded.homeLoaded ? (
               <>
                 <Typography variant="body1" className="description">
                   {state.homeData.story.text}
                 </Typography>
                 <div className="imageContainer">
-                  <img src={state.homeData.story.image} alt="story image" />
+                  <img
+                    src={state.homeData.story.mediaContent}
+                    alt="story image"
+                  />
                 </div>
               </>
             ) : (
@@ -256,7 +294,7 @@ const Home: FC = () => {
       <PreFooter />
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

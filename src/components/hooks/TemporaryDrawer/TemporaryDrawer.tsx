@@ -168,23 +168,24 @@ const TemporaryDrawer: FC = () => {
             marginTop: "25px",
           }}
         >
-          {SOCIAL.map((elem: social, key: any) => {
-            return (
-              <ListItemIcon
-                key={key}
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                }}
-              >
-                <img
-                  src={elem.icon}
-                  className={styles.socialIcons}
-                  alt="social-icon"
-                />
-              </ListItemIcon>
-            )
-          })}
+          {!!SOCIAL &&
+            SOCIAL.map((elem: social, key: any) => {
+              return (
+                <ListItemIcon
+                  key={key}
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
+                  <img
+                    src={elem.icon}
+                    className={styles.socialIcons}
+                    alt="social-icon"
+                  />
+                </ListItemIcon>
+              )
+            })}
         </div>
       </div>
     </Box>

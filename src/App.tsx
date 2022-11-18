@@ -1,100 +1,133 @@
-import { FC, useEffect, useState } from "react"
+import { FC, useEffect, useState } from "react";
 // import router
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route } from "react-router-dom";
 // import redux
-import { setGeneral } from "./redux/duck/general"
-import { useDispatch } from "react-redux"
-import { ThemeProvider } from "@mui/material/styles"
+import { setGeneral } from "./redux/duck/general";
+import { useDispatch } from "react-redux";
+import { ThemeProvider } from "@mui/material/styles";
 
 // Screens
-import About from "./screens/About"
-import Article from "./screens/Article"
-import Blog from "./screens/Blog"
-import Donate from "./screens/Donate"
-import Events from "./screens/Events"
-import Faq from "./screens/Faq"
-import Home from "./screens/Home"
-import Login from "./screens/Login"
-import NotFound from "./screens/NotFound"
-import PersonalArea from "./screens/PersonalArea"
-import SignUp from "./screens/SignUp"
-import Support from "./screens/Support"
-import ScrollToTop from "./utils/ScrollToTop"
-import CookieBanner from "./components/hooks/CookieBanner/CookieBanner"
+import About from "./screens/About";
+import Article from "./screens/Article";
+import Blog from "./screens/Blog";
+import Donate from "./screens/Donate";
+import Events from "./screens/Events";
+import Faq from "./screens/Faq";
+import Home from "./screens/Home";
+import Login from "./screens/Login";
+import NotFound from "./screens/NotFound";
+import PersonalArea from "./screens/PersonalArea";
+import SignUp from "./screens/SignUp";
+import Support from "./screens/Support";
+import ScrollToTop from "./utils/ScrollToTop";
+import CookieBanner from "./components/hooks/CookieBanner/CookieBanner";
 
 // import mui
-import ResetPassword from "./screens/ResetPassword"
-import ConfirmDonation from "./screens/ConfirmDonation"
+import ResetPassword from "./screens/ResetPassword";
+import ConfirmDonation from "./screens/ConfirmDonation";
 
-import SCREENS from "./route/router"
-import { theme } from "./utils/muiTheme"
+import SCREENS from "./route/router";
+import { theme } from "./utils/muiTheme";
 
-import { StyledEngineProvider } from "@mui/material"
-import Loader from "./assets/images/loader.jpg"
+import { StyledEngineProvider } from "@mui/material";
+import Loader from "./assets/images/loader.jpg";
 
 // import style
-import "./App.scss"
+import "./App.scss";
 //Api
-import { getSocial } from "./services/api/socialApi"
-import { getCustomization } from "./services/api/customizationApi"
-import { social } from "./utils/type"
-import { getUserApi } from "./services/api/authApi"
-import { saveUserData } from "./redux/duck/user"
+import { getSocial } from "./services/api/socialApi";
+import { getCustomization } from "./services/api/customizationApi";
+import { social } from "./utils/type";
+import { getUserApi } from "./services/api/authApi";
+import { saveUserData } from "./redux/duck/user";
+import { useTranslation } from "react-i18next";
 
 // state
 interface State {
-  isLoaded: boolean
+  isLoaded: {
+    general: boolean;
+    social: boolean;
+    status: "notReady" | "apiOk" | "apiNotOk"; //"notReady" | "apiOk" | "apiNotOk"
+  };
 }
 // inizializzazione
-const initialState = {
-  isLoaded: false,
-}
+const initialState: State = {
+  isLoaded: {
+    general: false,
+    social: false,
+    status: "notReady",
+  },
+};
 
 const App: FC = () => {
-  const [state, setState] = useState<State>(initialState)
+  const [state, setState] = useState<State>(initialState);
+  const { t }: any = useTranslation();
 
   // hook redux x inviare dati di general
-  const dispatch: Function = useDispatch()
+  const dispatch: Function = useDispatch();
 
   // useeffect per inviare dati all'avvio
   useEffect(() => {
-    fetchDatas()
-  }, [])
+    fetchDatas();
+  }, []);
 
   // funzione per recuperare i dati da chiamata api
   const fetchDatas = async (): Promise<void> => {
+    let general: boolean = false,
+      social: boolean = false,
+      ready: boolean = false;
+
     // estrapolo i dati dalle chiamate
-    let generalResult: any = await getCustomization()
+    let generalResult: any = await getCustomization();
+    if (generalResult.status === 200) general = true;
 
-    let socialResult: any = await getSocial()
-    const social: Array<social> = socialResult.data.social
-    // compongo l'oggetto da mandare a redux
-    const generalData: Object = {
-      ...generalResult.data,
-      social,
+    let socialResult: any = await getSocial();
+    if (socialResult.status === 200) social = true;
+
+    social && general ? (ready = true) : (ready = false);
+
+    if (ready) {
+      const social: Array<social> = socialResult.data.social;
+
+      // compongo l'oggetto da mandare a redux
+      const generalData: Object = {
+        ...generalResult.data,
+        social,
+      };
+
+      //controllo sessionstorage
+      let result: any = !!sessionStorage.getItem("userOnlus")
+        ? JSON.parse(sessionStorage.getItem("userOnlus")!).userId
+        : undefined;
+
+      if (!!result) {
+        let response: any = await getUserApi(result);
+        dispatch(saveUserData(response.data));
+      }
+
+      // modifico gli stati su redux
+      dispatch(setGeneral(generalData));
     }
-    //controllo sessionstorage
-    let result: any = !!sessionStorage.getItem("userOnlus")
-      ? JSON.parse(sessionStorage.getItem("userOnlus")!).userId
-      : undefined
+    console.log(ready);
 
-    if (!!result) {
-      let response: any = await getUserApi(result)
-      dispatch(saveUserData(response.data))
-    }
-
-    // modifico gli stati su redux
-    dispatch(setGeneral(generalData))
     setState({
       ...state,
-      isLoaded: true,
-    })
-  }
+      isLoaded: {
+        general: general,
+        social: social,
+        status: ready ? "apiOk" : "apiNotOk",
+      },
+    });
+  };
 
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={theme}>
-        {state.isLoaded ? (
+        {state.isLoaded.status === "notReady" ? (
+          <main>
+            <img src={Loader} alt="loader" className="loader" />
+          </main>
+        ) : state.isLoaded.status === "apiOk" ? (
           <div className="app">
             <ScrollToTop />
             <Routes>
@@ -119,13 +152,11 @@ const App: FC = () => {
             <CookieBanner />
           </div>
         ) : (
-          <main>
-            <img src={Loader} alt="loader" className="loader" />
-          </main>
+          <NotFound codeError={500} description={t("error.description")} />
         )}
       </ThemeProvider>
     </StyledEngineProvider>
-  )
-}
+  );
+};
 
-export default App
+export default App;

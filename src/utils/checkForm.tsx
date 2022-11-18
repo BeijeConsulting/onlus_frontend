@@ -1,3 +1,5 @@
+import { events } from "./type";
+
 export const checkText = (value: string): boolean => {
   const re = /^[a-z ,.'-]+$/i;
   let ok = re.exec(value);
@@ -35,4 +37,26 @@ export const checkPassword = (password: string): boolean => {
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/g;
   let ok = re.exec(password);
   return !!ok ? true : false;
+};
+
+export const checkEventDate = (
+  data: Array<events>,
+  today: Date
+): Array<events> => {
+  let future: events[] = [];
+
+  data.forEach((event: events) => {
+    var dateTokens = event.eventDate.split("-");
+    let tempDate = new Date(
+      parseInt(dateTokens[0]),
+      parseInt(dateTokens[1]) - 1,
+      parseInt(dateTokens[2])
+    );
+    let eventDate: number = tempDate.getTime();
+    let todaySec: number = today.getTime();
+    if (eventDate >= todaySec) {
+      future.push(event);
+    }
+  });
+  return future;
 };

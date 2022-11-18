@@ -73,7 +73,7 @@ function Support() {
       <main id="support">
         <JoinUs type="donate" />
         <div className="sectionContainer">
-          {state?.isLoaded ? (
+          {state?.isLoaded && !!state.data ? (
             <>
               <Typography variant="h1">{state?.data?.title.title}</Typography>
               {state?.data?.content.map(mapping)}
@@ -101,7 +101,7 @@ function Support() {
             </>
           )}
         </div>
-        {state?.isLoaded ? (
+        {state?.isLoaded && !!state.data.hero ? (
           <Hero
             type="home"
             title={state?.data?.hero.text}
