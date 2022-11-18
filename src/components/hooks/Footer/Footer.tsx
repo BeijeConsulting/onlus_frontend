@@ -39,7 +39,6 @@ const Footer: FC = () => {
   const SOCIAL: Array<social> = useSelector(
     (state: any) => state.generalDuck.social
   );
-  console.log(SOCIAL);
 
   // POPOLO IL COLOR PALETTE
   const PALETTE: Array<color> = useSelector(

@@ -46,9 +46,12 @@ const About: FC = () => {
   }, []);
 
   async function fetchDatas() {
+    let about: boolean = false;
     let result: any = await getAbout();
+    if (!!result.data.hero && !!result.data.content && !!result.data.title)
+      about = true;
     setState({
-      pageIsLoaded: true,
+      pageIsLoaded: about,
       imageHero: result.data.hero.mediaContent,
       titleHero: result.data.hero.text,
       content: result.data.content,

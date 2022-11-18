@@ -1,5 +1,5 @@
 import { getApiNoAuth } from "../genericServices";
 
 export async function getAbout() {
-    return await getApiNoAuth('about')
+    return await getApiNoAuth('about/fdsa')
 }
