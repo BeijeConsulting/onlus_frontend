@@ -49,6 +49,7 @@ const About: FC = () => {
     let about: boolean = false;
     let result: any = await getAbout();
     if (!!result.data.hero && !!result.data.content && !!result.data.title) about = true;
+    else return;
     setState({
       pageIsLoaded: about,
       imageHero: result.data.hero.mediaContent,
