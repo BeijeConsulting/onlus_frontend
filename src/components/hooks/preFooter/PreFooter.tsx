@@ -13,7 +13,7 @@ import { Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 
 const PreFooter: FC = () => {
-  const LOGO = useSelector((state: any) => state.generalDuck.logo);
+  const LOGO = useSelector((state: any) => state.generalDuck.logoContent);
   const BANNER = useSelector((state: any) => state.generalDuck.sectionWork);
 
   // tranlation hook

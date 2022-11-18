@@ -108,7 +108,7 @@ export type hero = {
 
 export type social = {
   name: string;
-  icon: string;
+  iconContent: string;
   link: string;
   footerOn: boolean;
   homepageOn: boolean;

@@ -62,7 +62,7 @@ const Header: FC<HeaderProps> = (props) => {
   const [state, setState] = useState<State>(initialState)
   const dispatch: Function = useDispatch()
 
-  const LOGO: any = useSelector((state: any) => state.generalDuck.logo)
+  const LOGO: any = useSelector((state: any) => state.generalDuck.logoContent)
   const PALETTE: Array<color> = useSelector(
     (state: any) => state.generalDuck.palette
   )
