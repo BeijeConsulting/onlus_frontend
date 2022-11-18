@@ -156,7 +156,7 @@
 
   "error": {
     "notFound": "Error",
-    "description": "We are sorry, the page you requested was not found!"
+    "description": "We are sorry, internal server error"
   },
 
   "cookieBanner": {

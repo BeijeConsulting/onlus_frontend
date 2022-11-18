@@ -40,6 +40,7 @@ import { convertDate } from "../utils/convertDate";
 import { events } from "../utils/type";
 import GenericModal from "../components/hooks/GenericModal/GenericModal";
 import CustomButton from "../components/ui/buttons/CustomButton/CustomButton";
+import { checkEventDate } from "../utils/checkForm";
 
 interface State {
   isLoaded: boolean;
@@ -72,29 +73,10 @@ const Events: FC = () => {
     fetchDatas();
   }, []);
 
-  const checkEventDate = (data: Array<events>): Array<events> => {
-    let future: events[] = [];
-
-    data.forEach((event: events) => {
-      var dateTokens = event.eventDate.split("-");
-      let tempDate = new Date(
-        parseInt(dateTokens[0]),
-        parseInt(dateTokens[1]) - 1,
-        parseInt(dateTokens[2])
-      );
-      let eventDate: number = tempDate.getTime();
-      let todaySec: number = state.today.getTime();
-      if (eventDate >= todaySec) {
-        future.push(event);
-      }
-    });
-    return future;
-  };
-
   const fetchDatas = async (): Promise<void> => {
     let result: any = await getEvents();
 
-    let future: Array<events> = checkEventDate(result.data);
+    let future: Array<events> = checkEventDate(result.data, state.today);
 
     setState({
       ...state,
@@ -132,7 +114,7 @@ const Events: FC = () => {
         break;
     }
     let result: any = await getEvents();
-    let future: Array<events> = checkEventDate(result.data);
+    let future: Array<events> = checkEventDate(result.data, state.today);
     setState({
       ...state,
       events: future,
@@ -158,7 +140,7 @@ const Events: FC = () => {
         break;
     }
     let result: any = await getEvents();
-    let future: Array<events> = checkEventDate(result.data);
+    let future: Array<events> = checkEventDate(result.data, state.today);
 
     setState({
       ...state,
@@ -178,7 +160,7 @@ const Events: FC = () => {
           <CardEvents
             title={event.title}
             description={event.description}
-            image={event.cover}
+            image={event.coverContent}
             requirement={event.requirements}
             date={convertDate(event.eventDate, t("dateFormat"))}
             place={event.place}
@@ -191,7 +173,7 @@ const Events: FC = () => {
           <CardEventsMobile
             title={event.title}
             description={event.description}
-            image={event.cover}
+            image={event.coverContent}
             requirement={event.requirements}
             date={convertDate(event.eventDate, t("dateFormat"))}
             place={event.place}
