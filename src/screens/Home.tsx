@@ -40,6 +40,7 @@ import { getArticles } from "../services/api/articleApi";
 import { convertDate } from "../utils/convertDate";
 import { useNavigate } from "react-router-dom";
 import SCREENS from "../route/router";
+import { checkEventDate } from "../utils/checkForm";
 
 //stati
 interface State {
@@ -100,10 +101,14 @@ const Home: FC = () => {
       return social.homepageOn == true;
     });
 
+    let today: Date = new Date();
+
+    let future: Array<events> = checkEventDate(eventResponse.data, today);
+
     setState({
       ...state,
       homeData: homeResponse.data,
-      eventArray: eventResponse.data,
+      eventArray: future,
       articlesArray: articleResponse.data,
       socialFrame: socialHome[0],
       isLoaded: {
@@ -136,11 +141,15 @@ const Home: FC = () => {
     return;
   };
 
+  const goToEvents = (): void => {
+    navigate(SCREENS.events);
+  };
+
   // map degli eventi
   const mapEvents = (event: events, key: number): JSX.Element | undefined => {
     if (key < 5) {
       return (
-        <article key={key}>
+        <article key={key} onClick={goToEvents}>
           <CardEventsMobile
             title={event.title}
             description={event.description}
