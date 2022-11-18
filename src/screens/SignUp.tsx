@@ -1,24 +1,24 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react"
 
 //translation
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next"
 
 //components
-import Footer from "../components/hooks/Footer/Footer";
-import PreFooter from "../components/hooks/preFooter/PreFooter";
-import Header from "../components/hooks/Header/Header";
-import InputBox from "../components/hooks/inputBox/InputBox";
-import SelectBox from "../components/hooks/inputBox/SelectBox";
-import InputCheckbox from "../components/hooks/inputBox/InputCheckbox";
-import CustomButton from "../components/ui/buttons/CustomButton/CustomButton";
-import HelmetComponent from "../components/ui/HelmetComponent/HelmetComponent";
+import Footer from "../components/hooks/Footer/Footer"
+import PreFooter from "../components/hooks/preFooter/PreFooter"
+import Header from "../components/hooks/Header/Header"
+import InputBox from "../components/hooks/inputBox/InputBox"
+import SelectBox from "../components/hooks/inputBox/SelectBox"
+import InputCheckbox from "../components/hooks/inputBox/InputCheckbox"
+import CustomButton from "../components/ui/buttons/CustomButton/CustomButton"
+import HelmetComponent from "../components/ui/HelmetComponent/HelmetComponent"
 
 //navigation
-import SCREENS from "../route/router";
-import { Link, useNavigate } from "react-router-dom";
+import SCREENS from "../route/router"
+import { Link, useNavigate } from "react-router-dom"
 
 //api
-import { signUpApi } from "../services/api/authApi";
+import { signUpApi } from "../services/api/authApi"
 
 //type
 import {
@@ -27,31 +27,31 @@ import {
   checkPhone,
   checkPassword,
   checkConfirmPassword,
-} from "../utils/checkForm";
+} from "../utils/checkForm"
 
 //style
-import "../styles/signup.scss";
+import "../styles/signup.scss"
 
 //type
-import { language } from "../utils/type";
+import { language } from "../utils/type"
 
 //mui
-import { Typography } from "@mui/material";
-import GenericModal from "../components/hooks/GenericModal/GenericModal";
+import { Typography } from "@mui/material"
+import GenericModal from "../components/hooks/GenericModal/GenericModal"
 
 interface State {
-  errorName: boolean;
-  errorSurname: boolean;
-  errorEmail: boolean;
-  errorPhone: boolean;
-  errorPassword: boolean;
-  errorConfirmPassword: boolean;
-  isChecked: boolean;
-  isClicked: boolean;
+  errorName: boolean
+  errorSurname: boolean
+  errorEmail: boolean
+  errorPhone: boolean
+  errorPassword: boolean
+  errorConfirmPassword: boolean
+  isChecked: boolean
+  isClicked: boolean
   modal: {
-    isOpen: boolean;
-    message: string;
-  };
+    isOpen: boolean
+    message: string
+  }
 }
 
 const initialState = {
@@ -67,7 +67,7 @@ const initialState = {
     isOpen: false,
     message: "",
   },
-};
+}
 
 let data: any = {
   name: "",
@@ -77,39 +77,39 @@ let data: any = {
   password: "",
   confirmPassword: "",
   lng: "IT",
-};
+}
 
-let handleErrorSubmit: boolean = true;
+let handleErrorSubmit: boolean = true
 
 const SignUp: FC = () => {
-  const [state, setState] = useState<State>(initialState);
-  const { t }: any = useTranslation();
-  const navigate: Function = useNavigate();
+  const [state, setState] = useState<State>(initialState)
+  const { t }: any = useTranslation()
+  const navigate: Function = useNavigate()
 
   const lngs: Array<language> = [
     { label: t("login.italian"), value: t("login.italian") },
     { label: t("login.english"), value: t("login.english") },
-  ];
+  ]
 
   async function handleSignUp(obj: any): Promise<void> {
-    let result = await signUpApi(obj);
+    let result = await signUpApi(obj)
 
-    let open: boolean = false;
-    let message: string = "";
+    let open: boolean = false
+    let message: string = ""
 
     switch (result.status) {
       case 200:
-        open = true;
-        message = t("login.signupSuccess");
-        break;
+        open = true
+        message = t("login.signupSuccess")
+        break
       case 503:
-        open = true;
-        message = t("login.alreadyExist");
-        break;
+        open = true
+        message = t("login.alreadyExist")
+        break
       default:
-        open = true;
-        message = t("form.serverError");
-        return;
+        open = true
+        message = t("form.serverError")
+        return
     }
     setState({
       ...state,
@@ -117,7 +117,7 @@ const SignUp: FC = () => {
         isOpen: open,
         message: message,
       },
-    });
+    })
   }
 
   const openModal = (): void => {
@@ -127,8 +127,8 @@ const SignUp: FC = () => {
         isOpen: !state.modal.isOpen,
         message: "",
       },
-    });
-  };
+    })
+  }
 
   const goToLogin = (): void => {
     setState({
@@ -137,13 +137,12 @@ const SignUp: FC = () => {
         isOpen: !state.modal.isOpen,
         message: state.modal.message,
       },
-    });
+    })
     if (state.modal.message === t("login.signupSuccess"))
-      navigate(SCREENS.login);
-  };
+      navigate(SCREENS.login)
+  }
 
-  useEffect(() => {    
-    
+  useEffect(() => {
     if (
       !state.errorName &&
       !state.errorEmail &&
@@ -153,7 +152,7 @@ const SignUp: FC = () => {
       !state.errorPhone &&
       state.isChecked
     ) {
-      handleErrorSubmit = false;
+      handleErrorSubmit = false
     }
   }, [
     state.errorEmail,
@@ -161,7 +160,7 @@ const SignUp: FC = () => {
     state.errorPassword,
     state.errorPhone,
     state.errorSurname,
-  ]);
+  ])
 
   useEffect(() => {
     if (handleErrorSubmit === false)
@@ -172,69 +171,69 @@ const SignUp: FC = () => {
         phone: data.phone,
         password: data.password,
         language: data.lng,
-      });
-  }, [state.isClicked]);
+      })
+  }, [state.isClicked])
 
   const setName = (name: React.ChangeEvent<HTMLInputElement>): void => {
-    data.name = name.target.value;
+    data.name = name.target.value
     setState({
       ...state,
       errorName: false,
-    });
-  };
+    })
+  }
 
   const setSurname = (surname: React.ChangeEvent<HTMLInputElement>): void => {
-    data.surname = surname.target.value;
+    data.surname = surname.target.value
     setState({
       ...state,
       errorSurname: false,
-    });
-  };
+    })
+  }
 
   const setEmail = (email: React.ChangeEvent<HTMLInputElement>): void => {
-    data.email = email.target.value;
+    data.email = email.target.value
     setState({
       ...state,
       errorEmail: false,
-    });
-  };
+    })
+  }
 
   const setPhone = (phone: React.ChangeEvent<HTMLInputElement>): void => {
-    data.phone = phone.target.value;
+    data.phone = phone.target.value
     setState({
       ...state,
       errorPhone: false,
-    });
-  };
+    })
+  }
 
   const setPassword = (password: React.ChangeEvent<HTMLInputElement>): void => {
-    data.password = password.target.value;
+    data.password = password.target.value
     setState({
       ...state,
       errorPassword: false,
-    });
-  };
+    })
+  }
 
   const setConfirmPassword = (
     confirmPassword: React.ChangeEvent<HTMLInputElement>
   ): void => {
-    data.confirmPassword = confirmPassword.target.value;
+    data.confirmPassword = confirmPassword.target.value
     setState({
       ...state,
       errorConfirmPassword: false,
-    });
-  };
+    })
+  }
 
   const setTerms = (e: boolean): void => {
     setState({
       ...state,
       isChecked: e,
-    });
-  };
+    })
+  }
 
   const setLanguage = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    data.lng = e.target.value === `${t("login.italian")}` ? "IT" : "EN";
-  };
+    data.lng = e.target.value === `${t("login.italian")}` ? "IT" : "EN"
+  }
 
   const submit = (): void => {
     setState({
@@ -249,8 +248,8 @@ const SignUp: FC = () => {
         data.confirmPassword
       ),
       isClicked: !state.isClicked,
-    });
-  };
+    })
+  }
 
   return (
     <>
@@ -334,11 +333,13 @@ const SignUp: FC = () => {
           />
         </form>
         <div className="aside-section">
-          <Typography variant="body2">
+          <Typography variant="caption">
             {t("login.alreadyRegistered")}
           </Typography>
           <Link to={SCREENS.login}>
-            <Typography variant="body2">{t("buttons.loginButton")}</Typography>
+            <Typography variant="caption">
+              {t("buttons.loginButton")}
+            </Typography>
           </Link>
         </div>
 
@@ -359,7 +360,7 @@ const SignUp: FC = () => {
       <PreFooter />
       <Footer />
     </>
-  );
-};
+  )
+}
 
-export default SignUp;
+export default SignUp

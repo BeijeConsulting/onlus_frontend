@@ -361,7 +361,7 @@ const Header: FC<HeaderProps> = (props) => {
 
       <GenericModal open={state.isOpenModal} callback={openModal}>
         <div className="children-modal">
-          <Typography variant="body2">{t("nav.logoutSentence")}</Typography>
+          <Typography variant="caption">{t("nav.logoutSentence")}</Typography>
           <CustomButton
             label={t("confirm")}
             isDisable={false}
