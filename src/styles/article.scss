@@ -1,9 +1,5 @@
 //mobile
 #article {
-  .date {
-    font-size: 12px;
-    color: rgba(0, 0, 0, 0.8);
-  }
   .paragraph {
     font-size: 16px;
     display: flex;
@@ -41,10 +37,6 @@
 @media screen and (min-width: 768px) {
   #article {
     width: 100%;
-    .date {
-      font-size: 18px;
-      color: rgba(0, 0, 0, 0.8);
-    }
     article {
       width: 65vw;
       margin: 0 auto;

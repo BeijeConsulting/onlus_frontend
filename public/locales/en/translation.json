@@ -50,7 +50,8 @@
     "bookButton": "Book",
     "modifyButton": "Apply Changes",
     "disableAccount": "Disable Account",
-    "cancelBooking": "Cancel"
+    "cancelBooking": "Cancel",
+    "backToHome": "Back to Home"
   },
 
   "footer": {
@@ -136,8 +137,7 @@
 
   "confirmDonate": {
     "congrats": "Congratulations!",
-    "report": "You have donated",
-    "backToHome": "Back to Home"
+    "report": "You have donated"
   },
 
   "form": {

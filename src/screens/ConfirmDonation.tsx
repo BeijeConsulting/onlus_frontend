@@ -47,7 +47,7 @@ const ConfirmDonation: FC = () => {
           <CustomButton
             colorType="primary"
             size={"small"}
-            label={t("confirmDonate.backToHome")}
+            label={t("buttons.backToHome")}
             callback={backToHome}
           />
         </section>

@@ -1,10 +1,18 @@
 import React, { FC, ReactElement } from "react"
 
+// redux
+import { useSelector } from "react-redux"
+
 //mui
 import Tabs from "@mui/material/Tabs"
 import Tab from "@mui/material/Tab"
 import Typography from "@mui/material/Typography"
 import Box from "@mui/material/Box"
+
+//type
+import { color } from "../../../utils/type"
+
+import { hexToRGB } from "../../../utils/hexToRGB"
 
 interface TabPanelProps {
   children?: React.ReactNode
@@ -47,6 +55,10 @@ function a11yProps(index: number) {
 export default function BasicTabs(props: LocalProps) {
   const [value, setValue] = React.useState(0)
 
+  const PALETTE: Array<color> = useSelector(
+    (state: any) => state.generalDuck.palette
+  )
+
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
   }
@@ -59,10 +71,24 @@ export default function BasicTabs(props: LocalProps) {
           onChange={handleChange}
           aria-label="basic tabs example"
           centered
+          textColor="primary"
+          indicatorColor="primary"
         >
-          <Tab label={props.pages[0]} {...a11yProps(0)} />
-          <Tab label={props.pages[1]} {...a11yProps(1)} />
-          <Tab label={props.pages[2]} {...a11yProps(2)} />
+          <Tab
+            sx={{ color: hexToRGB(PALETTE[2].textColor, 0.7) }}
+            label={props.pages[0]}
+            {...a11yProps(0)}
+          />
+          <Tab
+            sx={{ color: hexToRGB(PALETTE[2].textColor, 0.7) }}
+            label={props.pages[1]}
+            {...a11yProps(1)}
+          />
+          <Tab
+            sx={{ color: hexToRGB(PALETTE[2].textColor, 0.7) }}
+            label={props.pages[2]}
+            {...a11yProps(2)}
+          />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>

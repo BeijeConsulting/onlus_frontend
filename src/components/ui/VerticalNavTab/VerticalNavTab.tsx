@@ -1,10 +1,18 @@
 import { FC, useState } from "react"
 
+// redux
+import { useSelector } from "react-redux"
+
 //mui
 import Tabs from "@mui/material/Tabs"
 import Tab from "@mui/material/Tab"
 import Typography from "@mui/material/Typography"
 import Box from "@mui/material/Box"
+
+//type
+import { color } from "../../../utils/type"
+
+import { hexToRGB } from "../../../utils/hexToRGB"
 
 interface TabPanelProps {
   children?: React.ReactNode
@@ -37,9 +45,7 @@ const TabPanel: FC<TabPanelProps> = (props: TabPanelProps) => {
             alignItems: "flex-start",
           }}
         >
-          <Typography variant="button" sx={{ width: "100%" }}>
-            {children}
-          </Typography>
+          <Typography sx={{ width: "100%" }}>{children}</Typography>
         </Box>
       )}
     </div>
@@ -55,6 +61,10 @@ function a11yProps(index: number) {
 
 export default function VerticalTabs(props: LocalProps) {
   const [value, setValue] = useState(0)
+
+  const PALETTE: Array<color> = useSelector(
+    (state: any) => state.generalDuck.palette
+  )
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
@@ -78,15 +88,29 @@ export default function VerticalTabs(props: LocalProps) {
         value={value}
         onChange={handleChange}
         aria-label="Vertical tabs example"
+        textColor="primary"
+        indicatorColor="primary"
         sx={{
           borderRight: 1,
           borderColor: "divider",
           paddingTop: "24px",
         }}
       >
-        <Tab label={props.pages[0]} {...a11yProps(0)} />
-        <Tab label={props.pages[1]} {...a11yProps(1)} />
-        <Tab label={props.pages[2]} {...a11yProps(2)} />
+        <Tab
+          sx={{ color: hexToRGB(PALETTE[2].textColor, 0.7) }}
+          label={props.pages[0]}
+          {...a11yProps(0)}
+        />
+        <Tab
+          sx={{ color: hexToRGB(PALETTE[2].textColor, 0.7) }}
+          label={props.pages[1]}
+          {...a11yProps(1)}
+        />
+        <Tab
+          sx={{ color: hexToRGB(PALETTE[2].textColor, 0.7) }}
+          label={props.pages[2]}
+          {...a11yProps(2)}
+        />
       </Tabs>
       <TabPanel value={value} index={0}>
         {props.children[0]}
