@@ -22,7 +22,7 @@ import { Skeleton, Typography } from "@mui/material";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 
 //navigation
-import { Link, useParams, useLocation } from "react-router-dom";
+import { Link, useParams, useLocation, useNavigate  } from "react-router-dom";
 import SCREENS from "../route/router";
 
 //api
@@ -51,6 +51,7 @@ const Article: FC = () => {
 
   //id dell articolo corrispondente
   let params = useParams();
+  const navigate: Function = useNavigate();
 
   const { t }: any = useTranslation();
 
@@ -72,6 +73,10 @@ const Article: FC = () => {
     });
   }
 
+  const goToArticle = (id: number, cat_id: number) => (): void => {
+    navigate(SCREENS.article + `/${id}`, { state: { cat_id: cat_id } });
+  };
+
   const mappingParagraph = (el: contentArticle, key: number): JSX.Element => {
 
     return (
@@ -86,9 +91,9 @@ const Article: FC = () => {
     el: article,
     key: number
   ): JSX.Element | undefined => {
-    if (key < 3) {
+    if (key < 3 && el.id !== Number(params.id)) {
       return (
-        <div key={key}>
+        <div key={key} onClick={goToArticle(el.id, el.category[0]?.id)}>
           <CorrelatedArticleCard cover={el.cover} title={el.title} />
         </div>
       );
