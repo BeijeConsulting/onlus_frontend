@@ -52,10 +52,10 @@ const About: FC = () => {
       about = true;
     setState({
       pageIsLoaded: about,
-      imageHero: result.data?.hero.mediaContent,
-      titleHero: result.data?.hero.text,
-      content: result.data?.content,
-      titleScreen: result.data?.title.title,
+      imageHero: result.data.hero.mediaContent,
+      titleHero: result.data.hero.text,
+      content: result.data.content,
+      titleScreen: result.data.title.title,
     });
   }
 
