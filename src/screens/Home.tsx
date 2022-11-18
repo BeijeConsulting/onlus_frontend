@@ -17,6 +17,7 @@ import SkeletonCard from "../components/ui/skeleton/skeletonCard/SkeletonCard";
 import SkeletonSquare from "../components/ui/skeleton/SkeletonSquare/SkeletonSquare";
 import Header from "../components/hooks/Header/Header";
 import HelmetComponent from "../components/ui/HelmetComponent/HelmetComponent";
+import JoinUs from "../components/hooks/joinUsBbox/JoinUsBox";
 
 // style
 import "../styles/home.scss";
@@ -253,21 +254,10 @@ const Home: FC = () => {
               )}
             </div>
           </section>
-
-          {/* sezione rimani aggiornato sui social */}
-          <section className="stayUpToDate">
-            <Typography variant="h2">{t("home.stayUpToDate")}</Typography>
-            {state.isLoaded.socialLoaded ? (
-              <>
-                <div className="iframeContainer">
-                  <iframe src={state.socialFrame!.link}></iframe>
-                </div>
-              </>
-            ) : (
-              <SkeletonSquare />
-            )}
-          </section>
-
+        </div>
+        {/* sezione join us box*/}
+        <JoinUs supportBox={true} />
+        <div className="sectionContainer">
           {/* sezione storia  */}
           <section className="history" id="history">
             <Typography variant="h2">{t("home.history")}</Typography>
