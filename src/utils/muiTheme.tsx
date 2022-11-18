@@ -69,7 +69,7 @@ export const theme = createTheme({
     h1: {
       fontSize: "24px",
       fontWeight: "500",
-      color: "red",
+      color: PALETTE[2].textColor,
       "@media (min-width:768px)": {
         fontSize: "36px",
       },
@@ -80,7 +80,7 @@ export const theme = createTheme({
     h2: {
       fontSize: "20px",
       fontWeight: "500",
-      color: "red",
+      color: PALETTE[2].textColor,
       "@media (min-width:768px)": {
         fontSize: "32px",
       },
@@ -91,7 +91,7 @@ export const theme = createTheme({
     h3: {
       fontSize: "20px",
       fontWeight: "500",
-      color: "red",
+      color: PALETTE[2].textColor,
       "@media (min-width:768px)": {
         fontSize: "22px",
       },
@@ -102,12 +102,12 @@ export const theme = createTheme({
     h4: {
       fontSize: "18px",
       fontWeight: "600",
-      color: "red",
+      color: PALETTE[2].textColor,
     },
     h5: {
       fontSize: "18px",
       fontWeight: "400",
-      color: "yellow",
+      color: PALETTE[0].textColor,
     },
     h6: {
       fontSize: "18px",
@@ -116,30 +116,28 @@ export const theme = createTheme({
     subtitle1: {
       fontSize: "16px",
       fontWeight: "600",
-      color: "red",
+      color: PALETTE[2].textColor,
     },
     body1: {
       fontSize: "16px",
       fontWeight: "400",
-      color: "red",
+      color: PALETTE[2].textColor,
     },
     body2: {
       fontSize: "16px",
       fontWeight: "400",
-      color: "yellow",
+      color: PALETTE[0].textColor,
     },
     caption: {
       fontSize: "14px",
       fontWeight: "400",
-      // color: hexToRGB(PALETTE[2].textColor, 0.6),
-      color: "red",
+      color: hexToRGB(PALETTE[2].textColor, 0.6),
     },
     overline: {
       fontSize: "14px",
       textDecoration: "underline",
       textTransform: "lowercase",
-      // color: hexToRGB(PALETTE[2].textColor, 0.6),
-      color: "red",
+      color: hexToRGB(PALETTE[2].textColor, 0.6),
     },
     button: {
       fontSize: "16px",
