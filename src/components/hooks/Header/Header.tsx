@@ -170,7 +170,9 @@ const Header: FC<HeaderProps> = (props) => {
       }
     >
       <div className={"top-header"}>
-        <img src={LOGO} alt="" className="logo" onClick={goTo(SCREENS.home)} />
+        <div className="logo">
+          <img src={LOGO} alt="" onClick={goTo(SCREENS.home)} />
+        </div>
         <Default>
           <nav className={"nav-desktop"}>
             <NavLink end to={SCREENS.home}>
