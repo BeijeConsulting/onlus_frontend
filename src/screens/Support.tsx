@@ -71,7 +71,7 @@ function Support() {
       <Header />
 
       <main id="support">
-        <JoinUs type="donate" />
+        <JoinUs supportBox={false} />
         <div className="sectionContainer">
           {state?.isLoaded && !!state.data ? (
             <>

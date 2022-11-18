@@ -129,7 +129,7 @@ const About: FC = () => {
         </main>
       )}
 
-      <JoinUs type="support" />
+      <JoinUs supportBox={true} />
 
       <PreFooter />
       <Footer />

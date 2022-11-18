@@ -21,7 +21,7 @@ import { joinUs, color } from "../../../utils/type"
 import { useSelector } from "react-redux"
 
 interface Props {
-  type: string
+  supportBox: boolean
 }
 
 interface State {
@@ -86,7 +86,7 @@ function JoinUs(props: Props): ReactElement {
                 callback={goToDonations}
               />
             </div>
-            {props.type === "support" && (
+            {props.supportBox && (
               <div className="btn2">
                 <CustomButton
                   colorType="success"
@@ -97,7 +97,7 @@ function JoinUs(props: Props): ReactElement {
               </div>
             )}
           </div>
-          {props.type === "support" && (
+          {props.supportBox && (
             <section className="lowerSection">
               <Link
                 style={{ color: PALETTE[0].textColor }}
