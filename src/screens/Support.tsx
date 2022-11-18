@@ -75,7 +75,7 @@ function Support() {
         <div className="sectionContainer">
           {state?.isLoaded && !!state.data ? (
             <>
-              <Typography variant="h1">{state.data?.title.title}</Typography>
+              <Typography variant="h1">{state.data.title.title}</Typography>
               {state.data.content?.map(mapping)}
             </>
           ) : (

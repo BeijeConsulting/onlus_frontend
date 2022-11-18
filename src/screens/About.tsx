@@ -48,8 +48,7 @@ const About: FC = () => {
   async function fetchDatas() {
     let about: boolean = false;
     let result: any = await getAbout();
-    if (!!result.data.hero && !!result.data.content && !!result.data.title)
-      about = true;
+    if (!!result.data.hero && !!result.data.content && !!result.data.title) about = true;
     setState({
       pageIsLoaded: about,
       imageHero: result.data.hero.mediaContent,
