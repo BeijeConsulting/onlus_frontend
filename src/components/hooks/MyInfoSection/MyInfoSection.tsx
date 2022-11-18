@@ -130,7 +130,7 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
     if (oldPhoneNumber !== state.phoneNumber)
       sendObj = { ...sendObj, phone: state.phoneNumber }
 
-    let result: any = await updateUserApi(props.datas!.id, sendObj)
+    await updateUserApi(props.datas!.id, sendObj)
     setState({
       ...state,
       buttonDisabled: true,

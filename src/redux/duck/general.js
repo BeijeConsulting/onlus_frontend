@@ -14,7 +14,7 @@ const generalDuck = createSlice({
   name: "generalDuck",
   initialState: {
     websiteName: "Panda",
-    logo: "nomeImmagine", //nome immagine da abbinare a path predefinito
+    logoContent: "nomeImmagine", //nome immagine da abbinare a path predefinito
     palette: [
       {
         id: 0,
@@ -60,7 +60,7 @@ const generalDuck = createSlice({
   reducers: {
     setGeneralAction: (state, action) => {
       state.websiteName = action.payload.websiteName;
-      state.logo = action.payload.logo;
+      state.logoContent = action.payload.logoContent;
       state.palette = action.payload.palette;
       state.contacts = action.payload.contacts;
       state.sectionWork = action.payload.sectionWork;
