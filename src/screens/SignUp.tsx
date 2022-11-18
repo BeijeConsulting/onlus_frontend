@@ -109,7 +109,7 @@ const SignUp: FC = () => {
       default:
         open = true
         message = t("form.serverError")
-        return
+        break
     }
     setState({
       ...state,
