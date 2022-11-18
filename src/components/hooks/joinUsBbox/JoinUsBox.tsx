@@ -15,7 +15,7 @@ import CustomButton from "../../ui/buttons/CustomButton/CustomButton"
 import "./joinUsBox.scss"
 
 //type
-import { joinUs } from "../../../utils/type"
+import { joinUs, color } from "../../../utils/type"
 
 //redux
 import { useSelector } from "react-redux"
@@ -40,6 +40,10 @@ function JoinUs(props: Props): ReactElement {
 
   const BANNER: any = useSelector((state: any) => state.generalDuck.banner)
 
+  const PALETTE: Array<color> = useSelector(
+    (state: any) => state.generalDuck.palette
+  )
+
   useEffect(() => {
     getData()
   }, [])
@@ -60,13 +64,18 @@ function JoinUs(props: Props): ReactElement {
   }
 
   return (
-    <article className="joinUsBox">
+    <article className="joinUsBox" style={{ background: PALETTE[0].bgColor }}>
       {state.isLoaded ? (
         <>
           <section className="upperSection">
-            <Typography variant="h1"> {state.data!.title}</Typography>
-            <hr className="separator" />
-            <Typography variant="h4">{state.data!.subtitle}</Typography>
+            <Typography sx={{ color: PALETTE[0].textColor }} variant="h1">
+              {state.data!.title}
+            </Typography>
+            <div
+              style={{ background: PALETTE[0].textColor }}
+              className="separator"
+            ></div>
+            <Typography variant="h5">{state.data!.subtitle}</Typography>
           </section>
           <div className="buttons">
             <div className="btn1">
@@ -90,8 +99,12 @@ function JoinUs(props: Props): ReactElement {
           </div>
           {props.type === "support" && (
             <section className="lowerSection">
-              <Link to={SCREENS.support} className="supportLink">
-                <Typography variant="body1">{state.data!.link}</Typography>
+              <Link
+                style={{ color: PALETTE[0].textColor }}
+                to={SCREENS.support}
+                className="supportLink"
+              >
+                <Typography variant="body2">{state.data!.link}</Typography>
               </Link>
             </section>
           )}

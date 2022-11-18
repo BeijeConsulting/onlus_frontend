@@ -8,6 +8,15 @@ import Typography from "@mui/material/Typography"
 import AddIcon from "@mui/icons-material/Add"
 import RemoveIcon from "@mui/icons-material/Remove"
 
+// redux
+import { useSelector } from "react-redux"
+
+//type
+import { color } from "../../../utils/type"
+
+// convert to rgb
+import { hexToRGB } from "../../../utils/hexToRGB"
+
 //style
 import styles from "./AccordionItem.module.scss"
 
@@ -27,6 +36,10 @@ const initialState = {
 const AccordionItem: FC<AccordionItemProps> = (props) => {
   const [state, setState] = useState<State>(initialState)
 
+  const PALETTE: Array<color> = useSelector(
+    (state: any) => state.generalDuck.palette
+  )
+
   const handleChange = (): void => {
     setState({
       ...state,
@@ -39,12 +52,18 @@ const AccordionItem: FC<AccordionItemProps> = (props) => {
       <AccordionSummary
         expandIcon={
           !state.isExpanded ? (
-            <div className={styles.accordionIcon}>
-              <AddIcon />
+            <div
+              className={styles.accordionIcon}
+              style={{ background: PALETTE[0].bgColor }}
+            >
+              <AddIcon color="warning" />
             </div>
           ) : (
-            <div className={styles.accordionIcon}>
-              <RemoveIcon />
+            <div
+              className={styles.accordionIcon}
+              style={{ background: hexToRGB(PALETTE[0].bgColor, 0.3) }}
+            >
+              <RemoveIcon color="primary" />
             </div>
           )
         }

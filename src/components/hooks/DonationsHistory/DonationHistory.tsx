@@ -1,45 +1,59 @@
-import { ReactElement, useState, useEffect } from "react";
+import { ReactElement, useState, useEffect } from "react"
+
+// redux
+import { useSelector } from "react-redux"
 
 //style
-import "./donationHistory.scss";
+import "./donationHistory.scss"
 
 //i18n
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next"
 
 //type
-import { donation } from "../../../utils/type";
+import { donation, color } from "../../../utils/type"
 // convertdate
-import { convertDate } from "../../../utils/convertDate";
+import { convertDate } from "../../../utils/convertDate"
 //mui
-import { Typography } from "@mui/material";
+import { Typography } from "@mui/material"
+
+// convert to RGB
+import { hexToRGB } from "../../../utils/hexToRGB"
 
 interface Props {
-  datas: Array<donation>;
+  datas: Array<donation>
 }
 
 function DonationHistory(props: Props): ReactElement {
-  const { t }: any = useTranslation();
-  const [state, setState] = useState<number>(0);
+  const { t }: any = useTranslation()
+  const [state, setState] = useState<number>(0)
+
+  const PALETTE: Array<color> = useSelector(
+    (state: any) => state.generalDuck.palette
+  )
 
   useEffect(() => {
-    sumDonations();
-  }, []);
+    sumDonations()
+  }, [])
 
   function sumDonations(): void {
-    let sum: number = 0;
+    let sum: number = 0
     props.datas?.forEach((elem: donation) => {
-      sum = sum + elem.amount;
-    });
-    setState(sum);
+      sum = sum + elem.amount
+    })
+    setState(sum)
   }
 
-  function mapping(element: donation,key:number): ReactElement {
+  function mapping(element: donation, key: number): ReactElement {
     return (
-      <div key={key} className="singleDonation">
-        <span>{`${convertDate(element.donationDate,t("dateFormat"))}`}</span>
+      <div
+        key={key}
+        className="singleDonation"
+        style={{ borderBottomColor: hexToRGB(PALETTE[2].textColor, 0.3) }}
+      >
+        <span>{`${convertDate(element.donationDate, t("dateFormat"))}`}</span>
         <span>{`${element.amount}€`}</span>
       </div>
-    );
+    )
   }
 
   return (
@@ -62,7 +76,7 @@ function DonationHistory(props: Props): ReactElement {
         </section>
       </section>
     </article>
-  );
+  )
 }
 
-export default DonationHistory;
+export default DonationHistory

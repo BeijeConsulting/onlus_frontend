@@ -329,6 +329,7 @@ const MyInfoSection: FC<InfoProps> = (props): ReactElement => {
             colorType="primary"
             callback={submit}
           />
+
           <GenericModal open={state.isOpen} callback={openModal}>
             <div className="children-modal">
               <Typography variant="body1">

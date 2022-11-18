@@ -174,8 +174,7 @@ const Header: FC<HeaderProps> = (props) => {
         <Default>
           <nav className={"nav-desktop"}>
             <NavLink end to={SCREENS.home}>
-              {/* <p style={{ background: "inherit" }}>prova</p> */}
-              <Typography color={PALETTE[0].textColor} variant="body1">
+              <Typography variant="body2">
                 {t("nav.home")}
                 <div
                   className="underline"
@@ -183,8 +182,9 @@ const Header: FC<HeaderProps> = (props) => {
                 ></div>
               </Typography>
             </NavLink>
+
             <NavLink end to={SCREENS.about}>
-              <Typography color={PALETTE[0].textColor} variant="body1">
+              <Typography variant="body2">
                 {t("nav.about")}
                 <div
                   className="underline"
@@ -192,8 +192,9 @@ const Header: FC<HeaderProps> = (props) => {
                 ></div>
               </Typography>
             </NavLink>
+
             <NavLink end to={SCREENS.events}>
-              <Typography color={PALETTE[0].textColor} variant="body1">
+              <Typography variant="body2">
                 {t("nav.events")}
                 <div
                   className="underline"
@@ -201,8 +202,9 @@ const Header: FC<HeaderProps> = (props) => {
                 ></div>
               </Typography>
             </NavLink>
+
             <NavLink end to={SCREENS.blog}>
-              <Typography color={PALETTE[0].textColor} variant="body1">
+              <Typography variant="body2">
                 {t("nav.blog")}
                 <div
                   className="underline"
@@ -210,8 +212,9 @@ const Header: FC<HeaderProps> = (props) => {
                 ></div>
               </Typography>
             </NavLink>
+
             <NavLink end to={SCREENS.support}>
-              <Typography color={PALETTE[0].textColor} variant="body1">
+              <Typography variant="body2">
                 {t("nav.supportUs")}
                 <div
                   className="underline"
@@ -219,8 +222,9 @@ const Header: FC<HeaderProps> = (props) => {
                 ></div>
               </Typography>
             </NavLink>
+
             <NavLink end to={SCREENS.faq}>
-              <Typography color={PALETTE[0].textColor} variant="body1">
+              <Typography variant="body2">
                 {t("nav.info")}
                 <div
                   className="underline"
@@ -235,8 +239,7 @@ const Header: FC<HeaderProps> = (props) => {
         <div className="header-right">
           <div className="lng-buttons">
             <Typography
-              color={PALETTE[0].textColor}
-              variant="body1"
+              variant="body2"
               onClick={changeLanguageClick("en")}
               className={
                 (i18n.language === "en" ? "active-lng" : "") + " langButton"
@@ -244,10 +247,11 @@ const Header: FC<HeaderProps> = (props) => {
             >
               EN
             </Typography>
-            <p style={{ padding: "0 10px", color: PALETTE[0].textColor }}>•</p>
+            <Typography className="lng-separator" variant="body2">
+              •
+            </Typography>
             <Typography
-              color={PALETTE[0].textColor}
-              variant="body1"
+              variant="body2"
               onClick={changeLanguageClick("it")}
               className={
                 (i18n.language === "it" ? "active-lng" : "") + " langButton"
@@ -319,7 +323,7 @@ const Header: FC<HeaderProps> = (props) => {
           className="bottom-header-button"
           scroll={(el) => scrollWithOffset(el)}
         >
-          <Typography color={PALETTE[0].textColor} variant="body1">
+          <Typography variant="body2">
             {t("nav.events")}
             <div
               className="underline"
@@ -332,7 +336,7 @@ const Header: FC<HeaderProps> = (props) => {
           className="bottom-header-button"
           scroll={(el) => scrollWithOffset(el)}
         >
-          <Typography color={PALETTE[0].textColor} variant="body1">
+          <Typography variant="body2">
             {t("nav.blog")}
             <div
               className="underline"
@@ -345,7 +349,7 @@ const Header: FC<HeaderProps> = (props) => {
           className="bottom-header-button"
           scroll={(el) => scrollWithOffset(el)}
         >
-          <Typography color={PALETTE[0].textColor} variant="body1">
+          <Typography variant="body2">
             {t("home.history")}
             <div
               className="underline"
@@ -357,7 +361,7 @@ const Header: FC<HeaderProps> = (props) => {
 
       <GenericModal open={state.isOpenModal} callback={openModal}>
         <div className="children-modal">
-          <Typography variant="body1">{t("nav.logoutSentence")}</Typography>
+          <Typography variant="body2">{t("nav.logoutSentence")}</Typography>
           <CustomButton
             label={t("confirm")}
             isDisable={false}

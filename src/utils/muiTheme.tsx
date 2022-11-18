@@ -5,6 +5,8 @@ import store from "../redux/store"
 
 import { color } from "./type"
 
+import { hexToRGB } from "./hexToRGB"
+
 const PALETTE: Array<color> = store.getState().generalDuck.palette
 
 declare module "@mui/material/styles" {
@@ -12,6 +14,8 @@ declare module "@mui/material/styles" {
     primary: Palette["primary"]
     secondary: Palette["secondary"]
     success: Palette["success"]
+    info: Palette["info"]
+    warning: Palette["warning"]
     // textPrimary: Palette["info"]
     // textSecondary: Palette["secondary"]
     // textTertiary: Palette["success"]
@@ -20,6 +24,9 @@ declare module "@mui/material/styles" {
     primary?: PaletteOptions["primary"]
     secondary?: PaletteOptions["secondary"]
     success?: PaletteOptions["success"]
+    info?: PaletteOptions["info"]
+    warning?: PaletteOptions["warning"]
+
     // textPrimary?: PaletteOptions["info"]
     // textSecondary?: PaletteOptions["secondary"]
     // textTertiary?: PaletteOptions["success"]
@@ -40,6 +47,12 @@ export const theme = createTheme({
       main: PALETTE[2].bgColor,
       contrastText: PALETTE[2].textColor,
     },
+    info: {
+      main: PALETTE[1].textColor,
+    },
+    warning: {
+      main: PALETTE[0].textColor,
+    },
     // textPrimary: {
     //   main: PALETTE[0].textColor,
     // },
@@ -56,6 +69,7 @@ export const theme = createTheme({
     h1: {
       fontSize: "24px",
       fontWeight: "500",
+      color: "red",
       "@media (min-width:768px)": {
         fontSize: "36px",
       },
@@ -66,6 +80,7 @@ export const theme = createTheme({
     h2: {
       fontSize: "20px",
       fontWeight: "500",
+      color: "red",
       "@media (min-width:768px)": {
         fontSize: "32px",
       },
@@ -76,6 +91,7 @@ export const theme = createTheme({
     h3: {
       fontSize: "20px",
       fontWeight: "500",
+      color: "red",
       "@media (min-width:768px)": {
         fontSize: "22px",
       },
@@ -86,48 +102,47 @@ export const theme = createTheme({
     h4: {
       fontSize: "18px",
       fontWeight: "600",
+      color: "red",
     },
     h5: {
       fontSize: "18px",
       fontWeight: "400",
-      "@media (min-width:768px)": {
-        fontSize: "20px",
-      },
-      "@media (min-width:992px)": {
-        fontSize: "22px",
-      },
+      color: "yellow",
     },
     h6: {
       fontSize: "18px",
       fontWeight: "400",
-      "@media (min-width:768px)": {
-        fontSize: "20px",
-      },
-      "@media (min-width:992px)": {
-        fontSize: "22px",
-      },
     },
     subtitle1: {
       fontSize: "16px",
       fontWeight: "600",
+      color: "red",
     },
     body1: {
       fontSize: "16px",
       fontWeight: "400",
+      color: "red",
     },
     body2: {
+      fontSize: "16px",
+      fontWeight: "400",
+      color: "yellow",
+    },
+    caption: {
       fontSize: "14px",
       fontWeight: "400",
-      color: "rgba(0,0,0,0.6)",
+      // color: hexToRGB(PALETTE[2].textColor, 0.6),
+      color: "red",
+    },
+    overline: {
+      fontSize: "14px",
+      textDecoration: "underline",
+      // color: hexToRGB(PALETTE[2].textColor, 0.6),
+      color: "red",
     },
     button: {
       fontSize: "16px",
       textTransform: "uppercase",
-    },
-    caption: {
-      fontSize: "14px",
-      textDecoration: "underline",
-      color: "rgba(0,0,0,0.6)",
     },
   },
   components: {

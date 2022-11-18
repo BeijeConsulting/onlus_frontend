@@ -4,20 +4,7 @@
   width: 100vw;
   padding: 20px;
   position: relative;
-  // filter: brightness(.5);
-  color: white;
   display: flex;
-  &:after {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    content: "";
-    display: block;
-    width: 100vw;
-    background-color: rgba(0, 0, 0, 0.4);
-  }
   .hero-content {
     position: relative;
     z-index: 9;
@@ -42,7 +29,6 @@
     width: 80%;
     height: 3px;
     margin: 25px 0;
-    background-color: white;
   }
 
   .hero-overlay {
@@ -51,7 +37,9 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    width: 100vw;
+    display: flex;
+    align-items: center;
   }
 }
 

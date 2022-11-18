@@ -26,9 +26,6 @@ header {
       }
     }
   }
-  &.home.active {
-    background-color: $primary;
-  }
   .top-header {
     padding-left: 8px;
     display: flex;
@@ -56,6 +53,9 @@ header {
 .lng-buttons {
   display: flex;
   align-items: center;
+  .lng-separator{
+    padding: 0 10px;
+  }
   .langButton {
     cursor: pointer;
     font-weight: 300;
@@ -98,22 +98,6 @@ header {
     a{
       position: relative;
     }
-    // p {
-    //   &:after {
-    //     display: block;
-    //     content: "";
-    //     height: 2px;
-    //     border-radius: 5px;
-    //     width: 0%;
-    //     transition: width 0.3s ease-in-out;
-    //   }
-    //   &:hover:after {
-    //     width: 100%;
-    //   }
-    //   &:hover {
-    //     opacity: 100%;
-    //   }
-    // }
     p{
       .underline{
         display: block;

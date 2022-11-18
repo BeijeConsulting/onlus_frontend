@@ -16,6 +16,7 @@ import ListItem from "@mui/material/ListItem"
 import ListItemButton from "@mui/material/ListItemButton"
 import ListItemIcon from "@mui/material/ListItemIcon"
 import ListItemText from "@mui/material/ListItemText"
+import Typography from "@mui/material/Typography"
 
 // Icons
 import { GiHamburgerMenu } from "react-icons/gi"
@@ -34,6 +35,9 @@ import { useSelector } from "react-redux"
 
 //type
 import { social } from "../../../utils/type"
+
+// convert hex to rgb
+import { hexToRGB } from "../../../utils/hexToRGB"
 
 interface State {
   right: any
@@ -128,11 +132,17 @@ const TemporaryDrawer: FC = () => {
           >
             <ListItemButton>
               <ListItemText
-                style={{ color: PALETTE[0].textColor }}
+                sx={{
+                  borderBottom: `1px solid ${hexToRGB(
+                    PALETTE[0].textColor,
+                    0.5
+                  )}`,
+                }}
                 className={styles.navItem}
-                primary={text}
                 onClick={navigationFromSidebar(text)}
-              />
+              >
+                <Typography variant="body2">{text}</Typography>
+              </ListItemText>
             </ListItemButton>
           </ListItem>
         ))}

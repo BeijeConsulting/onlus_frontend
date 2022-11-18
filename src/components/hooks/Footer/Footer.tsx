@@ -26,6 +26,9 @@ import { social, contact, color } from "../../../utils/type"
 //responsive
 import useResponsive from "../../../utils/useResponsive"
 
+// convert to RGB
+import { hexToRGB } from "../../../utils/hexToRGB"
+
 const Footer: FC = () => {
   const isLogged: boolean = useSelector(
     (state: any) => state.userDuck.isLoggedIn
@@ -64,7 +67,7 @@ const Footer: FC = () => {
           <img className="socialIcon" src={el.icon} />
           <Default>
             <div>
-              <Typography variant="body1">{el.name}</Typography>
+              <Typography variant="body2">{el.name}</Typography>
             </div>
           </Default>
         </div>
@@ -76,34 +79,40 @@ const Footer: FC = () => {
   return (
     <footer style={{ backgroundColor: PALETTE[0].bgColor }} id="footer">
       <div className="top-footer">
-        <section className="contacts">
-          <Typography variant="h4" className="titleContacts">
+        <section
+          style={{ borderRightColor: hexToRGB(PALETTE[0].textColor, 0.3) }}
+          className="contacts"
+        >
+          <Typography variant="h5" className="titleContacts">
             {t("footer.contacts")}
           </Typography>
           <ul>
             <li>
-              <Typography variant="body1">{CONTACTS.site}</Typography>
+              <Typography variant="body2">{CONTACTS.site}</Typography>
             </li>
             <li>
-              <Typography variant="body1">{CONTACTS.email}</Typography>
+              <Typography variant="body2">{CONTACTS.email}</Typography>
             </li>
             <li>
-              <Typography variant="body1">{CONTACTS.address}</Typography>
+              <Typography variant="body2">{CONTACTS.address}</Typography>
             </li>
             <li>
-              <Typography variant="body1">
+              <Typography variant="body2">
                 P.Iva: {CONTACTS.vatNumber}
               </Typography>
             </li>
             <li>
-              <Typography variant="body1">
+              <Typography variant="body2">
                 C.F: {CONTACTS.fiscalCode}
               </Typography>
             </li>
           </ul>
         </section>
 
-        <section className="social">
+        <section
+          style={{ borderRightColor: hexToRGB(PALETTE[0].textColor, 0.3) }}
+          className="social"
+        >
           <div className="social-container">{SOCIAL.map(mapping)}</div>
           {!isLogged && (
             <Mobile>
@@ -118,23 +127,26 @@ const Footer: FC = () => {
         </section>
 
         <Default>
-          <section className="nav">
-            <Typography variant="body1" onClick={goTo(SCREENS.home)}>
+          <section
+            style={{ borderRightColor: hexToRGB(PALETTE[0].textColor, 0.3) }}
+            className="nav"
+          >
+            <Typography variant="body2" onClick={goTo(SCREENS.home)}>
               {t("nav.home")}
             </Typography>
-            <Typography variant="body1" onClick={goTo(SCREENS.about)}>
+            <Typography variant="body2" onClick={goTo(SCREENS.about)}>
               {t("nav.about")}
             </Typography>
-            <Typography variant="body1" onClick={goTo(SCREENS.events)}>
+            <Typography variant="body2" onClick={goTo(SCREENS.events)}>
               {t("nav.events")}
             </Typography>
-            <Typography variant="body1" onClick={goTo(SCREENS.blog)}>
+            <Typography variant="body2" onClick={goTo(SCREENS.blog)}>
               {t("nav.blog")}
             </Typography>
-            <Typography variant="body1" onClick={goTo(SCREENS.support)}>
+            <Typography variant="body2" onClick={goTo(SCREENS.support)}>
               {t("nav.supportUs")}
             </Typography>
-            <Typography variant="body1" onClick={goTo(SCREENS.faq)}>
+            <Typography variant="body2" onClick={goTo(SCREENS.faq)}>
               {t("nav.info")}
             </Typography>
           </section>
@@ -143,17 +155,17 @@ const Footer: FC = () => {
         <section className="privacy">
           <div className="privacy-container">
             <Link to="#">
-              <Typography variant="body1">
+              <Typography variant="body2">
                 {t("footer.privacyPolicy")}{" "}
               </Typography>
             </Link>
             <Link to="#">
-              <Typography variant="body1">
+              <Typography variant="body2">
                 {t("footer.cookiePolicy")}{" "}
               </Typography>
             </Link>
             <Link to="#">
-              <Typography variant="body1">{t("footer.terms")} </Typography>
+              <Typography variant="body2">{t("footer.terms")} </Typography>
             </Link>
           </div>
           {!isLogged && (
@@ -169,7 +181,7 @@ const Footer: FC = () => {
         </section>
       </div>
 
-      <Typography className="rightReserved">
+      <Typography variant="body2" className="rightReserved">
         {t("footer.rightReserved")}
       </Typography>
     </footer>
