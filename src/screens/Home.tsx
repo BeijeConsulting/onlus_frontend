@@ -1,61 +1,61 @@
 // react
-import { useState, useEffect, FC } from "react"
+import { useState, useEffect, FC } from "react";
 
 //navigation
-import { HashLink } from "react-router-hash-link"
+import { HashLink } from "react-router-hash-link";
 
 // traduzioni
-import { useTranslation } from "react-i18next"
+import { useTranslation } from "react-i18next";
 
 // componenti
-import Hero from "../components/hooks/Hero/Hero"
-import Footer from "../components/hooks/Footer/Footer"
-import PreFooter from "../components/hooks/preFooter/PreFooter"
-import CardEventsMobile from "../components/hooks/CardEvents/CardEventsMobile"
-import CardArticle from "../components/ui/CardArticle/CardArticle"
-import SkeletonCard from "../components/ui/skeleton/skeletonCard/SkeletonCard"
-import SkeletonSquare from "../components/ui/skeleton/SkeletonSquare/SkeletonSquare"
-import Header from "../components/hooks/Header/Header"
-import HelmetComponent from "../components/ui/HelmetComponent/HelmetComponent"
-import JoinUs from "../components/hooks/joinUsBbox/JoinUsBox"
+import Hero from "../components/hooks/Hero/Hero";
+import Footer from "../components/hooks/Footer/Footer";
+import PreFooter from "../components/hooks/preFooter/PreFooter";
+import CardEventsMobile from "../components/hooks/CardEvents/CardEventsMobile";
+import CardArticle from "../components/ui/CardArticle/CardArticle";
+import SkeletonCard from "../components/ui/skeleton/skeletonCard/SkeletonCard";
+import SkeletonSquare from "../components/ui/skeleton/SkeletonSquare/SkeletonSquare";
+import Header from "../components/hooks/Header/Header";
+import HelmetComponent from "../components/ui/HelmetComponent/HelmetComponent";
+import JoinUs from "../components/hooks/joinUsBbox/JoinUsBox";
 
 // style
-import "../styles/home.scss"
+import "../styles/home.scss";
 
 // redux
-import { useSelector } from "react-redux"
+import { useSelector } from "react-redux";
 
 //mui
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp"
-import { Typography, Skeleton } from "@mui/material"
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import { Typography, Skeleton } from "@mui/material";
 
 //type
-import { events, article, social, color } from "../utils/type"
+import { events, article, social, color } from "../utils/type";
 
 //api
-import { getHome } from "../services/api/homeApi"
-import { getEvents } from "../services/api/eventApi"
-import { getArticles } from "../services/api/articleApi"
+import { getHome } from "../services/api/homeApi";
+import { getEvents } from "../services/api/eventApi";
+import { getArticles } from "../services/api/articleApi";
 // convertDate
-import { convertDate } from "../utils/convertDate"
-import { useNavigate } from "react-router-dom"
-import SCREENS from "../route/router"
+import { convertDate } from "../utils/convertDate";
+import { useNavigate } from "react-router-dom";
+import SCREENS from "../route/router";
 
-import { hexToRGB } from "../utils/hexToRGB"
-import { checkEventDate } from "../utils/checkForm"
+import { hexToRGB } from "../utils/hexToRGB";
+import { checkEventDate } from "../utils/checkForm";
 
 //stati
 interface State {
-  articlesArray: Array<article> | null
-  homeData: any
-  eventArray: Array<events> | null
-  socialFrame: social | null
+  articlesArray: Array<article> | null;
+  homeData: any;
+  eventArray: Array<events> | null;
+  socialFrame: social | null;
   isLoaded: {
-    homeLoaded: boolean
-    eventLoaded: boolean
-    articleLoaded: boolean
-    socialLoaded: boolean
-  }
+    homeLoaded: boolean;
+    eventLoaded: boolean;
+    articleLoaded: boolean;
+    socialLoaded: boolean;
+  };
 }
 
 // inizializzazione
@@ -70,46 +70,46 @@ const initialState = {
     articleLoaded: false,
     socialLoaded: false,
   },
-}
+};
 
 const Home: FC = () => {
-  const { t }: any = useTranslation()
-  const [state, setState] = useState<State>(initialState)
+  const { t }: any = useTranslation();
+  const [state, setState] = useState<State>(initialState);
 
-  const navigate: Function = useNavigate()
+  const navigate: Function = useNavigate();
 
   const SOCIAL: Array<social> = useSelector(
     (state: any) => state.generalDuck.social
-  )
+  );
 
   const PALETTE: Array<color> = useSelector(
     (state: any) => state.generalDuck.palette
-  )
+  );
 
   useEffect(() => {
-    fetchDatas()
-  }, [])
+    fetchDatas();
+  }, []);
 
   const fetchDatas = async (): Promise<void> => {
     let home: boolean = false,
       event: boolean = false,
       article: boolean = false,
-      social: boolean = false
-    let homeResponse: any = await getHome()
-    if (homeResponse.status === 200) home = true
-    let eventResponse: any = await getEvents()
-    if (eventResponse.status === 200) event = true
-    let articleResponse: any = await getArticles()
-    if (articleResponse.status === 200) article = true
-    if (SOCIAL.length > 0) social = true
+      social: boolean = false;
+    let homeResponse: any = await getHome();
+    if (homeResponse.status === 200) home = true;
+    let eventResponse: any = await getEvents();
+    if (eventResponse.status === 200) event = true;
+    let articleResponse: any = await getArticles();
+    if (articleResponse.status === 200) article = true;
+    if (SOCIAL.length > 0) social = true;
 
     let socialHome: Array<social> = SOCIAL.filter((social: social) => {
-      return social.homepageOn == true
-    })
+      return social.homepageOn == true;
+    });
 
-    let today: Date = new Date()
+    let today: Date = new Date();
 
-    let future: Array<events> = checkEventDate(eventResponse.data, today)
+    let future: Array<events> = checkEventDate(eventResponse.data, today);
 
     setState({
       ...state,
@@ -123,12 +123,12 @@ const Home: FC = () => {
         articleLoaded: article,
         socialLoaded: social,
       },
-    })
-  }
+    });
+  };
 
   const goToArticle = (id: number, cat_id: number) => (): void => {
-    navigate(SCREENS.article + `/${id}`, { state: { cat_id: cat_id } })
-  }
+    navigate(SCREENS.article + `/${id}`, { state: { cat_id: cat_id } });
+  };
 
   const mapArticles = (item: article, key: number): JSX.Element | undefined => {
     if (key < 5) {
@@ -139,17 +139,17 @@ const Home: FC = () => {
             title={item.title}
             description={item.content[0].paragraph}
             date={item.date}
-            image={item.cover}
+            image={item.coverContent}
           />
         </div>
-      )
+      );
     }
-    return
-  }
+    return;
+  };
 
   const goToEvents = (): void => {
-    navigate(SCREENS.events)
-  }
+    navigate(SCREENS.events);
+  };
 
   // map degli eventi
   const mapEvents = (event: events, key: number): JSX.Element | undefined => {
@@ -167,10 +167,10 @@ const Home: FC = () => {
             opaque={false}
           />
         </article>
-      )
+      );
     }
-    return
-  }
+    return;
+  };
 
   return (
     <>
@@ -307,7 +307,7 @@ const Home: FC = () => {
       <PreFooter />
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

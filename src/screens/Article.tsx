@@ -93,7 +93,7 @@ const Article: FC = () => {
     if (key < 3 && el.id !== Number(params.id)) {
       return (
         <div key={key} onClick={goToArticle(el.id, el.category[0]?.id)}>
-          <CorrelatedArticleCard cover={el.cover} title={el.title} />
+          <CorrelatedArticleCard cover={el.coverContent} title={el.title} />
         </div>
       )
     }
@@ -124,7 +124,7 @@ const Article: FC = () => {
       {state.isLoaded ? (
         <main id="article">
           <Hero
-            image={state.article!.cover}
+            image={state.article!.coverContent}
             title={state.article!.title}
             category={state.article!.category.map(mappingCategories)}
             type="article"

@@ -121,7 +121,7 @@ const Blog: FC = () => {
             <Mobile>
               <CardArticle
                 date={el.date}
-                image={el.cover}
+                image={el.coverContent}
                 title={el.title}
                 description={el.content[0].paragraph}
                 minWidth="250px"
@@ -130,7 +130,7 @@ const Blog: FC = () => {
             <Default>
               <CardArticle
                 date={el.date}
-                image={el.cover}
+                image={el.coverContent}
                 title={el.title}
                 description={el.content[0].paragraph}
                 minWidth="300px"

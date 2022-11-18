@@ -6,7 +6,7 @@ export type article = {
   date: string; //dovrá essere date
   title: string;
   status: string;
-  cover: string;
+  coverContent: string;
   category: Array<any>;
   content: Array<contentArticle>;
 };
