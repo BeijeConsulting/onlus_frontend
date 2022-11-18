@@ -75,8 +75,8 @@ function Support() {
         <div className="sectionContainer">
           {state?.isLoaded && !!state.data ? (
             <>
-              <Typography variant="h1">{state?.data?.title.title}</Typography>
-              {state?.data?.content.map(mapping)}
+              <Typography variant="h1">{state.data?.title.title}</Typography>
+              {state.data.content?.map(mapping)}
             </>
           ) : (
             <>
@@ -104,8 +104,8 @@ function Support() {
         {state?.isLoaded && !!state.data.hero ? (
           <Hero
             type="home"
-            title={state?.data?.hero.text}
-            image={state?.data?.hero.mediaContent}
+            title={state.data.hero.text}
+            image={state.data.hero.mediaContent}
           />
         ) : (
           <Skeleton variant="rectangular" animation="wave">

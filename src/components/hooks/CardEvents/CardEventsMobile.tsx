@@ -1,4 +1,4 @@
-import { useState, FC, useEffect } from "react"
+import { useState, FC } from "react"
 import { styled } from "@mui/material/styles"
 import Card from "@mui/material/Card"
 import CardMedia from "@mui/material/CardMedia"
@@ -17,7 +17,6 @@ import useResponsive from "../../../utils/useResponsive"
 import { useSelector } from "react-redux"
 
 import noImage from "../../../assets/images/no-image.jpg"
-import { TbTypographyOff } from "react-icons/tb"
 
 // interfaccia
 interface ExpandMoreProps extends IconButtonProps {

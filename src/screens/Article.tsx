@@ -12,7 +12,7 @@ import SkeletonCorrelated from "../components/ui/skeleton/skeletonCorrelated/Ske
 import { useTranslation } from "react-i18next"
 
 //type
-import { article, category, content, contentArticle } from "../utils/type"
+import { article, category, contentArticle } from "../utils/type"
 
 //style
 import "../styles/article.scss"
