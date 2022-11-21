@@ -67,6 +67,9 @@
   &:after {
     height: calc(100vh - 104px);
   }
+  .hero-content{
+    margin: 0 auto;
+  }
 }
 
 @media (min-width: 768px) {
@@ -83,6 +86,12 @@
       }
     }
   }
+
+  .hero-container-about{
+    .hero-content{
+      width: 80vw;
+    }
+  }
 }
 
 @media (min-width: 992px) {
@@ -94,6 +103,12 @@
       .hero-subtitle {
         padding-bottom: 50px;
       }
+    }
+  }
+
+  .hero-container-about{
+    .hero-content{
+      width: 80vw;
     }
   }
 }

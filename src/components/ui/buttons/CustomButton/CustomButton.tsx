@@ -30,9 +30,7 @@ const CustomButton: FC<Props> = (props): ReactElement => {
       onClick={handleClick}
       className={styles.btn}
     >
-      <Typography variant="button" color={props.textColor}>
-        {props.label}
-      </Typography>
+      <Typography variant="button">{props.label}</Typography>
     </Button>
   )
 }
