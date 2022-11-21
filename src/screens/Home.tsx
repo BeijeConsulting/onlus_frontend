@@ -194,8 +194,8 @@ const Home: FC = () => {
         {state.isLoaded.homeLoaded ? (
           <Hero
             type={"home"}
-            title={state.homeData.hero.text}
-            subtitle={state.homeData.hero.subtitle}
+            title={state.homeData.hero.subtitle}
+            subtitle={state.homeData.hero.text}
             image={state.homeData.hero.mediaContent}
           />
         ) : (
